@@ -76,6 +76,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
   
     // new link to add all section from tab
       private allSectionFromTabid = environment.baseUrl+"/allSectionFromTab/";
+      private allEmailTemplate = environment.baseUrl+"/emailTemplatePaging";
   
   // dropdown product hierachy
     private getProductHierachyH = environment.baseUrl+"/allProductHierarchy";
@@ -105,7 +106,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     private postproductentityAttribute = environment.baseUrl+"/createProductEntityTemplateAttributes";
     private postproductTemplateSection = environment.baseUrl+"/createProductEntityTemplateSection";
     private postproductEntityTemplate = environment.baseUrl+"/createProductEntityTemplates";  
-    
+    private postEmailTemlateUrl = environment.baseUrl+"/createEmailTemplate";
     // ids
     private getProductFamilyId = environment.baseUrl+"/productFamily/";
     private getProductLineId = environment.baseUrl+"/productLine/";
@@ -115,7 +116,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     private getProductHierachyId= environment.baseUrl+"/productHierarchy/";
     private getProductEntityId = environment.baseUrl+"/productEntityTemplates/";
     private getSectionForm = environment.baseUrl+"/getAllFormData/";
-    
+    private getEmailTempId = environment.baseUrl+"/emailTemplate/";
     // calling ids to another page
     private allProductEntityTemplatesid = environment.baseUrl+"/allProductEntityTemplates/";
   
@@ -129,7 +130,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     private updateProductEntity = environment.baseUrl+"/updateProductEntityTemplates";
     private productEntityTemplateSectionID = environment.baseUrl+"/productEntityTemplateSection/";
     private updateProductEntityTemplateSectionHH = environment.baseUrl+"/updateProductEntityTemplateSection";
-  
+    private updateEmailTemplate = environment.baseUrl+"/updateEmailTemplate";
     // delete 
     private deleteproductFamily = environment.baseUrl+"/deleteProductFamily/";
     private deleteproductLine = environment.baseUrl+"/deleteProductLine/";
@@ -143,7 +144,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     private productLinePostWithAttachment = environment.baseUrl+"/createProductLineWithAttachment";
     private productFamilyWithAttachment=environment.baseUrl+"/createProductFamilyWithAttachment";
     private allSectionAndTabFromTemplateId=environment.baseUrl+"/allSectionAndTabFromTemplateId/";
-    
+    private deleteEmailTemplate = environment.baseUrl+"/deleteEmailTemplate/";
     
     // add tabs
     constructor(private http: HttpClient) { }
@@ -549,6 +550,26 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     }
     postCreateRole(data:assingroles){
       return this.http.post(this.postcreaterole,data)
+    }
+
+    postEmailTemplate(data:any){
+      return this.http.post(this.postEmailTemlateUrl,data);
+    }
+
+    getAllEmailTemplate(){
+      return this.http.get(this.allEmailTemplate);
+    }
+
+    getEmailTemplateId(id:any){
+    return  this.http.get(this.getEmailTempId+id)
+    }
+
+    updateEmailTemplateId(data:any){
+      return this.http.put(this.updateEmailTemplate,data);
+    }
+
+    deleteEmailTemplateId(tempId:number,updatedBy:number){
+      return this.http.delete(this.deleteEmailTemplate+tempId+"/"+updatedBy)
     }
 
       // 

@@ -1,15 +1,13 @@
-import { FormGroup } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { Router } from '@angular/router';
-
 @Component({
   selector: 'app-emailtemplate',
   templateUrl: './emailtemplate.component.html',
   styleUrls: ['./emailtemplate.component.scss']
 })
 export class EmailtemplateComponent implements OnInit {
-  
   permission:any=[true,true,true];
   headerList:any=[];
   ajayStri : any ;
@@ -17,18 +15,22 @@ export class EmailtemplateComponent implements OnInit {
   pageSize:any;
   sortBy:any;
   sortDirection:any;
-  emailTemplate: FormGroup;
-  actionBtn:string = "Save";
   data:any={};
 
   constructor(private allService:CrmservicesService, private router:Router) { }
 
   ngOnInit(): void {
+    this.allService.getAllEmailTemplate().subscribe((sucess:any)=>{
+      this.headerList=sucess.headerlist  ; //sucess.headerList;
+    this.data=sucess.page;
+    },
+    (error)=>{
+      console.log(error)
+    })
   }
 
-  submit(){}
+ 
 
-  resetForm(){}
 
   changePageSortSearch(url:any){
     this.ajayStri =""+ url.toString();
@@ -44,12 +46,12 @@ export class EmailtemplateComponent implements OnInit {
     if(data.event=='add'){
       this.router.navigate(['crm/emailTemplateForm']);   
     }else if(data.event=='edit'){
-      // alert(JSON.stringify(data.data));
-      this.router.navigate(['crm/emailTemplateForm'],{ queryParams: { data: JSON.stringify(data.data.productFamilyId)} });
+      alert(JSON.stringify(data.data));
+      this.router.navigate(['crm/emailTemplateForm'],{ queryParams: { data: JSON.stringify(data.data.emailTemplateId)} });
         console.log(data.data, 'data')
     } else if(data.event == 'delete'){
       // alert(JSON.stringify(  data));
-      this.allService.deleteProductFamily(data.data.productFamilyId, data.data.updatedBy).subscribe((res)=>{
+      this.allService.deleteEmailTemplateId(data.data.emailTemplateId, data.data.updatedBy).subscribe((res)=>{
         console.log(res);
         alert('Record Deleted');
         // this.changePageSortSearch(url);

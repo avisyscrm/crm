@@ -504,8 +504,8 @@
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
                             [routerLink]="['/crm/product-attribute']" href="javascript:void(0)"><span>Product
                                 Attribute</span></a></li>
-                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/crm/emailTemplate']" href="javascript:void(0)"><span>Create Template</span></a></li>
+                    <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                            [routerLink]="['/crm/emailTemplate']" href="javascript:void(0)"><span>Create Template</span></a></li> -->
 
                 </ul>
             </li>
@@ -536,6 +536,11 @@
 
 
                 </ul>
+            </li>
+            <li *ngIf="crmAdminActive">
+                <a href="javascript:void(0)" [routerLink]="['/crm/emailTemplate']" (click)="isDropDownCollapsed = !isDropDownCollapsed"
+                    [attr.aria-expanded]="!isDropDownCollapsed" aria-controls="AuthCollapsed"
+                    class="has-arrow arrow-c"><i class="icon-plus"></i><span>Create Email</span></a>
             </li>
             <li *ngIf="crmAdminActive">
                 <a href="javascript:void(0)" (click)="isDropDownCollapsed = !isDropDownCollapsed"

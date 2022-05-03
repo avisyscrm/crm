@@ -14,6 +14,7 @@ import { FeatureComponent } from './modules/crm/crmCompont/feature/feature.compo
 import { ForgotPassFormComponent } from './modules/auth/forgot-pass-form/forgot-pass-form.component';
 import { LoginAdminComponent } from './modules/admin/login-admin/login-admin.component';
 import { EmailtemplateformComponent } from './modules/crm/crmCompont/emailtemplateform/emailtemplateform.component';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
 
@@ -32,6 +33,7 @@ import { EmailtemplateformComponent } from './modules/crm/crmCompont/emailtempla
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    CKEditorModule,
     BrowserAnimationsModule,
     BsDatepickerModule.forRoot(),
     CarouselModule.forRoot(),
