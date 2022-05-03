@@ -1,0 +1,115 @@
+<app-leftmenu></app-leftmenu>
+<!-- Main body part  --> 
+<div class="page">
+    <app-header></app-header>
+    <div class="section-body  fixNavMargin">
+        <div class="container-fluid">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <ul class="nav nav-tabs page-header-tab">
+                    <li class="nav-item"><a class="nav-link" href="#">
+                        </a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"></a>
+                    </li>
+
+                </ul>
+                <!-- <div class="header-action">
+                    <button type="button" class="btn btn-primary m-3"><i class="fe fe-plus mr-2"></i>Add</button>
+                </div> -->
+            </div>
+            <!--product family-->
+            <form [formGroup]="createUser" (ngSubmit)="submit()">
+            <div class="card card-height">
+                <div class="card-header pf-head">
+                    <h3 class="card-title ">Add User</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row productfamily ">
+                        <div class="col-md-8">
+                            <div class="row ">
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">First Name </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <input name="" type="text" class="form-control" value="" formControlName="firstname">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="row ">
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">Last Name </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <input name="" type="text" class="form-control" value="" formControlName="lastname">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="row ">
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">Email Id </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <input name="" type="email" class="form-control" value="" formControlName="email">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <div class="row ">
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">Password </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <input name="" type="text" class="form-control" value="" formControlName="password">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row ">
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">Roles </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <select name="" id="" class="form-control" formControlName="role">
+                                        <option value="">Select --</option>
+                                        <option value="{{role.name}}" *ngFor="let role of roles" > {{role.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+             
+             
+
+                       
+
+                     
+
+                
+                    </div>
+                    <button type="submit" class="btn btn-primary ">Add</button>
+                    <button type="reset"  class="btn btn-primary ml-3 ">Reset</button>
+                </div>
+                <a routerLink="/change-password"  >Change password</a>
+            </div>
+            </form>
+     
+        </div>
+
+
+ 
+        <!-- <pre>
+            {{createUser.value | json}}
+            {{createUser.invalid}}
+         </pre> -->
+        <!---product family-->
+    </div>
+</div>
+
+<!-- <app-footer></app-footer> -->
+
+
+

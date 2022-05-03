@@ -1,0 +1,143 @@
+    <div class="section-body  fixNavMargin">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+                <ul class="nav nav-tabs page-header-tab">
+                    <li class="nav-item"><a class="nav-link" href="#">
+                        </a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"></a>
+                    </li>
+
+                </ul>
+                <!-- <div class="header-action">
+                    <button type="button" class="btn btn-primary m-3"><i class="fe fe-plus mr-2"></i>Add</button>
+                </div> -->
+            </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <h3 class="card-title prod-name">PRODUCT ATTRIBUTES</h3>
+                        <!-- <a  [routerLink]="['/product-attribute-form']"> <button  type="button" class="btn btn-primary m-3">
+                            <i class="fe fe-plus mr-2" ></i>Add</button></a> -->
+                    </div>
+
+                    <app-datatable [permission]="permission" (buttonEvent1)="buttonEvent1($event)" (changePageSortSearch)="changePageSortSearch($event)"  
+                    [dataset]="data">
+        <app-column [search]="x.search_key"  [cssClass]="" [type]="x.type" *ngFor="let x of headerList" 
+                  [value]="x.value" [width]="x.width"   [header]="x.header"></app-column> 
+       </app-datatable>
+                    <!-- <div class="cardbody">
+                        <div class="table-section-crm">
+                        <div class="table-responsive">
+                            <table class="table table-striped mb-0">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th class="table-head"> NAME</th>
+                                        <th class="table-head">DESCRIPTION</th>
+                                        <th class="table-head">ICON</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="radio-section">
+                                                <label class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input"
+                                                        name="example-radios" value="">
+                                                    <div class="custom-control-label "></div>
+                                                </label>
+                                            </div>
+                                        </th>
+                                        <td>Consumer</td>
+                                        <td>Consumer range</td>
+                                        <td>Image</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="radio-section">
+                                                <label class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input"
+                                                        name="example-radios" value="">
+                                                    <div class="custom-control-label "></div>
+                                                </label>
+                                            </div>
+                                        </th>
+                                        <td>Bikes</td>
+                                        <td>Bikes Product Family</td>
+                                        <td>Image</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="radio-section">
+                                                <label class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input"
+                                                        name="example-radios" value="">
+                                                    <div class="custom-control-label "></div>
+                                                </label>
+                                            </div>
+                                        </th>
+                                        <td>Car</td>
+                                        <td>Car product range family</td>
+                                        <td>Image</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="radio-section">
+                                                <label class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input"
+                                                        name="example-radios" value="">
+                                                    <div class="custom-control-label "></div>
+                                                </label>
+                                            </div>
+                                        </th>
+                                        <td>Bike_1</td>
+                                        <td>Bike product family</td>
+                                        <td>Image</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">
+                                            <div class="radio-section">
+                                                <label class="custom-control custom-radio">
+                                                    <input type="radio" class="custom-control-input"
+                                                        name="example-radios" value="">
+                                                    <div class="custom-control-label "></div>
+                                                </label>
+                                            </div>
+                                        </th>
+                                        <td>Car</td>
+                                        <td>Car product family</td>
+                                        <td>Image</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div> -->
+                </div>
+                
+
+
+            
+
+                <!-- </div> -->
+                <!-- <app-footer></app-footer> -->
+
+            </div>
+
+
+
+
+            <!-- 3456789 -->
+            
+
+            <!-- <div class=" d-flex justify-content-end ">
+                <ul class="pagination mt-2 ">
+                    <li class="page-item"><a class="page-link" href="">Previous</a></li>
+                    <li class="page-item active"><a class="page-link" href="">1</a></li>
+                    <li class="page-item"><a class="page-link" href="">2</a></li>
+                    <li class="page-item"><a class="page-link" href="">3</a></li>
+                    <li class="page-item"><a class="page-link" href="">Next</a></li>
+                </ul>
+            </div> -->
+        </div>
+    </div>

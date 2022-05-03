@@ -1,0 +1,36 @@
+<form [formGroup]="myForm">
+    <div *ngFor="let section of sectionFromDetails?.page">
+        <div class="sub-head ">
+            
+            {{section?.section.section}}
+        </div>
+                <div class="form-group" *ngFor="let componat of section?.section.components">
+                    <label for="exampleInputEmail1">{{componat?.productAttribute}}</label>
+                    <input *ngIf="componat.dataCaptureControl!='radio' && componat.dataCaptureControl!='dropdown'" [formControlName]="componat?.productAttribute" [type]="componat?.dataCaptureControl"
+                        class="form-control" [id]="componat?.productAttribute" aria-describedby="emailHelp"
+                        placeholder="Enter {{componat?.productAttribute}}">
+                       
+                    <div *ngIf="componat.dataCaptureControl=='radio'">
+                        <div class="form-check" *ngFor="let x of componat?.option">
+                            <input type="radio" class="form-check-input" [id]="componat?.productAttribute" [formControlName]="componat?.productAttribute"  [value]="x.value"
+                                >{{x.value}}
+                            <label class="form-check-label"  for="radio1"></label>
+                        </div>
+                    </div>
+                   
+                    <div *ngIf="componat.dataCaptureControl =='dropdown'">
+                        <select  [id]="componat?.productAttribute"   [formControlName]="componat?.productAttribute" class="form-control">
+                            <option *ngFor="let x of componat?.option" >{{x.value}}</option>
+                            
+                        </select>
+                    </div>
+                    <label class="error" *ngIf="getControl[componat?.productAttribute]?.touched && getControl[componat?.productAttribute].invalid">
+                        <label class="error" *ngIf="getControl[componat?.productAttribute].errors?.required">Please fill {{componat?.productAttribute}}</label>
+                         <label class="error" *ngIf="getControl[componat?.productAttribute].errors?.maxlength">Length should be less than 80</label>
+                         </label>
+                    <br>
+                </div>
+           
+    </div>
+    <button type="submit" (click)="submit(myForm)"  class="btn btn-primary">Submit</button>
+    </form>

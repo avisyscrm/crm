@@ -1,0 +1,32 @@
+::ng-deep .apexcharts-legend {
+    display: none !important;
+}
+::ng-deep .pie {
+   margin-left: -14px !important;
+}
+.productfamily{
+    flex-direction: column;
+}
+// .table-section-crm .aa{
+//     max-height:10px !important;
+//     padding:0px !important;
+// }
+.table-section-crm .table {
+    font-size: 10px;
+  }
+  
+.table-section-crm .table tr,.table td {
+     height: 40px;
+     text-align:left;
+  }
+  
+  .table-section-crm .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th
+  {
+    padding:5px; 
+  }
+  .table-section-crm .table-head , .prod-name{
+      font-weight: bold;
+  }
+  .cardbody{
+      padding:0 20px 20px 20px;
+  }

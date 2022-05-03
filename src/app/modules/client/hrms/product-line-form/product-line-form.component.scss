@@ -1,0 +1,11 @@
+.card-height{
+    min-height: calc(100vh - 150px );
+}
+
+.selected-image{
+    width: 100px;
+    height: 100px;
+    margin: 10px;
+    display: block;
+    object-fit: cover;
+}

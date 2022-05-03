@@ -1,0 +1,248 @@
+
+    <div class="section-body  fixNavMargin">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+                <ul class="nav nav-tabs page-header-tab">
+                    <li class="nav-item"><a class="nav-link" href="#">
+                        </a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"></a>
+                    </li>
+
+                </ul>
+                <!-- <div class="header-action">
+                    <button type="button" class="btn btn-primary m-3"><i class="fe fe-plus mr-2"></i>Add</button>
+                </div> -->
+            </div>
+            <div class="row">
+  
+                
+
+
+                <!--product entity-->
+                <form [formGroup]="productEntityAttribute" (ngSubmit)="submitForm()">
+                <div class="card card-height">
+                    <div class="card-header pf-head">
+                        <h3 class="card-title ">PRODUCT ENTITY TEMPLATE ATTRIBUTES</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row productfamily ">
+                <div class="col-md-6">
+                                <div class="row ">
+                                    <div class=" form-group col-md-4">
+                                        <label class="form-label ">Product Entity Template Id</label>
+                                    </div>
+                                    <div class=" form-group col-md-8">
+                                        <div class="form-group">
+                                            <select #mySelect (change)="onOptionsSelected(mySelect.value)"
+                                            class="form-control mandatory" class="form-control mandatory"
+                                            formControlName="productEntityTemplateId">
+                                            <option value="">Select --</option>
+                                            <option aria-placeholder="select" value="{{productline.productEntityTemplateId}}"
+                                               *ngFor="let  productline of allProductEntityTempidd">
+                                               {{productline.productEntityTemplateName}}</option>
+                                         </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+          
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Tab</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <select #mySelect3 (change)="onOptionsSelectedTab(mySelect3.value)"
+                                 class="form-control mandatory" formControlName="tabId">
+                                 <option value="">Select --</option>
+                                 <option aria-placeholder="select" value="{{tabids.productEntityTemplateSectionId}}"
+                                    *ngFor="let tabids of tabid">{{tabids.section}}
+                                 </option>
+                              </select>
+                                    </div>
+                                </div>
+                            </div>
+               
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Section</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <select #select4 (change)="onSelectSection(select4.value)" class="form-control mandatory" formControlName="sectionId">
+                                            <option value="">Select --</option>
+                                            <option aria-placeholder="select" value="{{tabids.productEntityTemplateSectionId}}"
+                                               *ngFor="let tabids of secid">{{tabids.section}}</option>
+                                         </select>
+                                    </div>
+                                </div>
+                            </div>
+
+              
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Sequence ID</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="number" class="form-control mandatory" id="mname" name="middle-name"
+                                        formControlName="sequenceId">
+                                    </div>
+                                </div>
+                            </div>
+
+          
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label"> Product Attribute</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control mandatory" id="lname" name="last-name"
+                                        formControlName="productAttribute">
+                                    </div>
+                                </div>
+                            </div>
+
+              
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Description</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <textarea type="file" class="form-control mandatory" id="lname" name="last-name"
+                                 formControlName="description"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+         
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label"> Product
+                                            Attribute Data Type</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <textarea type="file" class="form-control mandatory" id="lname" name="last-name"
+                                 formControlName="productAttributeDataType"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+          
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Product  Attribute Length</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control mandatory" id="lname" name="last-name"
+                                            formControlName="productAttributeLength">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+   
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Data Capture
+                                            Control </label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <select id="datalistOptions84" class="form-control mandatory"  #dataCapture  (change)="onDataCapture(dataCapture.value)"
+                                 formControlName="dataCaptureControl">
+                                 <option value="">Select --</option>
+                                 <option value="text">Text</option>
+                                 <option value="radio">Radio</option>
+                                 <option value="checkbox">Checkbox</option>
+                                 <option value="date">Date</option>
+                                 <option value="dropdown">Dropdown</option>
+                              </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+  
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Values</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control mandatory" 
+                                            formControlName="options">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Mandatory</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <select id="datalistOptions84" class="form-control mandatory" formControlName="mandatory">
+                                                <option value="">Select --</option>
+                                                <option value="true">True</option>
+                                                <option value="false">False</option>
+               
+                                             </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Editable</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <select id="datalistOptions84" class="form-control mandatory" formControlName="editable">
+                                                <option value="">Select --</option>
+                                                <option value="true">True</option>
+                                                <option value="false">False</option>
+               
+                                             </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                <button [disabled]="productEntityAttribute.invalid" type="submit" class="btn btn-primary ">{{btnName}}</button>
+                            <button type="button" class="btn btn-primary ml-3 " (click)="resetForm()">Reset</button>
+
+                        </div>
+
+                    </div>
+                </div>
+                </form>
+
+
+
+                <!-- </div> -->
+                <!-- <app-footer></app-footer> -->
+
+            </div>
+
+            
+            <app-datatable [permission]="permission" (buttonEvent1)="buttonEvent1($event)"
+            (changePageSortSearch)="changePageSortSearch($event)" [dataset]="data">
+            <app-column [search]="x.search_key" [cssClass]="" [type]="x.type" *ngFor="let x of headerList"
+               [value]="x.value" [width]="x.width" [header]="x.header"></app-column>
+         </app-datatable>
+
+        </div>
+    </div>
+
+
+  

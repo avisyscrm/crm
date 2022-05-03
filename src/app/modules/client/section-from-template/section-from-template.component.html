@@ -1,0 +1,26 @@
+<app-dynamic-leftmenu></app-dynamic-leftmenu>
+<!-- Main body part  -->
+
+<div class="page">
+    <app-header></app-header>
+
+    <!--  -->
+    <div class="section-body fixNavMargin">
+        <div class="container-fluidd mb-5">
+
+            <!--  -->
+            <div class="form-area full">
+                <div class="container mts-4 pt-1">
+                    <div class=" personal box" class="personal">
+                        <app-from-section *ngIf="type=='Section'" [fromDetails]="data"></app-from-section>
+                        <app-from-tab-section *ngIf="type=='Tab'" [fromDetailsTab]="data"></app-from-tab-section>
+                    </div>
+                </div>
+            </div>
+            <!--  -->
+        </div>
+    </div>
+    <!--  -->
+
+
+</div>

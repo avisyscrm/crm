@@ -1,0 +1,121 @@
+<app-leftmenu></app-leftmenu>
+<!-- Main body part  -->
+<div class="page">
+    <app-header></app-header>
+    <div class="section-body fixNavMargin">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="d-flex justify-content-between align-items-center">
+                    <ul class="nav nav-tabs page-header-tab">
+                        <li class="nav-item"><a class="nav-link ">
+                            </a></li>
+                        <li class="nav-item"><a class="nav-link">
+                            </a></li>
+                    </ul>
+                    <!-- <div class="header-action">
+                    <button type="button" class="btn btn-primary m-3"><i class="fe fe-plus mr-2"></i>Add</button>
+                </div> -->
+                </div>
+
+
+
+                <!---entity-->
+                <form [formGroup]="entityGroup" (submit)="formSubmit()">
+                <div class="card card-height">
+                    <div class="card-header pf-head">
+                        <h3 class="card-title ">ENTITY GROUPS</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="row productfamily ">
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class=" form-group col-md-4">
+                                        <label class="form-label ">Product Family Id</label>
+                                    </div>
+                                    <div class=" form-group col-md-8">
+                                        <select   (change)="LineFromProductFamily(entityGroup.controls['productFamilyId'].value)" name="productFamilyId" id="productFamilyId" class="form-control mandatory" formControlName="productFamilyId">
+                                            <option value="">Select --</option>
+                                            <option  value="{{productfamid.productFamilyId}}" *ngFor="let productfamid of productfamIDslist">
+                                                {{productfamid.productFamily}}
+                                            </option>
+                                          </select>   
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class=" form-group col-md-4">
+                                        <label class="form-label ">Product Line Id</label>
+                                    </div>
+                                    <div class=" form-group col-md-8">
+                                        <select  name="cars" id="cars" class="form-control mandatory" formControlName="productLineId">
+                                            <option value="">Select --</option>
+                                            <option value="{{productline.productLineId}}" *ngFor="let productline of prodLineid">{{productline.productLine}}</option>
+                                          </select>   
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Entity Group</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <input type="text" class="form-control mandatory"  formControlName="entityGroups">
+                                        <div *ngIf="entityGroups?.invalid && entityGroups?.touched">
+                                          <span *ngIf="entityGroups?.errors?.required">Please Enter Entity group</span>
+                                          <span *ngIf="entityGroups?.errors?.maxlength">Character exceed max limit 30</span>
+                                          <span *ngIf="entityGroups?.errors?.isChar">Invalid input. Only character allowed </span>
+                                          <span *ngIf="entityGroups?.errors?.pattern ">Field cant be empty</span>
+                                       </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Description</label>
+                                    </div>
+                                    <div class="col-md-8">
+
+                                        <textarea rows="3" class="form-control"
+                                            placeholder="Here can be your description" value="Mike" formControlName="description"></textarea>
+                                            <div *ngIf="description?.invalid && description?.touched">
+                                              <span *ngIf="description?.errors?.required">Please Enter Entity group</span>
+                                              <span *ngIf="description?.errors?.maxlength">Character exceed max limit 400</span>
+                                              <span *ngIf="description?.errors?.isChar">Invalid input. Only character allowed </span>
+                                              <span *ngIf="description?.errors?.pattern ">Field cant be empty</span>
+                                           </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label mt-3">Entity Group Icon</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                       
+                                        <input type="file" #file name="profile" [(ngModel)]="entityGroupsIcon"  [ngModelOptions]="{standalone: true}" (change)="onFileSelect($event)" />
+                            
+                                        <img  *ngIf="entityGroupsIcon!='' && entityGroupsIcon!=null && entityGroupsIcon!=undefined"  [src]="entityGroupsIcon"  class="selected-image"  >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <button [disabled]="entityGroup.invalid" type="submit" class="btn btn-primary ">{{groupbutton}}</button>
+                        <button type="button" (click)="resetForm()" class="btn btn-primary ml-3">Reset</button>
+
+
+                    </div>
+                </div>
+                </form>
+
+            </div>
+
+            <!-- <app-footer></app-footer> -->
+        </div>

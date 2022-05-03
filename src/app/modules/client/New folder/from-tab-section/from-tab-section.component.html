@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="col-12">
+        <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a *ngFor="let x of fromDetailsTab.page" class="nav-item nav-link"
+                    (click)="activetabsec(x?.section,x)" [ngClass]="{'active': activeTab== x?.section.section}"
+                    [id]="x?.section.productEntityTemplateSectionId"
+                    [attr.data-toggle]="x?.section.productEntityTemplateId" role="tab" aria-controls="nav-home"
+                    aria-selected="true">{{x?.section.section}}</a>
+            </div>
+        </nav>
+        <form [formGroup]="tabFrom">
+            <div *ngFor="let x1 of fromDetailsTab.page" class="tab-content" [id]="x1.sectionName">
+
+                <div *ngIf="activeTab== x1?.section.section">
+                    <div class="tab-pane fade show active" id="overview">
+                        <div class="container-fluid inner-container">
+                            <div class="row mt-5 tabs-row" *ngFor="let sectionInTab of x1?.tabSections">
+
+                                <div class="col-md-12">
+                                    <div class="sub-head 123">{{sectionInTab.section.section}}</div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div [formGroupName]="x1.section.section">
+
+                                        <div class="form-group" *ngFor="let componat of sectionInTab?.section?.components">
+                                            <label for="exampleInputEmail1">{{componat?.productAttribute}}</label>
+                                            <input
+                                                *ngIf="componat.productAttributeDataType!='radio' && componat.productAttributeDataType!='dropdown'"
+                                                [formControlName]="componat?.productId"
+                                                [type]="componat?.productAttributeDataType" class="form-control"
+                                                [id]="componat?.productId" aria-describedby="emailHelp"
+                                                placeholder="Enter {{componat?.forLabel}}">
+    
+                                            <div *ngIf="componat.productAttributeDataType=='radio'">
+                                                <div class="form-check" *ngFor="let x of componat?.option">
+                                                    <input type="radio" class="form-check-input"
+                                                        [id]="componat?.productAttribute"
+                                                        [formControlName]="componat?.productId"
+                                                        [value]="x.value">{{x.value}}
+                                                    <label class="form-check-label" for="radio1"></label>
+                                                </div>
+                                            </div>
+
+                                              <!--  -->
+                                              <div *ngIf="componat.productAttributeDataType=='checkbox'">
+                                                <div class="form-check" *ngFor="let x of componat?.option">
+                                                    <input type="checkbox" class="form-check-input"
+                                                        [id]="componat?.productAttribute"
+                                                        [formControlName]="componat?.productId"
+                                                        [value]="x.value">{{x.value}}
+                                                    <label class="form-check-label" for="checkbox1"></label>
+                                                </div>
+                                            </div>
+                                            <!--  -->
+
+                                            <div *ngIf="componat.productAttributeDataType =='dropdown'">
+                                                <select [id]="componat?.productAttribute"
+                                                    [formControlName]="componat?.productId" class="form-control">
+                                                    <option *ngFor="let x of componat?.option">{{x.value}}</option>
+                                                </select>
+                                            </div>
+                                            <br>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                              
+                                <br>
+                                <div class="col-md-12">
+                                    <button type="submit" (click)="submit(x1.section.section,sectionInTab.section.components[0])" class="btn btn-primary submit-btn">Submit
+                                        {{x1.section.section}}</button>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

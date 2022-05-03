@@ -1,0 +1,8 @@
+<nav aria-label="Page navigation example" style="float:  right;">
+    <ul class="pagination">
+      <li  (click)="chnagePage(currentPage-1)" class="page-item" [hidden]="frist || pageList.length==0"><a class="page-link"  >Previous</a></li>
+      <li    (click)="currentPage==x?true:chnagePage(x)"  *ngFor="let x of pageList" class="page-item"
+        [ngClass]="{'active': currentPage === x}"><a class="page-link" >{{x}}</a></li>
+      <li class="page-item" (click)="chnagePage(currentPage+1)" [hidden]="last || pageList.length==0"><a class="page-link" >Next</a></li>
+    </ul>
+  </nav>

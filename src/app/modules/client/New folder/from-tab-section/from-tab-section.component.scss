@@ -1,0 +1,201 @@
+.nav-tabs{
+  margin: 10px 5px 0;
+}
+.nav-tabs .nav-link {
+    color: #313949;
+    font: normal normal normal 22px/19px normal;
+    letter-spacing: 1.38px;
+    white-space: normal;
+    margin-bottom: 15px;
+    padding: 0.5rem 1rem !important;
+  }
+
+  .mandatory {
+    border-left: 3px solid #f27b77 !important;
+}
+
+  .sub-head {
+    font-size: 18px;
+    font-weight: 500;
+    color: #ffffff;
+    background-color: #313949;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+}
+  
+  .nav-tabs .nav-item.show .nav-link,
+  .nav-tabs .nav-link {
+    color: #313949 !important;
+    text-align: center;
+    align-self: start;
+    font: normal normal normal 18px/34px normal;
+    margin-right: 10px;
+    padding-top: 37.5px;
+    padding-bottom: 10px;
+  }
+  
+  .nav-tabs .nav-item.show .nav-link,
+  .nav-tabs .nav-link.active {
+    color: #313949 !important;
+    font: normal normal normal 18px/34px normal;
+    letter-spacing: 1.38px;
+    border: none;
+    border-bottom: none;
+    border-bottom: 3px solid #313949 !important;
+    padding-top: 37.5px;
+  }
+  
+  .nav-tabs .nav-item.show .nav-link,
+  .nav-tabs .nav-link:hover {
+    color: #313949;
+    outline: none;
+    text-decoration: none;
+    border: none;
+  }
+  
+  .nav {
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    overflow-x: hidden;
+  }
+  
+  .nav-tabs .nav-link {
+    white-space: nowrap;
+    margin: 0px;
+  }
+  nav .nav-tabs{
+    flex-wrap: nowrap;
+    overflow-x: scroll;
+  }
+  .nav-tabs .nav-link {
+    margin-bottom: -1px;
+    background: 0 0;
+    border: none !important;
+    border-top-left-radius: 0px !important;
+    border-top-right-radius: 0px !important;
+}
+  .tabs-header{
+    color: #313949;
+    font: normal normal normal 24px/34px normal;
+    letter-spacing: 1.2px;
+    padding: 40px 0px 10px 0px;
+  }
+  .tabs-col1{
+    order: 2;
+  }
+  .tabs-col2{
+    order: 1;
+  }
+  .tabs-image{
+    width: 100%;
+  }
+  .tabs-content1{
+    color:#313949;
+    font: normal normal normal 16px/30px normal;
+  }
+  .inner-passport{
+    height: 70px;
+    width: 142px !important;
+    background-color: #ff375e;
+    color: white;
+    border-radius: 3px;
+    /* margin-top: 64px; */
+  }
+  
+
+/* Rutuja  Howtovideo   18/01/2022 */
+/* loreum section1 start*/
+
+  
+  @media screen and (min-width:768px) {
+
+    .nav-tabs .nav-link {
+        color: #313949 !important;
+        font: normal normal normal 22px/19px normal;
+        letter-spacing: 1.38px;
+        white-space: normal;
+        margin-bottom: 15px;
+      }
+    
+      .nav-tabs .nav-item.show .nav-link,
+      .nav-tabs .nav-link {
+        text-align: center;
+        align-self: start;
+        font: normal normal normal 18px/34px normal;
+        margin-right: 10px;
+        padding-top: 37.5px;
+      }
+    
+      .nav-tabs .nav-item.show .nav-link,
+      .nav-tabs .nav-link.active {
+        color: #313949!important;
+        font: normal normal normal 18px/34px normal;
+        border: none;
+        border-bottom: none;
+        border-bottom: 3px solid #313949 !important;
+        padding-top: 37.5px;
+      }
+    
+      .nav-tabs .nav-item.show .nav-link,
+      .nav-tabs .nav-link:hover {
+        color: #313949;
+        outline: none;
+        text-decoration: none;
+        border: none;
+      }
+    
+      .nav {
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        overflow-y: hidden;
+        overflow-x: hidden;
+      }
+    
+      .nav-tabs .nav-link {
+        white-space: nowrap;
+        margin: 0px;
+      }
+      nav .nav-tabs{
+        flex-wrap: nowrap;
+        overflow-x: scroll !important;
+      }
+      .tabs .nav-link.active {
+        color: #313949 !important;
+        background-color: #fff;
+        border-color: #dee2e6 #dee2e6 #fff;
+    }
+    .tabs-col1{
+      order: 1;
+    }
+    .tabs-col2{
+      order: 2;
+      padding: 0px 15px 0px 15px;
+    }
+    .passport{
+      flex-direction: row;
+    }
+    
+
+      /*Rutuja  Howtovideo   18/01/2022  */
+    
+
+    /* Rutuja  Faqs  18/01/2022 */
+    
+  }
+
+  @media screen and (min-width:1024px) {
+    nav .nav-tabs{
+      flex-wrap: nowrap;
+      overflow-x: hidden !important;
+    }
+    
+   
+  }
+
+  .submit-btn{
+    margin-left: 16px !important;
+    margin-bottom: 20px !important;
+  }
+ 
+  

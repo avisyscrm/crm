@@ -1,0 +1,114 @@
+
+    <div class="section-body fixNavMargin">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+                <ul class="nav nav-tabs page-header-tab">
+                    <li class="nav-item"><a class="nav-link "></a></li>
+                    <li class="nav-item"><a class="nav-link">
+                        </a></li>
+                </ul>
+                <!-- <div class="header-action">
+                    <button type="button" class="btn btn-primary m-3"><i class="fe fe-plus mr-2"></i>Add</button>
+                </div> -->
+            </div>
+
+
+
+
+            <!--product line-->
+         <form [formGroup]="addProductLine" (ngSubmit)="submit()">
+            <div class="card card-height">
+                <div class="card-header pf-head">
+                    <h3 class="card-title ">PRODUCT LINE</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row productfamily ">
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">Product Family Id</label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <select name="cars" id="cars" class="form-control mandatory"
+                                    formControlName="productFamilyId">
+                                    <option value=""  >Select --</option>
+                                    <option value="{{productfamid.productFamilyId}}"
+                                        *ngFor="let productfamid of productfamIDslist">
+                                        {{productfamid.productFamily}}
+                                    </option>
+                                </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">Product Line</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input name="" type="text" class="form-control" value=" "   formControlName="productLine">
+                                    <div *ngIf="productLine?.invalid && productLine?.touched">
+                                        <span *ngIf="productLine?.errors?.required">Please Enter Product
+                                            Line</span>
+                                        <span *ngIf="productLine?.errors?.maxlength">Character exceed max limit
+                                            30</span>
+                                        <span *ngIf="productLine?.errors?.isChar">Invalid input. Only
+                                            character allowed </span>
+                                        <span *ngIf="productLine?.errors?.pattern ">Field cant be empty</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">Description</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <textarea rows="3" class="form-control" placeholder="Here can be your description"  formControlName="description"
+                                        value="Mike"></textarea>
+                                        <div *ngIf="productLine?.invalid && productLine?.touched">
+                                        <span *ngIf="description?.errors?.required">Please Enter Product
+                                            Description</span>
+                                        <span *ngIf="description?.errors?.maxlength">Character exceed max
+                                            limit 400</span>
+                                        <span *ngIf="description?.errors?.isChar">Invalid input. Only
+                                            character allowed </span>
+                                        <span *ngIf="description?.errors?.pattern ">Field cant be
+                                            empty</span>
+                                            </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label mt-3">Product Family Icon</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <label class="form-label" for="customFile"></label>
+                                    <input type="file" #file name="profile" [(ngModel)]="productLineIcons"  [ngModelOptions]="{standalone: true}" (change)="onFileSelect($event)" />                        
+                                     <img  *ngIf="productLineIcons!='' && productLineIcons!=null && productLineIcons!=undefined"  [src]="productLineIcons" class="selected-image" >
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button  [disabled]="addProductLine.invalid" type="submit" class="btn btn-primary ">{{actionBtn}}</button>
+                    <button type="button" class="btn btn-primary ml-3" (click)="resetForm()" >Reset</button>
+                </div>
+            </div>
+        </form>
+        </div>
+
+        <!-- <pre>
+            {{addProductLine.value | json}}
+            {{addProductLine.invalid}}
+         </pre> -->
+        <!--product line-->
+
+        <!-- <app-footer></app-footer> -->
+    </div>

@@ -1,0 +1,98 @@
+
+ul, #myUL {
+  list-style-type: none;
+}
+
+#myUL {
+  margin: 0;
+  padding: 0;
+}
+
+.caret {
+  cursor: pointer;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+.caret::before {
+  content: "\25B6";
+  color:black;
+  display: inline-block;
+  margin-right: 6px;
+}
+
+.caret-down::before {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Safari */
+  transform: rotate(90deg);  
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.sidebar{
+  width: 200px;
+  /* border: 1px solid gray; */
+  padding: 10px;
+  // border-radius: 8px;
+  background-color:white;
+  color: #4D5052;;
+  // border: 3px solid #f3f3f1;
+  /* box-shadow: 3px 3px 12px 0 rgba(0, 0, 0, 0.1); */
+}
+
+.nested{
+  font-family: 'Poppins', sans-serif;
+}
+
+
+.custom-toast{
+  position: fixed;
+top: 50px;
+right: 25px;
+}
+
+.error-toast{
+/* color: #842029 !important; */
+background-color: #f8d7da !important;
+border-color: #f5c2c7 !important;
+}
+.crm-beverages {
+  
+  
+  color:#4D5052;;
+  font-family: 'Poppins', sans-serif;
+  // font-weight: 600;
+  font-size: 14px;
+
+}
+ .crm-tea {
+  
+  color:#4D5052;;
+  font-family: 'Poppins', sans-serif;
+  // font-weight: 600;
+  font-size: 14px;
+  
+ } 
+ .crm-green-tea{
+  
+  color:#4D5052;
+  font-family: 'Poppins', sans-serif;
+  // font-weight: 600;  // font-weight: 600;
+  font-size: 14px;
+  
+ }
+ .content{
+   font-size:14px;
+   height:25px;
+   font-family: 'Poppins', sans-serif;
+   margin-top:5px;
+ }
