@@ -70,7 +70,7 @@ if(data.event=='add'){
 }
  else if(data.event=='delete'){
    this.allService.deleteEntitygroups(data.data.entityGroupsId,data.data.createdBy).subscribe((res)=>{
-    alert('Record Deleted');
+    // alert('Record Deleted');
     console.log(res);
     // this.changePageSortSearch("pageNo=1&pageSize=5");
     this.onDelete();

@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-attributes-form',
@@ -231,8 +232,8 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
 
       this.onOptionsSelected(this.productEntityAttribute.controls['productEntityTemplateId'].value);
       
-
-      alert("Record Added");
+      this.sweettalert9()
+      // alert("Record Added");
        this.resetForm();
       //  this.onDelete(this.allProductEntityTempidd );
        
@@ -250,7 +251,8 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
      this.service.putProdEntityAttribute(this.productEntityAttribute.value).subscribe({
        next:(res)=>{
  
-         alert("Record Updated");
+        //  alert("Record Updated");
+        this.sweettalert7();
            console.log(JSON.stringify(res.productEntityTemplateId)+"  updated code");
            this.resetForm();
            this.getDatataless(res.productEntityTemplateId);
@@ -313,7 +315,7 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
    
        this.service.deleteProdEntityAttribute(data.data.productEntityTemplateAttributesId,data.data.updatedBy).subscribe((res)=>{
          console.log(res);
-         alert("Record Deleted");
+        //  alert("Record Deleted");
         this.onDelete(data.data.productEntityTemplateId);
         this.getDatataless(data.data.productEntityTemplateId);
        })
@@ -357,4 +359,29 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
        this.getSectionIds(resData.sectionId);
      }
 
+
+     
+  // update
+  sweettalert7() {
+    Swal.fire({
+      title: 'Updated',
+      text: 'You data is updated!',
+      icon: 'success',
+      cancelButtonText: 'Ok',
+    })
+
+  }
+
+  // add
+  sweettalert9() {
+
+    Swal.fire({
+      title: 'Success',
+      text: 'Record Added',
+      icon: 'success',
+      cancelButtonText: 'Ok',
+
+
+    })
+  }
 }

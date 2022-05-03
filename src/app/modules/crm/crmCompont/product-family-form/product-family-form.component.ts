@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { onlyChar } from '../../../client/validators/validation';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-family-form',
@@ -79,7 +80,8 @@ export class ProductFamilyFormComponent implements OnInit {
       formData.append('file', this.file);
       formData.append('productFamily', JSON.stringify(this.productFamily.value));
       this.service.productFamilyPost(formData).subscribe((res)=>{
-        alert('Record added');
+        // alert('Record added');
+        this.sweettalert9()
         this.resetForm();
         this.router.navigate(['crm/product-family']); 
            
@@ -102,7 +104,8 @@ export class ProductFamilyFormComponent implements OnInit {
     this.service.putProductFamily(formData).
     subscribe({
       next:(res)=>{
-        alert("Record Updated");
+        this.sweettalert7()
+        // alert("Record Updated");
         this.resetForm();
         this.router.navigate(['crm/product-family']); 
       },
@@ -152,4 +155,28 @@ export class ProductFamilyFormComponent implements OnInit {
       }
     }
 
+    
+// update
+  sweettalert7() {
+    Swal.fire({
+      title: 'Updated',
+      text: 'You data is updated!',
+      icon: 'success',
+      cancelButtonText: 'Ok',
+    })
+
+  }
+
+  // add
+  sweettalert9() {
+
+    Swal.fire({
+      title: 'Success',
+      text: 'Record Added',
+      icon: 'success',
+      cancelButtonText: 'Ok',
+
+
+    })
+  }
 }

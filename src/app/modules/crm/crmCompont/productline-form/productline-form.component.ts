@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-productline-form',
@@ -93,7 +94,8 @@ export class ProductlineFormComponent implements OnInit {
       formData.append('file', this.file);
       formData.append('productLine', JSON.stringify(this.addProductLine.value))
       this.service.productLinePost(formData).subscribe((res) => {
-        alert("Record Added");
+        // alert("Record Added");
+        this.sweettalert9();
         console.log(res);
         this.resetForm();
         this.router.navigate(['crm/product-line']); 
@@ -111,7 +113,8 @@ export class ProductlineFormComponent implements OnInit {
     this.service.postLineControler(this.addProductLine.value).subscribe((result) => {
       console.log('getdatapost', result);
       // this.addProductLine.reset();
-      alert('Record Added');
+      // alert('Record Added');
+      this.sweettalert9();
     })
   }
 
@@ -124,7 +127,8 @@ export class ProductlineFormComponent implements OnInit {
     this.service.putProductLine(formData).
       subscribe({
         next: (res) => {
-          alert("Record Updated ");
+          // alert("Record Updated ");
+          this.sweettalert7();
           this.resetForm();
           this.router.navigate(['crm/product-line']); 
         },
@@ -165,5 +169,29 @@ export class ProductlineFormComponent implements OnInit {
     }
   }
   //
+
+  // update
+  sweettalert7() {
+    Swal.fire({
+      title: 'Updated',
+      text: 'You data is updated!',
+      icon: 'success',
+      cancelButtonText: 'Ok',
+    })
+
+  }
+
+  // add
+  sweettalert9() {
+
+    Swal.fire({
+      title: 'Success',
+      text: 'Record Added',
+      icon: 'success',
+      cancelButtonText: 'Ok',
+
+
+    })
+  }
 
 }

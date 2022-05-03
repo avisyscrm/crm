@@ -1,6 +1,7 @@
 import { CrmservicesService } from './../../crm/crm-services/crmservices.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-assign-role',
@@ -36,12 +37,24 @@ export class AssignRoleComponent implements OnInit {
 
 submit(){
   this.service.postRoles(this.assignRole.value).subscribe((res)=>{
-    alert("Role Assigned");
+    this.sweettalert9();
     // this.productEntity.reset();
     
   },
     error => console.log(error)
   )
+}
+
+sweettalert9() {
+
+  Swal.fire({
+    title: 'Success',
+    text: 'Role Assigned',
+    icon: 'success',
+    cancelButtonText: 'Ok',
+
+
+  })
 }
 }
 

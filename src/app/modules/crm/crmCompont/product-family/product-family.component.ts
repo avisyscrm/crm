@@ -81,7 +81,7 @@ if(data.event=='add'){
   // alert(JSON.stringify(  data));
   this.allService.deleteProductFamily(data.data.productFamilyId, data.data.updatedBy).subscribe((res)=>{
     console.log(res);
-    alert('Record Deleted');
+    // alert('Record Deleted');
    this.onrefresh();
    this.onDelete();
     // this.changePageSortSearch(url);

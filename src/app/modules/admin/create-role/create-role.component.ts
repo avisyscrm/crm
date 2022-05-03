@@ -2,6 +2,7 @@ import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CrmservicesService } from '../../crm/crm-services/crmservices.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-create-role',
@@ -27,7 +28,8 @@ export class CreateRoleComponent implements OnInit {
 
 submit(){
   this.service.postCreateRole(this.createRole.value).subscribe((res)=>{
-    alert("Role Added");
+    // alert("Role Added");
+    this.sweettalert9();
     this.router.navigate(['/crm/adminRole-table'])
     // this.productEntity.reset();
     
@@ -35,4 +37,28 @@ submit(){
     error => console.log(error)
   )
 }
+  // update
+  sweettalert7() {
+    Swal.fire({
+      title: 'Updated',
+      text: 'You data is updated!',
+      icon: 'success',
+      cancelButtonText: 'Ok',
+    })
+
+  }
+
+  // add
+  sweettalert9() {
+
+    Swal.fire({
+      title: 'Success',
+      text: 'Role Added',
+      icon: 'success',
+      cancelButtonText: 'Ok',
+
+
+    })
+  }
+
 }

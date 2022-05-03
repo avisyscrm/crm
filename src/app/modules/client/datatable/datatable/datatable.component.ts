@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import { Observable } from 'rxjs';
+import Swal from 'sweetalert2';
 import { ColumnComponent } from '../column/column.component';
 import { DataTableModel } from '../datatableModel';
 
@@ -80,6 +81,17 @@ export class DatatableComponent implements OnInit {
 
  }
 
+
+ confirmDelete(){
+  let data={
+    event:'delete',
+    data:this.selectedData
+  }
+  this.buttonEvent1.emit(data);
+  let deletemodal = document.getElementById('openModalforDelete');
+  deletemodal.style.display='none';
+
+ }
   addColumn(column: ColumnComponent){ 
     this.columns.push(column);
   }
@@ -138,7 +150,15 @@ this.pageno=event;
 
     if(event=='edit' || event=='delete'){
      if(this.selectedData!="" && this.selectedData!=undefined && this.selectedData!=null && this.selectedData!={}){
-      this.buttonEvent1.emit(data);
+  
+       if ( event=='delete'){
+        // let deletemodal = document.getElementById('openModalforDelete');
+        // deletemodal.style.display='block';
+        this.sweettalert7();
+      }
+      else{
+        this.buttonEvent1.emit(data);
+      }
       return;
      }else{
       alert("Please Select record");
@@ -153,4 +173,68 @@ this.selectedData=value;
 
   }
 
+  sweettalert7() {
+    let data={
+      event:'delete',
+      data:this.selectedData
+    }
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You will not be able to recover the data!',
+      icon: 'warning',
+      showCancelButton: true,
+      cancelButtonText: 'Cancel',
+      confirmButtonColor: "rgb(220, 53, 69)",
+      confirmButtonText: 'Yes, delete it!',
+  
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'Deleted!',
+          'Your Data has been deleted.',
+          'success'
+        )
+        this.buttonEvent1.emit(data);
+        
+  
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        )
+      }
+    })
+  }
+
+  sweettalert8() {
+   
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You data will be updated!',
+      icon: 'question',
+      showCancelButton: true,
+      cancelButtonText: 'Cancel',
+      confirmButtonColor: "rgb(220, 53, 69)",
+      confirmButtonText: 'Yes, update it!',
+  
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire(
+          'Updated!',
+          'Your Data has been updated.',
+          'success'
+        )
+     
+        
+  
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        Swal.fire(
+          'Cancelled',
+          'Your imaginary file is safe :)',
+          'error'
+        )
+      }
+    })
+  }
 }

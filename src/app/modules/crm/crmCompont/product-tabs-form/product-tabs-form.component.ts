@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { selectValidation } from '../../../client/validators/validation';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-product-tabs-form',
   templateUrl: './product-tabs-form.component.html',
@@ -176,7 +177,8 @@ export class ProductTabsFormComponent implements OnInit {
     this.service.putProductTemplateSection(this.AddTabs.value).
       subscribe({
         next: (res) => {
-          alert("Record Updated");
+          this.sweettalert7();
+          // alert("Record Updated");
           this.resetForm();
           this.getTabsIds(this.tempId);
         },
@@ -187,7 +189,8 @@ export class ProductTabsFormComponent implements OnInit {
   }
   saveData(list: any) {
     this.service.addingTabs(list).subscribe(sucess => {
-      alert("Record Added");
+      this.sweettalert9();
+      // alert("Record Added");
       this.resetForm();
       this.getTabsIds(this.tempId)
     })
@@ -205,7 +208,7 @@ export class ProductTabsFormComponent implements OnInit {
       this.actionBtn = "Update";
     }else if (data.event == 'delete') {
       this.service.deleteProdTempSection(data.data.productEntityTemplateSectionId, data.data.updatedBy).subscribe((res) => {
-        alert('Record Deleted');
+        // alert('Record Deleted');
         this.getTabsIds(data.data.productEntityTemplateId);
         this.onDelete(data.data.productEntityTemplateId);
       });
@@ -233,4 +236,29 @@ export class ProductTabsFormComponent implements OnInit {
   }
   edit(items: any) {
     this.AddTabs.patchValue(items);
-  }}
+  }
+
+  // update
+  sweettalert7() {
+    Swal.fire({
+      title: 'Updated',
+      text: 'You data is updated!',
+      icon: 'success',
+      cancelButtonText: 'Ok',
+    })
+
+  }
+
+  // add
+  sweettalert9() {
+
+    Swal.fire({
+      title: 'Success',
+      text: 'Record Added',
+      icon: 'success',
+      cancelButtonText: 'Ok',
+
+
+    })
+  }
+}

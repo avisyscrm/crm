@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { selectValidation } from '../../../client/validators/validation';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -93,7 +94,8 @@ export class ProductTemplateFormComponent implements OnInit {
      console.log(this.productEntity.value,"post data");
      this.service.postprodEntityTemplate(this.productEntity.value).subscribe((res)=>{
         console.log(res);
-        alert("Record Added");
+        this.sweettalert9();
+        // alert("Record Added");
         // this.productEntity.reset();
         this.resetForm();
         this.router.navigate(['crm/product-templates']); 
@@ -106,8 +108,8 @@ export class ProductTemplateFormComponent implements OnInit {
    updateProductentity(){
     this.service.putProdEntity(this.productEntity.value).subscribe({
       next:(res)=>{
-
-        alert("Record Updated");
+        this.sweettalert7();
+        // alert("Record Updated");
         // this.productEntity.reset();
         this.resetForm();
         this.router.navigate(['crm/product-templates']); 
@@ -159,5 +161,28 @@ onOptionsSelectedEntity(value:string){
   this.getEntityLineId(parseInt(value));
 }
 
-
+    // update
+    sweettalert7() {
+      Swal.fire({
+        title: 'Updated',
+        text: 'You data is updated!',
+        icon: 'success',
+        cancelButtonText: 'Ok',
+      })
+  
+    }
+  
+    // add
+    sweettalert9() {
+  
+      Swal.fire({
+        title: 'Success',
+        text: 'Record Added',
+        icon: 'success',
+        cancelButtonText: 'Ok',
+  
+  
+      })
+    }
+  
 }

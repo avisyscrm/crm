@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-entity-form',
@@ -82,7 +83,8 @@ export class EntityFormComponent implements OnInit {
   postEntityGroup(){
     this.services.postEntityGroup(this.entityGroup.value).subscribe((result)=>{
       console.log('data', result);
-      alert('Record Added');  
+      this.sweettalert9();
+      // alert('Record Added');  
       this.entityGroup.reset();
     }) 
   }
@@ -95,7 +97,8 @@ export class EntityFormComponent implements OnInit {
     
     this.services.putEntityGroup(formData).subscribe((res)=>{
       console.log(res);
-      alert('Record Updated');
+      this.sweettalert7();
+      // alert('Record Updated');
       this.router.navigate(['crm/entity-groups']); 
       // this.entityGroup.reset();
       this.resetForm();
@@ -121,7 +124,8 @@ export class EntityFormComponent implements OnInit {
     formData.append('entityGroups',JSON.stringify(this.entityGroup.value));
      
     this.services.entityGroupsPost(formData).subscribe(sucess=>{
-     alert('Record Added');  
+      this.sweettalert9();
+    //  alert('Record Added');  
     //  this.entityGroup.reset();
     this.resetForm();
     this.router.navigate(['crm/entity-groups']); 
@@ -169,5 +173,29 @@ export class EntityFormComponent implements OnInit {
     return this.entityGroup.get('entityGroupsIcon');
   }
 
+    // update
+    sweettalert7() {
+      Swal.fire({
+        title: 'Updated',
+        text: 'You data is updated!',
+        icon: 'success',
+        cancelButtonText: 'Ok',
+      })
+  
+    }
+  
+    // add
+    sweettalert9() {
+  
+      Swal.fire({
+        title: 'Success',
+        text: 'Record Added',
+        icon: 'success',
+        cancelButtonText: 'Ok',
+  
+  
+      })
+    }
+  
 
 }

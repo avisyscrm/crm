@@ -73,3 +73,6 @@
     [currentPage]="dataset?.pageNumber" [pageCount]="dataset?.totalPages"></app-pagination>
 
 </div>
+
+
+<app-mat-confirm-dialog [title]="'Delete'" [message]="'Are you sure you want to Delete'" (deleteEvent) ="confirmDelete()" ></app-mat-confirm-dialog>
