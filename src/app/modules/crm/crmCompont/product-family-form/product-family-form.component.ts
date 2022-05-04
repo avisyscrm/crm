@@ -163,6 +163,7 @@ export class ProductFamilyFormComponent implements OnInit {
       text: 'You data is updated!',
       icon: 'success',
       cancelButtonText: 'Ok',
+      
     })
 
   }
@@ -172,7 +173,7 @@ export class ProductFamilyFormComponent implements OnInit {
 
     Swal.fire({
       title: 'Success',
-      text: 'Record Added',
+      text: 'Record Added successfully',
       icon: 'success',
       cancelButtonText: 'Ok',
 

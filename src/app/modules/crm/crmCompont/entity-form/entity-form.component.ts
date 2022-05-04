@@ -173,29 +173,29 @@ export class EntityFormComponent implements OnInit {
     return this.entityGroup.get('entityGroupsIcon');
   }
 
-    // update
-    sweettalert7() {
-      Swal.fire({
-        title: 'Updated',
-        text: 'You data is updated!',
-        icon: 'success',
-        cancelButtonText: 'Ok',
-      })
-  
-    }
-  
-    // add
-    sweettalert9() {
-  
-      Swal.fire({
-        title: 'Success',
-        text: 'Record Added',
-        icon: 'success',
-        cancelButtonText: 'Ok',
-  
-  
-      })
-    }
-  
+ // update
+ sweettalert7() {
+  Swal.fire({
+    title: 'Updated',
+    text: 'You data is updated!',
+    icon: 'success',
+    cancelButtonText: 'Ok',
+    
+  })
+
+}
+
+// add
+sweettalert9() {
+
+  Swal.fire({
+    title: 'Success',
+    text: 'Record Added successfully',
+    icon: 'success',
+    cancelButtonText: 'Ok',
+
+
+  })
+}
 
 }

@@ -180,19 +180,19 @@ this.selectedData=value;
     }
     Swal.fire({
       title: 'Are you sure?',
-      text: 'You will not be able to recover the data!',
+      text: 'You want to delete the data',
       icon: 'warning',
       showCancelButton: true,
       cancelButtonText: 'Cancel',
       confirmButtonColor: "rgb(220, 53, 69)",
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonText: 'Yes',
   
     }).then((result) => {
       if (result.value) {
         Swal.fire(
-          'Deleted!',
+          'Done',
           'Your Data has been deleted.',
-          'success'
+          
         )
         this.buttonEvent1.emit(data);
         
@@ -200,7 +200,7 @@ this.selectedData=value;
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
           'Cancelled',
-          'Your imaginary file is safe :)',
+          'Your  file is safe :)',
           'error'
         )
       }

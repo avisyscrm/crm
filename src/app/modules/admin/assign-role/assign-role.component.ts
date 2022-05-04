@@ -45,11 +45,13 @@ submit(){
   )
 }
 
+
+// add
 sweettalert9() {
 
   Swal.fire({
     title: 'Success',
-    text: 'Role Assigned',
+    text: 'Record Added successfully',
     icon: 'success',
     cancelButtonText: 'Ok',
 

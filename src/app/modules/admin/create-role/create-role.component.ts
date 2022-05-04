@@ -53,11 +53,11 @@ submit(){
 
     Swal.fire({
       title: 'Success',
-      text: 'Role Added',
+      text: 'Record Added successfully',
       icon: 'success',
       cancelButtonText: 'Ok',
-
-
+  
+  
     })
   }
 
