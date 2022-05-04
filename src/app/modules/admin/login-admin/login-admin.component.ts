@@ -33,7 +33,7 @@ export class LoginAdminComponent implements OnInit {
       this.router.navigate(["/crm"], {queryParams:{prop: 'crmAdminLogin'}})
     }, error => {
       this.invalidUser = true;
-      alert("Error while logging infdgd.")
+      // alert("Error while logging infdgd.")
     })
       // this.router.navigate(["crm"])
   }

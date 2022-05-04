@@ -42,7 +42,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
    private postassingrole = environment.accessToken+"/users/assignRole";
     // post assingrole
     private postcreaterole = environment.accessToken+"/roles/createroles";
-
+    private postSchedule = environment.baseUrl+"/scheduleEmail";
 
   // 
 
@@ -76,8 +76,8 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
   
     // new link to add all section from tab
       private allSectionFromTabid = environment.baseUrl+"/allSectionFromTab/";
-      private allEmailTemplate = environment.baseUrl+"/emailTemplatePaging";
-  
+      private allEmailTemplate = environment.baseUrl+"/emailTemplatePaging?";
+      private allDTEmailTemplate = environment.baseUrl+"/emailTemplate";
   // dropdown product hierachy
     private getProductHierachyH = environment.baseUrl+"/allProductHierarchy";
     private getProductFamilyH =environment.baseUrl+"/allProductFamily";
@@ -556,8 +556,8 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
       return this.http.post(this.postEmailTemlateUrl,data);
     }
 
-    getAllEmailTemplate(){
-      return this.http.get(this.allEmailTemplate);
+    getAllEmailTemplate(url:string){
+      return this.http.get(this.allEmailTemplate+url);
     }
 
     getEmailTemplateId(id:any){

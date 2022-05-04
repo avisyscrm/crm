@@ -49,15 +49,16 @@ export class EmailtemplateformComponent implements OnInit {
     },
     (error)=>{
       console.log(error);
-      
     })
   }
 
   emailTemplate= new FormGroup({
     emailTemplateId : new FormControl(''),
     emailTemplateName : new FormControl('',Validators.required),
+    emailTemplateSubject: new FormControl('',Validators.required),
     emailTemplateContent : new FormControl('',Validators.required),
-    createdBy : new FormControl('-1')
+    createdBy : new FormControl('-1'),
+    updatedBy : new FormControl('-1'),
   })
 
   submit(){
@@ -74,6 +75,7 @@ export class EmailtemplateformComponent implements OnInit {
   resetForm(){
     this.emailTemplate.controls['emailTemplateName'].reset();
     this.emailTemplate.controls['emailTemplateContent'].reset();
+    this.emailTemplate.controls['emailTemplateSubject'].reset();
   }
 
 }

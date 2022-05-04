@@ -34,7 +34,6 @@ export class ProductFamilyComponent implements OnInit {
 onDelete(){
   this.allService.getFamilylist("pageNo="+this.pageNo+"&pageSize="+this.pageSize).subscribe(sucess=>{
     // this.headerList=sucess.headerlist  ; //sucess.headerList;
-
     this.data=sucess.page;
     // alert();
     },error=>{
@@ -86,7 +85,6 @@ if(data.event=='add'){
    this.onDelete();
     // this.changePageSortSearch(url);
   })  
-
 } 
 }
 
