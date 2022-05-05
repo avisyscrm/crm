@@ -3,7 +3,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { selectValidation } from '../../../client/validators/validation';
-import Swal from 'sweetalert2';
+import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
+
 @Component({
   selector: 'app-product-tabs-form',
   templateUrl: './product-tabs-form.component.html',
@@ -177,7 +178,7 @@ export class ProductTabsFormComponent implements OnInit {
     this.service.putProductTemplateSection(this.AddTabs.value).
       subscribe({
         next: (res) => {
-          this.sweettalert7();
+            RecordUpdated();
           // alert("Record Updated");
           this.resetForm();
           this.getTabsIds(this.tempId);
@@ -189,7 +190,7 @@ export class ProductTabsFormComponent implements OnInit {
   }
   saveData(list: any) {
     this.service.addingTabs(list).subscribe(sucess => {
-      this.sweettalert9();
+      RecordAdded();
       // alert("Record Added");
       this.resetForm();
       this.getTabsIds(this.tempId)
@@ -238,28 +239,5 @@ export class ProductTabsFormComponent implements OnInit {
     this.AddTabs.patchValue(items);
   }
 
-// update
-sweettalert7() {
-  Swal.fire({
-    title: 'Updated',
-    text: 'You data is updated!',
-    icon: 'success',
-    cancelButtonText: 'Ok',
-    
-  })
 
-}
-
-// add
-sweettalert9() {
-
-  Swal.fire({
-    title: 'Success',
-    text: 'Record Added successfully',
-    icon: 'success',
-    cancelButtonText: 'Ok',
-
-
-  })
-}
 }

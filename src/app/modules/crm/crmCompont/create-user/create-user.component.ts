@@ -6,7 +6,8 @@ import { AllservicesService } from 'src/app/modules/client/services/allservices.
 // import { onlyChar } from 'src/app/modules/client/validators/validation';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
-import Swal from 'sweetalert2';
+import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
+
 
 @Component({
   selector: 'app-create-user',
@@ -43,7 +44,7 @@ export class CreateUserComponent implements OnInit {
       this.roles = response;
     }),
     (errror)=>{
-      alert('Error while fecthing roles');
+      // alert('Error while fecthing roles');
     }
   }
 
@@ -52,13 +53,13 @@ export class CreateUserComponent implements OnInit {
     //console.log(""+this.service.post);
     this.service.postNewUser(this.createUser.value).subscribe((res)=>{
       // alert("User Created ");
-      this.sweettalert9();
+      RecordAdded();
       this.resetForm();
       
       this.router.navigate(['/crm/user-all'])
     },
     (error)=>{
-      alert(JSON.stringify(error));
+      // alert(JSON.stringify(error));
       console.log(error);
      console.log( this.createUser.value);
     })
@@ -72,16 +73,5 @@ export class CreateUserComponent implements OnInit {
     this.createUser.controls['role'].reset();
   }
 
-  sweettalert9() {
-
-    Swal.fire({
-      title: 'Success',
-      text: 'User Created',
-      icon: 'success',
-      cancelButtonText: 'Ok',
-  
-  
-    })
-  }
-
+ 
 }

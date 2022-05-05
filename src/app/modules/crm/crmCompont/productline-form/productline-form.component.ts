@@ -3,7 +3,9 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
-import Swal from 'sweetalert2';
+import Swal from 'sweetalert2'; 
+import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
+
 
 @Component({
   selector: 'app-productline-form',
@@ -95,7 +97,7 @@ export class ProductlineFormComponent implements OnInit {
       formData.append('productLine', JSON.stringify(this.addProductLine.value))
       this.service.productLinePost(formData).subscribe((res) => {
         // alert("Record Added");
-        this.sweettalert9();
+        RecordAdded();
         console.log(res);
         this.resetForm();
         this.router.navigate(['crm/product-line']); 
@@ -114,7 +116,7 @@ export class ProductlineFormComponent implements OnInit {
       console.log('getdatapost', result);
       // this.addProductLine.reset();
       // alert('Record Added');
-      this.sweettalert9();
+      RecordAdded();
     })
   }
 
@@ -128,7 +130,7 @@ export class ProductlineFormComponent implements OnInit {
       subscribe({
         next: (res) => {
           // alert("Record Updated ");
-          this.sweettalert7();
+          RecordUpdated();
           this.resetForm();
           this.router.navigate(['crm/product-line']); 
         },
@@ -170,29 +172,5 @@ export class ProductlineFormComponent implements OnInit {
   }
   //
 
-// update
-sweettalert7() {
-  Swal.fire({
-    title: 'Updated',
-    text: 'You data is updated!',
-    icon: 'success',
-    cancelButtonText: 'Ok',
-    
-  })
-
-}
-
-// add
-sweettalert9() {
-
-  Swal.fire({
-    title: 'Success',
-    text: 'Record Added successfully',
-    icon: 'success',
-    cancelButtonText: 'Ok',
-
-
-  })
-}
 
 }

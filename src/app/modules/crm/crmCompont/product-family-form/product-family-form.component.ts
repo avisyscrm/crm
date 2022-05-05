@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { onlyChar } from '../../../client/validators/validation';
 import Swal from 'sweetalert2';
+import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
+
 
 @Component({
   selector: 'app-product-family-form',
@@ -81,7 +83,7 @@ export class ProductFamilyFormComponent implements OnInit {
       formData.append('productFamily', JSON.stringify(this.productFamily.value));
       this.service.productFamilyPost(formData).subscribe((res)=>{
         // alert('Record added');
-        this.sweettalert9()
+        RecordAdded()
         this.resetForm();
         this.router.navigate(['crm/product-family']); 
            
@@ -104,7 +106,7 @@ export class ProductFamilyFormComponent implements OnInit {
     this.service.putProductFamily(formData).
     subscribe({
       next:(res)=>{
-        this.sweettalert7()
+        RecordUpdated()
         // alert("Record Updated");
         this.resetForm();
         this.router.navigate(['crm/product-family']); 

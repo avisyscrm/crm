@@ -5,7 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
-import Swal from 'sweetalert2';
+import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
+
 
 @Component({
   selector: 'app-product-attributes-form',
@@ -232,7 +233,7 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
 
       this.onOptionsSelected(this.productEntityAttribute.controls['productEntityTemplateId'].value);
       
-      this.sweettalert9()
+      RecordAdded()
       // alert("Record Added");
        this.resetForm();
       //  this.onDelete(this.allProductEntityTempidd );
@@ -252,7 +253,7 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
        next:(res)=>{
  
         //  alert("Record Updated");
-        this.sweettalert7();
+        RecordUpdated();
            console.log(JSON.stringify(res.productEntityTemplateId)+"  updated code");
            this.resetForm();
            this.getDatataless(res.productEntityTemplateId);
@@ -361,28 +362,5 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
 
 
      
-// update
-sweettalert7() {
-  Swal.fire({
-    title: 'Updated',
-    text: 'You data is updated!',
-    icon: 'success',
-    cancelButtonText: 'Ok',
-    
-  })
 
-}
-
-// add
-sweettalert9() {
-
-  Swal.fire({
-    title: 'Success',
-    text: 'Record Added successfully',
-    icon: 'success',
-    cancelButtonText: 'Ok',
-
-
-  })
-}
 }

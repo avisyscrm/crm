@@ -54,7 +54,7 @@ export class ShowUserComponent implements OnInit {
       // this.headerList=sucess.headerlist;
       this.data=sucess.page;
       },error=>{
-        alert('get not working')
+        // alert('get not working')
       }
       );
 }
@@ -88,10 +88,10 @@ export class ShowUserComponent implements OnInit {
 
     // this.http.delete('http://192.168.1.11:8030/users/delete/'+data.data.email).subscribe(()=>{
       this.allService.deleteUser(data.data.email).subscribe(()=>{
-        alert("Record Deleted")
+        // alert("Record Deleted")
         this.getTableWithoutHeader("pageNo="+this.pageNo+"&pageSize="+this.pageSize+"&sort="+this.sortBy+"&sort="+this.sortDirection,)
     },(error)=>{
-      alert("Something went wrong");
+      // alert("Something went wrong");
     })
     
   

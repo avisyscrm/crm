@@ -4,6 +4,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
 import Swal from 'sweetalert2';
+import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
+
 
 @Component({
   selector: 'app-entity-form',
@@ -83,7 +85,7 @@ export class EntityFormComponent implements OnInit {
   postEntityGroup(){
     this.services.postEntityGroup(this.entityGroup.value).subscribe((result)=>{
       console.log('data', result);
-      this.sweettalert9();
+      RecordUpdated();
       // alert('Record Added');  
       this.entityGroup.reset();
     }) 
@@ -97,7 +99,7 @@ export class EntityFormComponent implements OnInit {
     
     this.services.putEntityGroup(formData).subscribe((res)=>{
       console.log(res);
-      this.sweettalert7();
+      RecordUpdated();
       // alert('Record Updated');
       this.router.navigate(['crm/entity-groups']); 
       // this.entityGroup.reset();
@@ -124,7 +126,7 @@ export class EntityFormComponent implements OnInit {
     formData.append('entityGroups',JSON.stringify(this.entityGroup.value));
      
     this.services.entityGroupsPost(formData).subscribe(sucess=>{
-      this.sweettalert9();
+      RecordAdded();
     //  alert('Record Added');  
     //  this.entityGroup.reset();
     this.resetForm();
@@ -173,29 +175,6 @@ export class EntityFormComponent implements OnInit {
     return this.entityGroup.get('entityGroupsIcon');
   }
 
- // update
- sweettalert7() {
-  Swal.fire({
-    title: 'Updated',
-    text: 'You data is updated!',
-    icon: 'success',
-    cancelButtonText: 'Ok',
-    
-  })
 
-}
-
-// add
-sweettalert9() {
-
-  Swal.fire({
-    title: 'Success',
-    text: 'Record Added successfully',
-    icon: 'success',
-    cancelButtonText: 'Ok',
-
-
-  })
-}
 
 }
