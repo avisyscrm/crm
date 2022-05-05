@@ -68,6 +68,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     private getsectionFromDetails=environment.baseUrl+"/getAllFormData/";
     private getdynamicTemplateData = environment.baseUrl+"/patchTemplateData?";
     private  getTabWiseEditData=environment.baseUrl+ "/patchTemplateData?";
+    private getEmailTemplate = environment.baseUrl+"/emailTemplate";
     // new api link for entity group 
     private allProductLineFromProductFamily = environment.baseUrl+"/allProductLineFromProductFamily/";
   
@@ -77,7 +78,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     // new link to add all section from tab
       private allSectionFromTabid = environment.baseUrl+"/allSectionFromTab/";
       private allEmailTemplate = environment.baseUrl+"/emailTemplatePaging?";
-      private allDTEmailTemplate = environment.baseUrl+"/emailTemplate";
+      
   // dropdown product hierachy
     private getProductHierachyH = environment.baseUrl+"/allProductHierarchy";
     private getProductFamilyH =environment.baseUrl+"/allProductFamily";
@@ -564,12 +565,20 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     return  this.http.get(this.getEmailTempId+id)
     }
 
+    postScheduleEmail(data:any){
+      return this.http.post(this.postSchedule,data);
+    }
+
     updateEmailTemplateId(data:any){
       return this.http.put(this.updateEmailTemplate,data);
     }
 
     deleteEmailTemplateId(tempId:number,updatedBy:number){
       return this.http.delete(this.deleteEmailTemplate+tempId+"/"+updatedBy)
+    }
+
+    getEmailTemplates(){
+      return this.http.get(this.getEmailTemplate);
     }
 
       // 

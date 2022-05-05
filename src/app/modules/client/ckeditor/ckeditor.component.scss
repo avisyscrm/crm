@@ -1,3 +1,7 @@
 :host ::ng-deep .ck-editor__editable_inline {
     min-height: 300px;
 }
+
+.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused){
+    height: 300px;
+}

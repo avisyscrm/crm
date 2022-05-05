@@ -1,3 +1,4 @@
+import { ScheduleemailFormComponent } from './../crmCompont/scheduleemail-form/scheduleemail-form.component';
 import { EmailtemplateformComponent } from './../crmCompont/emailtemplateform/emailtemplateform.component';
 import { EmailtemplateComponent } from './../crmCompont/emailtemplate/emailtemplate.component';
 import { DynamicformDatatableComponent } from './../crmCompont/dynamicform-datatable/dynamicform-datatable.component';
@@ -160,6 +161,11 @@ const routes: Routes = [
                           path: 'emailTemplateForm',
                           component: EmailtemplateformComponent,
                           data: { title: 'Email Template' }
+                        },
+                        {
+                          path: 'scheduleEmail',
+                          component: ScheduleemailFormComponent,
+                          data: { title: 'Schedule Email ' }
                         },
                       ]     
                       },

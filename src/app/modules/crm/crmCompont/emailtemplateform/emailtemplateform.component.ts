@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-emailtemplateform',
@@ -34,7 +35,8 @@ export class EmailtemplateformComponent implements OnInit {
 
   updateEmailTemplate(){
     this.allService.updateEmailTemplateId(this.emailTemplate.value).subscribe((res)=>{
-      alert("Record Updated");
+      // alert("Record Updated");
+      this.sweettalert7();
       this.router.navigate(['/crm/emailTemplate'])
     },
     (error)=>{
@@ -44,7 +46,8 @@ export class EmailtemplateformComponent implements OnInit {
 
   postEmailTemplate(){
     this.allService.postEmailTemplate(this.emailTemplate.value).subscribe((response)=>{
-      alert('Record Added');
+      // alert('Record Added');
+      this.sweettalert9();
       this.router.navigate(['/crm/emailTemplate'])
     },
     (error)=>{
@@ -54,9 +57,9 @@ export class EmailtemplateformComponent implements OnInit {
 
   emailTemplate= new FormGroup({
     emailTemplateId : new FormControl(''),
-    emailTemplateName : new FormControl('',Validators.required),
-    emailTemplateSubject: new FormControl('',Validators.required),
-    emailTemplateContent : new FormControl('',Validators.required),
+    emailTemplateName : new FormControl('',[Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+    emailTemplateSubject: new FormControl('',[Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+    emailTemplateContent : new FormControl('',[Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
     createdBy : new FormControl('-1'),
     updatedBy : new FormControl('-1'),
   })
@@ -77,5 +80,37 @@ export class EmailtemplateformComponent implements OnInit {
     this.emailTemplate.controls['emailTemplateContent'].reset();
     this.emailTemplate.controls['emailTemplateSubject'].reset();
   }
+
+  get emailTemplateName(){
+    return this.emailTemplate.get('emailTemplateName');
+  }
+
+  get emailTemplateSubject(){
+    return this.emailTemplate.get('emailTemplateSubject');
+  } 
+  
+  get emailTemplateContent(){
+    return this.emailTemplate.get('emailTemplateContent');
+  }
+
+   // update
+ sweettalert7() {
+  Swal.fire({
+    title: 'Updated',
+    text: 'You data is updated!',
+    icon: 'success',
+    cancelButtonText: 'Ok',
+  })
+}
+
+// add
+sweettalert9() {
+  Swal.fire({
+    title: 'Success',
+    text: 'Record Added successfully',
+    icon: 'success',
+    cancelButtonText: 'Ok',
+  })
+}
 
 }

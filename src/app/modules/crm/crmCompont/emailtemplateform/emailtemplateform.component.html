@@ -28,12 +28,10 @@
                                 <div class=" form-group col-md-8">
                                     <input name="" type="text" class="form-control mandatory" value=""
                                         formControlName="emailTemplateName">
-                                    <!-- <div *ngIf="productFamilyName?.invalid && productFamilyName?.touched">
-                                    <span class="validate-text" *ngIf="productFamilyName?.errors?.required">Please Enter Product Family</span>
-                                    <span class="validate-text" *ngIf="productFamilyName?.errors?.maxlength">Character exceed max limit 400</span>
-                                    <span class="validate-text"   *ngIf="productFamilyName?.errors?.isChar">Invalid input. Only character allowed </span>
-                                    <span class="validate-text"  *ngIf="productFamilyName?.errors?.pattern ">Field cant be empty</span>
-                                 </div> -->
+                                    <div *ngIf="emailTemplateName?.invalid && emailTemplateName?.touched">
+                                    <span class="validate-text" *ngIf="emailTemplateName?.errors?.required">Please Enter Template Name</span>
+                                    <span class="validate-text"  *ngIf="emailTemplateName?.errors?.pattern ">Field cant be empty</span>
+                                 </div>
                                 </div>
                             </div>
                         </div>
@@ -45,12 +43,12 @@
                                 <div class=" form-group col-md-8">
                                     <input name="" type="text" class="form-control mandatory" value=""
                                         formControlName="emailTemplateSubject">
-                                    <!-- <div *ngIf="productFamilyName?.invalid && productFamilyName?.touched">
-                                    <span class="validate-text" *ngIf="productFamilyName?.errors?.required">Please Enter Product Family</span>
-                                    <span class="validate-text" *ngIf="productFamilyName?.errors?.maxlength">Character exceed max limit 400</span>
-                                    <span class="validate-text"   *ngIf="productFamilyName?.errors?.isChar">Invalid input. Only character allowed </span>
-                                    <span class="validate-text"  *ngIf="productFamilyName?.errors?.pattern ">Field cant be empty</span>
-                                 </div> -->
+                                    <div *ngIf="emailTemplateSubject?.invalid && emailTemplateSubject?.touched">
+                                        <span class="validate-text"
+                                            *ngIf="emailTemplateSubject?.errors?.required">Please Enter Subject</span>
+                                        <span class="validate-text" *ngIf="emailTemplateSubject?.errors?.pattern ">Field
+                                            cant be empty</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -60,8 +58,15 @@
                                     <label class="form-label text-">Content</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <ckeditor [editor]="Editor " formControlName="emailTemplateContent">
+                                    <ckeditor [editor]="Editor" formControlName="emailTemplateContent"
+                                        style="height: 300px;">
                                     </ckeditor>
+                                    <div *ngIf="emailTemplateContent?.invalid && emailTemplateContent?.touched">
+                                        <span class="validate-text"
+                                            *ngIf="emailTemplateContent?.errors?.required">Please Enter Content</span>
+                                        <span class="validate-text" *ngIf="emailTemplateContent?.errors?.pattern ">Field
+                                            cant be empty</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>

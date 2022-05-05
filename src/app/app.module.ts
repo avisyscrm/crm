@@ -26,6 +26,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     FeatureComponent,
     LoginAdminComponent,
     EmailtemplateformComponent,
+
   ],
   imports: [
     BrowserModule,

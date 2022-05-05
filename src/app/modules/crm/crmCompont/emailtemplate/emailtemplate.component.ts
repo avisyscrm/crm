@@ -16,7 +16,7 @@ export class EmailtemplateComponent implements OnInit {
   sortBy:any;
   sortDirection:any;
   data:any={};
-  byDefaultPaging:any=undefined;
+  byDefaultPaging:any = "pageNo=1&pageSize=5";
 
   constructor(private allService:CrmservicesService, private router:Router) { }
 
@@ -44,7 +44,7 @@ export class EmailtemplateComponent implements OnInit {
     // this.sortBy=splittedpaging[2].substring(splittedpaging[2].indexOf("=")+1,splittedpaging[2].length);
     // this.sortDirection=splittedpaging[3].substring(splittedpaging[3].indexOf("=")+1,splittedpaging[3].length);
     this.byDefaultPaging=url;
-    
+
     this.allService.getAllEmailTemplate(url).subscribe((sucess:any)=>{
       // this.headerList=sucess.headerlist  ; //sucess.headerList;
     this.data=sucess.page;
@@ -59,7 +59,7 @@ export class EmailtemplateComponent implements OnInit {
     if(data.event=='add'){
       this.router.navigate(['crm/emailTemplateForm']);   
     }else if(data.event=='edit'){
-      alert(JSON.stringify(data.data));
+      // alert(JSON.stringify(data.data));
       this.router.navigate(['crm/emailTemplateForm'],{ queryParams: { data: JSON.stringify(data.data.emailTemplateId)} });
         console.log(data.data, 'data')
     } else if(data.event == 'delete'){

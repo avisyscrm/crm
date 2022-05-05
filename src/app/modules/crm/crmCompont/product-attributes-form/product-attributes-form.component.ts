@@ -84,7 +84,7 @@ export class ProductAttributesFormComponent implements OnInit {
            }
        },
         (err)=>{
-         alert("Something Went Wrong")
+        //  alert("Something Went Wrong")
        })
      }
      
@@ -259,7 +259,7 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
            this.getDatataless(res.productEntityTemplateId);
        },  
        error:()=>{
-         alert("Error while updating record");
+        //  alert("Error while updating record");
        }
      })
    }

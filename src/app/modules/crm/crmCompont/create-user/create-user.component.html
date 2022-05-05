@@ -28,11 +28,9 @@
                             </div>
                             <div class=" form-group col-md-8">
                                 <input name="" type="text" class="form-control mandatory" value="" formControlName="firstname">
-                                <div *ngIf="createUser?.invalid && createUser?.touched">
-                                    <span class="validate-text" *ngIf="createUser?.errors?.required">Please Enter Entity group</span>
-                                    <span class="validate-text"  *ngIf="createUser?.errors?.maxlength">Character exceed max limit 30</span>
-                                    <span class="validate-text" *ngIf="createUser?.errors?.isChar">Invalid input. Only character allowed </span>
-                                    <span class="validate-text" *ngIf="createUser?.errors?.pattern ">Field cant be empty</span>
+                                <div *ngIf="firstname?.invalid && firstname?.touched">
+                                    <span class="validate-text" *ngIf="firstname?.errors?.required">Please Enter Firstname</span>
+                                    <span class="validate-text" *ngIf="firstname?.errors?.pattern ">Field cant be empty</span>
                                  </div>
                             </div>
                         </div>
@@ -46,6 +44,10 @@
                             </div>
                             <div class=" form-group col-md-8">
                                 <input name="" type="text" class="form-control mandatory" value="" formControlName="lastname">
+                                <div *ngIf="lastname?.invalid && lastname?.touched">
+                                    <span class="validate-text" *ngIf="lastname?.errors?.required">Please Enter Lastname</span>
+                                    <span class="validate-text" *ngIf="lastname?.errors?.pattern ">Field cant be empty</span>
+                                 </div>
                             </div>
                         </div>
                     </div>
@@ -59,6 +61,10 @@
                             </div>
                             <div class=" form-group col-md-8">
                                 <input name="" type="email" class="form-control mandatory" value="" formControlName="email">
+                                <div *ngIf="email?.invalid && email?.touched">
+                                    <span class="validate-text" *ngIf="email?.errors?.required">Please Enter Email Id</span>
+                                    <span class="validate-text" *ngIf="email?.errors?.pattern ">Field cant be empty</span>
+                                 </div>
                             </div>
                         </div>
                     </div>
@@ -72,6 +78,10 @@
                             </div>
                             <div class=" form-group col-md-8">
                                 <input name="" type="text" class="form-control mandatory" value="" formControlName="password">
+                                <div *ngIf="password?.invalid && password?.touched">
+                                    <span class="validate-text" *ngIf="password?.errors?.required">Please Enter Password</span>
+                                    <span class="validate-text" *ngIf="password?.errors?.pattern ">Field can't be empty</span>
+                                 </div>
                             </div>
                         </div>
                     </div>
@@ -88,6 +98,9 @@
                                     <option value="">Select --</option>
                                     <option value="{{role.name}}" *ngFor="let role of roles" > {{role.name}}</option>
                                 </select>
+                                <div *ngIf="email?.invalid && email?.touched">
+                                    <span class="validate-text" *ngIf="email?.errors?.isSelect ">Please select role.</span>
+                                 </div>
                             </div>
                         </div>
                     </div>

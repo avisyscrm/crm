@@ -37,6 +37,7 @@ import { ShowUserComponent } from '../crmCompont/show-user/show-user.component';
 import { ChangepasswordComponent } from '../crmCompont/changepassword/changepassword.component';
 import { DynamicformDatatableComponent } from '../crmCompont/dynamicform-datatable/dynamicform-datatable.component';
 import { EmailtemplateComponent } from '../crmCompont/emailtemplate/emailtemplate.component';
+import { ScheduleemailFormComponent } from '../crmCompont/scheduleemail-form/scheduleemail-form.component';
 // import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
@@ -68,7 +69,7 @@ import { EmailtemplateComponent } from '../crmCompont/emailtemplate/emailtemplat
     ChangepasswordComponent,
     DynamicformDatatableComponent,
     EmailtemplateComponent,
-
+    ScheduleemailFormComponent,
  
   ],
   imports: [

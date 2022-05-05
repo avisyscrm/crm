@@ -1,0 +1,12 @@
+.ck.ck-editor__main{
+    height: 200px;
+}
+
+.ck.ck-editor__main>.ck-editor__editable:not(.ck-focused){
+    height: 200px;
+}
+
+.validate-text{
+    font-size: 12px;
+    color: red;
+}

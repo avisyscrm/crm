@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
-import Swal from 'sweetalert2';
+// import Swal from 'sweetalert2';
 import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
 
 

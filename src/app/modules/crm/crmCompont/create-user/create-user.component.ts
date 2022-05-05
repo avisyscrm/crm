@@ -6,7 +6,7 @@ import { AllservicesService } from 'src/app/modules/client/services/allservices.
 // import { onlyChar } from 'src/app/modules/client/validators/validation';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
-import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
+import { RecordUpdated, RecordAdded, UserCreated } from '../../../client/sweetalert/sweetalert';
 
 
 @Component({
@@ -31,10 +31,10 @@ export class CreateUserComponent implements OnInit {
  
    createUser = new FormGroup({
     firstname : new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
-    lastname : new FormControl('', Validators.required),
-    email : new FormControl('', Validators.required),
-    password : new FormControl('', Validators.required),
-    role: new FormControl('',Validators.required)
+    lastname : new FormControl('', [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+    email : new FormControl('', [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+    password : new FormControl('', [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+    role: new FormControl('',[selectValidation])
   })
 
   getRoles(){
@@ -53,7 +53,7 @@ export class CreateUserComponent implements OnInit {
     //console.log(""+this.service.post);
     this.service.postNewUser(this.createUser.value).subscribe((res)=>{
       // alert("User Created ");
-      RecordAdded();
+      UserCreated();
       this.resetForm();
       
       this.router.navigate(['/crm/user-all'])
@@ -73,5 +73,32 @@ export class CreateUserComponent implements OnInit {
     this.createUser.controls['role'].reset();
   }
 
+
  
+
+  get firstname(){
+    return this.createUser.get('firstname');
+  }
+
+  get lastname(){
+    return this.createUser.get('lastname');
+  }
+
+  get emailTemplateName(){
+    return this.createUser.get('emailTemplateName');
+  }
+
+  get email(){
+    return this.createUser.get('email');
+  }
+
+  get password(){
+    return this.createUser.get('password');
+  }
+
+  get role(){
+    return this.createUser.get('role');
+  }
+
+
 }
