@@ -3,6 +3,8 @@ import { Observable } from 'rxjs';
 import Swal from 'sweetalert2';
 import { ColumnComponent } from '../column/column.component';
 import { DataTableModel } from '../datatableModel';
+import { SelectRecord } from '../../../client/sweetalert/sweetalert';
+
 
 @Component({
   selector: 'app-datatable',
@@ -154,14 +156,15 @@ export class DatatableComponent implements OnInit {
         if (event == 'delete') {
           // let deletemodal = document.getElementById('openModalforDelete');
           // deletemodal.style.display='block';
-          this.sweettalert7();
+          this.DeleteRecord();
         }
         else {
           this.buttonEvent1.emit(data);
         }
         return;
       } else {
-        alert("Please Select record");
+        SelectRecord();
+        
         return
       }
     }
@@ -173,7 +176,7 @@ export class DatatableComponent implements OnInit {
 
   }
 
-  sweettalert7() {
+  DeleteRecord() {
     let data = {
       event: 'delete',
       data: this.selectedData

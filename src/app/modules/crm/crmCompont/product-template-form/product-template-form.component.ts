@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { selectValidation } from '../../../client/validators/validation';
-import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
+import { RecordUpdated, RecordAdded, } from '../../../client/sweetalert/sweetalert';
 
 
 
@@ -95,7 +95,7 @@ export class ProductTemplateFormComponent implements OnInit {
      console.log(this.productEntity.value,"post data");
      this.service.postprodEntityTemplate(this.productEntity.value).subscribe((res)=>{
         console.log(res);
-        RecordUpdated();
+        RecordAdded();
         // alert("Record Added");
         // this.productEntity.reset();
         this.resetForm();
@@ -116,7 +116,7 @@ export class ProductTemplateFormComponent implements OnInit {
         this.router.navigate(['crm/product-templates']); 
       },
       error:()=>{
-        alert("error while updating record");
+        // alert("error while updating record");
       }
     })
   }
