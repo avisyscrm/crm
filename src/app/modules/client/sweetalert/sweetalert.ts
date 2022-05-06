@@ -4,7 +4,7 @@ import Swal from "sweetalert2"
 export function RecordUpdated() {
     Swal.fire( {
         title: 'Updated',
-        text: 'Your data is been Updated ',
+        text: 'Your data is Updated ',
         icon: 'success',
         confirmButtonText: 'Ok',
         showClass: {
@@ -41,7 +41,7 @@ export function RecordUpdated() {
   export function CreateRole() {
     Swal.fire( {
         title: 'Success',
-        text: 'Role Added successfully ',
+        text: 'Role added successfully ',
         icon: 'success',
         confirmButtonText: 'Ok',
         showClass: {
@@ -77,7 +77,7 @@ export function RecordUpdated() {
   export function UserCreated() {
     Swal.fire( {
         title: 'Success',
-        text: 'User Created successfully ',
+        text: 'User created successfully ',
         icon: 'success',
         confirmButtonText: 'Ok',
         showClass: {
@@ -94,7 +94,7 @@ export function RecordUpdated() {
 
   export function SelectRecord() {
     Swal.fire( {
-        text: 'Please select the record ',
+        text: 'Please select a record ',
         icon: 'warning',
         confirmButtonText: 'Ok',
         showClass: {

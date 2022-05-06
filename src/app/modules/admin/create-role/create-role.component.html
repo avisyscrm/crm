@@ -8,7 +8,7 @@
                     <li class="nav-item"><a class="nav-link" href="#"></a>
                     </li>
 
-                </ul>
+                </ul> 
             </div>
        
                 <!--product entity-->
@@ -29,6 +29,12 @@
                                     <div class="col-md-8">
                                         <input type="text" class="form-control mandatory" id="lname" name="last-name"
                                         formControlName="name">
+                                        <div *ngIf="name?.invalid && name?.touched">
+                                            <span class="validate-text" *ngIf="name?.errors?.required">Please Enter Template Name</span>
+                                            <span class="validate-text" *ngIf="name?.errors?.maxlength">Character exceed max limit 400</span>
+                                            <span class="validate-text"   *ngIf="name?.errors?.isChar">Invalid input. Only character allowed </span>
+                                            <span class="validate-text"  *ngIf="name?.errors?.pattern ">Field cant be empty</span>
+                                         </div>
                                     </div>
                                 </div>
                             </div>
@@ -44,6 +50,12 @@
                                     <div class="col-md-8">
                                         <input type="text" class="form-control mandatory" id="lname" name="last-name"
                                         formControlName="description">
+                                        <div *ngIf="description?.invalid && description?.touched">
+                                            <span class="validate-text" *ngIf="description?.errors?.required">Please Enter Template description</span>
+                                            <span class="validate-text" *ngIf="description?.errors?.maxlength">Character exceed max limit 400</span>
+                                            <span class="validate-text"   *ngIf="description?.errors?.isChar">Invalid input. Only character allowed </span>
+                                            <span class="validate-text"  *ngIf="description?.errors?.pattern ">Field cant be empty</span>
+                                         </div>
                                     </div>
                                 </div>
                             </div>

@@ -6,7 +6,7 @@ describe('ProductlineFormComponent', () => {
   let component: ProductlineFormComponent;
   let fixture: ComponentFixture<ProductlineFormComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(async(() => { 
     TestBed.configureTestingModule({
       declarations: [ ProductlineFormComponent ]
     })

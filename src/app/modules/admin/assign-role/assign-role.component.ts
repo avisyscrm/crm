@@ -2,6 +2,7 @@ import { CrmservicesService } from './../../crm/crm-services/crmservices.service
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { RoleAssigned } from '../../client/sweetalert/sweetalert';
+import { selectValidation } from '../../client/validators/validation';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class AssignRoleComponent implements OnInit {
   
   UserID:any;
   UserListId:any;
-  alluserrolesdata:any;
+  alluserrolesdata:any; 
 
   constructor(private service : CrmservicesService) { }
 
@@ -30,8 +31,8 @@ export class AssignRoleComponent implements OnInit {
   }
 
   assignRole = new FormGroup({
-    userId: new FormControl('',[ Validators.required]),
-    role: new FormControl('', ),
+    userId: new FormControl('',[ Validators.required, selectValidation]),
+    role: new FormControl('',[ Validators.required, selectValidation] ),
   })
 
   // calling prod line from family id
@@ -46,6 +47,13 @@ submit(){
   )
 }
 
+get role(){
+  return this.assignRole.get('role');
+} 
+
+get userId(){
+  return this.assignRole.get('userId');
+} 
 
 }
 

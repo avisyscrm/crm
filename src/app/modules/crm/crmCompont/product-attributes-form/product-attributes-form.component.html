@@ -1,32 +1,31 @@
+<div class="section-body  fixNavMargin">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center">
+            <ul class="nav nav-tabs page-header-tab">
+                <li class="nav-item"><a class="nav-link" href="#">
+                    </a></li>
+                <li class="nav-item"><a class="nav-link" href="#"></a>
+                </li>
 
-    <div class="section-body  fixNavMargin">
-        <div class="container-fluid">
-            <div class="d-flex justify-content-between align-items-center">
-                <ul class="nav nav-tabs page-header-tab">
-                    <li class="nav-item"><a class="nav-link" href="#">
-                        </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"></a>
-                    </li>
-
-                </ul>
-                <!-- <div class="header-action">
+            </ul>
+            <!-- <div class="header-action">
                     <button type="button" class="btn btn-primary m-3"><i class="fe fe-plus mr-2"></i>Add</button>
                 </div> -->
-            </div>
-            <div class="row">
-  
-                
+        </div>
+        <div class="row">
 
 
-                <!--product entity-->
-                <form [formGroup]="productEntityAttribute" (ngSubmit)="submitForm()">
+
+
+            <!--product entity-->
+            <form [formGroup]="productEntityAttribute" (ngSubmit)="submitForm()">
                 <div class="card card-height">
                     <div class="card-header pf-head">
                         <h3 class="card-title ">PRODUCT ENTITY TEMPLATE ATTRIBUTES</h3>
                     </div>
                     <div class="card-body">
                         <div class="row productfamily ">
-                <div class="col-md-6">
+                            <div class="col-md-6">
                                 <div class="row ">
                                     <div class=" form-group col-md-4">
                                         <label class="form-label ">Product Entity Template Id</label>
@@ -34,18 +33,25 @@
                                     <div class=" form-group col-md-8">
                                         <div class="form-group">
                                             <select #mySelect (change)="onOptionsSelected(mySelect.value)"
-                                            class="form-control mandatory" class="form-control mandatory"
-                                            formControlName="productEntityTemplateId">
-                                            <option value="">Select --</option>
-                                            <option aria-placeholder="select" value="{{productline.productEntityTemplateId}}"
-                                               *ngFor="let  productline of allProductEntityTempidd">
-                                               {{productline.productEntityTemplateName}}</option>
-                                         </select>
+                                                class="form-control mandatory" class="form-control mandatory"
+                                                formControlName="productEntityTemplateId">
+                                                <option value="" >Select --</option>
+                                                <option aria-placeholder="select"
+                                                    value="{{productline.productEntityTemplateId}}"
+                                                    *ngFor="let  productline of allProductEntityTempidd">
+                                                    {{productline.productEntityTemplateName}}</option>
+                                            </select>
+                                            <div
+                                                *ngIf="productEntityTemplateId?.invalid && productEntityTemplateId?.touched">
+                                                <span class="validate-text"
+                                                    *ngIf="productEntityTemplateId?.errors?.isSelect">Please select
+                                                    Template</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-          
+
                             <div class="col-md-6">
                                 <div class="row">
                                     <div class="col-md-4">
@@ -53,45 +59,66 @@
                                     </div>
                                     <div class="col-md-8">
                                         <select #mySelect3 (change)="onOptionsSelectedTab(mySelect3.value)"
-                                 class="form-control mandatory" formControlName="tabId">
-                                 <option value="">Select --</option>
-                                 <option aria-placeholder="select" value="{{tabids.productEntityTemplateSectionId}}"
-                                    *ngFor="let tabids of tabid">{{tabids.section}}
-                                 </option>
-                              </select>
+                                            class="form-control mandatory" formControlName="tabId">
+                                            <option value="" >Select --</option>
+                                            <option aria-placeholder="select"
+                                                value="{{tabids.productEntityTemplateSectionId}}"
+                                                *ngFor="let tabids of tabid">{{tabids.section}}
+                                            </option>
+                                        </select>
+                                        <div *ngIf="tabId?.invalid && tabId?.touched">
+                                            <span class="validate-text" *ngIf="tabId?.errors?.isSelect">Please select
+                                                Tab Id</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-               
+
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
                                         <label class="form-label">Section</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <select #select4 (change)="onSelectSection(select4.value)" class="form-control mandatory" formControlName="sectionId">
+                                        <select #select4 (change)="onSelectSection(select4.value)"
+                                            class="form-control mandatory" formControlName="sectionId">
                                             <option value="">Select --</option>
-                                            <option aria-placeholder="select" value="{{tabids.productEntityTemplateSectionId}}"
-                                               *ngFor="let tabids of secid">{{tabids.section}}</option>
-                                         </select>
+                                            <option aria-placeholder="select"
+                                                value="{{tabids.productEntityTemplateSectionId}}"
+                                                *ngFor="let tabids of secid">{{tabids.section}}</option>
+                                        </select>
+                                        <div *ngIf="sectionId?.invalid && sectionId?.touched">
+                                            <span class="validate-text" *ngIf="sectionId?.errors?.isSelect">Please
+                                                select Section Id</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-              
+
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
                                         <label class="form-label">Sequence ID</label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input type="number" class="form-control mandatory" id="mname" name="middle-name"
-                                        formControlName="sequenceId">
+                                        <input type="number" class="form-control mandatory" id="mname"
+                                            name="middle-name" formControlName="sequenceId">
+                                        <div *ngIf="sequenceId?.invalid && sequenceId?.touched">
+                                            <span class="validate-text" *ngIf="sequenceId?.errors?.required">Please
+                                                Enter Sequence Id </span>
+                                            <span class="validate-text" *ngIf="sequenceId?.errors?.maxlength">Character
+                                                exceed max limit 400</span>
+                                            <span class="validate-text" *ngIf="sequenceId?.errors?.isChar">Invalid
+                                                input. Only character allowed </span>
+                                            <span class="validate-text" *ngIf="sequenceId?.errors?.pattern ">Field cant
+                                                be empty</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-          
+
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
@@ -99,12 +126,24 @@
                                     </div>
                                     <div class="col-md-8">
                                         <input type="text" class="form-control mandatory" id="lname" name="last-name"
-                                        formControlName="productAttribute">
+                                            formControlName="productAttribute">
+                                        <div *ngIf="productAttribute?.invalid && productAttribute?.touched">
+                                            <span class="validate-text"
+                                                *ngIf="productAttribute?.errors?.required">Please Enter Product
+                                                Attribute </span>
+                                            <span class="validate-text"
+                                                *ngIf="productAttribute?.errors?.maxlength">Character exceed max limit
+                                                400</span>
+                                            <span class="validate-text" *ngIf="productAttribute?.errors?.isChar">Invalid
+                                                input. Only character allowed </span>
+                                            <span class="validate-text" *ngIf="productAttribute?.errors?.pattern ">Field
+                                                cant be empty</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
 
-              
+
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
@@ -112,11 +151,21 @@
                                     </div>
                                     <div class="col-md-8">
                                         <textarea type="file" class="form-control mandatory" id="lname" name="last-name"
-                                 formControlName="description"></textarea>
+                                            formControlName="description"></textarea>
+                                        <div *ngIf="description?.invalid && description?.touched">
+                                            <span class="validate-text" *ngIf="description?.errors?.required">Please
+                                                Enter Description </span>
+                                            <span class="validate-text" *ngIf="description?.errors?.maxlength">Character
+                                                exceed max limit 400</span>
+                                            <span class="validate-text" *ngIf="description?.errors?.isChar">Invalid
+                                                input. Only character allowed </span>
+                                            <span class="validate-text" *ngIf="description?.errors?.pattern ">Field cant
+                                                be empty</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-         
+
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
@@ -125,28 +174,58 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <textarea type="file" class="form-control mandatory" id="lname" name="last-name"
-                                 formControlName="productAttributeDataType"></textarea>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-          
-                            <div class="col-md-6">
-                                <div class="row mb-3">
-                                    <div class="col-md-4">
-                                        <label class="form-label">Product  Attribute Length</label>
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="form-group">
-                                            <input type="text" class="form-control mandatory" id="lname" name="last-name"
-                                            formControlName="productAttributeLength">
+                                            <textarea type="file" class="form-control mandatory" id="lname"
+                                                name="last-name" formControlName="productAttributeDataType"></textarea>
+                                            <div
+                                                *ngIf="productAttributeDataType?.invalid && productAttributeDataType?.touched">
+                                                <span class="validate-text"
+                                                    *ngIf="productAttributeDataType?.errors?.required">Please Enter
+                                                    DataType </span>
+                                                <span class="validate-text"
+                                                    *ngIf="productAttributeDataType?.errors?.maxlength">Character exceed
+                                                    max limit 400</span>
+                                                <span class="validate-text"
+                                                    *ngIf="productAttributeDataType?.errors?.isChar">Invalid input. Only
+                                                    character allowed </span>
+                                                <span class="validate-text"
+                                                    *ngIf="productAttributeDataType?.errors?.pattern ">Field cant be
+                                                    empty</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-   
+                            <div class="col-md-6">
+                                <div class="row mb-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Product Attribute Length</label>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control mandatory" id="lname"
+                                                name="last-name" formControlName="productAttributeLength">
+                                            <div
+                                                *ngIf="productAttributeLength?.invalid && productAttributeLength?.touched">
+                                                <span class="validate-text"
+                                                    *ngIf="productAttributeLength?.errors?.required">Please Enter
+                                                    Attribute Length </span>
+                                                <span class="validate-text"
+                                                    *ngIf="productAttributeLength?.errors?.maxlength">Character exceed
+                                                    max limit 400</span>
+                                                <span class="validate-text"
+                                                    *ngIf="productAttributeLength?.errors?.isChar">Invalid input. Only
+                                                    character allowed </span>
+                                                <span class="validate-text"
+                                                    *ngIf="productAttributeLength?.errors?.pattern ">Field cant be
+                                                    empty</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
@@ -155,21 +234,26 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <select id="datalistOptions84" class="form-control mandatory"  #dataCapture  (change)="onDataCapture(dataCapture.value)"
-                                 formControlName="dataCaptureControl">
-                                 <option value="">Select --</option>
-                                 <option value="text">Text</option>
-                                 <option value="radio">Radio</option>
-                                 <option value="checkbox">Checkbox</option>
-                                 <option value="date">Date</option>
-                                 <option value="dropdown">Dropdown</option>
-                              </select>
+                                            <select id="datalistOptions84" class="form-control mandatory" #dataCapture
+                                                (change)="onDataCapture(dataCapture.value)"
+                                                formControlName="dataCaptureControl">
+                                                <option value="">Select --</option>
+                                                <option value="text">Text</option>
+                                                <option value="radio">Radio</option>
+                                                <option value="checkbox">Checkbox</option>
+                                                <option value="date">Date</option>
+                                                <option value="dropdown">Dropdown</option>
+                                            </select>
+                                            <div *ngIf="dataCaptureControl?.invalid && dataCaptureControl?.touched">
+                                                <span class="validate-text" *ngIf="dataCaptureControl?.errors?.isSelect">Please select
+                                                    data capture control</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-  
+
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
@@ -177,8 +261,17 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <input type="text" class="form-control mandatory" 
-                                            formControlName="options">
+                                            <input type="text" class="form-control mandatory" formControlName="options">
+                                            <div *ngIf="options?.invalid && options?.touched">
+                                                <span class="validate-text" *ngIf="options?.errors?.required">Please
+                                                    Enter Values</span>
+                                                <span class="validate-text" *ngIf="options?.errors?.maxlength">Character
+                                                    exceed max limit 400</span>
+                                                <span class="validate-text" *ngIf="options?.errors?.isChar">Invalid
+                                                    input. Only character allowed </span>
+                                                <span class="validate-text" *ngIf="options?.errors?.pattern ">Field cant
+                                                    be empty</span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -190,12 +283,17 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <select id="datalistOptions84" class="form-control mandatory" formControlName="mandatory">
+                                            <select id="datalistOptions84" class="form-control mandatory"
+                                                formControlName="mandatory">
                                                 <option value="">Select --</option>
                                                 <option value="true">True</option>
                                                 <option value="false">False</option>
-               
-                                             </select>
+
+                                            </select>
+                                            <div *ngIf="mandatory?.invalid && mandatory?.touched">
+                                                <span class="validate-text" *ngIf="mandatory?.errors?.isSelect">Please select
+                                                </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -207,42 +305,44 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <select id="datalistOptions84" class="form-control mandatory" formControlName="editable">
+                                            <select id="datalistOptions84" class="form-control mandatory"
+                                                formControlName="editable">
                                                 <option value="">Select --</option>
                                                 <option value="true">True</option>
                                                 <option value="false">False</option>
-               
-                                             </select>
+
+                                            </select>
+                                            <div *ngIf="editable?.invalid && editable?.touched">
+                                                <span class="validate-text" *ngIf="editable?.errors?.isSelect">Please select
+                                                   </span>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                <button [disabled]="productEntityAttribute.invalid" type="submit" class="btn btn-primary ">{{btnName}}</button>
+                            <button type="submit" [disabled]="productEntityAttribute.invalid" class="btn btn-primary ">{{btnName}}</button>
                             <button type="button" class="btn btn-primary ml-3 " (click)="resetForm()">Reset</button>
 
                         </div>
 
                     </div>
                 </div>
-                </form>
+            </form>
 
 
 
-                <!-- </div> -->
-                <!-- <app-footer></app-footer> -->
-
-            </div>
-
-            
-            <app-datatable [permission]="permission" (buttonEvent1)="buttonEvent1($event)"
-            (changePageSortSearch)="changePageSortSearch($event)" [dataset]="data">
-            <app-column [search]="x.search_key" [cssClass]="" [type]="x.type" *ngFor="let x of headerList"
-               [value]="x.value" [width]="x.width" [header]="x.header"></app-column>
-         </app-datatable>
+            <!-- </div> -->
+            <!-- <app-footer></app-footer> -->
 
         </div>
+
+
+        <app-datatable [permission]="permission" (buttonEvent1)="buttonEvent1($event)"
+            (changePageSortSearch)="changePageSortSearch($event)" [dataset]="data">
+            <app-column [search]="x.search_key" [cssClass]="" [type]="x.type" *ngFor="let x of headerList"
+                [value]="x.value" [width]="x.width" [header]="x.header"></app-column>
+        </app-datatable>
+
     </div>
-
-
-  
+</div>

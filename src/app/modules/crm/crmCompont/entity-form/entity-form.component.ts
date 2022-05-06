@@ -58,7 +58,7 @@ export class EntityFormComponent implements OnInit {
       this.services.allProductLineFromProductFamilyDropDown(value).subscribe(sucess=>{
         this.prodLineid=sucess;
         });
-    }
+    } 
   }
 
   entityGroup = new FormGroup ({
@@ -111,9 +111,12 @@ export class EntityFormComponent implements OnInit {
     })
   }
 
-  //form submit
+  //form submi
+ 
+  
 
   formSubmit(){
+    console.log(this.entityGroup);
     if(this.groupId){
       this.entityGroup.valid? this.updateEntityGroup() : "";
       // this.entityGroup.reset();
@@ -161,8 +164,12 @@ export class EntityFormComponent implements OnInit {
       }
     }
   }
-
-
+  get productFamilyId() {
+    return this.entityGroup.get('productFamilyId');
+  }
+  get productLineId() {
+    return this.entityGroup.get('productLineId');
+  }
   get entityGroups(){
     return this.entityGroup.get('entityGroups');
   }

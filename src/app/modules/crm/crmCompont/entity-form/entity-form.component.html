@@ -36,6 +36,10 @@
                                                 {{productfamid.productFamily}}
                                             </option>
                                           </select>   
+                                          <div *ngIf="productFamilyId?.invalid && productFamilyId?.touched">
+                                                <span  class="validate-text" *ngIf="productFamilyId?.errors?.isSelect">Please select product
+                                                family Id</span>
+                                          </div>
                                     </div>
                                 </div>
                             </div>
@@ -50,6 +54,10 @@
                                             <option value="">Select --</option>
                                             <option value="{{productline.productLineId}}" *ngFor="let productline of prodLineid">{{productline.productLine}}</option>
                                           </select>   
+                                          <div *ngIf="productLineId?.invalid && productLineId?.touched">
+                                                <span  class="validate-text" *ngIf="productLineId?.errors?.isSelect">Please select product
+                                                Line Id</span>
+                                          </div>
                                     </div>
                                 </div>
                             </div>

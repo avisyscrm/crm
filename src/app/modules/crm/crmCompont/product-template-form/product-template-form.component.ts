@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
-import { selectValidation } from '../../../client/validators/validation';
+import { onlyChar, selectValidation } from '../../../client/validators/validation';
 import { RecordUpdated, RecordAdded, } from '../../../client/sweetalert/sweetalert';
 
 
@@ -68,10 +68,10 @@ export class ProductTemplateFormComponent implements OnInit {
    productEntity = new FormGroup({
     entityGroupsId:new FormControl('',selectValidation ),
       productEntityTemplateId: new FormControl(''),
-      productEntityTemplateName: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
-      productLineId: new FormControl('', [Validators.required, selectValidation]),
-      version: new FormControl('',Validators.required),
+      productEntityTemplateName: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
+      description: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
+      productLineId: new FormControl('', selectValidation),
+      version: new FormControl('',[Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
       state: new FormControl('', [Validators.required, selectValidation]),
       createdBy: new FormControl('0', Validators.required),
       productFamilyId: new FormControl('',[ Validators.required, selectValidation])
@@ -161,6 +161,34 @@ onOptionsSelectedEntity(value:string){
   console.log("the selected value is " + value);
   this.getEntityLineId(parseInt(value));
 }
+
+
+  get productFamilyId() {
+    return this.productEntity.get('productFamilyId');
+  }
+
+  get productLineId() {
+    return this.productEntity.get('productLineId');
+  }
+  get entityGroupsId(){
+    return this.productEntity.get('entityGroupsId');
+  }
+
+  get productEntityTemplateName(){
+    return this.productEntity.get('productEntityTemplateName');
+  } 
+
+  get description(){
+    return this.productEntity.get('description');
+  } 
+
+  get version(){
+    return this.productEntity.get('version');
+  } 
+
+  get state(){
+    return this.productEntity.get('state');
+  } 
 
   
   

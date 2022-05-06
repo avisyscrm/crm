@@ -44,7 +44,7 @@ export class ProductAttributesFormComponent implements OnInit {
   ngOnInit(): void {
 
 
-    this.getTabsIds(1)
+    // this.getTabsIds(1)
      // id of temp to attribute table 
      this.route.queryParams.subscribe((params:any)=>{
         this.tempAttributeId = params.data ;
@@ -66,9 +66,6 @@ export class ProductAttributesFormComponent implements OnInit {
      this.route.queryParams.subscribe((params)=>{
        this.attributeId = params.data;
        this.tempAttributeId = params.data;
-       // this.temattributeforsort = params.data;
-  
-      //  console.log(this.tempAttributeId, 'sjdfjkhkhfkhkrfhkshdkahfkh');
        
      })
  
@@ -107,7 +104,7 @@ export class ProductAttributesFormComponent implements OnInit {
    }
  
      productEntityAttribute = new FormGroup({
-       productEntityTemplateId: new FormControl('',[ Validators.required, selectValidation]),
+      productEntityTemplateId: new FormControl('',[ Validators.required, selectValidation]),
        productEntityTemplateAttributesId: new FormControl('', ),
        sequenceId: new FormControl('', Validators.required),
        productAttribute: new FormControl('', Validators.required),
@@ -115,7 +112,7 @@ export class ProductAttributesFormComponent implements OnInit {
        productAttributeDataType:new FormControl('', Validators.required),
        productAttributeLength:new FormControl('', Validators.required),
        dataCaptureControl: new FormControl('', [Validators.required,selectValidation]),
-       options: new FormControl(''),
+       options: new FormControl('',[Validators.required,selectValidation]),
        // attributeOptionValues: new FormControl(''),
        // value: new FormControl('d', Validators.required),
        mandatory: new FormControl('', [Validators.required, selectValidation]),
@@ -130,7 +127,7 @@ export class ProductAttributesFormComponent implements OnInit {
    resetForm(){
     //  this.productEntityAttribute.controls['productEntityTemplateId'].setValue("");
     //  this.productEntityAttribute.controls['tabId'].setValue("");
-     this.productEntityAttribute.controls['sectionId'].setValue("");
+     this.productEntityAttribute.controls['sectionId'].reset();
      this.productEntityAttribute.controls['mandatory'].setValue("");
      this.productEntityAttribute.controls['editable'].setValue("");
      this.productEntityAttribute.controls['sequenceId'].reset();
@@ -200,29 +197,12 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
   
   this.secid=data;
   
-  // if (data.id > 5) {
-  //   let anotherUrl = 'http://dummy.restapiexample.com/api/v1/employee/23';
-  //   this.httpClient.get<Employee>(anotherUrl).toPromise().then(data => {
-  //     this.conditionalPromiseResult = data;
-  //     console.log('Second Promise resolved.')
-  //   });
-  // }
+ 
 });
-    // console.log(" --- " +JSON.stringify(promise[0]));  
-    // promise.then((data)=>{
-    //   console.log("Promise resolved with: " + JSON.stringify(data));
-    // })
-    //.catch((error)=>{
-    //   console.log("Promise rejected with " + JSON.stringify(error));
-    // });
-
-// 
+ 
 
   
    let data:any;
-
-  //  data = this.service.getSectionFromTab(value);
-   console.log(JSON.stringify(data.data)+"test");
    
  }
    //add
@@ -236,12 +216,7 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
       RecordAdded()
       // alert("Record Added");
        this.resetForm();
-      //  this.onDelete(this.allProductEntityTempidd );
-       
-
       
-       
-      //  this.getDatataless(result.productEntityTemplateId)
 
      },(error)=>{
        console.log(error);
@@ -259,22 +234,19 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
            this.getDatataless(res.productEntityTemplateId);
        },  
        error:()=>{
-        //  alert("Error while updating record");
+   
        }
      })
    }
  
    submitForm(){
+     console.log(this.productEntityAttribute)
      if(this.tempAttributeId){
        this.productEntityAttribute.valid ? this.updateProductAttribute() : "";
-       
-       // this.productEntityAttribute.reset();
-     }
+       }
      else if(this.productEntityAttribute.valid){
          this.postProductAttribute();
-       // this.productEntityAttribute.reset();
- 
-     }
+       }
    }
   
    onDelete(value:any){
@@ -292,6 +264,7 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
      if(data.event=='add'){
        
       this.btnName = "Add";  
+          this.productEntityAttribute.controls['tabId'].reset();
       this.resetForm();
       this.tempAttributeId= "";
       //  this.router.navigate(['product-attribute-form']);   
@@ -305,12 +278,9 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
        this.getSectionIdsAsync(data.data.tabId, data.data);
        this.productEntityAttribute.patchValue(data.data);
        console.log(data.data);
-       
-//       this.onOptionsSelectedTab(this.productEntityAttribute.controls['tabId'].value);
         
         console.log(this.productEntityAttribute.controls['tabId'].value, '23456yhnm');
-  //      this.productEntityAttribute.controls['sectionId'].setValue(data.data.sectionId);
-        
+          
      }
      else if(data.event == 'delete'){
    
@@ -330,7 +300,7 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
            this.data=sucess.page;
            },error=>{}
            );
-       }
+       } 
  
  
      changePageSortSearch(url:any){
@@ -359,6 +329,46 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
      getAttributeData(resData:any){
        this.getSectionIds(resData.sectionId);
      }
+     
+     get productEntityTemplateId(){
+      return this.productEntityAttribute.get('productEntityTemplateId');
+    }   
+    get tabId(){
+      return this.productEntityAttribute.get('tabId');
+    } 
+    
+    get sequenceId(){
+      return this.productEntityAttribute.get('sequenceId');
+    }  
+    get sectionId(){
+      return this.productEntityAttribute.get('sectionId');
+    }   
+    get productAttribute(){
+      return this.productEntityAttribute.get('productAttribute');
+    }   
+    get description(){
+      return this.productEntityAttribute.get('description');
+    }
+    get productAttributeDataType(){
+      return this.productEntityAttribute.get('productAttributeDataType');
+    }
+    get productAttributeLength(){
+      return this.productEntityAttribute.get('productAttributeLength');
+    } 
+    get dataCaptureControl(){
+      return this.productEntityAttribute.get('dataCaptureControl');
+    } 
+    get options(){
+      return this.productEntityAttribute.get('options');
+    } 
+    get mandatory(){
+      return this.productEntityAttribute.get('mandatory');
+    } 
+    get editable(){
+      return this.productEntityAttribute.get('editable');
+    } 
+  
+
 
 
      

@@ -68,7 +68,7 @@ export class ProductlineFormComponent implements OnInit {
   }
 
   addProductLine = new FormGroup({
-    productFamilyId: new FormControl('', selectValidation),
+    productFamilyId: new FormControl('', [ selectValidation]),
     productLineId: new FormControl(''),
     productLine: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
     description: new FormControl('', [Validators.required, Validators.maxLength(400), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
@@ -87,6 +87,7 @@ export class ProductlineFormComponent implements OnInit {
   }
 
   submit() {
+    console.log(this.addProductLine)
     if (this.isupdate) {
       this.addProductLine.valid ? this.updateProductLine() : "";
       // this.resetForm();
@@ -142,6 +143,10 @@ export class ProductlineFormComponent implements OnInit {
     // get firstName(){ 
     //   return this.addProductLine.get('productLine');
     // }
+  }
+
+  get productFamilyId() {
+    return this.addProductLine.get('productFamilyId');
   }
 
   get productLine() {
