@@ -1,12 +1,13 @@
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormArray, FormBuilder } from '@angular/forms';
 import { AllservicesService } from 'src/app/modules/client/services/allservices.service';
 // import { onlyChar } from 'src/app/modules/client/validators/validation';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { RecordUpdated, RecordAdded, UserCreated } from '../../../client/sweetalert/sweetalert';
+import { ConfirmedValidator } from '../changepassword/validator';
 
 
 @Component({
@@ -22,24 +23,37 @@ export class CreateUserComponent implements OnInit {
   roles:any=[];
   options:any;
   roleArray:any=[];
-  checked :boolean = true;
+  checked :boolean = true; 
+  createUser = new FormGroup({});
 
-  constructor( private service:CrmservicesService, private http: HttpClient, private router : Router) { }
+  constructor( private service:CrmservicesService,private fb: FormBuilder, private http: HttpClient, private router : Router) {
+    this.createUser = fb.group({ 
+      firstName:['',[Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]],
+      lastName:['',[Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]],
+      email:['',[Validators.required]],
+      password:['',[Validators.required]],
+      confirm_password: ['', [Validators.required]],
+      isTemporary: new FormControl('',[Validators.required]),
+      role: new FormControl('',[selectValidation, Validators.required])
+    }, { 
+      validator: ConfirmedValidator('password', 'confirm_password')
+    })
+   }
 
   ngOnInit(): void {
     // this.getAccessToken();
    this.getRoles();
   }
  
-   createUser = new FormGroup({
-    firstName : new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
-    lastName : new FormControl('', [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
-    email : new FormControl('', [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
-    password : new FormControl('', [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
-    // roles: new FormArray([],[selectValidation]),
-    isTemporary: new FormControl(''),
-    role: new FormControl('',[selectValidation, Validators.required])
-  })
+  //  createUser = new FormGroup({
+  //   firstName : new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
+  //   lastName : new FormControl('', [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+  //   email : new FormControl('', [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+  //   password : new FormControl('', [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+  //   // roles: new FormArray([],[selectValidation]),
+  //   isTemporary: new FormControl(''),
+  //   role: new FormControl('',[selectValidation, Validators.required])
+  // })
 
   
 
@@ -107,10 +121,17 @@ export class CreateUserComponent implements OnInit {
   get password(){
     return this.createUser.get('password');
   }
-
+  get confirm_password(){
+    return this.createUser.get('confirm_password');
+  }
+  
   get role(){
     return this.createUser.get('role');
   }
+  get isTemporary(){
+    return this.createUser.get('role');
+  }
+
 
   
 

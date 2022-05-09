@@ -22,7 +22,7 @@ export class ChangepasswordComponent implements OnInit {
   changePassword = new FormGroup({});
   constructor(private service:CrmservicesService, private http: HttpClient,
      private fb: FormBuilder) { 
-      this.changePassword = fb.group({
+      this.changePassword = fb.group({ 
         email:[''],
         oldpassword :['',[Validators.required]],
         password: ['', [Validators.required]],
