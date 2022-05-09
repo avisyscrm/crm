@@ -6,7 +6,7 @@ export function RecordUpdated() {
         title: 'Updated',
         text: 'Your data is Updated ',
         icon: 'success',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         showClass: {
           backdrop: 'swal2-noanimation', // disable backdrop animation
           popup: '',                     // disable popup animation
@@ -26,7 +26,7 @@ export function RecordUpdated() {
         title: 'Added',
         text: 'Record added successfully ',
         icon: 'success',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         showClass: {
           backdrop: 'swal2-noanimation', // disable backdrop animation
           popup: '',                     // disable popup animation
@@ -43,7 +43,7 @@ export function RecordUpdated() {
         title: 'Success',
         text: 'Role added successfully ',
         icon: 'success',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         showClass: {
           backdrop: 'swal2-noanimation', // disable backdrop animation
           popup: '',                     // disable popup animation
@@ -61,7 +61,7 @@ export function RecordUpdated() {
         title: 'Success',
         text: 'Role Assigned successfully ',
         icon: 'success',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         showClass: {
           backdrop: 'swal2-noanimation', // disable backdrop animation
           popup: '',                     // disable popup animation
@@ -79,7 +79,7 @@ export function RecordUpdated() {
         title: 'Success',
         text: 'User created successfully ',
         icon: 'success',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         showClass: {
           backdrop: 'swal2-noanimation', // disable backdrop animation
           popup: '',                     // disable popup animation
@@ -96,7 +96,7 @@ export function RecordUpdated() {
     Swal.fire( {
         text: 'Please select a record ',
         icon: 'warning',
-        confirmButtonText: 'Ok',
+        confirmButtonText: 'OK',
         showClass: {
           backdrop: 'swal2-noanimation', // disable backdrop animation
           popup: '',                     // disable popup animation

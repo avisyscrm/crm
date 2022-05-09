@@ -1,7 +1,7 @@
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators, FormArray } from '@angular/forms';
 import { AllservicesService } from 'src/app/modules/client/services/allservices.service';
 // import { onlyChar } from 'src/app/modules/client/validators/validation';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
@@ -21,6 +21,8 @@ export class CreateUserComponent implements OnInit {
   accessToken:any; 
   roles:any=[];
   options:any;
+  roleArray:any=[];
+  checked :boolean = true;
 
   constructor( private service:CrmservicesService, private http: HttpClient, private router : Router) { }
 
@@ -30,17 +32,21 @@ export class CreateUserComponent implements OnInit {
   }
  
    createUser = new FormGroup({
-    firstname : new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
-    lastname : new FormControl('', [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+    firstName : new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
+    lastName : new FormControl('', [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
     email : new FormControl('', [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
     password : new FormControl('', [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
-    role: new FormControl('',[selectValidation])
+    // roles: new FormArray([],[selectValidation]),
+    isTemporary: new FormControl(''),
+    role: new FormControl('',[selectValidation, Validators.required])
   })
+
+  
 
   getRoles(){
     // this.http.get('http://192.168.1.11:8030/roles/getroles').subscribe((response)=>{
       this.service.getAllRoles().subscribe((response)=>{
-      console.log(JSON.stringify(response)+"ane");
+      // console.log(JSON.stringify(response)+"ane");
       this.roles = response;
     }),
     (errror)=>{
@@ -49,8 +55,14 @@ export class CreateUserComponent implements OnInit {
   }
 
   submit(){
-    console.log(this.createUser.value);
-    //console.log(""+this.service.post);
+  
+    this.roleArray.push(this.createUser.get('role').value);
+    console.log(this.roleArray);
+    this.createUser.get('role').setValue(this.roleArray);
+    console.log(this.createUser);
+   
+    console.log("1234567890-="+ JSON.stringify(this.createUser.value));
+    // console.log(""+this.service.post);
     this.service.postNewUser(this.createUser.value).subscribe((res)=>{
       // alert("User Created ");
       UserCreated();
@@ -66,8 +78,8 @@ export class CreateUserComponent implements OnInit {
   }
 
   resetForm(){
-    this.createUser.controls['firstname'].reset();
-    this.createUser.controls['lastname'].reset();
+    this.createUser.controls['firstName'].reset();
+    this.createUser.controls['lastName'].reset();
     this.createUser.controls['email'].reset();
     this.createUser.controls['password'].reset();
     this.createUser.controls['role'].reset();
@@ -76,12 +88,12 @@ export class CreateUserComponent implements OnInit {
 
  
 
-  get firstname(){
-    return this.createUser.get('firstname');
+  get firstName(){
+    return this.createUser.get('firstName');
   }
 
-  get lastname(){
-    return this.createUser.get('lastname');
+  get lastName(){
+    return this.createUser.get('lastName');
   }
 
   get emailTemplateName(){

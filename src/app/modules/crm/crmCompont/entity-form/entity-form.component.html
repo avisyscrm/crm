@@ -71,7 +71,7 @@
                                         <input type="text" class="form-control mandatory"  formControlName="entityGroups">
                                         <div *ngIf="entityGroups?.invalid && entityGroups?.touched">
                                           <span class="validate-text" *ngIf="entityGroups?.errors?.required">Please Enter Entity group</span>
-                                          <span class="validate-text"  *ngIf="entityGroups?.errors?.maxlength">Character exceed max limit 30</span>
+                                          <span class="validate-text"  *ngIf="entityGroups?.errors?.maxlength">Character exceed max limit 400</span>
                                           <span class="validate-text" *ngIf="entityGroups?.errors?.isChar">Invalid input. Only character allowed </span>
                                           <span class="validate-text" *ngIf="entityGroups?.errors?.pattern ">Field cant be empty</span>
                                        </div>

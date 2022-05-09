@@ -205,7 +205,7 @@ export class DatatableComponent implements OnInit {
             title: 'Done',
             text: 'Your data has been deleted ',
             icon: 'success',
-            confirmButtonText: 'Ok',
+            confirmButtonText: 'OK',
             showClass: {
               backdrop: 'swal2-noanimation', // disable backdrop animation
               popup: '',                     // disable popup animation
@@ -226,7 +226,7 @@ export class DatatableComponent implements OnInit {
           {
             title: 'Cancelled',
             text: 'Your data is safe.',
-            confirmButtonText: 'Ok',
+            confirmButtonText: 'OK',
             icon: 'success',
             
             showClass: {

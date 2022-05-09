@@ -115,8 +115,7 @@
                                         <div *ngIf="description?.invalid && description?.touched">
                                             <span class="validate-text" *ngIf="description?.errors?.required">Please Enter Description </span>
                                             <span class="validate-text" *ngIf="description?.errors?.maxlength">Character exceed max limit 400</span>
-                                            <span class="validate-text"   *ngIf="description?.errors?.isChar">Invalid input. Only character allowed </span>
-                                            <span class="validate-text"  *ngIf="description?.errors?.pattern ">Field cant be empty</span>
+                                         
                                          </div>
                                     </div>
                                 </div>
@@ -132,9 +131,7 @@
                                         <input type="number" class="form-control mandatory" formControlName="version">
                                         <div *ngIf="version?.invalid && version?.touched">
                                             <span class="validate-text" *ngIf="version?.errors?.required">Please Enter Version</span>
-                                            <span class="validate-text" *ngIf="version?.errors?.maxlength">Character exceed max limit 400</span>
-                                            <span class="validate-text"   *ngIf="version?.errors?.isChar">Invalid input. Only character allowed </span>
-                                            <span class="validate-text"  *ngIf="version?.errors?.pattern ">Field cant be empty</span>
+                                            <!-- <span class="validate-text"  *ngIf="version?.errors?.pattern ">Field cant be empty</span> -->
                                          </div>
                                     </div>
                                 </div>

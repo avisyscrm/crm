@@ -27,10 +27,10 @@
                                 <label class="form-label ">First Name </label>
                             </div>
                             <div class=" form-group col-md-8">
-                                <input name="" type="text" class="form-control mandatory" value="" formControlName="firstname">
-                                <div *ngIf="firstname?.invalid && firstname?.touched">
-                                    <span class="validate-text" *ngIf="firstname?.errors?.required">Please Enter Firstname</span>
-                                    <span class="validate-text" *ngIf="firstname?.errors?.pattern ">Field cant be empty</span>
+                                <input name="" type="text" class="form-control mandatory" value="" formControlName="firstName">
+                                <div *ngIf="firstName?.invalid && firstName?.touched">
+                                    <span class="validate-text" *ngIf="firstName?.errors?.required">Please Enter firstName</span>
+                                    <span class="validate-text" *ngIf="firstName?.errors?.pattern ">Field cant be empty</span>
                                  </div>
                             </div>
                         </div>
@@ -43,10 +43,10 @@
                                 <label class="form-label ">Last Name </label>
                             </div>
                             <div class=" form-group col-md-8">
-                                <input name="" type="text" class="form-control mandatory" value="" formControlName="lastname">
-                                <div *ngIf="lastname?.invalid && lastname?.touched">
-                                    <span class="validate-text" *ngIf="lastname?.errors?.required">Please Enter Lastname</span>
-                                    <span class="validate-text" *ngIf="lastname?.errors?.pattern ">Field cant be empty</span>
+                                <input name="" type="text" class="form-control mandatory" value="" formControlName="lastName">
+                                <div *ngIf="lastName?.invalid && lastName?.touched">
+                                    <span class="validate-text" *ngIf="lastName?.errors?.required">Please Enter Last Name</span>
+                                    <span class="validate-text" *ngIf="lastName?.errors?.pattern ">Field cant be empty</span>
                                  </div>
                             </div>
                         </div>
@@ -86,25 +86,66 @@
                         </div>
                     </div>
                 </div>
-                  
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="row "> 
-                            <div class=" form-group col-md-4">
-                                <label class="form-label ">Roles </label>
-                            </div>
-                            <div class=" form-group col-md-8">
-                                <select name="" id="" class="form-control mandatory" formControlName="role">
-                                    <option value="">Select --</option>
-                                    <option value="{{role.name}}" *ngFor="let role of roles" > {{role.name}}</option>
-                                </select>
-                                <div *ngIf="role?.invalid && role?.touched">
-                                    <span class="validate-text" *ngIf="role?.errors?.isSelect ">Please select role.</span>
-                                 </div>
+               
+         
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row "> 
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">Confirm Password </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <input name="" type="text" class="form-control mandatory" value="" formControlName="password">
+                                    <div *ngIf="password?.invalid && password?.touched">
+                                        <span class="validate-text" *ngIf="password?.errors?.required">Please Enter Password</span>
+                                        <span class="validate-text" *ngIf="password?.errors?.pattern ">Field can't be empty</span>
+                                     </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
+
+                             
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row "> 
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">Roles </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <select name="" id="" class="form-control mandatory" formControlName="role">
+                                        <option value="">Select --</option>
+                                        <option value="{{role.name}}" *ngFor="let role of roles" > {{role.name}}</option>
+                                    </select>
+                                    <div *ngIf="role?.invalid && role?.touched">
+                                        <span class="validate-text" *ngIf="role?.errors?.isSelect ">Please select role.</span>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              
+                
+                                      
+                    <div class="row ">
+                        <div class="col-md-6">
+                            <div class="row "> 
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label">Enable Temporary Password</label>
+                                </div>
+                                <div class=" form-group col-md-7 ">
+                                    <div class="form-group ml-4">
+                                        <input class="form-check-input" type="checkbox" [checked]="checked" id="check1" name="option1" value="f" formControlName="isTemporary" checked>
+                                        <div *ngIf="role?.invalid && role?.touched">
+                                            <span class="validate-text" *ngIf="role?.errors?.isSelect ">check.</span>
+                                         </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               
+              
                     
          
          
@@ -115,7 +156,7 @@
 
             
                
-                <button [disabled]="createUser.invalid" type="submit" class="btn btn-primary ">Add</button>
+                <button  type="submit" class="btn btn-primary ">Add</button>
                 <button type="reset"  class="btn btn-primary ml-3 ">Reset</button>
             </div>
             <!-- <a routerLink="/change-password"  >Change password</a> -->

@@ -4,6 +4,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 //import { Producttemplatesection } from 'src/app/app/modules/client/Producttemplatesection.model';
 import { environment } from 'src/environments/environment';
 import { assingroles } from '../../admin/assignrole';
+import { ChangePassword } from '../../auth/changepassword';
+import { PostForgotPassword } from '../../auth/forgotpass.model';
 import { Contact } from '../crm/crmForm-model/contact.model';
 import { DynamicForm } from '../crm/crmForm-model/dynamicForm';
 import { EntityGroup } from '../crm/crmForm-model/entitygroup.model';
@@ -147,6 +149,13 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     private allSectionAndTabFromTemplateId=environment.baseUrl+"/allSectionAndTabFromTemplateId/";
     private deleteEmailTemplate = environment.baseUrl+"/deleteEmailTemplate/";
     
+    // change pass
+      // authenvironment.accessToken
+      private postForgotPassword =environment.baseUrl+"/users/varifyrandomcode/";
+      private changePasswordWithRandomString =environment.baseUrl+"users/changePasswordWithRandomString";
+      private changepassword =environment.accessToken+"/users/changepassword";
+      private getForgotPasswordss =environment.accessToken+"/users/changepassword";
+      
     // add tabs
     constructor(private http: HttpClient) { }
   
@@ -581,6 +590,29 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
       return this.http.get(this.getEmailTemplate);
     }
 
-      // 
+      // change pass
+
+    PostChangePassword(data:ChangePassword){
+      return this.http.post(this.changepassword, data);
+    }
+
+    
+getForgotPasswords(email:any ):Observable<any>{
+  return this.http.get(this.getForgotPasswordss + email)
+}
+
+getVerifyRandomCode(randomcode:any){
+  return this.http.get(this.getForgotPasswordss + randomcode,{observe:'response'})
+}
+
+PostChangePasswordWithRandomString(data : PostForgotPassword){
+  return this.http.post(this.changePasswordWithRandomString, data);
+}
+
+
+
+// getAllUsers(url:any):Observable<any> {
+//   return this.http.get("http://192.168.1.11:8030/users/allUsers?"+url);
+// }
 
 }

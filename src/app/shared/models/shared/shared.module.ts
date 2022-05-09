@@ -33,7 +33,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ToastrModule } from 'ngx-toastr';
 import { FromSectionComponent } from 'src/app/modules/client/from-section/from-section.component';
 import { FromTabSectionComponent } from 'src/app/modules/client/from-tab-section/from-tab-section.component';
-import { MatConfirmDialogComponent } from 'src/app/modules/mat-confirm-dialog/mat-confirm-dialog.component';
+
 
 @NgModule({
   declarations: [
@@ -47,7 +47,7 @@ import { MatConfirmDialogComponent } from 'src/app/modules/mat-confirm-dialog/ma
     ProfileComponent,
     FromSectionComponent,
     FromTabSectionComponent,
-    MatConfirmDialogComponent,
+
     FooterComponent,],
   imports: [
     CommonModule,
@@ -117,8 +117,7 @@ import { MatConfirmDialogComponent } from 'src/app/modules/mat-confirm-dialog/ma
     FullCalendarModule,
     CKEditorModule,
     FromSectionComponent,
-    FromTabSectionComponent,
-    MatConfirmDialogComponent
+    FromTabSectionComponent
     ]
 })
 export class SharedModule { }

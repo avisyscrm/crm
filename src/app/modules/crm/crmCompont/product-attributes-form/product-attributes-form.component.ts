@@ -101,14 +101,14 @@ export class ProductAttributesFormComponent implements OnInit {
          // alert(error);
        }
        );
-   }
+   } 
  
      productEntityAttribute = new FormGroup({
       productEntityTemplateId: new FormControl('',[ Validators.required, selectValidation]),
        productEntityTemplateAttributesId: new FormControl('', ),
        sequenceId: new FormControl('', Validators.required),
        productAttribute: new FormControl('', Validators.required),
-       description: new FormControl('', Validators.required),
+       description: new FormControl('',[Validators.required, Validators.maxLength(400), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
        productAttributeDataType:new FormControl('', Validators.required),
        productAttributeLength:new FormControl('', Validators.required),
        dataCaptureControl: new FormControl('', [Validators.required,selectValidation]),

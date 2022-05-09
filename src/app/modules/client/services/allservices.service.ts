@@ -130,7 +130,7 @@ export class AllservicesService {
     private postForgotPassword ="http://192.168.1.11:8030/users/varifyrandomcode/";
     private changePasswordWithRandomString ="http://192.168.1.11:8030/users/changePasswordWithRandomString";
     private changepassword ="http://192.168.1.11:8030/users/changepassword";
-  
+    
   // add tabs
   constructor(private http: HttpClient) { }
 
@@ -498,9 +498,9 @@ PostChangePasswordWithRandomString(data : PostForgotPassword){
   return this.http.post(this.changePasswordWithRandomString, data);
 }
 
-PostChangePassword(data:ChangePassword){
-  return this.http.post(this.changepassword, data);
-}
+// PostChangePassword(data:ChangePassword){
+//   return this.http.post(this.changepassword, data);
+// }
 
 getAllUsers(url:any):Observable<any> {
   return this.http.get("http://192.168.1.11:8030/users/allUsers?"+url);

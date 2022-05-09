@@ -69,16 +69,16 @@ export class ProductTemplateFormComponent implements OnInit {
     entityGroupsId:new FormControl('',selectValidation ),
       productEntityTemplateId: new FormControl(''),
       productEntityTemplateName: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
-      description: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
+      description: new FormControl('', [Validators.required, Validators.maxLength(400), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
       productLineId: new FormControl('', selectValidation),
-      version: new FormControl('',[Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
+      version: new FormControl('',[Validators.required]),
       state: new FormControl('', [Validators.required, selectValidation]),
       createdBy: new FormControl('0', Validators.required),
       productFamilyId: new FormControl('',[ Validators.required, selectValidation])
    })
    //Form Control end
 
-  //Reset Form 
+  //Reset Form  
 
    resetForm(){
     this.productEntity.controls['entityGroupsId'].setValue("");
