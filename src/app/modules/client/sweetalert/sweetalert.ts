@@ -89,7 +89,23 @@ export function RecordUpdated() {
           popup: '',                     // disable popup fade-out animation
         },
       })
+  }
 
+  export function PasswordUpdate() {
+    Swal.fire( {
+        title: 'Success',
+        text: 'Password Updated',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        showClass: {
+          backdrop: 'swal2-noanimation', // disable backdrop animation
+          popup: '',                     // disable popup animation
+          icon: ''                       // disable icon animation
+        },
+        hideClass: {
+          popup: '',                     // disable popup fade-out animation
+        },
+      })
   }
 
   export function SelectRecord() {

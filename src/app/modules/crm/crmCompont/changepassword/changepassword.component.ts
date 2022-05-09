@@ -5,6 +5,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AllservicesService } from 'src/app/modules/client/services/allservices.service';
 import { ConfirmedValidator } from './validator';
+import { ActivatedRoute, Router } from '@angular/router';
+import { PasswordUpdate } from 'src/app/modules/client/sweetalert/sweetalert';
 
 @Component({
   selector: 'app-changepassword',
@@ -20,16 +22,27 @@ export class ChangepasswordComponent implements OnInit {
   headerList:any=[];
   data:any={};
   changePassword = new FormGroup({});
+  parameter!:any;
   constructor(private service:CrmservicesService, private http: HttpClient,
-     private fb: FormBuilder) { 
-      this.changePassword = fb.group({ 
+     private fb: FormBuilder, private route:ActivatedRoute, private router :Router) { 
+    
+      // Activated route 
+      this.route.queryParams.subscribe((params :any)=>{
+        this.parameter = params;
+        console.log("test123"+JSON.stringify(this.parameter.content));
+        
+       })
+      // 
+      this.changePassword = fb.group({
+
         email:[''],
-        oldpassword :['',[Validators.required]],
-        password: ['', [Validators.required]],
+        password :['',[Validators.required]],
+        newPassword: ['', [Validators.required]],
         confirm_password: ['', [Validators.required]]
       }, { 
-        validator: ConfirmedValidator('password', 'confirm_password')
-      })
+        validator: ConfirmedValidator('newPassword', 'confirm_password')
+      }
+      )
      }
 
   ngOnInit(): void {
@@ -38,14 +51,14 @@ export class ChangepasswordComponent implements OnInit {
   }
 
 
-getUsersData(url:any){
-  this.service.getAlllUsers(url).subscribe(sucess=>{
-  console.log("from sucess: "+sucess);
-  this.headerList=sucess.headerlist;
-  this.data=sucess.page;
-  },error=>{}
-  );  
-}
+// getUsersData(url:any){
+//   this.service.getAlllUsers(url).subscribe(sucess=>{
+//   console.log("from sucess: "+sucess);
+//   this.headerList=sucess.headerlist;
+//   this.data=sucess.page;
+//   },error=>{}
+//   );  
+// }
 
   // changePassword:FormGroup = this.fb.group ({
 
@@ -63,6 +76,11 @@ getUsersData(url:any){
   // // }
   // )
 
+  resetForm(){
+    this.changePassword.controls['password'].reset();
+    this.changePassword.controls['newPassword'].reset();
+    this.changePassword.controls['confirm_password'].reset();
+  }
  
   get f(){
     return this.changePassword.controls;
@@ -73,12 +91,25 @@ getUsersData(url:any){
     
     // sessionStorage.setItem('username', this.changePassword.get('username').value);
     this.changePassword.get('email').setValue(sessionStorage.getItem('username'));
-    this.service.PostChangePassword(this.changePassword.value).subscribe((res)=>{
-      // alert(res+ ": responce")
-      alert("Password Changed");
-    }, error =>{
-      alert("Error while changing password");
+
+    if(this.parameter.content == 'update-password'){
+          //New user password 
+    this.service.postNewUserPassword(this.changePassword.value).subscribe(()=>{
+      PasswordUpdate();
+      this.router.navigate(['/login']);
+    },
+    (error)=>{ console.log("Error whiling updating password");
     })
+    }
+    else{
+      this.service.PostChangePassword(this.changePassword.value).subscribe((res)=>{
+        // alert(res+ ": responce")
+        PasswordUpdate();
+      }, error =>{
+        console.log("Error whiling updating password")
+      })
+    }
+
   }
 
   get password(){
@@ -88,9 +119,9 @@ getUsersData(url:any){
   get newPassword(){
     return this.changePassword.get('newPassword');
   } 
-  get confirmPassword(){
-    return this.changePassword.get('confirmPassword');
-  } 
+  // get confirmPassword(){
+  //   return this.changePassword.get('confirmPassword');
+  // } 
 
 
 }

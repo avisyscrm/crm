@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
 
       if(error.status == 428){
         sessionStorage.setItem('username', this.createUser.get('username').value); 
-        this.router.navigate(["/crm/change-password"])
+        this.router.navigate(["/crm/change-password"], { queryParams: {content: 'update-password'}})
       }
       else{
         this.invalidUser = true;

@@ -39,7 +39,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
    // get all roles
    
    private getAllRolesList = environment.accessToken+"/roles/getroles";
-
+   private setNewpassword = environment.accessToken+"/users/verify"; 
    // post assingrole
    private postassingrole = environment.accessToken+"/users/assignRole";
     // post assingrole
@@ -596,6 +596,9 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
       return this.http.post(this.changepassword, data);
     }
 
+    postNewUserPassword(data:ChangePassword){
+      return this.http.post(this.setNewpassword,data);
+    }
     
 getForgotPasswords(email:any ):Observable<any>{
   return this.http.get(this.getForgotPasswordss + email)
