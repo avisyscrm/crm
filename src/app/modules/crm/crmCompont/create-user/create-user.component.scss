@@ -2,7 +2,17 @@
     min-height: calc(100vh - 150px );
 }
 
+
 .required:after {
     content:" *";
     color: red;
+  }
+
+  .p-viewer, .p-viewer2{
+    float: right;
+    margin-top: -30px;
+    position: relative;
+    z-index: 1;
+    margin-right: 10px;
+    cursor:pointer;
   }

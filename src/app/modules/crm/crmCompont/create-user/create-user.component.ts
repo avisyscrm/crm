@@ -25,6 +25,12 @@ export class CreateUserComponent implements OnInit {
   roleArray:any=[];
   checked :boolean = true; 
   createUser = new FormGroup({});
+  validPassword: boolean = false;
+  passwordType: string = 'password';
+  passwordShown:boolean = false;
+  passwordType1: string = 'password';
+  passwordShown1:boolean = false;
+
 
   constructor( private service:CrmservicesService,private fb: FormBuilder, private http: HttpClient, private router : Router) {
     this.createUser = fb.group({ 
@@ -35,7 +41,7 @@ export class CreateUserComponent implements OnInit {
       confirm_password: ['', [Validators.required]],
       isTemporary: new FormControl('',[Validators.required]),
       role: new FormControl('',[selectValidation, Validators.required])
-    }, { 
+    }, {  
       validator: ConfirmedValidator('password', 'confirm_password')
     })
    }
@@ -56,6 +62,30 @@ export class CreateUserComponent implements OnInit {
   // })
 
   
+  togglePassword(){
+    if(this.passwordShown){
+      this.passwordShown = false;
+      this.passwordType = 'password';
+
+    }
+    else {
+      this.passwordShown = true;
+      this.passwordType = 'text';
+    }
+  }
+
+  togglePassword1(){
+    if(this.passwordShown1){
+      this.passwordShown1 = false;
+      this.passwordType1 = 'password';
+
+    }
+    else {
+      this.passwordShown1 = true;
+      this.passwordType1 = 'text';
+    }
+  }
+
 
   getRoles(){
     // this.http.get('http://192.168.1.11:8030/roles/getroles').subscribe((response)=>{

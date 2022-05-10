@@ -15,6 +15,8 @@ import { CrmservicesService } from '../../crm/crm-services/crmservices.service';
 })
 export class LoginComponent implements OnInit {
   invalidUser: boolean = false;
+  passwordType: string = 'password';
+  passwordShown:boolean = false;
 
   constructor(private allservice: CrmservicesService, private router: Router) {}
 
@@ -49,6 +51,18 @@ export class LoginComponent implements OnInit {
       
     }
     );
+  }
+
+  togglePassword(){
+    if(this.passwordShown){
+      this.passwordShown = false;
+      this.passwordType = 'password';
+
+    }
+    else {
+      this.passwordShown = true;
+      this.passwordType = 'text';
+    }
   }
 
   ngOnInit(): void {

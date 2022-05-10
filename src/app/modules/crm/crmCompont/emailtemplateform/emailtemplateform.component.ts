@@ -3,7 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import Swal from 'sweetalert2';
+import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
 
 @Component({
   selector: 'app-emailtemplateform',
@@ -35,8 +35,8 @@ export class EmailtemplateformComponent implements OnInit {
 
   updateEmailTemplate(){
     this.allService.updateEmailTemplateId(this.emailTemplate.value).subscribe((res)=>{
-      // alert("Record Updated");
-      this.sweettalert7();
+
+    RecordUpdated();
       this.router.navigate(['/crm/emailTemplate'])
     },
     (error)=>{
@@ -47,7 +47,7 @@ export class EmailtemplateformComponent implements OnInit {
   postEmailTemplate(){
     this.allService.postEmailTemplate(this.emailTemplate.value).subscribe((response)=>{
       // alert('Record Added');
-      this.sweettalert9();
+      RecordAdded();
       this.router.navigate(['/crm/emailTemplate'])
     },
     (error)=>{
@@ -93,24 +93,5 @@ export class EmailtemplateformComponent implements OnInit {
     return this.emailTemplate.get('emailTemplateContent');
   }
 
-   // update
- sweettalert7() {
-  Swal.fire({
-    title: 'Updated',
-    text: 'You data is updated!',
-    icon: 'success',
-    cancelButtonText: 'Ok',
-  })
-}
-
-// add
-sweettalert9() {
-  Swal.fire({
-    title: 'Success',
-    text: 'Record Added successfully',
-    icon: 'success',
-    cancelButtonText: 'Ok',
-  })
-}
 
 }

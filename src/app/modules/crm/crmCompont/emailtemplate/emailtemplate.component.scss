@@ -1,0 +1,14 @@
+.email-template td:nth-of-type(3)div {
+    white-space: nowrap;
+    width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    }
+
+
+    .table tbody tr:nth-of-type(3) div{
+        white-space: nowrap;
+        width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }

@@ -24,6 +24,11 @@ export class ChangepasswordComponent implements OnInit {
   changePassword = new FormGroup({});
   parameter!: any;
   validPassword: boolean = false;
+  passwordType: string = 'password';
+  passwordShown:boolean = false;
+  passwordType1: string = 'password';
+  passwordShown1:boolean = false;
+
   constructor(private service: CrmservicesService, private http: HttpClient,
     private fb: FormBuilder, private route: ActivatedRoute, private router: Router) {
 
@@ -51,6 +56,29 @@ export class ChangepasswordComponent implements OnInit {
 
   }
 
+  togglePassword(){
+    if(this.passwordShown){
+      this.passwordShown = false;
+      this.passwordType = 'password';
+
+    }
+    else {
+      this.passwordShown = true;
+      this.passwordType = 'text';
+    }
+  }
+
+  togglePassword1(){
+    if(this.passwordShown1){
+      this.passwordShown1 = false;
+      this.passwordType1 = 'password';
+
+    }
+    else {
+      this.passwordShown1 = true;
+      this.passwordType1 = 'text';
+    }
+  }
 
 
   resetForm() {
