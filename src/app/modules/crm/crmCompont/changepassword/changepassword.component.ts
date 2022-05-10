@@ -6,7 +6,8 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { AllservicesService } from 'src/app/modules/client/services/allservices.service';
 import { ConfirmedValidator } from './validator';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PasswordUpdate } from 'src/app/modules/client/sweetalert/sweetalert';
+import { invalidPassword, PasswordUpdate } from 'src/app/modules/client/sweetalert/sweetalert';
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 
 @Component({
   selector: 'app-changepassword',
@@ -30,7 +31,7 @@ export class ChangepasswordComponent implements OnInit {
   passwordShown1:boolean = false;
 
   constructor(private service: CrmservicesService, private http: HttpClient,
-    private fb: FormBuilder, private route: ActivatedRoute, private router: Router) {
+    private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private alertService: SweetalertServiceService) {
 
     // Activated route 
     this.route.queryParams.subscribe((params: any) => {
@@ -53,7 +54,6 @@ export class ChangepasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.changePassword.get('email').setValue(sessionStorage.getItem('username'));
-
   }
 
   togglePassword(){
@@ -102,11 +102,15 @@ export class ChangepasswordComponent implements OnInit {
       //New user password 
       this.service.postNewUserPassword(this.changePassword.value).subscribe(() => {
         PasswordUpdate();
+        this.alertService.PasswordUpdateURL('login');
+        this.resetForm();
         // this.router.navigate(['/login']);
       },
         (error) => {
           if (error.status == 400) {
-            this.validPassword = true;
+            // this.validPassword = true;
+            invalidPassword();
+            // this.resetForm();
             console.log("Error whiling updating password");
           }
 

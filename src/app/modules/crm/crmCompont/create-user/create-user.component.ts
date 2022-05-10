@@ -1,3 +1,4 @@
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
@@ -6,7 +7,7 @@ import { AllservicesService } from 'src/app/modules/client/services/allservices.
 // import { onlyChar } from 'src/app/modules/client/validators/validation';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
-import { RecordUpdated, RecordAdded, UserCreated } from '../../../client/sweetalert/sweetalert';
+import { RecordUpdated, RecordAdded, UserCreated, emailAlreadyTaken } from '../../../client/sweetalert/sweetalert';
 import { ConfirmedValidator } from '../changepassword/validator';
 
 
@@ -23,7 +24,7 @@ export class CreateUserComponent implements OnInit {
   roles:any=[];
   options:any;
   roleArray:any=[];
-  checked :boolean = true; 
+  // checked :boolean = true; 
   createUser = new FormGroup({});
   validPassword: boolean = false;
   passwordType: string = 'password';
@@ -32,14 +33,15 @@ export class CreateUserComponent implements OnInit {
   passwordShown1:boolean = false;
 
 
-  constructor( private service:CrmservicesService,private fb: FormBuilder, private http: HttpClient, private router : Router) {
+  constructor( private service:CrmservicesService,private fb: FormBuilder, private http: HttpClient, 
+    private router : Router, private alertService: SweetalertServiceService) {
     this.createUser = fb.group({ 
       firstName:['',[Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]],
       lastName:['',[Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]],
       email:['',[Validators.required]],
       password:['',[Validators.required]],
       confirm_password: ['', [Validators.required]],
-      isTemporary: new FormControl('',[Validators.required]),
+      isTemporary: new FormControl(''),
       role: new FormControl('',[selectValidation, Validators.required])
     }, {  
       validator: ConfirmedValidator('password', 'confirm_password')
@@ -50,16 +52,6 @@ export class CreateUserComponent implements OnInit {
     // this.getAccessToken();
    this.getRoles();
   }
- 
-  //  createUser = new FormGroup({
-  //   firstName : new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
-  //   lastName : new FormControl('', [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
-  //   email : new FormControl('', [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
-  //   password : new FormControl('', [Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
-  //   // roles: new FormArray([],[selectValidation]),
-  //   isTemporary: new FormControl(''),
-  //   role: new FormControl('',[selectValidation, Validators.required])
-  // })
 
   
   togglePassword(){
@@ -109,12 +101,17 @@ export class CreateUserComponent implements OnInit {
     // console.log(""+this.service.post);
     this.service.postNewUser(this.createUser.value).subscribe((res)=>{
       // alert("User Created ");
-      UserCreated();
+      // UserCreated();
+      this.alertService.UserCreatedURL('/crm/user-all');
+      // UserCreatedURL();
       this.resetForm();
       
-      this.router.navigate(['/crm/user-all'])
+      // this.router.navigate(['/crm/user-all'])
     },
     (error)=>{
+      if(error.status == 409){
+        emailAlreadyTaken();
+      }
       // alert(JSON.stringify(error));
       console.log(error);
      console.log( this.createUser.value);
@@ -159,7 +156,7 @@ export class CreateUserComponent implements OnInit {
     return this.createUser.get('role');
   }
   get isTemporary(){
-    return this.createUser.get('role');
+    return this.createUser.get('isTemporary');
   }
 
 

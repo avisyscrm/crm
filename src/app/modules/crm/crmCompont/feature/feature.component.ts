@@ -19,5 +19,9 @@ export class FeatureComponent implements OnInit {
     // alert()
   }
 
+  logout(){
+    sessionStorage.clear();
+    this.router.navigate(['login']);
+  }
 
 }

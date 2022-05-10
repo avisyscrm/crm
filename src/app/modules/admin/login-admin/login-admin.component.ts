@@ -30,6 +30,7 @@ export class LoginAdminComponent implements OnInit {
       sessionStorage.setItem('session_id', data.session_state); 
       sessionStorage.setItem('dataProp','crmAdminLogin');
       sessionStorage.setItem('userisAdmin','admin');
+      sessionStorage.setItem("HeaderClass", "top_dark");
       this.router.navigate(["/crm"], {queryParams:{prop: 'crmAdminLogin'}})
     }, error => {
       this.invalidUser = true;

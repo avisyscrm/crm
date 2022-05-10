@@ -24,7 +24,6 @@ export function RecordUpdated() {
 
   // add
   export function RecordAdded() {
-
     Swal.fire({
         title: 'Added',
         text: 'Record added successfully ',
@@ -128,4 +127,36 @@ export function RecordUpdated() {
         },
       })
 
+  }
+
+  export function invalidPassword() {
+    Swal.fire( {
+        text: 'Old password is incorrect',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+        showClass: {
+          backdrop: 'swal2-noanimation', // disable backdrop animation
+          popup: '',                     // disable popup animation
+          icon: ''                       // disable icon animation
+        },
+        hideClass: {
+          popup: '',                     // disable popup fade-out animation
+        },
+      })
+  }
+
+  export function emailAlreadyTaken() {
+    Swal.fire( {
+        text: 'Email already registered. Please try another',
+        icon: 'warning',
+        confirmButtonText: 'OK',
+        showClass: {
+          backdrop: 'swal2-noanimation', // disable backdrop animation
+          popup: '',                     // disable popup animation
+          icon: ''                       // disable icon animation
+        },
+        hideClass: {
+          popup: '',                     // disable popup fade-out animation
+        },
+      })
   }
