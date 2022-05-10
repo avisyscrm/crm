@@ -11,39 +11,40 @@ import { PasswordUpdate } from 'src/app/modules/client/sweetalert/sweetalert';
 @Component({
   selector: 'app-changepassword',
   templateUrl: './changepassword.component.html',
-  styleUrls: ['./changepassword.component.scss','../../crm/crm.component.scss']
+  styleUrls: ['./changepassword.component.scss', '../../crm/crm.component.scss']
 })
 export class ChangepasswordComponent implements OnInit {
 
-  datas:any;
-  header:any;
-  options:any;
-  accessToken:any;
-  headerList:any=[];
-  data:any={};
+  datas: any;
+  header: any;
+  options: any;
+  accessToken: any;
+  headerList: any = [];
+  data: any = {};
   changePassword = new FormGroup({});
-  parameter!:any;
-  constructor(private service:CrmservicesService, private http: HttpClient,
-     private fb: FormBuilder, private route:ActivatedRoute, private router :Router) { 
-    
-      // Activated route 
-      this.route.queryParams.subscribe((params :any)=>{
-        this.parameter = params;
-        console.log("test123"+JSON.stringify(this.parameter.content));
-        
-       })
-      // 
-      this.changePassword = fb.group({
+  parameter!: any;
+  validPassword: boolean = false;
+  constructor(private service: CrmservicesService, private http: HttpClient,
+    private fb: FormBuilder, private route: ActivatedRoute, private router: Router) {
 
-        email:[''],
-        password :['',[Validators.required]],
-        newPassword: ['', [Validators.required]],
-        confirm_password: ['', [Validators.required]]
-      }, { 
-        validator: ConfirmedValidator('newPassword', 'confirm_password')
-      }
-      )
-     }
+    // Activated route 
+    this.route.queryParams.subscribe((params: any) => {
+      this.parameter = params;
+      console.log("test123" + JSON.stringify(this.parameter.content));
+
+    })
+    // 
+    this.changePassword = fb.group({
+
+      email: [''],
+      password: ['', [Validators.required]],
+      newPassword: ['', [Validators.required]],
+      confirm_password: ['', [Validators.required]]
+    }, {
+      validator: ConfirmedValidator('newPassword', 'confirm_password')
+    }
+    )
+  }
 
   ngOnInit(): void {
     this.changePassword.get('email').setValue(sessionStorage.getItem('username'));
@@ -51,74 +52,56 @@ export class ChangepasswordComponent implements OnInit {
   }
 
 
-// getUsersData(url:any){
-//   this.service.getAlllUsers(url).subscribe(sucess=>{
-//   console.log("from sucess: "+sucess);
-//   this.headerList=sucess.headerlist;
-//   this.data=sucess.page;
-//   },error=>{}
-//   );  
-// }
 
-  // changePassword:FormGroup = this.fb.group ({
-
-  //   email: ['', [Validators.required, Validators.email]],
-  //   // password: ['', [Validators.required]],
-  //   newPassword :['', [Validators.required]],
-  //   // confirmPassword :['', [Validators.required]], 
-  //   // email :  new FormControl('', Validators.required),
-  //   password  : new FormControl('', Validators.required),
-  //   // newPassword : new FormControl('', Validators.required),
-  
-  // },
-  // //  { 
-  // //   validator: ConfirmedValidator('newPassword', 'confirmPassword')
-  // // }
-  // )
-
-  resetForm(){
+  resetForm() {
     this.changePassword.controls['password'].reset();
     this.changePassword.controls['newPassword'].reset();
     this.changePassword.controls['confirm_password'].reset();
+    this.validPassword = false;
   }
- 
-  get f(){
+
+  get f() {
     return this.changePassword.controls;
   }
 
-  submit(){
+  submit() {
     console.log(this.changePassword);
-    
+
     // sessionStorage.setItem('username', this.changePassword.get('username').value);
     this.changePassword.get('email').setValue(sessionStorage.getItem('username'));
 
-    if(this.parameter.content == 'update-password'){
-          //New user password 
-    this.service.postNewUserPassword(this.changePassword.value).subscribe(()=>{
-      PasswordUpdate();
-      this.router.navigate(['/login']);
-    },
-    (error)=>{ console.log("Error whiling updating password");
-    })
+    if (this.parameter.content == 'update-password') {
+      //New user password 
+      this.service.postNewUserPassword(this.changePassword.value).subscribe(() => {
+        PasswordUpdate();
+        // this.router.navigate(['/login']);
+      },
+        (error) => {
+          if (error.status == 400) {
+            this.validPassword = true;
+            console.log("Error whiling updating password");
+          }
+
+        })
     }
-    else{
-      this.service.PostChangePassword(this.changePassword.value).subscribe((res)=>{
+    else {
+      this.service.PostChangePassword(this.changePassword.value).subscribe((res) => {
         // alert(res+ ": responce")
         PasswordUpdate();
-      }, error =>{
+      }, error => {
         console.log("Error whiling updating password")
       })
     }
 
   }
 
-  get password(){
+  get password() {
     return this.changePassword.get('password');
-  } 
+  }
 
-  get newPassword(){
+  get newPassword() {
     return this.changePassword.get('newPassword');
-  } 
+  }
   // get confirmPassword(){
   //   return this.changePassword.get('confirmPassword');
   // } 

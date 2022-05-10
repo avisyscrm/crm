@@ -1,5 +1,8 @@
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
+import { ActivatedRoute, Router } from '@angular/router';
 
+
+ 
 // update
 export function RecordUpdated() {
     Swal.fire( {
@@ -56,6 +59,25 @@ export function RecordUpdated() {
 
   }
 
+  export function PasswordUpdate() {
+    Swal.fire( {
+        title: 'Success',
+        text: 'Password Updated',
+        icon: 'success',
+        confirmButtonText: 'OK',
+        showClass: {
+          backdrop: 'swal2-noanimation', // disable backdrop animation
+          popup: '',                     // disable popup animation
+          icon: ''                       // disable icon animation
+        },
+        hideClass: {
+          popup: '',                     // disable popup fade-out animation
+        },
+      }).then(() => {
+        this.router.navigate(['/login']); // navigate to other page
+      })
+  }
+
   export function RoleAssigned() {
     Swal.fire( {
         title: 'Success',
@@ -78,23 +100,6 @@ export function RecordUpdated() {
     Swal.fire( {
         title: 'Success',
         text: 'User created successfully ',
-        icon: 'success',
-        confirmButtonText: 'OK',
-        showClass: {
-          backdrop: 'swal2-noanimation', // disable backdrop animation
-          popup: '',                     // disable popup animation
-          icon: ''                       // disable icon animation
-        },
-        hideClass: {
-          popup: '',                     // disable popup fade-out animation
-        },
-      })
-  }
-
-  export function PasswordUpdate() {
-    Swal.fire( {
-        title: 'Success',
-        text: 'Password Updated',
         icon: 'success',
         confirmButtonText: 'OK',
         showClass: {
