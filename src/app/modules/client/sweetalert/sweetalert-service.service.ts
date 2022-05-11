@@ -12,7 +12,7 @@ export class SweetalertServiceService {
   // Password Updated
   PasswordUpdateURL(path: any) {
     Swal.fire({
-      title: 'Success',
+      title: 'Success', 
       text: 'Password Updated',
       icon: 'success',
       confirmButtonText: 'OK',
@@ -86,5 +86,47 @@ export class SweetalertServiceService {
       this.router.navigate([path]); // navigate to other page
     })
   }
+
+  // update
+  RecordUpdated(path: any) {
+  Swal.fire({
+    title: 'Updated',
+    text: 'Your data is Updated ',
+    icon: 'success',
+    confirmButtonText: 'OK',
+    showClass: {
+      backdrop: 'swal2-noanimation', // disable backdrop animation
+      popup: '',                     // disable popup animation
+      icon: ''                       // disable icon animation
+    },
+    hideClass: {
+      popup: '',                     // disable popup fade-out animation
+    },
+  }).then(() => {
+    this.router.navigate([path]); // navigate to other page
+  })
+
+}
+
+// add
+ RecordAdded(path: any) {
+  Swal.fire({
+    title: 'Added',
+    text: 'Record added successfully ',
+    icon: 'success',
+    confirmButtonText: 'OK',
+    showClass: {
+      backdrop: 'swal2-noanimation', // disable backdrop animation
+      popup: '',                     // disable popup animation
+      icon: ''                       // disable icon animation
+    },
+    hideClass: {
+      popup: '',                     // disable popup fade-out animation
+    },
+  }).then(() => {
+    this.router.navigate([path]); // navigate to other page
+  })
+}
+
 }
 

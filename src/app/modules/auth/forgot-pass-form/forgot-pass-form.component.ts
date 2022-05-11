@@ -26,7 +26,11 @@ export class ForgotPassFormComponent implements OnInit {
   passwordShown:boolean = false;
   passwordType1: string = 'password';
   passwordShown1:boolean = false;
+
   ForgotPassword = new FormGroup({})
+
+  formValue:any = {};
+
   // randomcodeurl:any;
   // ForgotPassword:FormGroup;
 
@@ -54,7 +58,7 @@ export class ForgotPassFormComponent implements OnInit {
       
     })
     //  debugger
-    this.service.getVerifyRandomCode(this.parameter.verificationCode).subscribe((success)=>{
+    this.service.getVerifyRandomCodes(this.parameter.verificationCode).subscribe((success)=>{
       this.randomcodesuccess=success.status;
           
       if(this.randomcodesuccess==200){
@@ -63,9 +67,6 @@ export class ForgotPassFormComponent implements OnInit {
 
      
     })
-
-    
-    
   }
 
   // fetchToken = new FormGroup({
@@ -108,6 +109,7 @@ export class ForgotPassFormComponent implements OnInit {
 
 
   submit(){
+
     this.ForgotPassword.get('randomCode').setValue(this.parameter.verificationCode);
     console.log(this.ForgotPassword.value);
     

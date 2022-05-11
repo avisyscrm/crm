@@ -7,10 +7,10 @@
                         class="fe fe-command brand-logo"></i></a>
             </div>
       
-            <form [formGroup]="ForgotPassword" (ngSubmit)="submit()" *ngIf="!badRequest" >
+            <!-- <form [formGroup]="ForgotPassword" (ngSubmit)="submit()" *ngIf="badRequest" >
                 <h2 class="text-center ">page not found</h2>
-                </form>
-            <form [formGroup]="ForgotPassword" (ngSubmit)="submit()" *ngIf="badRequest" >
+                </form> -->
+            <form [formGroup]="ForgotPassword" (ngSubmit)="submit()" *ngIf="!badRequest" >
             <div class="card-body">
                 <div class="card-title">Forgot password</div>
                 <!-- <p class="text-muted">Enter your email address and your password will be reset and emailed to you.</p> -->

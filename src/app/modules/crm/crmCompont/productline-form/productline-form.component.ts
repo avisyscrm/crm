@@ -5,6 +5,7 @@ import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
 import Swal from 'sweetalert2'; 
 import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetaler
 })
 export class ProductlineFormComponent implements OnInit {
 
-  constructor(private service: CrmservicesService, private router:Router, private route: ActivatedRoute) { }
+  constructor(private service: CrmservicesService, private alertService: SweetalertServiceService, private router:Router, private route: ActivatedRoute) { }
   @ViewChild('file') myFileInput: any;
   private parameter: any;
   prodId: any;
@@ -98,10 +99,11 @@ export class ProductlineFormComponent implements OnInit {
       formData.append('productLine', JSON.stringify(this.addProductLine.value))
       this.service.productLinePost(formData).subscribe((res) => {
         // alert("Record Added");
-        RecordAdded();
-        console.log(res);
+        // RecordAdded();
+        // console.log(res);
         this.resetForm();
-        this.router.navigate(['crm/product-line']); 
+        this.alertService.RecordAdded('crm/product-line');
+        // this.router.navigate(['crm/product-line']); 
         },
         (error) => {
           alert(error)
@@ -117,7 +119,8 @@ export class ProductlineFormComponent implements OnInit {
       console.log('getdatapost', result);
       // this.addProductLine.reset();
       // alert('Record Added');
-      RecordAdded();
+      this.resetForm();
+      this.alertService.RecordAdded('crm/product-line');
     })
   }
 
@@ -131,9 +134,10 @@ export class ProductlineFormComponent implements OnInit {
       subscribe({
         next: (res) => {
           // alert("Record Updated ");
-          RecordUpdated();
+          // RecordUpdated();
+          this.alertService.RecordUpdated('crm/product-line');
           this.resetForm();
-          this.router.navigate(['crm/product-line']); 
+          // this.router.navigate(['crm/product-line']); 
         },
         error: () => {
           alert("error while updating the record");

@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
 import { RecordUpdated, RecordAdded, } from '../../../client/sweetalert/sweetalert';
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 
 
 
@@ -24,7 +25,7 @@ export class ProductTemplateFormComponent implements OnInit {
   prodEntityid:any;
   
 
-  constructor(private service : CrmservicesService,  private router:Router, private route:ActivatedRoute) { }
+  constructor(private service : CrmservicesService,  private alertService: SweetalertServiceService, private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -95,11 +96,13 @@ export class ProductTemplateFormComponent implements OnInit {
      console.log(this.productEntity.value,"post data");
      this.service.postprodEntityTemplate(this.productEntity.value).subscribe((res)=>{
         console.log(res);
-        RecordAdded();
+        // RecordAdded();
+        this.resetForm();
+        this.alertService.RecordAdded('crm/product-templates');
         // alert("Record Added");
         // this.productEntity.reset();
-        this.resetForm();
-        this.router.navigate(['crm/product-templates']); 
+       
+        // this.router.navigate(['crm/product-templates']); 
      },
      error=>console.log(error)
      )
@@ -109,11 +112,12 @@ export class ProductTemplateFormComponent implements OnInit {
    updateProductentity(){
     this.service.putProdEntity(this.productEntity.value).subscribe({
       next:(res)=>{
-        RecordUpdated();
+        // RecordUpdated();
         // alert("Record Updated");
         // this.productEntity.reset();
         this.resetForm();
-        this.router.navigate(['crm/product-templates']); 
+        this.alertService.RecordUpdated('crm/product-templates');
+        // this.router.navigate(['crm/product-templates']); 
       },
       error:()=>{
         // alert("error while updating record");

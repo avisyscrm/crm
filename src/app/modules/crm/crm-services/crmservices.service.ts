@@ -151,7 +151,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     
     // change pass
       // authenvironment.accessToken
-      private postForgotPassword =environment.baseUrl+"/users/varifyrandomcode/";
+      private getverifyRandomPassword =environment.accessToken+"/users/varifyrandomcode/";
       private changePasswordWithRandomString =environment.accessToken+"/users/changePasswordWithRandomString";
       private changepassword =environment.accessToken+"/users/changepassword";
       private getForgotPasswordss =environment.accessToken+"/users/forgetPassword/";
@@ -604,8 +604,8 @@ getForgotPasswords(email:any ):Observable<any>{
   return this.http.get(this.getForgotPasswordss + email)
 }
 
-getVerifyRandomCode(randomcode:any){
-  return this.http.get(this.getForgotPasswordss + randomcode,{observe:'response'})
+getVerifyRandomCodes(randomcode:any){
+  return this.http.get(this.getverifyRandomPassword + randomcode,{observe:'response'})
 }
 
 PostChangePasswordWithRandomString(data : PostForgotPassword){
