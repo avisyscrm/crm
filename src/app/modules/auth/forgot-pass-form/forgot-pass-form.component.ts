@@ -1,3 +1,4 @@
+import { CrmservicesService } from './../../crm/crm-services/crmservices.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
@@ -18,10 +19,14 @@ export class ForgotPassFormComponent implements OnInit {
   randomCode:any;
   private parameter: any;
   randomcodesuccess:number=0; 
+  passwordType: string = 'password';
+  passwordShown:boolean = false;
+  passwordType1: string = 'password';
+  passwordShown1:boolean = false;
   // randomcodeurl:any;
   // ForgotPassword:FormGroup;
 
-  constructor(private formBuilder: FormBuilder, private service:AllservicesService, 
+  constructor(private formBuilder: FormBuilder, private service:CrmservicesService, 
     private http: HttpClient, private route:ActivatedRoute) { 
  
    debugger
@@ -65,6 +70,30 @@ export class ForgotPassFormComponent implements OnInit {
   }
   );
 
+  togglePassword(){
+    if(this.passwordShown){
+      this.passwordShown = false;
+      this.passwordType = 'password';
+
+    }
+    else {
+      this.passwordShown = true;
+      this.passwordType = 'text';
+    }
+  }
+
+  togglePassword1(){
+    if(this.passwordShown1){
+      this.passwordShown1 = false;
+      this.passwordType1 = 'password';
+
+    }
+    else {
+      this.passwordShown1 = true;
+      this.passwordType1 = 'text';
+    }
+  }  
+
 
 
   submit(){
@@ -75,13 +104,8 @@ export class ForgotPassFormComponent implements OnInit {
       // alert(res+ ": responce")
       alert("Password Changed");
     }, error =>{
-      alert("Error while changing password");
+      // alert("Error while changing password");
     })
-  }
-
-  
-  postforgotpass(data:any){
-   
   }
 
   extractRandomCode(ranomcode:string){

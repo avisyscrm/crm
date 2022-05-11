@@ -42,7 +42,7 @@ export function RecordUpdated() {
 
   export function CreateRole() {
     Swal.fire( {
-        title: 'Success',
+        title: 'Added',
         text: 'Role added successfully ',
         icon: 'success',
         confirmButtonText: 'OK',
@@ -60,7 +60,7 @@ export function RecordUpdated() {
 
   export function PasswordUpdate() {
     Swal.fire( {
-        title: 'Success',
+        title: 'Updated',
         text: 'Password Updated',
         icon: 'success',
         confirmButtonText: 'OK',

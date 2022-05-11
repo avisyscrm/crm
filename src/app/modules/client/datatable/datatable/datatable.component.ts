@@ -202,7 +202,7 @@ export class DatatableComponent implements OnInit {
         Swal.fire(
 
           {
-            title: 'Done',
+            title: 'Deleted',
             text: 'Your data has been deleted ',
             icon: 'success',
             confirmButtonText: 'OK',

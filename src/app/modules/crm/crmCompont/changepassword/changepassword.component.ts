@@ -29,6 +29,8 @@ export class ChangepasswordComponent implements OnInit {
   passwordShown:boolean = false;
   passwordType1: string = 'password';
   passwordShown1:boolean = false;
+  passwordType2: string = 'password';
+  passwordShown2:boolean = false;
 
   constructor(private service: CrmservicesService, private http: HttpClient,
     private fb: FormBuilder, private route: ActivatedRoute, private router: Router, private alertService: SweetalertServiceService) {
@@ -80,6 +82,17 @@ export class ChangepasswordComponent implements OnInit {
     }
   }
 
+  togglePassword2(){
+    if(this.passwordShown2){
+      this.passwordShown2 = false;
+      this.passwordType2 = 'password';
+    }
+    else {
+      this.passwordShown2 = true;
+      this.passwordType2 = 'text';
+    }
+  }
+
 
   resetForm() {
     this.changePassword.controls['password'].reset();
@@ -119,8 +132,15 @@ export class ChangepasswordComponent implements OnInit {
     else {
       this.service.PostChangePassword(this.changePassword.value).subscribe((res) => {
         // alert(res+ ": responce")
+        this.resetForm();
         PasswordUpdate();
       }, error => {
+        if (error.status == 400) {
+          // this.validPassword = true;
+          invalidPassword();
+          // this.resetForm();
+          console.log("Error whiling updating password");
+        }
         console.log("Error whiling updating password")
       })
     }

@@ -152,9 +152,9 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     // change pass
       // authenvironment.accessToken
       private postForgotPassword =environment.baseUrl+"/users/varifyrandomcode/";
-      private changePasswordWithRandomString =environment.baseUrl+"users/changePasswordWithRandomString";
+      private changePasswordWithRandomString =environment.accessToken+"/users/changePasswordWithRandomString";
       private changepassword =environment.accessToken+"/users/changepassword";
-      private getForgotPasswordss =environment.accessToken+"/users/changepassword";
+      private getForgotPasswordss =environment.accessToken+"/users/forgetPassword/";
       
     // add tabs
     constructor(private http: HttpClient) { }

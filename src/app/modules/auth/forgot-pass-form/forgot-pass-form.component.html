@@ -10,18 +10,24 @@
             <form [formGroup]="ForgotPassword" (ngSubmit)="submit()" *ngIf="badRequest" >
                 <h2 class="text-center ">page not found</h2>
                 </form>
-            <form [formGroup]="ForgotPassword" (ngSubmit)="submit()" *ngIf="!badRequest" >
+            <form [formGroup]="ForgotPassword" (ngSubmit)="submit()" *ngIf="true" >
             <div class="card-body">
                 <div class="card-title">Forgot password</div>
                 <!-- <p class="text-muted">Enter your email address and your password will be reset and emailed to you.</p> -->
                 <div class="form-group">
                     <label class="form-label" for="exampleInputEmail1">Password</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" formControlName="newPassword">
+                    <input [type]="passwordType" class="form-control" id="exampleInputEmail1" formControlName="newPassword">
+                    <span class="p-viewer2">
+                        <i class="fa" [ngClass]="passwordShown?'fa-eye':'fa-eye-slash'" aria-hidden="true"  (click)="togglePassword()"></i>
+                    </span>
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="exampleInputEmail1">Confirm Password</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" formControlName="oldpassword" aria-describedby="emailHelp"
+                    <input [type]="passwordType1" class="form-control" id="exampleInputEmail1" formControlName="oldpassword" aria-describedby="emailHelp"
                         placeholder="Enter email">
+                        <span class="p-viewer2">
+                            <i class="fa" [ngClass]="passwordShown1 ? 'fa-eye':'fa-eye-slash'" aria-hidden="true"  (click)="togglePassword1()"></i>
+                        </span>    
                 </div>
                 <div class="form-footer">
                     <button type="submit" class="btn btn-primary btn-block">Submit</button>
