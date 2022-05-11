@@ -114,7 +114,7 @@ export class ChangepasswordComponent implements OnInit {
     if (this.parameter.content == 'update-password') {
       //New user password 
       this.service.postNewUserPassword(this.changePassword.value).subscribe(() => {
-        PasswordUpdate();
+        // PasswordUpdate();
         this.alertService.PasswordUpdateURL('login');
         this.resetForm();
         // this.router.navigate(['/login']);

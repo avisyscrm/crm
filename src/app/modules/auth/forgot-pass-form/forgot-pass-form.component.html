@@ -7,27 +7,35 @@
                         class="fe fe-command brand-logo"></i></a>
             </div>
       
-            <form [formGroup]="ForgotPassword" (ngSubmit)="submit()" *ngIf="badRequest" >
+            <form [formGroup]="ForgotPassword" (ngSubmit)="submit()" *ngIf="!badRequest" >
                 <h2 class="text-center ">page not found</h2>
                 </form>
-            <form [formGroup]="ForgotPassword" (ngSubmit)="submit()" *ngIf="true" >
+            <form [formGroup]="ForgotPassword" (ngSubmit)="submit()" *ngIf="badRequest" >
             <div class="card-body">
                 <div class="card-title">Forgot password</div>
                 <!-- <p class="text-muted">Enter your email address and your password will be reset and emailed to you.</p> -->
                 <div class="form-group">
                     <label class="form-label" for="exampleInputEmail1">Password</label>
-                    <input [type]="passwordType" class="form-control" id="exampleInputEmail1" formControlName="newPassword">
+                    <input [type]="passwordType" class="form-control" id="exampleInputEmail1" formControlName="newPassword" placeholder="Enter Password">
                     <span class="p-viewer2">
                         <i class="fa" [ngClass]="passwordShown?'fa-eye':'fa-eye-slash'" aria-hidden="true"  (click)="togglePassword()"></i>
                     </span>
+                    <div *ngIf="newPassword?.invalid && newPassword?.touched">
+                        <span class="validate-text" *ngIf="newPassword?.errors?.required">Please Enter Password</span>
+                        <!-- <div  class="validate-text" *ngIf="newPassword.errors?.confirmedValidator">Password and Confirm password should match.</div> -->
+                     </div>  
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="exampleInputEmail1">Confirm Password</label>
                     <input [type]="passwordType1" class="form-control" id="exampleInputEmail1" formControlName="oldpassword" aria-describedby="emailHelp"
-                        placeholder="Enter email">
+                        placeholder="Enter Confirm Password">
                         <span class="p-viewer2">
                             <i class="fa" [ngClass]="passwordShown1 ? 'fa-eye':'fa-eye-slash'" aria-hidden="true"  (click)="togglePassword1()"></i>
-                        </span>    
+                        </span>  
+                        <div *ngIf="oldpassword?.invalid && oldpassword?.touched">
+                            <span class="validate-text" *ngIf="oldpassword?.errors?.required">Please Enter Confirm Password</span>
+                            <div  class="validate-text" *ngIf="oldpassword.errors?.confirmedValidator">Password and Confirm password should match.</div>
+                         </div>  
                 </div>
                 <div class="form-footer">
                     <button type="submit" class="btn btn-primary btn-block">Submit</button>

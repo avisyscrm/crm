@@ -4,6 +4,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { AllservicesService } from '../../client/services/allservices.service';
+import { SweetalertServiceService } from '../../client/sweetalert/sweetalert-service.service';
+import { selectValidation } from '../../client/validators/validation';
+import { ConfirmedValidator } from '../../crm/crmCompont/changepassword/validator';
 
 @Component({
   selector: 'app-forgot-pass-form',
@@ -23,18 +26,26 @@ export class ForgotPassFormComponent implements OnInit {
   passwordShown:boolean = false;
   passwordType1: string = 'password';
   passwordShown1:boolean = false;
+  ForgotPassword = new FormGroup({})
   // randomcodeurl:any;
   // ForgotPassword:FormGroup;
 
   constructor(private formBuilder: FormBuilder, private service:CrmservicesService, 
-    private http: HttpClient, private route:ActivatedRoute) { 
+    private http: HttpClient, private fb: FormBuilder, private route:ActivatedRoute,private alertService: SweetalertServiceService) { 
  
-   debugger
+      this.ForgotPassword = fb.group({ 
+        newPassword : new FormControl('', [Validators.required]),
+        oldpassword  :new FormControl('', [Validators.required]),
+        randomCode : new FormControl('')
+
+      }, {  
+        validator: ConfirmedValidator('newPassword','oldpassword' )
+      })
   }
   
   ngOnInit(): void {
   
-    // this.getAccessToken();
+
 
     this.route.queryParams.subscribe((param:any)=>{
       this.parameter = param;
@@ -63,12 +74,12 @@ export class ForgotPassFormComponent implements OnInit {
   // });
 
 
-  ForgotPassword = new FormGroup({
-    newPassword : new FormControl('', Validators.required),
-    confirmPassword  :new FormControl('', Validators.required),
-    randomCode : new FormControl('')
-  }
-  );
+  // ForgotPassword = new FormGroup({
+  //   newPassword : new FormControl('', Validators.required),
+  //   confirmPassword  :new FormControl('', Validators.required),
+  //   randomCode : new FormControl('')
+  // }
+  // );
 
   togglePassword(){
     if(this.passwordShown){
@@ -102,7 +113,8 @@ export class ForgotPassFormComponent implements OnInit {
     
     this.service.PostChangePasswordWithRandomString(this.ForgotPassword.value).subscribe((res)=>{
       // alert(res+ ": responce")
-      alert("Password Changed");
+      
+      this.alertService.passwordChanged('login');
     }, error =>{
       // alert("Error while changing password");
     })
@@ -114,5 +126,14 @@ export class ForgotPassFormComponent implements OnInit {
     alert(this.randomCode+" : random");
      
   }
+
+  get oldpassword(){
+    return this.ForgotPassword.get('oldpassword');
+  }
+  get newPassword(){
+    return this.ForgotPassword.get('newPassword');
+  }
+
+
 
 }

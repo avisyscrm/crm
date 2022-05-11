@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
 import { AllservicesService } from '../../client/services/allservices.service';
+import { SweetalertServiceService } from '../../client/sweetalert/sweetalert-service.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -20,7 +21,7 @@ export class ForgotPasswordComponent implements OnInit {
   options:any;
   randomCode:any;
   getforgotenpass:any;
-  constructor( private service:CrmservicesService, private http: HttpClient) { }
+  constructor( private service:CrmservicesService, private http: HttpClient, private alertService: SweetalertServiceService) { }
 
   ngOnInit(): void {}
 
@@ -36,6 +37,7 @@ export class ForgotPasswordComponent implements OnInit {
       this.getforgotenpass = data;
       console.log(this.getforgotenpass, "forgot pass emial");
       
+      this.alertService.mailcheck('login');
     }))
   }
 
