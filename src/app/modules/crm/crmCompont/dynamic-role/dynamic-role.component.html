@@ -4,14 +4,14 @@
         <div class="role-box">
             <div   [ngClass]="getDataClass(roles) ? 'class1Select' : '' " (click)="selectedArrayAvailable(roles)" class="curser" *ngFor="let roles of alluserrolesdata"  > {{roles}}</div>
         </div>
-        <button (click)="addSelected()"  class="btn btn-primary">Add Selected</button>
+        <button (click)="addSelected()"  class="btn btn-primary">Add Selected <i class="fa fa-angle-right ml-2"></i></button>
     </div>
     <div class="col-md-6">
         <label for="">Assigned Roles</label>
         <div class="role-box">
             <div   [ngClass]="getRmDataClass(roles) ? 'class1Select' : '' " (click)="removeArrayAvailable(roles)" class="curser" *ngFor="let roles of SelectedArray"  > {{roles}}</div>
         </div>
-        <button  (click)="removeSelected()" class="btn btn-primary">Remove selected</button>
+        <button  (click)="removeSelected()" class="btn btn-primary"><i class="fa fa-angle-left mr-2"></i>Remove selected</button>
     </div>
    
 

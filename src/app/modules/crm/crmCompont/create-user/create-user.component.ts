@@ -8,6 +8,7 @@ import { onlyChar, selectValidation } from '../../../client/validators/validatio
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { ToastrService } from 'ngx-toastr';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
+import { emailAlreadyTaken } from 'src/app/modules/client/sweetalert/sweetalert';
 
 @Component({
   selector: 'app-create-user',
@@ -87,7 +88,8 @@ export class CreateUserComponent implements OnInit {
     email: new FormControl('', Validators.required),
     password: new FormControl('', Validators.required),
     confirm_password: new FormControl('', Validators.required),
-    role: new FormControl('', Validators.required)
+    role: new FormControl('', Validators.required),
+    isTemporary : new FormControl(''),
   })
 
   getRoles() {
@@ -131,8 +133,11 @@ export class CreateUserComponent implements OnInit {
         this.reset();
         this.alertService.RecordAdded('/crm/user-all');
       },
+      
         (error) => {
-          // this.toastr.error(error);
+          if(error.status == 409){
+            emailAlreadyTaken();
+          }
         });
     }
 
