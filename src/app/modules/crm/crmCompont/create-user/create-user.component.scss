@@ -1,12 +1,3 @@
-.card-height {
-    min-height: calc(100vh - 150px );
-}
-
-
-.required:after {
-    content:" *";
-    color: red;
-  }
 
   .p-viewer, .p-viewer2{
     float: right;
@@ -16,3 +7,7 @@
     margin-right: 10px;
     cursor:pointer;
   }
+
+  .card-height {
+    min-height: calc(100vh - 150px );
+}

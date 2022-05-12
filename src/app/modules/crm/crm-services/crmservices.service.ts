@@ -22,7 +22,11 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     providedIn: 'root'
   })
 
+  
   export class CrmservicesService {
+    edituser(id: any) {
+      return this.http.get(this.editUsers+id);
+    }
   // getAllUsers() {
   //   throw new Error('Method not implemented.');
   // }
@@ -36,6 +40,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
    private getRolesDatatable = environment.accessToken+"/roles/getRolesPaging?";
    // users/getAllUsers
    private getAllUsers = environment.accessToken+"/users/getAllUsers";
+   private editUsers = environment.accessToken+"/users/userById/";
    // get all roles
    
    private getAllRolesList = environment.accessToken+"/roles/getroles";
@@ -45,6 +50,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     // post assingrole
     private postcreaterole = environment.accessToken+"/roles/createroles";
     private postSchedule = environment.baseUrl+"/scheduleEmail";
+    private createUser1 = environment.accessToken+"/users/update";
 
   // 
 
@@ -598,6 +604,9 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
 
     postNewUserPassword(data:ChangePassword){
       return this.http.post(this.setNewpassword,data);
+    }
+    postOldUser(data:any){
+      return this.http.put(this.createUser1,data);
     }
     
 getForgotPasswords(email:any ):Observable<any>{

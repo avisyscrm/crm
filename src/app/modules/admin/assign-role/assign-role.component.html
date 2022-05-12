@@ -10,7 +10,7 @@
         </div>
 
         <!--product entity-->
-        <form [formGroup]="assignRole" (ngSubmit)="submit()">
+        <form [formGroup]="assignRole" >
             <div class="card card-height">
                 <div class="card-header pf-head">
                     <h3 class="card-title ">Assign Roles</h3>
@@ -25,80 +25,41 @@
                                 </div>
                                 <div class="col-md-8">
 
-                                        <select   name="cars" id="cars" class="form-control mandatory" formControlName="userId">
-                                            <option value="">Select --</option>
-                                             <option  value="{{userid.id}}" *ngFor="let userid of UserListId">
-                                                 {{userid.email}}
-                                             </option>
-                                           </select>
-                                           <div *ngIf="userId?.invalid && userId?.touched">
-                                            <span  class="validate-text" *ngIf="userId?.errors?.isSelect">Please select  user Id</span>
-                                         </div>
+                                    <select (change)="chnageUser()"  name="cars" id="cars" class="form-control mandatory"
+                                        formControlName="userId">
+                                        <option value="">Select --</option>
+                                        <option value="{{userid.id}}" *ngFor="let userid of UserListId">
+                                            {{userid.email}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
+
+                        <!-- <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
                                     <label class="form-label"> Role</label>
                                 </div>
                                 <div class="col-md-8">
-                                    
-                                         <select   name="cars" id="cars" class="form-control mandatory" formControlName="role">
-                                            <option value="">Select --</option>
-                                             <option  value="{{roles.name}}" *ngFor="let roles of alluserrolesdata">
-                                                 {{roles.name}}
-                                             </option>
-                                        </select>
-                                        <div *ngIf="role?.invalid && role?.touched">
-                                            <span  class="validate-text" *ngIf="role?.errors?.isSelect">Please select role</span>
-                                         </div> 
+
+                                    <select name="cars" id="cars" class="form-control mandatory" formControlName="role">
+                                        <option value="">Select --</option>
+                                        <option value="{{roles.name}}" *ngFor="let roles of alluserrolesdata">
+                                            {{roles.name}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
-                        </div>
-                 
+                        </div> -->
                     </div>
-                      
-
-                    
-                    <button  type="submit"  [disabled]="assignRole.invalid"  class="btn btn-primary ">Save</button>
+                    <app-dynamic-role [SelectedArray]="SelectedArray"   (exportSelectedArray)="exportSelectedArray($event)" [alluserrolesdata]="alluserrolesdata"></app-dynamic-role>
+                    <button type="submit" (click)="submit()" class="btn btn-primary ">Save</button>
                     <button type="button" class="btn btn-primary ml-3 ">Reset</button>
-
-<!-- assign multiple roles -->
-<div class="row justify-content-center my-5">
-    <div class="col-md-3 ">
-        <label for="">Available Roles</label>
-        <div class="role-box">
-            <div class="" *ngFor="let roles of alluserrolesdata"> {{roles.name}}</div>
-        </div>
-        <button class="btn btn-primary">Add Selected</button>
-    </div>
-    <div class="col-md-3 ">
-        <label for="">Assigned Roles</label>
-        <div class="role-box">
-            <!-- <div class="" *ngFor="let roles of alluserrolesdata"> {{roles.name}}</div> -->
-        </div>
-        <button class="btn btn-primary">Remove selected</button>
-    </div>
-    <div class="col-md-3 ">
-        <label for="">Effective Roles</label>
-        <div class="role-box">
-            <!-- <div class="" *ngFor="let roles of alluserrolesdata"> {{roles.name}}</div> -->
-        </div>
-    </div>
-
-</div>
-<!--  -->
-
+                   
                 </div>
             </div>
         </form>
 
     </div>
 </div>
-
-<!-- <pre>
-    {{assignRole.value | json}}
-</pre> -->

@@ -145,6 +145,8 @@ export function invalidPassword() {
   })
 }
 
+
+
 export function emailAlreadyTaken() {
   Swal.fire({
     text: 'Email already registered. Please try another',

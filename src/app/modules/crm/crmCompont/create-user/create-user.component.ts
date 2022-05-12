@@ -1,61 +1,63 @@
-import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormArray, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AllservicesService } from 'src/app/modules/client/services/allservices.service';
 // import { onlyChar } from 'src/app/modules/client/validators/validation';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
-import { RecordUpdated, RecordAdded, UserCreated, emailAlreadyTaken } from '../../../client/sweetalert/sweetalert';
-import { ConfirmedValidator } from '../changepassword/validator';
-
+import { ToastrService } from 'ngx-toastr';
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 
 @Component({
   selector: 'app-create-user',
   templateUrl: './create-user.component.html',
-  styleUrls: ['./create-user.component.scss','../../crm/crm.component.scss']
+  styleUrls: ['./create-user.component.scss', '../../crm/crm.component.scss']
 })
 export class CreateUserComponent implements OnInit {
-
-  // getAccessToken!:string;
-  // actionBtn:string = "Add";
-  accessToken:any; 
-  roles:any=[];
-  options:any;
-  roleArray:any=[];
-  // checked :boolean = true; 
-  createUser = new FormGroup({});
-  validPassword: boolean = false;
+  accessToken: any;
+  roles: any = [];
+  options: any;
+  label = "Add";
+  SelectedArray: any = [];
+  alluserrolesdata: any = [];
   passwordType: string = 'password';
-  passwordShown:boolean = false;
+  passwordShown: boolean = false;
   passwordType1: string = 'password';
-  passwordShown1:boolean = false;
+  passwordShown1: boolean = false;
+
+  constructor(private alertService: SweetalertServiceService, private service: CrmservicesService, private http: HttpClient, private router: Router, private route: ActivatedRoute,) {
+    this.route.queryParams.subscribe(params => {
+      if (params.id != undefined && params.id != null) {
+        this.service.edituser(params.id).subscribe((data: any) => {
+          this.label = "Update";
+          this.createUser.addControl("userId",
+            new FormControl(params.id, Validators.required));
+          this.createUser.removeControl('password');
+          this.createUser.patchValue(data);
+          this.alluserrolesdata = data.avaliableRoles;
+          this.SelectedArray = data.role;
+        });
+      } else {
+        this.label = "Add";
+        this.service.getallRoles().subscribe((data: any) => {
+          let data1 = [];
+          
+          data1 = data.map(x => x.name);
+          this.alluserrolesdata = data1;
+        })
+      }
+    });
 
 
-  constructor( private service:CrmservicesService,private fb: FormBuilder, private http: HttpClient, 
-    private router : Router, private alertService: SweetalertServiceService) {
-    this.createUser = fb.group({ 
-      firstName:['',[Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]],
-      lastName:['',[Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]],
-      email:['',[Validators.required]],
-      password:['',[Validators.required]],
-      confirm_password: ['', [Validators.required]],
-      isTemporary: new FormControl(''),
-      role: new FormControl('',[selectValidation, Validators.required])
-    }, {  
-      validator: ConfirmedValidator('password', 'confirm_password')
-    })
-   }
-
-  ngOnInit(): void {
-    // this.getAccessToken();
-   this.getRoles();
   }
 
-  
-  togglePassword(){
-    if(this.passwordShown){
+  ngOnInit(): void {
+    this.getRoles();
+  }
+
+  togglePassword() {
+    if (this.passwordShown) {
       this.passwordShown = false;
       this.passwordType = 'password';
 
@@ -66,8 +68,8 @@ export class CreateUserComponent implements OnInit {
     }
   }
 
-  togglePassword1(){
-    if(this.passwordShown1){
+  togglePassword1() {
+    if (this.passwordShown1) {
       this.passwordShown1 = false;
       this.passwordType1 = 'password';
 
@@ -79,88 +81,97 @@ export class CreateUserComponent implements OnInit {
   }
 
 
-  getRoles(){
-    // this.http.get('http://192.168.1.11:8030/roles/getroles').subscribe((response)=>{
-      this.service.getAllRoles().subscribe((response)=>{
-      // console.log(JSON.stringify(response)+"ane");
+  createUser = new FormGroup({
+    firstName: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
+    lastName: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    confirm_password: new FormControl('', Validators.required),
+    role: new FormControl('', Validators.required)
+  })
+
+  getRoles() {
+    this.service.getAllRoles().subscribe((response) => {
       this.roles = response;
     }),
-    (errror)=>{
-      // alert('Error while fecthing roles');
-    }
-  }
-
-  submit(){
-  
-    this.roleArray.push(this.createUser.get('role').value);
-    console.log(this.roleArray);
-    this.createUser.get('role').setValue(this.roleArray);
-    console.log(this.createUser);
-   
-    console.log("1234567890-="+ JSON.stringify(this.createUser.value));
-    // console.log(""+this.service.post);
-    this.service.postNewUser(this.createUser.value).subscribe((res)=>{
-      // alert("User Created ");
-      // UserCreated();
-      this.alertService.UserCreatedURL('/crm/user-all');
-      // UserCreatedURL();
-      this.resetForm();
-      
-      // this.router.navigate(['/crm/user-all'])
-    },
-    (error)=>{
-      if(error.status == 409){
-        emailAlreadyTaken();
+      (errror) => {
+        alert('Error while fecthing roles');
       }
-      // alert(JSON.stringify(error));
-      console.log(error);
-     console.log( this.createUser.value);
-    })
   }
 
-  resetForm(){
+  reset(){
     this.createUser.controls['firstName'].reset();
     this.createUser.controls['lastName'].reset();
     this.createUser.controls['email'].reset();
     this.createUser.controls['password'].reset();
+    this.createUser.controls['confirm_password'].reset();
     this.createUser.controls['role'].reset();
+
+  }
+  submit() {
+    console.log(this.createUser.value);
+    
+    if (this.label == "Update") {
+      this.service.postOldUser(this.createUser.value).subscribe((res) => {
+        this.alertService.RecordUpdated('/crm/user-all');
+        // this.toastr.success("User Update ... ");
+        // this.router.navigate(['/crm/user-all'])
+      },
+        (error) => {
+          alert(JSON.stringify(error));
+
+          // this.toastr.error(error);
+
+        })
+
+    } else {
+      this.service.postNewUser(this.createUser.value).subscribe((res) => {
+        // this.toastr.success("User Created ... ");
+        // this.router.navigate(['/crm/user-all'])
+        this.reset();
+        this.alertService.RecordAdded('/crm/user-all');
+      },
+        (error) => {
+          // this.toastr.error(error);
+        });
+    }
+
+
+
+  }
+  exportSelectedArray(value) {
+    this.SelectedArray = value;
+    this.createUser.controls['role'].patchValue(value);
   }
 
 
- 
-
-  get firstName(){
+  get firstName() {
     return this.createUser.get('firstName');
   }
 
-  get lastName(){
+  get lastName() {
     return this.createUser.get('lastName');
   }
 
-  get emailTemplateName(){
+  get emailTemplateName() {
     return this.createUser.get('emailTemplateName');
   }
 
-  get email(){
+  get email() {
     return this.createUser.get('email');
   }
 
-  get password(){
+  get password() {
     return this.createUser.get('password');
   }
-  get confirm_password(){
+  get confirm_password() {
     return this.createUser.get('confirm_password');
   }
-  
-  get role(){
+
+  get role() {
     return this.createUser.get('role');
   }
-  get isTemporary(){
+  get isTemporary() {
     return this.createUser.get('isTemporary');
   }
-
-
-  
-
-
 }
