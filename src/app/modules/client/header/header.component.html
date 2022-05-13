@@ -3,10 +3,10 @@
         <div class="page-header">
             <div class="left">
                 <!-- <h1 class="page-title">{{title}}</h1> -->
-                <a class="home-head" [routerLink]="">{{'header.menu.item1' | translate}}</a>
-                <a class="home-head" [routerLink]="">{{'header.menu.item2' | translate}}</a>
-                <a class="home-head" [routerLink]="">{{'header.menu.item3' | translate}}</a>
-                <a class="home-head" [routerLink]="">{{'header.menu.item4' | translate}}</a>
+                <a class="home-head" [routerLink]="">Home</a>
+                <a class="home-head" [routerLink]="">CRM</a>
+                <a class="home-head" [routerLink]="">Product Management</a>
+                <a class="home-head" [routerLink]="">Number Management</a>
                 <!-- <select class="custom-select">
                     <option>Year</option>
                     <option>Month</option>
@@ -24,10 +24,10 @@
                             aria-controls="dropdown-basic">Language</a>
                         <div class="dropdown-menu" id="dropdown-basic" *dropdownMenu role="menu"
                             aria-labelledby="button-basic">
-                            <a [class.active]="switchLang=='en'" class="dropdown-item" [routerLink]="" (click)="languageSelected('en')"><img class="w20 mr-2"
+                            <a class="dropdown-item" [routerLink]=""><img class="w20 mr-2"
                                     src="../assets/images/flags/us.svg">English</a>
                             <div class="dropdown-divider"></div>
-                            <a [class.active]="switchLang=='de'" class="dropdown-item" [routerLink]="" (click)="languageSelected('de')"><img class="w20 mr-2"
+                            <a class="dropdown-item" [routerLink]=""><img class="w20 mr-2"
                                     src="../assets/images/flags/es.svg">Spanish</a>
                             <a class="dropdown-item" [routerLink]=""><img class="w20 mr-2"
                                     src="../assets/images/flags/jp.svg">japanese</a>

@@ -144,25 +144,6 @@ roleAssigned() {
   })
 }
 
-recordDeleted(){
-  Swal.fire(
-    {
-      title: 'Deleted',
-      text: 'Your data has been deleted ',
-      icon: 'success',
-      confirmButtonText: 'OK',
-      showClass: {
-        backdrop: 'swal2-noanimation', // disable backdrop animation
-        popup: '',                     // disable popup animation
-        icon: ''                       // disable icon animation
-      },
-      hideClass: {
-        popup: '',                     // disable popup fade-out animation
-      },
-    }
-  )
-}
-
 
 }
 

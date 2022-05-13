@@ -164,6 +164,7 @@ export class DatatableComponent implements OnInit {
         return;
       } else {
         SelectRecord();
+        
         return
       }
     }
@@ -198,8 +199,27 @@ export class DatatableComponent implements OnInit {
       },
     }).then((result) => {
       if (result.value) {
-        
+        Swal.fire(
+
+          {
+            title: 'Deleted',
+            text: 'Your data has been deleted ',
+            icon: 'success',
+            confirmButtonText: 'OK',
+            showClass: {
+              backdrop: 'swal2-noanimation', // disable backdrop animation
+              popup: '',                     // disable popup animation
+              icon: ''                       // disable icon animation
+            },
+            hideClass: {
+              popup: '',                     // disable popup fade-out animation
+            },
+          }
+
+        )
         this.buttonEvent1.emit(data);
+
+
       } else if (result.dismiss === Swal.DismissReason.cancel) {
         Swal.fire(
 
