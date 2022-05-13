@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { TranslateService } from '@ngx-translate/core';
 import { AppComponent } from 'src/app/app.component';
 import { CrmservicesService } from '../../crm/crm-services/crmservices.service';
 import { AllservicesService } from '../services/allservices.service';
@@ -56,7 +55,7 @@ export class LeftmenuComponent implements OnInit {
     });
   }
   constructor(private allserviceService:CrmservicesService,private router: Router, private activateRoute: ActivatedRoute,
-     @Inject(AppComponent) private app: AppComponent,public translate: TranslateService) {
+     @Inject(AppComponent) private app: AppComponent) {
     if ((this.router.url).includes('hr')) {
       this.isCollapsed = false;
     }

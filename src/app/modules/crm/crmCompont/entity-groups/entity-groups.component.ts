@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 
 @Component({
@@ -12,7 +11,7 @@ export class EntityGroupsComponent implements OnInit {
 
   permission:any=[true,true,true];
   headerList:any=[];
-  constructor(private allService:CrmservicesService,private router:Router,private sweetAlert: SweetalertServiceService) { }
+  constructor(private allService:CrmservicesService,private router:Router) { }
   data:any={};
   ajayStri : any ;
   pageNo:any;
@@ -71,7 +70,9 @@ if(data.event=='add'){
 }
  else if(data.event=='delete'){
    this.allService.deleteEntitygroups(data.data.entityGroupsId,data.data.createdBy).subscribe((res)=>{
-    this.sweetAlert.recordDeleted();  
+    // alert('Record Deleted');
+    console.log(res);
+    // this.changePageSortSearch("pageNo=1&pageSize=5");
     this.onDelete();
     this.onrefresh(); 
    })
