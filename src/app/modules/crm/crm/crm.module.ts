@@ -1,15 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CrmRoutingModule } from './crm-routing.module';
-
-
-// import { FromSectionComponent } from '../../client/from-section/from-section.component';
-// import { FromTabSectionComponent } from '../../client/from-tab-section/from-tab-section.component';
-// import { CreateUserComponent } from '../../client/hrms/create-user/create-user.component';
-// import { EntitygroupFormComponent } from '../../client/hrms/entitygroup-form/entitygroup-form.component';
-// import { ProductAttributeComponent } from '../../client/hrms/product-attribute/product-attribute.component';
-// import { ProductFamilyFormComponent } from '../../client/hrms/product-family-form/product-family-form.component';
-// import { ProductTabComponent } from '../../client/hrms/product-tab/product-tab.component';
 import { ProductTableComponent } from '../../client/hrms/product-table/product-table.component';
 import { ProducttemplateFormComponent } from '../../client/hrms/producttemplate-form/producttemplate-form.component';
 import { SectionFromTemplateComponent } from '../../client/section-from-template/section-from-template.component';
@@ -28,7 +19,7 @@ import { ProductTabsComponent } from '../crmCompont/product-tabs/product-tabs.co
 import { ProductTabsFormComponent } from '../crmCompont/product-tabs-form/product-tabs-form.component';
 import { ProductFamilyFormComponent } from '../crmCompont/product-family-form/product-family-form.component';
 import { SharedModule } from 'src/app/shared/models/shared/shared.module';
-// import { CreateUserComponent } from '../../client/hrms/create-user/create-user.component';
+
 import { DynamicformViewComponent } from '../crmCompont/dynamicform-view/dynamicform-view.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyInterceptor } from '../../auth/login/intersepter.service';
@@ -38,6 +29,8 @@ import { ChangepasswordComponent } from '../crmCompont/changepassword/changepass
 import { DynamicformDatatableComponent } from '../crmCompont/dynamicform-datatable/dynamicform-datatable.component';
 import { EmailtemplateComponent } from '../crmCompont/emailtemplate/emailtemplate.component';
 import { ScheduleemailFormComponent } from '../crmCompont/scheduleemail-form/scheduleemail-form.component';
+import { ProductAtributeMasterComponent } from '../crmCompont/product-atribute-master/product-atribute-master.component';
+import { ProductAtributeMasterSummmaryComponent } from '../crmCompont/product-atribute-master-summmary/product-atribute-master-summmary.component';
 // import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 
@@ -70,6 +63,8 @@ import { ScheduleemailFormComponent } from '../crmCompont/scheduleemail-form/sch
     DynamicformDatatableComponent,
     EmailtemplateComponent,
     ScheduleemailFormComponent,
+    ProductAtributeMasterComponent,
+    ProductAtributeMasterSummmaryComponent,
  
   ],
   imports: [

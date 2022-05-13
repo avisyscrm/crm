@@ -118,9 +118,6 @@ validateTemplateVariables(){
 }
 
 setVariable(Templatevariable:string){
-  //console.log(this.emailTemplateContent);
- // console.log(this.ckeditorElementComponent.editorInstance.model.document.selection.getFirstPosition().path)
-  //  console.log(this.ckeditorElementComponent['elementRef'].nativeElement);
    let editor = this.ckeditorElementComponent.editorInstance;
    const selection = editor.model.document.selection;
    const range = selection.getFirstRange();
