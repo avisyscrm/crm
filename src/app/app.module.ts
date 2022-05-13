@@ -15,11 +15,10 @@ import { ForgotPassFormComponent } from './modules/auth/forgot-pass-form/forgot-
 import { LoginAdminComponent } from './modules/admin/login-admin/login-admin.component';
 import { EmailtemplateformComponent } from './modules/crm/crmCompont/emailtemplateform/emailtemplateform.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+
 // import { DynamicRoleComponent } from './modules/crm/crmCompont/dynamic-role/dynamic-role.component';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {MultiTranslateHttpLoader} from "ngx-translate-multi-http-loader";
-
-
 export function HttpLoaderFactory(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
       {prefix: "../assets/translate/modules/client/header/", suffix: ".json"},
@@ -35,8 +34,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ForgotPassFormComponent,
     FeatureComponent,
     LoginAdminComponent,
-    EmailtemplateformComponent,
-
+    EmailtemplateformComponent
 
   ],
   imports: [

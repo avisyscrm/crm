@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'; 
 import { BehaviorSubject, Observable } from 'rxjs';
-//import { Producttemplatesection } from 'src/app/app/modules/client/Producttemplatesection.model';
 import { environment } from 'src/environments/environment';
 import { assingroles } from '../../admin/assignrole';
 import { ChangePassword } from '../../auth/changepassword';
@@ -24,6 +23,26 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
 
   
   export class CrmservicesService {
+    getProductAttributeById(data){
+      return this.http.get(environment.baseUrl+"/getProductAttributeById/"+data);
+    }
+    deleteProductAttribute(data,data1){
+      return this.http.delete(environment.baseUrl+"/deleteProductAttribute/"+data+"/1234");
+    }
+
+  putProductAtributeMaster(data) {
+    return this.http.post(environment.baseUrl+"/createProductAttribute",data);
+  }
+
+  updateProductAtributeMaster(data) {
+    return this.http.put(environment.baseUrl+"/updateProductAttribute",data);
+  }
+  chceck(arg0: string) {
+    return this.http.get(environment.baseUrl+"/checkIfExsits/"+arg0);
+  }
+  getMasterProductAtribute(url) {
+    return this.http.get(environment.baseUrl+"/getAllProductAttribute?"+url);
+  }
     edituser(id: any) {
       return this.http.get(this.editUsers+id);
     }

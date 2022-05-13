@@ -26,7 +26,7 @@ export class CreateUserComponent implements OnInit {
   passwordShown: boolean = false;
   passwordType1: string = 'password';
   passwordShown1: boolean = false;
-  constructor(private alertService: SweetalertServiceService, private service: CrmservicesService, private http: HttpClient, private router: Router, private route: ActivatedRoute,) {
+  constructor(private alertService: SweetalertServiceService, private service: CrmservicesService, private http: HttpClient, private router: Router, private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => {
       if (params.id != undefined && params.id != null) {
         this.service.edituser(params.id).subscribe((data: any) => {
@@ -144,33 +144,5 @@ export class CreateUserComponent implements OnInit {
   get getControl() {
     return this.createUser.controls;
   }
-  // get firstName() {
-  //   return this.createUser.get('firstName');
-  // }
 
-  // get lastName() {
-  //   return this.createUser.get('lastName');
-  // }
-
-  // get emailTemplateName() {
-  //   return this.createUser.get('emailTemplateName');
-  // }
-
-  // get email() {
-  //   return this.createUser.get('email');
-  // }
-
-  // get password() {
-  //   return this.createUser.get('password');
-  // }
-  // get confirm_password() {
-  //   return this.createUser.get('confirm_password');
-  // }
-
-  // get role() {
-  //   return this.createUser.get('role');
-  // }
-  // get isTemporary() {
-  //   return this.createUser.get('isTemporary');
-  // }
 }
