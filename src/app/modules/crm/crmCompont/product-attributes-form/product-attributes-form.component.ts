@@ -6,7 +6,6 @@ import { environment } from 'src/environments/environment';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
 import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
-import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 
 
 @Component({
@@ -39,8 +38,7 @@ export class ProductAttributesFormComponent implements OnInit {
   httpClient: any;
   allSectionFromTabid: any;
 
-  constructor( private http:HttpClient, private router:Router, private service : CrmservicesService,
-     private route : ActivatedRoute,private sweetAlert: SweetalertServiceService) { }
+  constructor( private http:HttpClient, private router:Router, private service : CrmservicesService, private route : ActivatedRoute) { }
 
 
   ngOnInit(): void {
@@ -287,7 +285,8 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
      else if(data.event == 'delete'){
    
        this.service.deleteProdEntityAttribute(data.data.productEntityTemplateAttributesId,data.data.updatedBy).subscribe((res)=>{
-        this.sweetAlert.recordDeleted();
+         console.log(res);
+        //  alert("Record Deleted");
         this.onDelete(data.data.productEntityTemplateId);
         this.getDatataless(data.data.productEntityTemplateId);
        })

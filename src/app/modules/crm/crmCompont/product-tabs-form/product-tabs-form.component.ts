@@ -4,7 +4,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { selectValidation } from '../../../client/validators/validation';
 import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
-import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 
 @Component({
   selector: 'app-product-tabs-form',
@@ -36,8 +35,7 @@ export class ProductTabsFormComponent implements OnInit {
   sortBy: any;
   sortDirection: any;
 
-  constructor(private service: CrmservicesService, private fb: FormBuilder,
-     private router: Router, private activateRoute: ActivatedRoute,private sweetAlert: SweetalertServiceService) {
+  constructor(private service: CrmservicesService, private fb: FormBuilder, private router: Router, private activateRoute: ActivatedRoute) {
     this.AddTabs = this.fb.group({
       productEntityTemplateId: new FormControl('', selectValidation),
       type: new FormControl('Tab', Validators.required),
@@ -211,7 +209,7 @@ export class ProductTabsFormComponent implements OnInit {
       this.actionBtn = "Update";
     }else if (data.event == 'delete') {
       this.service.deleteProdTempSection(data.data.productEntityTemplateSectionId, data.data.updatedBy).subscribe((res) => {
-        this.sweetAlert.recordDeleted();
+        // alert('Record Deleted');
         this.getTabsIds(data.data.productEntityTemplateId);
         this.onDelete(data.data.productEntityTemplateId);
       });
