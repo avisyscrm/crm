@@ -27,8 +27,6 @@ import { DynamicformViewComponent } from '../crmCompont/dynamicform-view/dynamic
 import { CreateUserComponent } from '../crmCompont/create-user/create-user.component';
 import { ShowUserComponent } from '../crmCompont/show-user/show-user.component';
 import { ChangepasswordComponent } from '../crmCompont/changepassword/changepassword.component';
-import { ProductAtributeMasterComponent } from '../crmCompont/product-atribute-master/product-atribute-master.component';
-import { ProductAtributeMasterSummmaryComponent } from '../crmCompont/product-atribute-master-summmary/product-atribute-master-summmary.component';
 
 
 
@@ -124,12 +122,6 @@ const routes: Routes = [
                           path: 'product-tab',
                           component: ProductTabComponent,
                           data: { title: 'Product Tab' }
-                        },{
-                          path:"Product-Atribute-Master",
-                          component: ProductAtributeMasterComponent
-                        },{
-                          path:"Product-Atribute-Summmary",
-                           component:ProductAtributeMasterSummmaryComponent,
                         },
                         {
                          path:'dynamicDataTable',

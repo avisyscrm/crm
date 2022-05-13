@@ -1,5 +1,7 @@
+import { CrmservicesService } from './../../crm/crm-services/crmservices.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-header',
@@ -11,19 +13,44 @@ export class HeaderComponent implements OnInit {
   contactTab: boolean;
   groupTab: boolean;
   chatTab: boolean = true;
-  title: any
-  constructor(private route: Router) {
+  title: any;
+  switchLang!:string;
+  browserLang!:string;
+  constructor(private route: Router,public translate: TranslateService, private service: CrmservicesService) {
+
+    //Translate Code
+    this.service.languageService.subscribe((res)=>{
+      this.switchLang = res;
+    })
+    translate.addLangs(['en','de']);
+      translate.setDefaultLang('en');
+      translate.use(sessionStorage.getItem("activeLanguage"));
+
+      this.browserLang = translate.getDefaultLang();
+      this.languageChanged();
+      this.service.languageService.next(this.browserLang);
+    //Translate code ends
     this.title = route.url;
     // debugger
     this.title = this.title.replace(/\//g, '');
     this.title = this.title.toUpperCase();
   }
 
-  ngOnInit(): void {
-
-
-  }
-
+  ngOnInit(): void {}
+  //Translate lang
+    // Language 
+    languageSelected(lang){
+      console.log(lang);
+      this.switchLang = lang;
+      this.translate.use(lang);
+      sessionStorage.setItem('activeLanguage',lang);
+     
+    }
+  
+    languageChanged(){
+      this.translate.use(this.browserLang.match(/de | en/)? this.browserLang: 'en')
+    }
+  // Translate lang
   logout(){
     if(sessionStorage.getItem('userisAdmin') == 'admin'){
       this.route.navigate(['/admin'])

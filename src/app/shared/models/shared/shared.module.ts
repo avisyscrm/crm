@@ -34,6 +34,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { FromSectionComponent } from 'src/app/modules/client/from-section/from-section.component';
 import { FromTabSectionComponent } from 'src/app/modules/client/from-tab-section/from-tab-section.component';
 import { DynamicRoleComponent } from 'src/app/modules/crm/crmCompont/dynamic-role/dynamic-role.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,6 @@ import { DynamicRoleComponent } from 'src/app/modules/crm/crmCompont/dynamic-rol
     FooterComponent,],
   imports: [
     CommonModule,
-
     FormsModule,
     CollapseModule.forRoot(),
     ReactiveFormsModule,
@@ -81,7 +81,9 @@ import { DynamicRoleComponent } from 'src/app/modules/crm/crmCompont/dynamic-rol
       apiKey: 'GOOGLE_API_KEY'
     }),
     FullCalendarModule,
-    CKEditorModule
+    CKEditorModule,
+  TranslateModule,
+
   ],
   exports:[
     DatatableComponent,
@@ -119,7 +121,9 @@ import { DynamicRoleComponent } from 'src/app/modules/crm/crmCompont/dynamic-rol
     CKEditorModule,
     FromSectionComponent,
     FromTabSectionComponent,
-    DynamicRoleComponent
+    DynamicRoleComponent,
+    TranslateModule,
+
     ]
 })
 export class SharedModule { }
