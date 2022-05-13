@@ -15,7 +15,7 @@ import { ForgotPassFormComponent } from './modules/auth/forgot-pass-form/forgot-
 import { LoginAdminComponent } from './modules/admin/login-admin/login-admin.component';
 import { EmailtemplateformComponent } from './modules/crm/crmCompont/emailtemplateform/emailtemplateform.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-// import { DynamicRoleComponent } from './modules/crm/crmCompont/dynamic-role/dynamic-role.component';
+
 
 
 
@@ -26,8 +26,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     ForgotPassFormComponent,
     FeatureComponent,
     LoginAdminComponent,
-    EmailtemplateformComponent,
-
+    EmailtemplateformComponent
 
   ],
   imports: [
