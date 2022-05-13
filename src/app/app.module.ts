@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClient} from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -16,8 +16,16 @@ import { LoginAdminComponent } from './modules/admin/login-admin/login-admin.com
 import { EmailtemplateformComponent } from './modules/crm/crmCompont/emailtemplateform/emailtemplateform.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
-
-
+// import { DynamicRoleComponent } from './modules/crm/crmCompont/dynamic-role/dynamic-role.component';
+import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
+import {MultiTranslateHttpLoader} from "ngx-translate-multi-http-loader";
+export function HttpLoaderFactory(http: HttpClient) {
+  return new MultiTranslateHttpLoader(http, [
+      {prefix: "../assets/translate/modules/client/header/", suffix: ".json"},
+      
+      {prefix: "../assets/translate/modules/client/leftmenu/", suffix: ".json"}
+  ]);
+}
 
 @NgModule({
   declarations: [
@@ -43,8 +51,16 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
       timeOut: 5000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
-    })
+    }),
+    TranslateModule.forRoot({
+      loader: {
+          provide: TranslateLoader,
+          useFactory: HttpLoaderFactory,
+          deps: [HttpClient]
+      }
+  })
   ],
+  exports:[TranslateModule],
   providers: [BsDatepickerModule],
   bootstrap: [AppComponent]
 })

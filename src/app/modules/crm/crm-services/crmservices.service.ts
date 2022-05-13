@@ -644,4 +644,6 @@ getEmailTemplateVariables(){
   return [{'key':'CUSTOMER_NAME','value': 'CUSTOMERNAME'},{'key':'CUSTOMER_CONTACT_NUMBER','value': 'CUSTOMERCONTACTNUMBER'},{'key':'MOBILE_NUMBER','value':'MOBILENUMBER'}];
 }
 
+languageService = new BehaviorSubject('en');
+
 }
