@@ -1,0 +1,11 @@
+{
+    "header":{
+
+        "menu":{
+            "item1":"Heimat",
+            "item2":"CRM",
+            "item3":"Produkt Management",
+            "item4":"Nummernverwaltung"
+        }
+    }
+}

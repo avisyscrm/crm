@@ -1,3 +1,4 @@
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
@@ -16,7 +17,7 @@ export class ProductFamilyComponent implements OnInit {
   pageSize:any;
   sortBy:any;
   sortDirection:any;
-  constructor(private allService:CrmservicesService, private router:Router) { }
+  constructor(private allService:CrmservicesService, private router:Router, private sweetAlert: SweetalertServiceService) { }
   data:any={};
   ngOnInit(): void {
     this.allService.getFamilylist("pageNo=1&pageSize=5").subscribe(sucess=>{
@@ -79,11 +80,9 @@ if(data.event=='add'){
 } else if(data.event == 'delete'){
   // alert(JSON.stringify(  data));
   this.allService.deleteProductFamily(data.data.productFamilyId, data.data.updatedBy).subscribe((res)=>{
-    console.log(res);
-    // alert('Record Deleted');
+    this.sweetAlert.recordDeleted();
    this.onrefresh();
    this.onDelete();
-    // this.changePageSortSearch(url);
   })  
 } 
 }
