@@ -51,7 +51,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     private postcreaterole = environment.accessToken+"/roles/createroles";
     private postSchedule = environment.baseUrl+"/scheduleEmail";
     private createUser1 = environment.accessToken+"/users/update";
-
+    private getEmailTempateVariables = environment.baseUrl+"/emailTemplate/";
   // 
 
     private allContactURL = environment.baseUrl+"/allContact";
@@ -621,10 +621,8 @@ PostChangePasswordWithRandomString(data : PostForgotPassword){
   return this.http.post(this.changePasswordWithRandomString, data);
 }
 
-
-
-// getAllUsers(url:any):Observable<any> {
-//   return this.http.get("http://192.168.1.11:8030/users/allUsers?"+url);
-// }
+getEmailTemplateVariables(){
+  return [{'key':'CUSTOMER_NAME','value': 'CUSTOMERNAME'},{'key':'CUSTOMER_CONTACT_NUMBER','value': 'CUSTOMERCONTACTNUMBER'},{'key':'MOBILE_NUMBER','value':'MOBILENUMBER'}];
+}
 
 }
