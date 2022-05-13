@@ -26,7 +26,6 @@ export class CreateUserComponent implements OnInit {
   passwordShown: boolean = false;
   passwordType1: string = 'password';
   passwordShown1: boolean = false;
-
   constructor(private alertService: SweetalertServiceService, private service: CrmservicesService, private http: HttpClient, private router: Router, private route: ActivatedRoute,) {
     this.route.queryParams.subscribe(params => {
       if (params.id != undefined && params.id != null) {
@@ -35,6 +34,7 @@ export class CreateUserComponent implements OnInit {
           this.createUser.addControl("userId",
             new FormControl(params.id, Validators.required));
           this.createUser.removeControl('password');
+          this.createUser.removeControl('confirm_password');
           this.createUser.patchValue(data);
           this.alluserrolesdata = data.avaliableRoles;
           this.SelectedArray = data.role;
@@ -89,7 +89,7 @@ export class CreateUserComponent implements OnInit {
     password: new FormControl('', Validators.required),
     confirm_password: new FormControl('', Validators.required),
     role: new FormControl('', Validators.required),
-    isTemporary : new FormControl(''),
+    isTemporary : new FormControl(false),
   })
 
   getRoles() {
@@ -112,25 +112,17 @@ export class CreateUserComponent implements OnInit {
   }
   submit() {
     console.log(this.createUser.value);
-    
     if (this.label == "Update") {
       this.service.postOldUser(this.createUser.value).subscribe((res) => {
         this.alertService.RecordUpdated('/crm/user-all');
-        // this.toastr.success("User Update ... ");
-        // this.router.navigate(['/crm/user-all'])
       },
         (error) => {
           alert(JSON.stringify(error));
-
-          // this.toastr.error(error);
 
         })
 
     } else {
       this.service.postNewUser(this.createUser.value).subscribe((res) => {
-        // this.toastr.success("User Created ... ");
-        // this.router.navigate(['/crm/user-all'])
-        this.reset();
         this.alertService.RecordAdded('/crm/user-all');
       },
       
@@ -149,34 +141,36 @@ export class CreateUserComponent implements OnInit {
     this.createUser.controls['role'].patchValue(value);
   }
 
+  get getControl() {
+    return this.createUser.controls;
+  }
+  // get firstName() {
+  //   return this.createUser.get('firstName');
+  // }
 
-  get firstName() {
-    return this.createUser.get('firstName');
-  }
+  // get lastName() {
+  //   return this.createUser.get('lastName');
+  // }
 
-  get lastName() {
-    return this.createUser.get('lastName');
-  }
+  // get emailTemplateName() {
+  //   return this.createUser.get('emailTemplateName');
+  // }
 
-  get emailTemplateName() {
-    return this.createUser.get('emailTemplateName');
-  }
+  // get email() {
+  //   return this.createUser.get('email');
+  // }
 
-  get email() {
-    return this.createUser.get('email');
-  }
+  // get password() {
+  //   return this.createUser.get('password');
+  // }
+  // get confirm_password() {
+  //   return this.createUser.get('confirm_password');
+  // }
 
-  get password() {
-    return this.createUser.get('password');
-  }
-  get confirm_password() {
-    return this.createUser.get('confirm_password');
-  }
-
-  get role() {
-    return this.createUser.get('role');
-  }
-  get isTemporary() {
-    return this.createUser.get('isTemporary');
-  }
+  // get role() {
+  //   return this.createUser.get('role');
+  // }
+  // get isTemporary() {
+  //   return this.createUser.get('isTemporary');
+  // }
 }
