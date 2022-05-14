@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { HrmsComponent } from './src/app/app/modules/client/hrms/hrms.component';
+
 import { AppRoutingModule } from './app-routing.module';
 import { FeatureComponent } from './modules/crm/crmCompont/feature/feature.component';
 import { ForgotPassFormComponent } from './modules/auth/forgot-pass-form/forgot-pass-form.component';
@@ -31,7 +31,6 @@ export function HttpLoaderFactory(http: HttpClient) {
 @NgModule({
   declarations: [
     AppComponent,
-    HrmsComponent,
     ForgotPassFormComponent,
     FeatureComponent,
     LoginAdminComponent,

@@ -24,12 +24,32 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
 
   
   export class CrmservicesService {
+ 
+    getProductAttributeById(data){
+      return this.http.get(environment.baseUrl+"/getProductAttributeById/"+data);
+    }
+    deleteProductAttribute(data,data1){
+      return this.http.delete(environment.baseUrl+"/deleteProductAttribute/"+data+"/1234");
+    }
+
+  putProductAtributeMaster(data) {
+    return this.http.post(environment.baseUrl+"/createProductAttribute",data);
+  }
+
+  updateProductAtributeMaster(data) {
+    return this.http.put(environment.baseUrl+"/updateProductAttribute",data);
+  }
+  chceck(arg0: string) {
+    return this.http.get(environment.baseUrl+"/checkIfExsits/"+arg0);
+  }
+  getMasterProductAtribute(url) {
+    return this.http.get(environment.baseUrl+"/getAllProductAttribute?"+url);
+  }
+   
     edituser(id: any) {
       return this.http.get(this.editUsers+id);
     }
-  // getAllUsers() {
-  //   throw new Error('Method not implemented.');
-  // }
+ 
 
   gettabEditData(templateId,tabId,version) {
     return this.http.get(this.getTabWiseEditData+"templateId="+templateId+"&tabId="+tabId+"&version="+version);
