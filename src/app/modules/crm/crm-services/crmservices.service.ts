@@ -72,7 +72,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     private postcreaterole = environment.accessToken+"/roles/createroles";
     private postSchedule = environment.baseUrl+"/scheduleEmail";
     private createUser1 = environment.accessToken+"/users/update";
-    private getEmailTempateVariables = environment.baseUrl+"/emailTemplate/";
+    private getEmailTempateVariables = environment.baseUrl+"/templateVariables/";
   // 
 
     private allContactURL = environment.baseUrl+"/allContact";
