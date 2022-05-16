@@ -524,8 +524,8 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
       return this.http.get(this.getdynamicTemplateData);
     }
     
-     public isStringUrl = new BehaviorSubject<String | undefined>("");
-     emit<T>(value : string){
+     public isStringUrl = new BehaviorSubject<any | undefined>("");
+     emit<T>(value : any){
         this.isStringUrl.next(value);
       }
     on<T>():Observable<String | undefined>{

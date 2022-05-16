@@ -58,9 +58,12 @@
         <tr *ngFor="let row of content;let I=index">
           <td scope="col" [style.width.%]="column?.width" *ngFor="let column of columns">
             <input type="radio" (click)="radioButton(row)" id="name" name="name" *ngIf="column?.type=='radio'">
-            <div *ngIf="column?.type!='radio'">
+            <div *ngIf="column?.type!='radio' && column?.type!='icon'">
               {{row[column.value]}}
             </div>
+            <div *ngIf="column?.type=='icon'">
+            <img [src]="row[column.value]"  [width]="column?.width" [height]="column?.width" >
+          </div>
           </td>
         </tr>
       </tbody>
@@ -73,4 +76,4 @@
 </div>
 
 
-<app-mat-confirm-dialog [title]="'Delete'" [message]="'Are you sure you want to Delete'" (deleteEvent) ="confirmDelete()" ></app-mat-confirm-dialog>
+<!-- <app-mat-confirm-dialog [title]="'Delete'" [message]="'Are you sure you want to Delete'" (deleteEvent) ="confirmDelete()" ></app-mat-confirm-dialog> -->

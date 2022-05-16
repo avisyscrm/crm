@@ -137,13 +137,9 @@ let dataProp:string = sessionStorage.getItem('dataProp');
  
   }
 
-  press(data:String | undefined){
-    // alert('lkjhvc hrishi'+data);
-
-    // this.router.navigate(['/crm/dynamicForm']);
+  press(data:String | undefined,name){
     this.router.navigate(['/crm/dynamicDataTable']);
-
-    this.allserviceService.isStringUrl.next(data);
+    this.allserviceService.isStringUrl.next({data:data,name:name});
   }
 
   ulP2(j:any){

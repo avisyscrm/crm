@@ -634,7 +634,7 @@
                                 <!-- <span id="xxxp{{i}}p{{j}}p{{k}}" class="caret crm-green-tea">{{x2.name}}</span> -->
                                 <span id="xxxp{{i}}p{{j}}p{{k}}" ><i class="fa fa-folder pr-2" aria-hidden="true"></i>{{x2.name}}</span>
                                 <ul class="nested " id="p{{i}}p{{j}}p{{k}}">
-                                    <li *ngFor="let x3 of x2.children" (click)="press(x3?.productEntityTemplateId);$event.stopPropagation()"
+                                    <li *ngFor="let x3 of x2.children" (click)="press(x3?.productEntityTemplateId,x3?.name);$event.stopPropagation()"
                                         class="content">
                                         <i class="fa fa-file pr-2" aria-hidden="true"></i>{{x3?.name}}</li>
                                 </ul>

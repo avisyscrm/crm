@@ -469,7 +469,7 @@ export class AllservicesService {
     return this.http.get(url);
   }
 
-   public isStringUrl = new BehaviorSubject<String | undefined>("");
+   public isStringUrl = new BehaviorSubject<any>("");
    emit<T>(value : string){
       this.isStringUrl.next(value);
     }
