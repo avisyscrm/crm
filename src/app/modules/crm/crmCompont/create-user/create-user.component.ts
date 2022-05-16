@@ -27,7 +27,8 @@ export class CreateUserComponent implements OnInit {
   passwordShown: boolean = false;
   passwordType1: string = 'password';
   passwordShown1: boolean = false;
-  createUser = new FormGroup({});
+  // createUser = new FormGroup({});
+  
   constructor(private alertService: SweetalertServiceService, private fb: FormBuilder, private service: CrmservicesService, private http: HttpClient, private router: Router, private route: ActivatedRoute,) {
     this.route.queryParams.subscribe(params => {
       if (params.id != undefined && params.id != null) {
@@ -52,19 +53,18 @@ export class CreateUserComponent implements OnInit {
       }
     });
 
-    this.createUser = fb.group({
-
-      firstName: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
-      lastName: new FormControl('', Validators.required),
-      email: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
-      confirm_password: new FormControl('', Validators.required),
-      role: new FormControl('', Validators.required),
-      isTemporary : new FormControl(false),
-    }, {
-      validator: ConfirmedValidator('password', 'confirm_password')
-    }
-    )
+    // this.createUser = fb.group({
+    //   firstName: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]],
+    //   lastName: ['', Validators.required],
+    //   email: ['', Validators.required],
+    //   password: ['', Validators.required],
+    //   confirm_password: ['', Validators.required],
+    //   role: ['', Validators.required],
+    //   isTemporary : [false],
+    // }, {
+    //   validator: ConfirmedValidator('password', 'confirm_password')
+    // }
+    // )
 
 
   }
@@ -98,15 +98,15 @@ export class CreateUserComponent implements OnInit {
   }
 
 
-  // createUser = new FormGroup({
-  //   firstName: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
-  //   lastName: new FormControl('', Validators.required),
-  //   email: new FormControl('', Validators.required),
-  //   password: new FormControl('', Validators.required),
-  //   confirm_password: new FormControl('', Validators.required),
-  //   role: new FormControl('', Validators.required),
-  //   isTemporary : new FormControl(false),
-  // })
+  createUser = new FormGroup({
+    firstName: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
+    lastName: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    password: new FormControl('', Validators.required),
+    confirm_password: new FormControl('', Validators.required),
+    role: new FormControl('', Validators.required),
+    isTemporary : new FormControl(false),
+  })
 
   getRoles() {
     this.service.getAllRoles().subscribe((response) => {
