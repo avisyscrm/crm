@@ -481,11 +481,6 @@ export class AllservicesService {
       return this.http.post(this.postDynamicFormData,data);
     }
 
- 
-    // autho
-    
-// new
-
 getForgotPasswords(email:any ):Observable<any>{
   return this.http.get("http://192.168.1.11:8030/users/forgetPassword/" + email)
 }
