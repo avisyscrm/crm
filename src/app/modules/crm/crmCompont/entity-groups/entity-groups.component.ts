@@ -70,7 +70,7 @@ if(data.event=='add'){
     console.log(data, 'data')
 }
  else if(data.event=='delete'){
-   this.allService.deleteEntitygroups(data.data.entityGroupsId,data.data.createdBy).subscribe((res)=>{
+   this.allService.deleteEntitygroups(data.data.entityGroupsId,0).subscribe((res)=>{
     this.sweetAlert.recordDeleted();  
     this.onDelete();
     this.onrefresh(); 

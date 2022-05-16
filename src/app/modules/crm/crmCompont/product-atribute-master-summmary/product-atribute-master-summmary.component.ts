@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class ProductAtributeMasterSummmaryComponent implements OnInit {
   data={};
   url="pageNo=1&pageSize=5";
   headerList=[];
-  constructor(private crmService:CrmservicesService,private router:Router) { 
+  constructor(private crmService:CrmservicesService,private router:Router, private sweetAlert: SweetalertServiceService) { 
     this.crmService.getMasterProductAtribute(this.url).subscribe((sucess:any)=>{
       this.data=sucess.page;
      this.headerList=sucess.headerlist;
@@ -29,7 +30,7 @@ export class ProductAtributeMasterSummmaryComponent implements OnInit {
       this.router.navigate(["/crm/Product-Atribute-Master"],{ queryParams: event.data});
     }else if(event.event=='delete'){
       this.crmService.deleteProductAttribute(event.data.productAttributeId,event.data.updatedBy).subscribe(sucess=>{
-      alert(sucess);
+        this.sweetAlert.recordDeleted();
       this.changePageSortSearch(this.url);
       });
     }
