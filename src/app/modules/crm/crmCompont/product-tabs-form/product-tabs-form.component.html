@@ -22,7 +22,7 @@
             <form [formGroup]="AddTabs" #Formdata (ngSubmit)="submit()">
                 <div class="card card-height">
                     <div class="card-header d-flex justify-content-between">
-                        <h3 class="card-title prod-name">PRODUCT TEMPLATE TAB</h3>
+                        <h3 class="card-title prod-name"><span>{{'forms.template-tab.template-tab-heading' | translate}}</span></h3>
                         <!-- <button type="button" class="btn btn-primary m-3"><i class="fe fe-plus mr-2"></i>Add</button> -->
                     </div>
                     <div class="card-body">
@@ -30,7 +30,7 @@
                             <div class="col-md-6">
                                 <div class="row ">
                                     <div class=" form-group col-md-4">
-                                        <label class="form-label ">Product Template</label>
+                                        <label class="form-label "><span>{{'forms.template-tab.product-entity-template' | translate}}</span></label>
                                     </div>
                                     <div class=" form-group col-md-8">
                                         <div class="form-group">
@@ -59,7 +59,7 @@
                                                         <input type="radio" class="custom-control-input"
                                                             name="type" value="Tab" formControlName="type"
                                                             (click)="checkForm('Tab')">
-                                                        <div class="custom-control-label add-tab ">Add Tab</div>
+                                                        <div class="custom-control-label add-tab "><span>{{'forms.template-tab.add-tab' | translate}}</span></div>
                                                     </label>
                                                 </div>
                                             </div>
@@ -69,7 +69,7 @@
                                                         <input type="radio" class="custom-control-input mandatory"
                                                             name="type" value="Section" formControlName="type"
                                                             (click)="checkForm('Section')">
-                                                        <div class="custom-control-label add-tab">Add Section</div>
+                                                        <div class="custom-control-label add-tab"><span>{{'forms.template-tab.add-section' | translate}}</span></div>
                                                     </label>
                                                 </div>
                                             </div>
@@ -83,7 +83,7 @@
                                 <div class="col-md-12">
                                     <div class="row mb-3">
                                         <div class="col-md-4">
-                                            <label class="form-label">Tab Name</label>
+                                            <label class="form-label"><span>{{'forms.template-tab.tab-name' | translate}}</span></label>
                                         </div>
                                         <div class="col-md-8">
                                             <input type="text" class="form-control mandatory" value="" formControlName="section">
@@ -94,7 +94,7 @@
                                 <div class="col-md-12">
                                     <!-- Current Occupation months -->
                                     <div class="row mb-2">
-                                        <label for="lead-owner d-flex align-items-center" class="col-md-4 ">Sequence </label>
+                                        <label for="lead-owner d-flex align-items-center" class="col-md-4 "><span>{{'forms.template-tab.sequence' | translate}}</span> </label>
                                         <div class="col-sm-7">
                                             <div class="input-group mb-2 field-width">
                                                 <input type="text" class="form-control mandatory " formControlName="sequenceId">
@@ -111,7 +111,7 @@
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label class="form-label">Parent ID </label>
+                                        <label class="form-label"><span>{{'forms.template-tab.parent-id' | translate}}</span> </label>
                                     </div>
                                     <div class="col-md-8">
                                         <select  class="form-control mandatory" formControlName="parentId">
@@ -124,7 +124,7 @@
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label class="form-label">Section Name </label>
+                                        <label class="form-label"><span>{{'forms.template-tab.section-name' | translate}}</span> </label>
                                     </div>
                                     <div class="col-md-8">
                                         <input type="text" class="form-control mandatory" formControlName="section">
@@ -134,7 +134,7 @@
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label class="form-label">Screen Layout  </label>
+                                        <label class="form-label"><span>{{'forms.template-tab.screenlayout' | translate}}</span> </label>
                                     </div>
                                     <div class="col-md-8">
                                         <select id="datalistOptions84" class="form-control mandatory"  formControlName="screenLayout" >
@@ -149,7 +149,7 @@
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label class="form-label">Sequence  </label>
+                                        <label class="form-label"><span>{{'forms.template-tab.sequence' | translate}}</span>  </label>
                                     </div>
                                     <div class="col-md-8">
                                         <input type="text" class="form-control mandatory" formControlName="sequenceId">
