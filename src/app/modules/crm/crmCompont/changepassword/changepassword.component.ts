@@ -26,7 +26,7 @@ export class ChangepasswordComponent implements OnInit {
   parameter!: any;
   validPassword: boolean = false;
   passwordType: string = 'password';
-  passwordShown:boolean = false;
+  passwordShown:boolean = false; 
   passwordType1: string = 'password';
   passwordShown1:boolean = false;
   passwordType2: string = 'password';

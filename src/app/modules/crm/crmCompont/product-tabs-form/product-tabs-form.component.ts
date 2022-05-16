@@ -55,7 +55,7 @@ export class ProductTabsFormComponent implements OnInit {
     this.AddTabs.controls['createdBy'].setValue('-1');
     this.AddTabs.controls['section'].setValue('');
     this.AddTabs.controls['sequenceId'].setValue('');
-    this.AddTabs.controls['screenLayout'].setValue('');
+    this.AddTabs.controls['screenLayout'].reset();
     this.AddTabs.controls['parentId'].setValue('');
   }
   ngOnInit(): void {

@@ -82,10 +82,10 @@ export class ProductTemplateFormComponent implements OnInit {
   //Reset Form  
 
    resetForm(){
-    this.productEntity.controls['entityGroupsId'].setValue("");
-    this.productEntity.controls['productFamilyId'].setValue("");
-    this.productEntity.controls['productLineId'].setValue("");
-    this.productEntity.controls['state'].setValue("");
+    this.productEntity.controls['entityGroupsId'].reset();
+    this.productEntity.controls['productFamilyId'].reset();
+    this.productEntity.controls['productLineId'].reset();
+    this.productEntity.controls['state'].reset();
     this.productEntity.controls['productEntityTemplateName'].reset();
     this.productEntity.controls['description'].reset();
     this.productEntity.controls['version'].reset();
@@ -99,6 +99,7 @@ export class ProductTemplateFormComponent implements OnInit {
         // RecordAdded();
         this.resetForm();
         this.alertService.RecordAdded('crm/product-templates');
+   
         // alert("Record Added");
         // this.productEntity.reset();
        
@@ -117,6 +118,7 @@ export class ProductTemplateFormComponent implements OnInit {
         // this.productEntity.reset();
         this.resetForm();
         this.alertService.RecordUpdated('crm/product-templates');
+   
         // this.router.navigate(['crm/product-templates']); 
       },
       error:()=>{

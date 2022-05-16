@@ -130,15 +130,15 @@ export class ProductAttributesFormComponent implements OnInit {
     //  this.productEntityAttribute.controls['productEntityTemplateId'].setValue("");
     //  this.productEntityAttribute.controls['tabId'].setValue("");
      this.productEntityAttribute.controls['sectionId'].reset();
-     this.productEntityAttribute.controls['mandatory'].setValue("");
-     this.productEntityAttribute.controls['editable'].setValue("");
+     this.productEntityAttribute.controls['mandatory'].reset();
+     this.productEntityAttribute.controls['editable'].reset();
      this.productEntityAttribute.controls['sequenceId'].reset();
      this.productEntityAttribute.controls['productAttribute'].reset();
      this.productEntityAttribute.controls['description'].reset();
      this.productEntityAttribute.controls['productAttributeDataType'].reset();
      this.productEntityAttribute.controls['productAttributeLength'].reset();
      this.productEntityAttribute.controls['dataCaptureControl'].reset();
-     this.productEntityAttribute.controls['options'].setValue("");
+     this.productEntityAttribute.controls['options'].reset();
    }
  
  
