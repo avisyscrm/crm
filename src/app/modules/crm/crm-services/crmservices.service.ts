@@ -1,3 +1,4 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'; 
 import { BehaviorSubject, Observable } from 'rxjs';
@@ -641,8 +642,9 @@ PostChangePasswordWithRandomString(data : PostForgotPassword){
   return this.http.post(this.changePasswordWithRandomString, data);
 }
 
+
 getEmailTemplateVariables(){
-  return [{'key':'CUSTOMER_NAME','value': 'CUSTOMERNAME'},{'key':'CUSTOMER_CONTACT_NUMBER','value': 'CUSTOMERCONTACTNUMBER'},{'key':'MOBILE_NUMBER','value':'MOBILENUMBER'}];
+  return this.http.get(this.getEmailTempateVariables);
 }
 
 languageService = new BehaviorSubject('en');
