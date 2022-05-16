@@ -11,9 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminroleTableComponent implements OnInit {
 
- 
- 
-  permission:any=[true,true,true];
+  permission:any=[true,false,false];
   headerList:any=[];
   ajayStri : any ;
   pageNo:any=1;

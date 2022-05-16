@@ -15,6 +15,8 @@ import { CrmservicesService } from '../../crm/crm-services/crmservices.service';
 })
 export class LoginComponent implements OnInit {
   invalidUser: boolean = false;
+  passwordType: string = 'password';
+  passwordShown:boolean = false;
 
   constructor(private allservice: CrmservicesService, private router: Router) {}
 
@@ -24,7 +26,10 @@ export class LoginComponent implements OnInit {
   })
 
   submit() {
+    
     this.allservice.login(this.createUser.value).subscribe((data: any) => {
+      console.log(data);
+      
       sessionStorage.setItem('username', this.createUser.get('username').value);      
       sessionStorage.setItem('access_token', data.access_token);
       sessionStorage.setItem('session_id', data.session_state); 
@@ -32,10 +37,32 @@ export class LoginComponent implements OnInit {
       // this.router.navigate(["/crm"])
       this.router.navigate(["master"])
     }, error => {
-      this.invalidUser = true;
-      // alert("Error while logging infdgd.")
+      console.log(error);
+
+      if(error.status == 428){
+        sessionStorage.setItem('username', this.createUser.get('username').value); 
+        this.router.navigate(["/crm/change-password"], { queryParams: {content: 'update-password'}})
+      }
+      else{
+        this.invalidUser = true;
+        // alert("Error while logging infdgd.")
+      }
+      
+      
     }
     );
+  }
+
+  togglePassword(){
+    if(this.passwordShown){
+      this.passwordShown = false;
+      this.passwordType = 'password';
+
+    }
+    else {
+      this.passwordShown = true;
+      this.passwordType = 'text';
+    }
   }
 
   ngOnInit(): void {

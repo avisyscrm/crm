@@ -1,3 +1,4 @@
+import { ScheduleemailFormComponent } from './../crmCompont/scheduleemail-form/scheduleemail-form.component';
 import { EmailtemplateformComponent } from './../crmCompont/emailtemplateform/emailtemplateform.component';
 import { EmailtemplateComponent } from './../crmCompont/emailtemplate/emailtemplate.component';
 import { DynamicformDatatableComponent } from './../crmCompont/dynamicform-datatable/dynamicform-datatable.component';
@@ -7,7 +8,6 @@ import { ProductlineFormComponent } from './../crmCompont/productline-form/produ
 import { ProductlineTableComponent } from './../crmCompont/productline-table/productline-table.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HrActivitiesComponent } from '../../client/hrms/hr-activities/hr-activities.component';
 import { HrEventsComponent } from '../../client/hrms/hr-events/hr-events.component';
 import { HrHolidaysComponent } from '../../client/hrms/hr-holidays/hr-holidays.component';
 import { HrPayrollComponent } from '../../client/hrms/hr-payroll/hr-payroll.component';
@@ -26,6 +26,8 @@ import { DynamicformViewComponent } from '../crmCompont/dynamicform-view/dynamic
 import { CreateUserComponent } from '../crmCompont/create-user/create-user.component';
 import { ShowUserComponent } from '../crmCompont/show-user/show-user.component';
 import { ChangepasswordComponent } from '../crmCompont/changepassword/changepassword.component';
+import { ProductAtributeMasterComponent } from '../crmCompont/product-atribute-master/product-atribute-master.component';
+import { ProductAtributeMasterSummmaryComponent } from '../crmCompont/product-atribute-master-summmary/product-atribute-master-summmary.component';
 
 
 
@@ -121,6 +123,12 @@ const routes: Routes = [
                           path: 'product-tab',
                           component: ProductTabComponent,
                           data: { title: 'Product Tab' }
+                        },{
+                          path:"Product-Atribute-Master",
+                          component: ProductAtributeMasterComponent
+                        },{
+                          path:"Product-Atribute-Summmary",
+                           component:ProductAtributeMasterSummmaryComponent,
                         },
                         {
                          path:'dynamicDataTable',
@@ -160,6 +168,11 @@ const routes: Routes = [
                           path: 'emailTemplateForm',
                           component: EmailtemplateformComponent,
                           data: { title: 'Email Template' }
+                        },
+                        {
+                          path: 'scheduleEmail',
+                          component: ScheduleemailFormComponent,
+                          data: { title: 'Schedule Email ' }
                         },
                       ]     
                       },

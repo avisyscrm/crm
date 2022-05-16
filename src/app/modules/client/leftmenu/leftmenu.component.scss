@@ -72,11 +72,9 @@ ul, #myUL {
   background-color: #f8d7da !important;
   border-color: #f5c2c7 !important;
   }
-  .crm-beverages {
-    
-    
-    color:#4D5052;;
-    font-family: 'Poppins', sans-serif;
+  .crm-beverages,.nested li {
+    color:#2c2945;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
     // font-weight: 600;
     font-size: 14px;
   }

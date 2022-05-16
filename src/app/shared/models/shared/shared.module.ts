@@ -33,6 +33,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ToastrModule } from 'ngx-toastr';
 import { FromSectionComponent } from 'src/app/modules/client/from-section/from-section.component';
 import { FromTabSectionComponent } from 'src/app/modules/client/from-tab-section/from-tab-section.component';
+import { DynamicRoleComponent } from 'src/app/modules/crm/crmCompont/dynamic-role/dynamic-role.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -46,10 +48,11 @@ import { FromTabSectionComponent } from 'src/app/modules/client/from-tab-section
     ProfileComponent,
     FromSectionComponent,
     FromTabSectionComponent,
+    DynamicRoleComponent,
+
     FooterComponent,],
   imports: [
     CommonModule,
-
     FormsModule,
     CollapseModule.forRoot(),
     ReactiveFormsModule,
@@ -78,7 +81,9 @@ import { FromTabSectionComponent } from 'src/app/modules/client/from-tab-section
       apiKey: 'GOOGLE_API_KEY'
     }),
     FullCalendarModule,
-    CKEditorModule
+    CKEditorModule,
+  TranslateModule,
+
   ],
   exports:[
     DatatableComponent,
@@ -116,6 +121,9 @@ import { FromTabSectionComponent } from 'src/app/modules/client/from-tab-section
     CKEditorModule,
     FromSectionComponent,
     FromTabSectionComponent,
+    DynamicRoleComponent,
+    TranslateModule,
+
     ]
 })
 export class SharedModule { }

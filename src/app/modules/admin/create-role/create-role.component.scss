@@ -1,0 +1,12 @@
+.card-height {
+    min-height: calc(100vh - 150px );
+}
+
+.validate-text {
+    font-size: 12px;
+    color: red;
+}
+
+.mandatory {
+    border-left: 3px solid #f27b77 !important;
+}

@@ -2,7 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
-import { selectValidation } from '../../../client/validators/validation';
+import { onlyChar, selectValidation } from '../../../client/validators/validation';
+import { RecordUpdated, RecordAdded, } from '../../../client/sweetalert/sweetalert';
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
+
 
 
 @Component({
@@ -22,7 +25,7 @@ export class ProductTemplateFormComponent implements OnInit {
   prodEntityid:any;
   
 
-  constructor(private service : CrmservicesService,  private router:Router, private route:ActivatedRoute) { }
+  constructor(private service : CrmservicesService,  private alertService: SweetalertServiceService, private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -66,17 +69,17 @@ export class ProductTemplateFormComponent implements OnInit {
    productEntity = new FormGroup({
     entityGroupsId:new FormControl('',selectValidation ),
       productEntityTemplateId: new FormControl(''),
-      productEntityTemplateName: new FormControl('', Validators.required),
-      description: new FormControl('', Validators.required),
-      productLineId: new FormControl('', [Validators.required, selectValidation]),
-      version: new FormControl('',Validators.required),
+      productEntityTemplateName: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
+      description: new FormControl('', [Validators.required, Validators.maxLength(400), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
+      productLineId: new FormControl('', selectValidation),
+      version: new FormControl('',[Validators.required]),
       state: new FormControl('', [Validators.required, selectValidation]),
       createdBy: new FormControl('0', Validators.required),
       productFamilyId: new FormControl('',[ Validators.required, selectValidation])
    })
    //Form Control end
 
-  //Reset Form 
+  //Reset Form  
 
    resetForm(){
     this.productEntity.controls['entityGroupsId'].setValue("");
@@ -93,10 +96,13 @@ export class ProductTemplateFormComponent implements OnInit {
      console.log(this.productEntity.value,"post data");
      this.service.postprodEntityTemplate(this.productEntity.value).subscribe((res)=>{
         console.log(res);
-        alert("Record Added");
-        // this.productEntity.reset();
+        // RecordAdded();
         this.resetForm();
-        this.router.navigate(['crm/product-templates']); 
+        this.alertService.RecordAdded('crm/product-templates');
+        // alert("Record Added");
+        // this.productEntity.reset();
+       
+        // this.router.navigate(['crm/product-templates']); 
      },
      error=>console.log(error)
      )
@@ -106,14 +112,15 @@ export class ProductTemplateFormComponent implements OnInit {
    updateProductentity(){
     this.service.putProdEntity(this.productEntity.value).subscribe({
       next:(res)=>{
-
-        alert("Record Updated");
+        // RecordUpdated();
+        // alert("Record Updated");
         // this.productEntity.reset();
         this.resetForm();
-        this.router.navigate(['crm/product-templates']); 
+        this.alertService.RecordUpdated('crm/product-templates');
+        // this.router.navigate(['crm/product-templates']); 
       },
       error:()=>{
-        alert("error while updating record");
+        // alert("error while updating record");
       }
     })
   }
@@ -160,4 +167,33 @@ onOptionsSelectedEntity(value:string){
 }
 
 
+  get productFamilyId() {
+    return this.productEntity.get('productFamilyId');
+  }
+
+  get productLineId() {
+    return this.productEntity.get('productLineId');
+  }
+  get entityGroupsId(){
+    return this.productEntity.get('entityGroupsId');
+  }
+
+  get productEntityTemplateName(){
+    return this.productEntity.get('productEntityTemplateName');
+  } 
+
+  get description(){
+    return this.productEntity.get('description');
+  } 
+
+  get version(){
+    return this.productEntity.get('version');
+  } 
+
+  get state(){
+    return this.productEntity.get('state');
+  } 
+
+  
+  
 }

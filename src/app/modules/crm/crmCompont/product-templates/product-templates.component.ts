@@ -1,6 +1,8 @@
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-product-templates',
@@ -11,7 +13,7 @@ export class ProductTemplatesComponent implements OnInit {
 
   permission:any=[true,true,true];
   headerList:any=[];
-  constructor(private allService:CrmservicesService, private router:Router) { }
+  constructor(private allService:CrmservicesService, private router:Router, private sweetAlert: SweetalertServiceService) { }
   data:any={};
   ajayStri : any ;
   pageNo:any;
@@ -72,8 +74,7 @@ export class ProductTemplatesComponent implements OnInit {
     }
     else if(data.event == 'delete'){
       this.allService.deleteProductTemplate(data.data.productEntityTemplateId,data.data.updatedBy).subscribe((res)=>{
-        alert('Record Deleted');
-        console.log(res);
+        this.sweetAlert.recordDeleted();
         this.onDelete();
         this.onrefresh();
       })

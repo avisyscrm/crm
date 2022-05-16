@@ -12,6 +12,8 @@ import { AllservicesService } from '../../client/services/allservices.service';
 })
 export class LoginAdminComponent implements OnInit {
   invalidUser : boolean = false;
+  passwordType: string = 'password';
+  passwordShown:boolean = false;
   constructor(private router:Router, private service : CrmservicesService) { }
 
   ngOnInit(): void {
@@ -30,13 +32,27 @@ export class LoginAdminComponent implements OnInit {
       sessionStorage.setItem('session_id', data.session_state); 
       sessionStorage.setItem('dataProp','crmAdminLogin');
       sessionStorage.setItem('userisAdmin','admin');
+      sessionStorage.setItem("HeaderClass", "top_dark");
       this.router.navigate(["/crm"], {queryParams:{prop: 'crmAdminLogin'}})
     }, error => {
       this.invalidUser = true;
-      alert("Error while logging infdgd.")
+      // alert("Error while logging infdgd.")
     })
       // this.router.navigate(["crm"])
   }
+  togglePassword(){
+    if(this.passwordShown){
+      this.passwordShown = false;
+      this.passwordType = 'password';
+
+    }
+    else {
+      this.passwordShown = true;
+      this.passwordType = 'text';
+    }
+  }
+
 }
+
 
 

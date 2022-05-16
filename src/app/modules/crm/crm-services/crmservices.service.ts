@@ -1,9 +1,12 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'; 
 import { BehaviorSubject, Observable } from 'rxjs';
 //import { Producttemplatesection } from 'src/app/app/modules/client/Producttemplatesection.model';
 import { environment } from 'src/environments/environment';
 import { assingroles } from '../../admin/assignrole';
+import { ChangePassword } from '../../auth/changepassword';
+import { PostForgotPassword } from '../../auth/forgotpass.model';
 import { Contact } from '../crm/crmForm-model/contact.model';
 import { DynamicForm } from '../crm/crmForm-model/dynamicForm';
 import { EntityGroup } from '../crm/crmForm-model/entitygroup.model';
@@ -20,10 +23,34 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     providedIn: 'root'
   })
 
+  
   export class CrmservicesService {
-  // getAllUsers() {
-  //   throw new Error('Method not implemented.');
-  // }
+ 
+    getProductAttributeById(data){
+      return this.http.get(environment.baseUrl+"/getProductAttributeById/"+data);
+    }
+    deleteProductAttribute(data,data1){
+      return this.http.delete(environment.baseUrl+"/deleteProductAttribute/"+data+"/1234");
+    }
+
+  putProductAtributeMaster(data) {
+    return this.http.post(environment.baseUrl+"/createProductAttribute",data);
+  }
+
+  updateProductAtributeMaster(data) {
+    return this.http.put(environment.baseUrl+"/updateProductAttribute",data);
+  }
+  chceck(arg0: string) {
+    return this.http.get(environment.baseUrl+"/checkIfExsits/"+arg0);
+  }
+  getMasterProductAtribute(url) {
+    return this.http.get(environment.baseUrl+"/getAllProductAttribute?"+url);
+  }
+   
+    edituser(id: any) {
+      return this.http.get(this.editUsers+id);
+    }
+ 
 
   gettabEditData(templateId,tabId,version) {
     return this.http.get(this.getTabWiseEditData+"templateId="+templateId+"&tabId="+tabId+"&version="+version);
@@ -34,16 +61,18 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
    private getRolesDatatable = environment.accessToken+"/roles/getRolesPaging?";
    // users/getAllUsers
    private getAllUsers = environment.accessToken+"/users/getAllUsers";
+   private editUsers = environment.accessToken+"/users/userById/";
    // get all roles
    
    private getAllRolesList = environment.accessToken+"/roles/getroles";
-
+   private setNewpassword = environment.accessToken+"/users/verify"; 
    // post assingrole
    private postassingrole = environment.accessToken+"/users/assignRole";
     // post assingrole
     private postcreaterole = environment.accessToken+"/roles/createroles";
-
-
+    private postSchedule = environment.baseUrl+"/scheduleEmail";
+    private createUser1 = environment.accessToken+"/users/update";
+    private getEmailTempateVariables = environment.baseUrl+"/templateVariables/";
   // 
 
     private allContactURL = environment.baseUrl+"/allContact";
@@ -68,6 +97,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     private getsectionFromDetails=environment.baseUrl+"/getAllFormData/";
     private getdynamicTemplateData = environment.baseUrl+"/patchTemplateData?";
     private  getTabWiseEditData=environment.baseUrl+ "/patchTemplateData?";
+    private getEmailTemplate = environment.baseUrl+"/emailTemplate";
     // new api link for entity group 
     private allProductLineFromProductFamily = environment.baseUrl+"/allProductLineFromProductFamily/";
   
@@ -76,7 +106,8 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
   
     // new link to add all section from tab
       private allSectionFromTabid = environment.baseUrl+"/allSectionFromTab/";
-  
+      private allEmailTemplate = environment.baseUrl+"/emailTemplatePaging?";
+      
   // dropdown product hierachy
     private getProductHierachyH = environment.baseUrl+"/allProductHierarchy";
     private getProductFamilyH =environment.baseUrl+"/allProductFamily";
@@ -105,7 +136,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     private postproductentityAttribute = environment.baseUrl+"/createProductEntityTemplateAttributes";
     private postproductTemplateSection = environment.baseUrl+"/createProductEntityTemplateSection";
     private postproductEntityTemplate = environment.baseUrl+"/createProductEntityTemplates";  
-    
+    private postEmailTemlateUrl = environment.baseUrl+"/createEmailTemplate";
     // ids
     private getProductFamilyId = environment.baseUrl+"/productFamily/";
     private getProductLineId = environment.baseUrl+"/productLine/";
@@ -115,7 +146,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     private getProductHierachyId= environment.baseUrl+"/productHierarchy/";
     private getProductEntityId = environment.baseUrl+"/productEntityTemplates/";
     private getSectionForm = environment.baseUrl+"/getAllFormData/";
-    
+    private getEmailTempId = environment.baseUrl+"/emailTemplate/";
     // calling ids to another page
     private allProductEntityTemplatesid = environment.baseUrl+"/allProductEntityTemplates/";
   
@@ -129,7 +160,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     private updateProductEntity = environment.baseUrl+"/updateProductEntityTemplates";
     private productEntityTemplateSectionID = environment.baseUrl+"/productEntityTemplateSection/";
     private updateProductEntityTemplateSectionHH = environment.baseUrl+"/updateProductEntityTemplateSection";
-  
+    private updateEmailTemplate = environment.baseUrl+"/updateEmailTemplate";
     // delete 
     private deleteproductFamily = environment.baseUrl+"/deleteProductFamily/";
     private deleteproductLine = environment.baseUrl+"/deleteProductLine/";
@@ -143,8 +174,15 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     private productLinePostWithAttachment = environment.baseUrl+"/createProductLineWithAttachment";
     private productFamilyWithAttachment=environment.baseUrl+"/createProductFamilyWithAttachment";
     private allSectionAndTabFromTemplateId=environment.baseUrl+"/allSectionAndTabFromTemplateId/";
+    private deleteEmailTemplate = environment.baseUrl+"/deleteEmailTemplate/";
     
-    
+    // change pass
+      // authenvironment.accessToken
+      private getverifyRandomPassword =environment.accessToken+"/users/varifyrandomcode/";
+      private changePasswordWithRandomString =environment.accessToken+"/users/changePasswordWithRandomString";
+      private changepassword =environment.accessToken+"/users/changepassword";
+      private getForgotPasswordss =environment.accessToken+"/users/forgetPassword/";
+      
     // add tabs
     constructor(private http: HttpClient) { }
   
@@ -487,8 +525,8 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
       return this.http.get(this.getdynamicTemplateData);
     }
     
-     public isStringUrl = new BehaviorSubject<String | undefined>("");
-     emit<T>(value : string){
+     public isStringUrl = new BehaviorSubject<any | undefined>("");
+     emit<T>(value : any){
         this.isStringUrl.next(value);
       }
     on<T>():Observable<String | undefined>{
@@ -551,6 +589,64 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
       return this.http.post(this.postcreaterole,data)
     }
 
-      // 
+    postEmailTemplate(data:any){
+      return this.http.post(this.postEmailTemlateUrl,data);
+    }
+
+    getAllEmailTemplate(url:string){
+      return this.http.get(this.allEmailTemplate+url);
+    }
+
+    getEmailTemplateId(id:any){
+    return  this.http.get(this.getEmailTempId+id)
+    }
+
+    postScheduleEmail(data:any){
+      return this.http.post(this.postSchedule,data);
+    }
+
+    updateEmailTemplateId(data:any){
+      return this.http.put(this.updateEmailTemplate,data);
+    }
+
+    deleteEmailTemplateId(tempId:number,updatedBy:number){
+      return this.http.delete(this.deleteEmailTemplate+tempId+"/"+updatedBy)
+    }
+
+    getEmailTemplates(){
+      return this.http.get(this.getEmailTemplate);
+    }
+
+      // change pass
+
+    PostChangePassword(data:ChangePassword){
+      return this.http.post(this.changepassword, data);
+    }
+
+    postNewUserPassword(data:ChangePassword){
+      return this.http.post(this.setNewpassword,data);
+    }
+    postOldUser(data:any){
+      return this.http.put(this.createUser1,data);
+    }
+    
+getForgotPasswords(email:any ):Observable<any>{
+  return this.http.get(this.getForgotPasswordss + email)
+}
+
+getVerifyRandomCodes(randomcode:any){
+  return this.http.get(this.getverifyRandomPassword + randomcode,{observe:'response'})
+}
+
+PostChangePasswordWithRandomString(data : PostForgotPassword){
+  return this.http.post(this.changePasswordWithRandomString, data);
+}
+
+
+getEmailTemplateVariables(){
+  return this.http.get(this.getEmailTempateVariables);
+}
+
+languageService = new BehaviorSubject('en');
 
 }

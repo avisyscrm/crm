@@ -1,4 +1,4 @@
-<div class="section-body  fixNavMargin">
+ <div class="section-body  fixNavMargin">
     <div class="container-fluid">
         <div class="d-flex justify-content-between align-items-center">
             <ul class="nav nav-tabs page-header-tab">
@@ -11,11 +11,11 @@
          
         </div>
        
-        <!--product family-->
+
         <div class="row">
-            <div class="card">
+            <div class="card email-template">
                 <div class="card-header d-flex justify-content-between">
-                    <h3 class="card-title prod-name">PRODUCT FAMILY </h3>
+                    <h3 class="card-title prod-name">Email Templates </h3>
 
                 </div>
                 <app-datatable [permission]="permission" (buttonEvent1)="buttonEvent1($event)"
@@ -30,71 +30,9 @@
 
     </div>
 
-    <!---product family-->
-</div>
+
+</div> 
     
-    <!-- Form Start -->
-    <div class="section-body  fixNavMargin">
-        <div class="container-fluid">
-
-            <div class="d-flex justify-content-between align-items-center">
-                <ul class="nav nav-tabs page-header-tab">
-                    <li class="nav-item"><a class="nav-link" href="#">
-                        </a></li>
-                    <li class="nav-item"><a class="nav-link" href="#"></a>
-                    </li>
-
-                </ul>
-              
-            </div>
-            <!--product family-->
-            <form [formGroup]="emailTemplate" (ngSubmit)="submit()">
-            <div class="card card-height">
-                <div class="card-header pf-head">
-                    <h3 class="card-title ">Email Template </h3>
-                </div>
-                <div class="card-body">
-                    <div class="row productfamily ">
-                        <div class="col-md-8">
-                            <div class="row ">
-                                <div class=" form-group col-md-4">
-                                    <label class="form-label ">Template Name </label>
-                                </div>
-                                <div class=" form-group col-md-8">
-                                    <input name="" type="text" class="form-control mandatory" value="" formControlName="emailTemplateName">
-                                    <!-- <div *ngIf="productFamilyName?.invalid && productFamilyName?.touched">
-                                        <span class="validate-text" *ngIf="productFamilyName?.errors?.required">Please Enter Product Family</span>
-                                        <span class="validate-text" *ngIf="productFamilyName?.errors?.maxlength">Character exceed max limit 400</span>
-                                        <span class="validate-text"   *ngIf="productFamilyName?.errors?.isChar">Invalid input. Only character allowed </span>
-                                        <span class="validate-text"  *ngIf="productFamilyName?.errors?.pattern ">Field cant be empty</span>
-                                     </div> -->
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-8">
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label class="form-label text-">Content</label>
-                                </div>
-                                <div class="col-md-8">
-                                       
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary ">Save</button>
-                    <button type="button" (click)="resetForm()" class="btn btn-primary ml-3 ">Reset</button>
-                </div>
-            </div>
-            </form>
-        </div>
- 
-        <!-- <pre>
-            {{productFamily.value | json}}
-            {{productFamily.invalid}}
-         </pre> -->
-        <!---product family-->
-    </div>
+  
 
 

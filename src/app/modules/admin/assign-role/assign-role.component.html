@@ -10,7 +10,7 @@
         </div>
 
         <!--product entity-->
-        <form [formGroup]="assignRole" (ngSubmit)="submit()">
+        <form [formGroup]="assignRole" >
             <div class="card card-height">
                 <div class="card-header pf-head">
                     <h3 class="card-title ">Assign Roles</h3>
@@ -25,46 +25,46 @@
                                 </div>
                                 <div class="col-md-8">
 
-                                        <select   name="cars" id="cars" class="form-control mandatory" formControlName="userId">
-                                            <option value="">Select --</option>
-                                             <option  value="{{userid.id}}" *ngFor="let userid of UserListId">
-                                                 {{userid.email}}
-                                             </option>
-                                           </select>
+                                    <select (change)="chnageUser()"  name="cars" id="cars" class="form-control mandatory"
+                                        formControlName="userId">
+                                        <option value="">Select --</option>
+                                        <option value="{{userid.id}}" *ngFor="let userid of UserListId">
+                                            {{userid.email}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
                                     <label class="form-label"> Role</label>
                                 </div>
                                 <div class="col-md-8">
-                                    
-                                        <select   name="cars" id="cars" class="form-control mandatory" formControlName="role">
-                                            <option value="">Select --</option>
-                                             <option  value="{{roles.name}}" *ngFor="let roles of alluserrolesdata">
-                                                 {{roles.name}}
-                                             </option>
-                                           </select>
+
+                                    <select name="cars" id="cars" class="form-control mandatory" formControlName="role">
+                                        <option value="">Select --</option>
+                                        <option value="{{roles.name}}" *ngFor="let roles of alluserrolesdata">
+                                            {{roles.name}}
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
-                        </div>
-
-                 
+                        </div> -->
                     </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <app-dynamic-role [SelectedArray]="SelectedArray"   (exportSelectedArray)="exportSelectedArray($event)" [alluserrolesdata]="alluserrolesdata"></app-dynamic-role>
 
-                    <button  type="submit" class="btn btn-primary ">Save</button>
+                        </div>
+                    </div>
+                    <button type="submit" (click)="submit()" class="btn btn-primary ">Save</button>
                     <button type="button" class="btn btn-primary ml-3 ">Reset</button>
-
+                   
                 </div>
             </div>
         </form>
 
     </div>
 </div>
-
-<!-- <pre>
-    {{assignRole.value | json}}
-</pre> -->

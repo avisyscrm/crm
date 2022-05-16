@@ -1,0 +1,100 @@
+<!-- Form Start -->
+<div class="section-body  fixNavMargin">
+    <div class="container-fluid">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <ul class="nav nav-tabs page-header-tab">
+                <li class="nav-item"><a class="nav-link" href="#">
+                    </a></li>
+                <li class="nav-item"><a class="nav-link" href="#"></a>
+                </li>
+
+            </ul>
+
+        </div>
+        <!--product family-->
+        <form [formGroup]="scheduleEmail" (ngSubmit)="submit()">
+            <div class="card card-height">
+                <div class="card-header pf-head">
+                    <h3 class="card-title ">Schedule Email</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row productfamily ">
+                        <div class="col-md-8">
+                            <div class="row ">
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">Email Template Id </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <select class="form-control mandatory"
+                                    formControlName="templateId">
+                                    <option value=""  >Select --</option>
+                                    <option value="{{emailTemplates.emailTemplateId}}"
+                                        *ngFor="let emailTemplates of allEmailTemplates">
+                                        {{emailTemplates.emailTemplateName}}
+                                    </option>
+                                </select>
+                                 
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row ">
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">Recipient </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <input name="" type="text" class="form-control mandatory" value=""
+                                        formControlName="recipient">
+                                    <!-- <div *ngIf="productFamilyName?.invalid && productFamilyName?.touched">
+                                    <span class="validate-text" *ngIf="productFamilyName?.errors?.required">Please Enter Product Family</span>
+                                    <span class="validate-text" *ngIf="productFamilyName?.errors?.maxlength">Character exceed max limit 400</span>
+                                    <span class="validate-text"   *ngIf="productFamilyName?.errors?.isChar">Invalid input. Only character allowed </span>
+                                    <span class="validate-text"  *ngIf="productFamilyName?.errors?.pattern ">Field cant be empty</span>
+                                 </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row ">
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">Schedule Time </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <input name="" type="datetime-local"  step="2" class="form-control mandatory" value=""
+                                        formControlName="scheduleTime">
+                                    <!-- <div *ngIf="productFamilyName?.invalid && productFamilyName?.touched">
+                                    <span class="validate-text" *ngIf="productFamilyName?.errors?.required">Please Enter Product Family</span>
+                                    <span class="validate-text" *ngIf="productFamilyName?.errors?.maxlength">Character exceed max limit 400</span>
+                                    <span class="validate-text"   *ngIf="productFamilyName?.errors?.isChar">Invalid input. Only character allowed </span>
+                                    <span class="validate-text"  *ngIf="productFamilyName?.errors?.pattern ">Field cant be empty</span>
+                                 </div> -->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-">Job Name</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input name="" type="text" class="form-control mandatory" value=""
+                                    formControlName="jobName">  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary"
+                        [disabled]="scheduleEmail.invalid">{{actionBtn}}</button>
+                    <button type="button" (click)="resetForm()" class="btn btn-primary ml-3 ">Reset</button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- <pre>
+        {{productFamily.value | json}}
+        {{productFamily.invalid}}
+     </pre> -->
+    <!---product family-->
+</div>

@@ -3,6 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
+import Swal from 'sweetalert2'; 
+import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
+
 
 @Component({
   selector: 'app-productline-form',
@@ -11,7 +15,7 @@ import { onlyChar, selectValidation } from '../../../client/validators/validatio
 })
 export class ProductlineFormComponent implements OnInit {
 
-  constructor(private service: CrmservicesService, private router:Router, private route: ActivatedRoute) { }
+  constructor(private service: CrmservicesService, private alertService: SweetalertServiceService, private router:Router, private route: ActivatedRoute) { }
   @ViewChild('file') myFileInput: any;
   private parameter: any;
   prodId: any;
@@ -65,7 +69,7 @@ export class ProductlineFormComponent implements OnInit {
   }
 
   addProductLine = new FormGroup({
-    productFamilyId: new FormControl('', selectValidation),
+    productFamilyId: new FormControl('', [ selectValidation]),
     productLineId: new FormControl(''),
     productLine: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
     description: new FormControl('', [Validators.required, Validators.maxLength(400), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
@@ -84,6 +88,7 @@ export class ProductlineFormComponent implements OnInit {
   }
 
   submit() {
+    console.log(this.addProductLine)
     if (this.isupdate) {
       this.addProductLine.valid ? this.updateProductLine() : "";
       // this.resetForm();
@@ -93,10 +98,12 @@ export class ProductlineFormComponent implements OnInit {
       formData.append('file', this.file);
       formData.append('productLine', JSON.stringify(this.addProductLine.value))
       this.service.productLinePost(formData).subscribe((res) => {
-        alert("Record Added");
-        console.log(res);
+        // alert("Record Added");
+        // RecordAdded();
+        // console.log(res);
         this.resetForm();
-        this.router.navigate(['crm/product-line']); 
+        this.alertService.RecordAdded('crm/product-line');
+        // this.router.navigate(['crm/product-line']); 
         },
         (error) => {
           alert(error)
@@ -111,7 +118,9 @@ export class ProductlineFormComponent implements OnInit {
     this.service.postLineControler(this.addProductLine.value).subscribe((result) => {
       console.log('getdatapost', result);
       // this.addProductLine.reset();
-      alert('Record Added');
+      // alert('Record Added');
+      this.resetForm();
+      this.alertService.RecordAdded('crm/product-line');
     })
   }
 
@@ -124,9 +133,11 @@ export class ProductlineFormComponent implements OnInit {
     this.service.putProductLine(formData).
       subscribe({
         next: (res) => {
-          alert("Record Updated ");
+          // alert("Record Updated ");
+          // RecordUpdated();
+          this.alertService.RecordUpdated('crm/product-line');
           this.resetForm();
-          this.router.navigate(['crm/product-line']); 
+          // this.router.navigate(['crm/product-line']); 
         },
         error: () => {
           alert("error while updating the record");
@@ -136,6 +147,10 @@ export class ProductlineFormComponent implements OnInit {
     // get firstName(){ 
     //   return this.addProductLine.get('productLine');
     // }
+  }
+
+  get productFamilyId() {
+    return this.addProductLine.get('productFamilyId');
   }
 
   get productLine() {
@@ -165,5 +180,6 @@ export class ProductlineFormComponent implements OnInit {
     }
   }
   //
+
 
 }

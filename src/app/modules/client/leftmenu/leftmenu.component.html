@@ -472,18 +472,16 @@
             <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" *ngIf="crmisActive">
                 <a href="javascript:void(0)" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
                     aria-controls="collapseBasic" class="has-arrow arrow-c"><i
-                        class="icon-rocket"></i><span>Masters</span></a>
+                        class="icon-rocket"></i><span>{{'leftmenu.menu1.mainHead' | translate}}</span></a>
                 <ul class="collapse" id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true">
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/crm/product-family']" href="javascript:void(0)"><span>Product Family</span>
+                            [routerLink]="['/crm/product-family']" href="javascript:void(0)"><span>{{'leftmenu.menu1.subHead1' | translate}}</span>
                         </a></li>
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
-                        <a class="submenu" [routerLink]="['/crm/product-line']" href="javascript:void(0)"><span>Product
-                                Line</span></a>
+                        <a class="submenu" [routerLink]="['/crm/product-line']" href="javascript:void(0)"><span>{{'leftmenu.menu1.subHead2' | translate}}</span></a>
                     </li>
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/crm/entity-groups']" href="javascript:void(0)"><span>Entity
-                                Group</span></a>
+                            [routerLink]="['/crm/entity-groups']" href="javascript:void(0)"><span>{{'leftmenu.menu1.subHead3' | translate}}</span></a>
                     </li>
 
                 </ul>
@@ -492,20 +490,18 @@
             <li  *ngIf="crmisActive">
                 <a href="javascript:void(0)" (click)="isTemplateCollapsed = !isTemplateCollapsed"
                     [attr.aria-expanded]="!isTemplateCollapsed" aria-controls="JobCollapsed"
-                    class="has-arrow arrow-c"><i class="icon-briefcase"></i><span>Product Template</span></a>
+                    class="has-arrow arrow-c"><i class="icon-briefcase"></i><span>{{'leftmenu.menu2.mainHead' | translate}}</span></a>
                 <ul class="submenu" class="collapse" id="JobCollapsed" [collapse]="isTemplateCollapsed"
                     [isAnimated]="true">
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/crm/product-templates']" href="javascript:void(0)"><span>Product
-                                Template</span></a></li>
+                            [routerLink]="['/crm/product-templates']" href="javascript:void(0)"><span>{{'leftmenu.menu2.subHead1' | translate}}</span></a></li>
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/crm/product-tabs']" href="javascript:void(0)"><span>Product Tab </span></a>
+                            [routerLink]="['/crm/product-tabs']" href="javascript:void(0)"><span>{{'leftmenu.menu2.subHead2' | translate}} </span></a>
                     </li>
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/crm/product-attribute']" href="javascript:void(0)"><span>Product
-                                Attribute</span></a></li>
+                            [routerLink]="['/crm/product-attribute']" href="javascript:void(0)"><span>{{'leftmenu.menu2.subHead3' | translate}}</span></a></li>
                     <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/crm/emailTemplate']" href="javascript:void(0)"><span>Create Template</span></a></li>
+                            [routerLink]="['/crm/Product-Atribute-Summmary']" href="javascript:void(0)"><span>Product Atribute Summmary</span></a></li>
 
                 </ul>
             </li>
@@ -536,6 +532,16 @@
 
 
                 </ul>
+            </li>
+            <li *ngIf="crmAdminActive">
+                <a href="javascript:void(0)" [routerLink]="['/crm/emailTemplate']" (click)="isDropDownCollapsed = !isDropDownCollapsed"
+                    [attr.aria-expanded]="!isDropDownCollapsed" aria-controls="AuthCollapsed"
+                    class="has-arrow arrow-c"><i class="icon-plus"></i><span>Create Email</span></a>
+            </li>
+            <li *ngIf="crmAdminActive">
+                <a href="javascript:void(0)" [routerLink]="['/crm/scheduleEmail']" (click)="isDropDownCollapsed = !isDropDownCollapsed"
+                    [attr.aria-expanded]="!isDropDownCollapsed" aria-controls="AuthCollapsed"
+                    class="has-arrow arrow-c"><i class="icon-plus"></i><span>Schedule Email</span></a>
             </li>
             <li *ngIf="crmAdminActive">
                 <a href="javascript:void(0)" (click)="isDropDownCollapsed = !isDropDownCollapsed"
@@ -591,15 +597,15 @@
             <li  *ngIf="crmisActive">
                 <a href="javascript:void(0)" (click)="isAuthCollapsed = !isAuthCollapsed"
                     [attr.aria-expanded]="!isAuthCollapsed" aria-controls="AuthCollapsed" class="has-arrow arrow-c"><i
-                        class="icon-lock"></i><span>Transaction</span></a>
+                        class="icon-lock"></i><span>{{'leftmenu.menu3.mainHead' | translate}}</span></a>
                 <ul class="submenu" class="collapse" id="AuthCollapsed" [collapse]="isAuthCollapsed"
                     [isAnimated]="true">
                     <li [routerLinkActive]="['activ']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="" href="javascript:void(0)">Transaction 1</a></li>
+                            [routerLink]="" href="javascript:void(0)">{{'leftmenu.menu3.subHead1' | translate}}</a></li>
                     <li [routerLinkActive]="['activ']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="" href="javascript:void(0)">Transaction 2</a></li>
+                            [routerLink]="" href="javascript:void(0)">{{'leftmenu.menu3.subHead2' | translate}}</a></li>
                     <li [routerLinkActive]="['activ']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="" href="javascript:void(0)">Transaction 3</a></li>
+                            [routerLink]="" href="javascript:void(0)">{{'leftmenu.menu3.subHead3' | translate}}</a></li>
 
                 </ul>
             </li>
@@ -628,7 +634,7 @@
                                 <!-- <span id="xxxp{{i}}p{{j}}p{{k}}" class="caret crm-green-tea">{{x2.name}}</span> -->
                                 <span id="xxxp{{i}}p{{j}}p{{k}}" ><i class="fa fa-folder pr-2" aria-hidden="true"></i>{{x2.name}}</span>
                                 <ul class="nested " id="p{{i}}p{{j}}p{{k}}">
-                                    <li *ngFor="let x3 of x2.children" (click)="press(x3?.productEntityTemplateId);$event.stopPropagation()"
+                                    <li *ngFor="let x3 of x2.children" (click)="press(x3?.productEntityTemplateId,x3?.name);$event.stopPropagation()"
                                         class="content">
                                         <i class="fa fa-file pr-2" aria-hidden="true"></i>{{x3?.name}}</li>
                                 </ul>

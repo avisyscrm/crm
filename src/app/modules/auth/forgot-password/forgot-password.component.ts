@@ -1,8 +1,10 @@
+import { CrmservicesService } from './../../crm/crm-services/crmservices.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { CarouselConfig } from 'ngx-bootstrap/carousel';
 import { AllservicesService } from '../../client/services/allservices.service';
+import { SweetalertServiceService } from '../../client/sweetalert/sweetalert-service.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -19,10 +21,9 @@ export class ForgotPasswordComponent implements OnInit {
   options:any;
   randomCode:any;
   getforgotenpass:any;
-  constructor( private service:AllservicesService, private http: HttpClient) { }
+  constructor( private service:CrmservicesService, private http: HttpClient, private alertService: SweetalertServiceService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
    
   ForgotPassword = new FormGroup({
@@ -32,11 +33,11 @@ export class ForgotPasswordComponent implements OnInit {
 
   submit(){
     
-    
     this.service.getForgotPasswords(this.ForgotPassword.get('email').value).subscribe((data=>{
       this.getforgotenpass = data;
       console.log(this.getforgotenpass, "forgot pass emial");
       
+      this.alertService.mailcheck('login');
     }))
   }
 

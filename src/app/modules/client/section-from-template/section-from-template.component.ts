@@ -9,11 +9,13 @@ import { AllservicesService } from '../services/allservices.service';
 export class SectionFromTemplateComponent implements OnInit {
 
   type: any="";
+  name: any;
 
   constructor(private allservice:AllservicesService) { }
   data:any;
   ngOnInit(): void {
     this.allservice.isStringUrl.subscribe(sucess=>{
+    
       this.allservice.getFromData(sucess).subscribe(sucess1=>{
         this.type=sucess1?.page[0].section?.type;
         this.data=sucess1;

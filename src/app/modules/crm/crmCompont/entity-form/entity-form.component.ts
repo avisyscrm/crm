@@ -3,6 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { onlyChar, selectValidation } from '../../../client/validators/validation';
+// import Swal from 'sweetalert2';
+import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
+
 
 @Component({
   selector: 'app-entity-form',
@@ -20,7 +24,7 @@ export class EntityFormComponent implements OnInit {
   file:any;
   data: any;
   entityGroupsIcon:any;
-  constructor( private services: CrmservicesService, private router:Router, private route: ActivatedRoute) { }
+  constructor( private services: CrmservicesService,  private alertService: SweetalertServiceService, private router:Router, private route: ActivatedRoute) { }
 
 
 
@@ -55,7 +59,7 @@ export class EntityFormComponent implements OnInit {
       this.services.allProductLineFromProductFamilyDropDown(value).subscribe(sucess=>{
         this.prodLineid=sucess;
         });
-    }
+    } 
   }
 
   entityGroup = new FormGroup ({
@@ -82,8 +86,11 @@ export class EntityFormComponent implements OnInit {
   postEntityGroup(){
     this.services.postEntityGroup(this.entityGroup.value).subscribe((result)=>{
       console.log('data', result);
-      alert('Record Added');  
+      // RecordUpdated();
       this.entityGroup.reset();
+      this.alertService.RecordAdded('crm/entity-groups');
+      // alert('Record Added');  
+     
     }) 
   }
 
@@ -95,10 +102,13 @@ export class EntityFormComponent implements OnInit {
     
     this.services.putEntityGroup(formData).subscribe((res)=>{
       console.log(res);
-      alert('Record Updated');
-      this.router.navigate(['crm/entity-groups']); 
-      // this.entityGroup.reset();
+      RecordUpdated();
+      // alert('Record Updated');
       this.resetForm();
+      this.alertService.RecordUpdated('crm/entity-groups');
+      // this.router.navigate(['crm/entity-groups']); 
+      // this.entityGroup.reset();
+   
     }, error =>{
       console.log(error);
      
@@ -106,9 +116,12 @@ export class EntityFormComponent implements OnInit {
     })
   }
 
-  //form submit
+  //form submi
+ 
+  
 
   formSubmit(){
+    console.log(this.entityGroup);
     if(this.groupId){
       this.entityGroup.valid? this.updateEntityGroup() : "";
       // this.entityGroup.reset();
@@ -121,10 +134,12 @@ export class EntityFormComponent implements OnInit {
     formData.append('entityGroups',JSON.stringify(this.entityGroup.value));
      
     this.services.entityGroupsPost(formData).subscribe(sucess=>{
-     alert('Record Added');  
+      this.resetForm();
+      this.alertService.RecordAdded('crm/entity-groups');
+    //  alert('Record Added');  
     //  this.entityGroup.reset();
-    this.resetForm();
-    this.router.navigate(['crm/entity-groups']); 
+ 
+    // this.router.navigate(['crm/entity-groups']); 
 
     })
     // this.postEntityGroup();
@@ -155,8 +170,12 @@ export class EntityFormComponent implements OnInit {
       }
     }
   }
-
-
+  get productFamilyId() {
+    return this.entityGroup.get('productFamilyId');
+  }
+  get productLineId() {
+    return this.entityGroup.get('productLineId');
+  }
   get entityGroups(){
     return this.entityGroup.get('entityGroups');
   }
@@ -168,6 +187,7 @@ export class EntityFormComponent implements OnInit {
   get entityGroupsIcons(){
     return this.entityGroup.get('entityGroupsIcon');
   }
+
 
 
 }

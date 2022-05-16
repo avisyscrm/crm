@@ -3,6 +3,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { onlyChar } from '../../../client/validators/validation';
+import Swal from 'sweetalert2';
+import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
+
 
 @Component({
   selector: 'app-product-family-form',
@@ -12,7 +16,7 @@ import { onlyChar } from '../../../client/validators/validation';
 export class ProductFamilyFormComponent implements OnInit {
 
   
-  constructor( private service : CrmservicesService, private route:ActivatedRoute, private router:Router) { 
+  constructor( private service : CrmservicesService, private alertService: SweetalertServiceService, private route:ActivatedRoute, private router:Router) { 
   }
 
 
@@ -79,9 +83,11 @@ export class ProductFamilyFormComponent implements OnInit {
       formData.append('file', this.file);
       formData.append('productFamily', JSON.stringify(this.productFamily.value));
       this.service.productFamilyPost(formData).subscribe((res)=>{
-        alert('Record added');
+        // alert('Record added');
         this.resetForm();
-        this.router.navigate(['crm/product-family']); 
+        this.alertService.RecordAdded('crm/product-family');
+      
+        // this.router.navigate(['crm/product-family']); 
            
       },
       (error)=>{
@@ -102,9 +108,11 @@ export class ProductFamilyFormComponent implements OnInit {
     this.service.putProductFamily(formData).
     subscribe({
       next:(res)=>{
-        alert("Record Updated");
-        this.resetForm();
-        this.router.navigate(['crm/product-family']); 
+        // RecordUpdated()
+        // alert("Record Updated");
+        // this.resetForm();
+        // this.router.navigate(['crm/product-family']); 
+        this.alertService.RecordUpdated('crm/product-family');
       },
       error:()=>{
         alert("Error while updating the record");
@@ -152,4 +160,29 @@ export class ProductFamilyFormComponent implements OnInit {
       }
     }
 
+    
+// update
+  sweettalert7() {
+    Swal.fire({
+      title: 'Updated',
+      text: 'You data is updated!',
+      icon: 'success',
+      cancelButtonText: 'Ok',
+      
+    })
+
+  }
+
+  // add
+  sweettalert9() {
+
+    Swal.fire({
+      title: 'Success',
+      text: 'Record Added successfully',
+      icon: 'success',
+      cancelButtonText: 'Ok',
+
+
+    })
+  }
 }
