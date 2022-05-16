@@ -74,8 +74,8 @@ export class EntityFormComponent implements OnInit {
   });
 
   resetForm(){
-    this.entityGroup.controls['productFamilyId'].setValue("");
-    this.entityGroup.controls['productLineId'].setValue("");
+    this.entityGroup.controls['productFamilyId'].reset();
+    this.entityGroup.controls['productLineId'].reset();
     this.entityGroup.controls['entityGroups'].reset();
     this.entityGroup.controls['description'].reset();
     this.entityGroupsIcon = '';

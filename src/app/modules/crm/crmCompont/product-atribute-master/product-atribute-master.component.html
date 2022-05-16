@@ -11,7 +11,7 @@
         <form [formGroup]="assignRole">
             <div class="card card-height">
                 <div class="card-header pf-head">
-                    <h3 class="card-title ">Create Roles</h3>
+                    <h3 class="card-title ">Product Attribute Master</h3>
                 </div>
                 <div class="card-body">
                     <div class="row productfamily ">
@@ -109,8 +109,20 @@
                                     <label class="form-label"> Data Capture Control</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" formControlName="dataCaptureControl" class="form-control " [ngClass]="getControl.dataCaptureControl?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
-                                       >
+                                    <!-- <input type="text" formControlName="dataCaptureControl" class="form-control " 
+                                    [ngClass]="getControl.dataCaptureControl?.errors ? 'mandatory' : 'mandatoryG'" 
+                                     id="lname" name="last-name"
+                                       > -->
+                                       <select formControlName="dataCaptureControl" class="form-control " 
+                                       [ngClass]="getControl.dataCaptureControl?.errors ? 'mandatory' : 'mandatoryG'" 
+                                        id="lname" name="last-name">
+                                       <option value="">Select --</option>
+                                       <option value="text">Text</option>
+                                       <option value="radio">Radio</option>
+                                       <option value="checkbox">Checkbox</option>
+                                       <option value="date">Date</option>
+                                       <option value="dropdown">Dropdown</option>
+                                   </select>
                                        <div *ngIf="getControl.dataCaptureControl?.invalid && getControl.dataCaptureControl?.touched">
                                         <span class="validate-text" *ngIf="getControl.dataCaptureControl?.errors?.required">Please Enter Data Capture Control</span>
                                         <span class="validate-text" *ngIf="getControl.dataCaptureControl?.errors?.maxlength ">Data Capture Control  Length Should Be 40 Charechter</span>

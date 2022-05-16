@@ -469,7 +469,7 @@
     <nav id="left-sidebar-nav" class="sidebar-nav">
         <ul class="metismenu">
             <!-- <li class="g_heading">Directories</li> -->
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" *ngIf="crmisActive">
+            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" *ngIf="productisActive">
                 <a href="javascript:void(0)" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
                     aria-controls="collapseBasic" class="has-arrow arrow-c"><i
                         class="icon-rocket"></i><span>{{'leftmenu.menu1.mainHead' | translate}}</span></a>
@@ -487,7 +487,7 @@
                 </ul>
             </li>
 
-            <li  *ngIf="crmisActive">
+            <li  *ngIf="productisActive">
                 <a href="javascript:void(0)" (click)="isTemplateCollapsed = !isTemplateCollapsed"
                     [attr.aria-expanded]="!isTemplateCollapsed" aria-controls="JobCollapsed"
                     class="has-arrow arrow-c"><i class="icon-briefcase"></i><span>{{'leftmenu.menu2.mainHead' | translate}}</span></a>

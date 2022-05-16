@@ -70,7 +70,7 @@ export class ProductTemplateFormComponent implements OnInit {
     entityGroupsId:new FormControl('',selectValidation ),
       productEntityTemplateId: new FormControl(''),
       productEntityTemplateName: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
-      description: new FormControl('', [Validators.required, Validators.maxLength(400), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
+      description: new FormControl('', [Validators.required, Validators.maxLength(400), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
       productLineId: new FormControl('', selectValidation),
       version: new FormControl('',[Validators.required]),
       state: new FormControl('', [Validators.required, selectValidation]),
@@ -82,10 +82,10 @@ export class ProductTemplateFormComponent implements OnInit {
   //Reset Form  
 
    resetForm(){
-    this.productEntity.controls['entityGroupsId'].setValue("");
-    this.productEntity.controls['productFamilyId'].setValue("");
-    this.productEntity.controls['productLineId'].setValue("");
-    this.productEntity.controls['state'].setValue("");
+    this.productEntity.controls['entityGroupsId'].reset();
+    this.productEntity.controls['productFamilyId'].reset();
+    this.productEntity.controls['productLineId'].reset();
+    this.productEntity.controls['state'].reset();
     this.productEntity.controls['productEntityTemplateName'].reset();
     this.productEntity.controls['description'].reset();
     this.productEntity.controls['version'].reset();
