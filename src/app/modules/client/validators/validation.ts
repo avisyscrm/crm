@@ -1,6 +1,4 @@
-import { HttpClient } from "@angular/common/http";
-import { AbstractControl } from "@angular/forms";
-import{ CrmservicesService} from  '../../crm/crm-services/crmservices.service';
+import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
 
  export function zipCode(control: AbstractControl){
     if(control.value !== null ){
@@ -96,26 +94,29 @@ export function selectValidation(control: AbstractControl){
 
  
  // validate email content template variable
- export function emailTemplatevariableValidation(control: AbstractControl){
-    let emailContent = control.value;
-    let http:HttpClient;
-    let templateVariableList =   new CrmservicesService(http).getEmailTemplateVariables();
-    let curlyEmailContentTempVarFound = [];
-    const rxp = /{{([^}]+)}}/g;
-    let  curMatch;
-    while( curMatch = rxp.exec( emailContent ) ) {
-    curlyEmailContentTempVarFound.push( curMatch[1] );
+export function emailTemplatevariableValidatio(DataArray:any) :ValidatorFn {
+    return (control: AbstractControl):ValidationErrors | null =>  {
+        let emailTemplate = control.value
+        let emailContent = emailTemplate.emailTemplateContent;
+        let templateVariableList:any=DataArray;
+        let curlyEmailContentTempVarFound = [];
+        const rxp = /{{([^}]+)}}/g;
+        let  curMatch;
+        while( curMatch = rxp.exec( emailContent ) ) {
+        curlyEmailContentTempVarFound.push( curMatch[1] );
+        }
+        let totalTemplatevariable = templateVariableList?.length;
+        let templateVariableKeys = [];
+        for(let i = 0; i<totalTemplatevariable;i++) {
+            templateVariableKeys.push(templateVariableList[i].key) ;
+        }
+        let isInValid = null;
+        let isExist = curlyEmailContentTempVarFound.every(elem => templateVariableKeys.includes(elem));
+        if(!isExist)
+        return {
+            isEmailTemplateVariableInValid:true
+        }
+        return isInValid;
     }
-    let totalTemplatevariable = templateVariableList.length;
-    let templateVariableKeys = [];
-    for(let i = 0; i<totalTemplatevariable;i++) {
-        templateVariableKeys.push(templateVariableList[i].key) ;
-    }
-    let isInValid = null;
-    let isExist = curlyEmailContentTempVarFound.every(elem => templateVariableKeys.includes(elem));
-    if(!isExist)
-    return {
-        isEmailTemplateVariableInValid:true
-    }
-    return isInValid;
 }
+

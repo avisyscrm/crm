@@ -3,9 +3,10 @@ import { AbstractControl, FormControl, FormGroup, Validators } from '@angular/fo
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
-import { emailTemplatevariableValidation } from 'src/app/modules/client/validators/validation';
+import { emailTemplatevariableValidatio } from 'src/app/modules/client/validators/validation';
 import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
 import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
+import { isValid } from 'date-fns';
 
 
 @Component({
@@ -21,15 +22,20 @@ export class EmailtemplateformComponent implements OnInit {
   parameter:any;
   templateVariables:any=[];
   isEmailTemplateVariableInValid:boolean = false;
+ 
   constructor(private allService:CrmservicesService, private router:Router, private route:ActivatedRoute ) 
-  {}
+  {
+    this.allService.getEmailTemplateVariables().subscribe((response)=>{
+     this.templateVariables = response;
+    this.emailTemplate.setValidators(emailTemplatevariableValidatio(this.templateVariables))
+   })
+  }
 
   @ViewChild('ckeditorEleRef') ckeditorElementComponent:CKEditorComponent;
   ngOnInit(): void {
     this.route.queryParams.subscribe((params :any)=>{
       this.parameter = params.data;
       console.log("test"+this.parameter);
-      
      }) 
 
      if(this.parameter!=undefined){
@@ -38,13 +44,20 @@ export class EmailtemplateformComponent implements OnInit {
           this.emailTemplate.patchValue(response);
         })
      }
-    this.templateVariables=this.allService.getEmailTemplateVariables();
 
-     
   }
 
 
-
+  emailTemplate= new FormGroup({
+    emailTemplateId : new FormControl(''),
+    emailTemplateName : new FormControl('',[Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+    emailTemplateSubject : new FormControl('',[Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+    emailTemplateContent : new FormControl('',[Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+    createdBy : new FormControl('-1'),
+    updatedBy : new FormControl('-1'),
+  })
+   
+  
   updateEmailTemplate(){
     this.allService.updateEmailTemplateId(this.emailTemplate.value).subscribe((res)=>{
 
@@ -67,14 +80,7 @@ export class EmailtemplateformComponent implements OnInit {
     })
   }
 
-  emailTemplate= new FormGroup({
-    emailTemplateId : new FormControl(''),
-    emailTemplateName : new FormControl('',[Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
-    emailTemplateSubject: new FormControl('',[Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
-    emailTemplateContent : new FormControl('',[Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/),emailTemplatevariableValidation]),
-    createdBy : new FormControl('-1'),
-    updatedBy : new FormControl('-1'),
-  })
+ 
 
   submit(){
     console.log(this.emailTemplate);
@@ -108,19 +114,29 @@ export class EmailtemplateformComponent implements OnInit {
 
 
 validateTemplateVariables(){
-  let isInvalid =  emailTemplatevariableValidation(this.emailTemplate.get('emailTemplateContent'));
-  if(isInvalid){
-    this.isEmailTemplateVariableInValid = true;
-  } else {
-    this.isEmailTemplateVariableInValid = false;
-  }
-  
+    let emailContent = this.emailTemplate.get('emailTemplateContent').value;
+    let templateVariableList:any=this.templateVariables;
+    let curlyEmailContentTempVarFound = [];
+    const rxp = /{{([^}]+)}}/g;
+    let  curMatch;
+    while( curMatch = rxp.exec( emailContent ) ) {
+    curlyEmailContentTempVarFound.push( curMatch[1] );
+    }
+    let totalTemplatevariable = templateVariableList?.length;
+    let templateVariableKeys = [];
+    for(let i = 0; i<totalTemplatevariable;i++) {
+        templateVariableKeys.push(templateVariableList[i].key) ;
+    }
+    let isExist = curlyEmailContentTempVarFound.every(elem => templateVariableKeys.includes(elem));
+    if(!isExist)
+     {
+      this.isEmailTemplateVariableInValid = true;
+    } else {
+      this.isEmailTemplateVariableInValid = false;
+    }
 }
 
 setVariable(Templatevariable:string){
-  //console.log(this.emailTemplateContent);
- // console.log(this.ckeditorElementComponent.editorInstance.model.document.selection.getFirstPosition().path)
-  //  console.log(this.ckeditorElementComponent['elementRef'].nativeElement);
    let editor = this.ckeditorElementComponent.editorInstance;
    const selection = editor.model.document.selection;
    const range = selection.getFirstRange();
@@ -129,6 +145,5 @@ setVariable(Templatevariable:string){
    } );
   
   }
-
- 
 }
+
