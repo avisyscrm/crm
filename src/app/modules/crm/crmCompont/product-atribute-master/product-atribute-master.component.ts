@@ -12,6 +12,7 @@ import { CrmservicesService } from '../../crm-services/crmservices.service';
 export class ProductAtributeMasterComponent implements OnInit {
 
   label = "Update";
+  msg="";
   assignRole = new FormGroup({
     productAttributeId: new FormControl('', [Validators.required,Validators.maxLength(40)]),
     productAttributeName: new FormControl("",[Validators.required]),
@@ -32,12 +33,14 @@ export class ProductAtributeMasterComponent implements OnInit {
     createdBy: new FormControl('-1', []),
     isDeleted: new FormControl(false,[]),
   });
+  statusCode: any;
+  checkFlag: boolean;
   constructor(private crm:CrmservicesService,private alertService:SweetalertServiceService,
     private activatedRoute: ActivatedRoute ) {
       this.activatedRoute.queryParams.subscribe(params => {
-        
         if (params.productAttributeId != undefined && params.productAttributeId != null) {
           this.label = "Update";
+          this.checkFlag=true;
           this.crm.getProductAttributeById(params.productAttributeId).subscribe((sucess:any)=>{
             debugger
            this.assignRole.patchValue(sucess);
@@ -65,13 +68,18 @@ export class ProductAtributeMasterComponent implements OnInit {
         this.alertService.RecordUpdated('/crm/Product-Atribute-Summmary');
       })
     }
-   
   }
-
   check(){
     this.crm.chceck(this.assignRole.controls['productAttributeId'].value).subscribe((scucess:any)=>{
-      alert(scucess);
+      this.statusCode=scucess;
+      this.msg=scucess.message;
+      this.checkFlag=true;
+    },error=>{
+      if(error.status){
+        this.checkFlag=false;
+       
+        this.msg=error.error.message;
+      }
     });
   }
-
 }
