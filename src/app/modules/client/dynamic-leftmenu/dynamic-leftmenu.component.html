@@ -517,7 +517,7 @@
                                 (click)="ulP3('p'+i+'p'+j+'p'+k);$event.stopPropagation()">
                                 <span id="xxxp{{i}}p{{j}}p{{k}}" class="caret crm-green-tea">{{x2.name}}</span>
                                 <ul class="nested " id="p{{i}}p{{j}}p{{k}}">
-                                    <li *ngFor="let x3 of x2.children" (click)="press(x3?.url);$event.stopPropagation()"
+                                    <li *ngFor="let x3 of x2.children" (click)="press(x3?.url,x3?.name);$event.stopPropagation()"
                                         class="content">{{x3?.name}}</li>
 
                                 </ul>
@@ -542,7 +542,7 @@
                             (click)="ulP3('p'+i+'p'+j+'p'+k);$event.stopPropagation()">
                             <span id="xxxp{{i}}p{{j}}p{{k}}" class="caret crm-green-tea">{{x2.name}}</span>
                             <ul class="nested " id="p{{i}}p{{j}}p{{k}}">
-                                <li *ngFor="let x3 of x2.children" (click)="press(x3?.url);$event.stopPropagation()"
+                                <li *ngFor="let x3 of x2.children" (click)="press(x3?.url,x3?.name);$event.stopPropagation()"
                                     class="content">{{x3?.name}}</li>
 
                             </ul>

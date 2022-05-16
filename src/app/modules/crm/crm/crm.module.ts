@@ -19,7 +19,6 @@ import { ProductTabsComponent } from '../crmCompont/product-tabs/product-tabs.co
 import { ProductTabsFormComponent } from '../crmCompont/product-tabs-form/product-tabs-form.component';
 import { ProductFamilyFormComponent } from '../crmCompont/product-family-form/product-family-form.component';
 import { SharedModule } from 'src/app/shared/models/shared/shared.module';
-
 import { DynamicformViewComponent } from '../crmCompont/dynamicform-view/dynamicform-view.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MyInterceptor } from '../../auth/login/intersepter.service';
@@ -29,14 +28,8 @@ import { ChangepasswordComponent } from '../crmCompont/changepassword/changepass
 import { DynamicformDatatableComponent } from '../crmCompont/dynamicform-datatable/dynamicform-datatable.component';
 import { EmailtemplateComponent } from '../crmCompont/emailtemplate/emailtemplate.component';
 import { ScheduleemailFormComponent } from '../crmCompont/scheduleemail-form/scheduleemail-form.component';
-import { ProductAtributeMasterComponent } from '../crmCompont/product-atribute-master/product-atribute-master.component';
 import { ProductAtributeMasterSummmaryComponent } from '../crmCompont/product-atribute-master-summmary/product-atribute-master-summmary.component';
-// import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-
-
-// import { ProductFamilyComponent } from './modules/crm/crmCompont/product-family/product-family.component';
-
-
+import { ProductAtributeMasterComponent } from '../crmCompont/product-atribute-master/product-atribute-master.component';
 @NgModule({
   declarations: [
     LayoutCrmComponent,
@@ -63,8 +56,8 @@ import { ProductAtributeMasterSummmaryComponent } from '../crmCompont/product-at
     DynamicformDatatableComponent,
     EmailtemplateComponent,
     ScheduleemailFormComponent,
-    ProductAtributeMasterComponent,
     ProductAtributeMasterSummmaryComponent,
+    ProductAtributeMasterComponent
  
   ],
   imports: [

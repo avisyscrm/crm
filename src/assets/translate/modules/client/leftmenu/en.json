@@ -1,0 +1,23 @@
+{
+    "leftmenu":{
+
+        "menu1":{
+            "mainHead":"Masters",
+            "subHead1":"Product Family",
+            "subHead2":"Product Line",
+            "subHead3":"Entity Group"
+        },
+        "menu2":{
+            "mainHead":"Product Template",
+            "subHead1":"Product Template",
+            "subHead2":"Product Tab",
+            "subHead3":"Product Attribute"
+        },
+        "menu3":{
+            "mainHead":"Transaction",
+            "subHead1":"Transaction 1",
+            "subHead2":"Transaction 2",
+            "subHead3":"Transaction 3"
+        }
+    }
+}

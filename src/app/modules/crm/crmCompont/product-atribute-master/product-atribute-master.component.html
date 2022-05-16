@@ -21,7 +21,7 @@
                                     <label class="form-label"> Product Attribute Id</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <input  [readonly]="label=='Update'" type="text" formControlName="productAttributeId" class="form-control  mandatory" id="lname" name="last-name"
+                                    <input   [ngClass]="getControl.productAttributeId?.errors ? 'mandatory' : 'mandatoryG'"  [readonly]="label=='Update'" type="text" formControlName="productAttributeId" class="form-control" id="lname" name="last-name"
                                       >
                                       <div *ngIf="getControl.productAttributeId?.invalid && getControl.productAttributeId?.touched">
                                         <span class="validate-text" *ngIf="getControl.productAttributeId?.errors?.required">Please Enter Product Attribute Id</span>
@@ -40,7 +40,7 @@
                                     <label class="form-label"> Product Attribute Name</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" formControlName="productAttributeName" class="form-control mandatory" id="lname" name="last-name"
+                                    <input type="text" formControlName="productAttributeName" class="form-control"  [ngClass]="getControl.productAttributeName?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
                                        >
                                        <div *ngIf="getControl.productAttributeName?.invalid && getControl.productAttributeName?.touched">
                                         <span class="validate-text" *ngIf="getControl.productAttributeName?.errors?.required">Please Enter Product Attribute Name</span>
@@ -58,7 +58,7 @@
                                     <label class="form-label"> Description</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <textarea type="text" formControlName="description" class="form-control mandatory" id="lname" name="last-name"
+                                    <textarea type="text" formControlName="description" class="form-control" [ngClass]="getControl.description?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
                                       ></textarea>
                                       <div *ngIf="getControl.description?.invalid && getControl.description?.touched">
                                         <span class="validate-text" *ngIf="getControl.description?.errors?.required">Please Enter Description</span>
@@ -74,7 +74,7 @@
                                     <label class="form-label"> Data Type</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text"  formControlName="dataType" class="form-control mandatory" id="lname" name="last-name"
+                                    <input type="text"  formControlName="dataType" class="form-control" [ngClass]="getControl.dataType?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
                                        >
                                        <div *ngIf="getControl.dataType?.invalid && getControl.dataType?.touched">
                                         <span class="validate-text" *ngIf="getControl.dataType?.errors?.required">Please Enter Data Type</span>
@@ -92,7 +92,7 @@
                                     <label class="form-label"> Product Attribute Length</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="number" formControlName="productAttributeLength" class="form-control mandatory" id="lname" name="last-name"
+                                    <input type="number" formControlName="productAttributeLength" class="form-control " [ngClass]="getControl.productAttributeLength?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
                                       >
                                       <div *ngIf="getControl.productAttributeLength?.invalid && getControl.productAttributeLength?.touched">
                                         <span class="validate-text" *ngIf="getControl.productAttributeLength?.errors?.required">Please Enter Product Attribute Length</span>
@@ -108,7 +108,7 @@
                                     <label class="form-label"> Data Capture Control</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" formControlName="dataCaptureControl" class="form-control mandatory" id="lname" name="last-name"
+                                    <input type="text" formControlName="dataCaptureControl" class="form-control " [ngClass]="getControl.dataCaptureControl?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
                                        >
                                        <div *ngIf="getControl.dataCaptureControl?.invalid && getControl.dataCaptureControl?.touched">
                                         <span class="validate-text" *ngIf="getControl.dataCaptureControl?.errors?.required">Please Enter Data Capture Control</span>
@@ -126,7 +126,7 @@
                                     <label class="form-label"> Default Value</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" formControlName="defaultValue" class="form-control mandatory" id="lname" name="last-name"
+                                    <input type="text" formControlName="defaultValue" class="form-control " [ngClass]="getControl.defaultValue?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
                                       >
                                       <div *ngIf="getControl.defaultValue?.invalid && getControl.defaultValue?.touched">
                                         <span class="validate-text" *ngIf="getControl.defaultValue?.errors?.required">Please Enter Default Value</span>

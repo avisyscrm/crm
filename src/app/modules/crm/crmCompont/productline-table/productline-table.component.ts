@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 
 @Component({
@@ -11,7 +12,7 @@ export class ProductlineTableComponent implements OnInit {
 
   permission:any=[true,true,true];
   headerList:any=[];
-  constructor(private allService: CrmservicesService,private router:Router) { }
+  constructor(private allService: CrmservicesService,private router:Router,private sweetAlert: SweetalertServiceService) { }
   data:any={};
   ajayStri : any ;
   pageNo:any;
@@ -79,8 +80,7 @@ export class ProductlineTableComponent implements OnInit {
       
       this.allService.deleteLine(data.data.productLineId, data.data.createdBy)
       .subscribe((res)=>{
-        console.log(res);
-        // alert('Record Deleted');
+        this.sweetAlert.recordDeleted();
         this.onrefresh();
         this.onDelete();
       })  

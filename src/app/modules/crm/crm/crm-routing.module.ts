@@ -8,7 +8,6 @@ import { ProductlineFormComponent } from './../crmCompont/productline-form/produ
 import { ProductlineTableComponent } from './../crmCompont/productline-table/productline-table.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HrActivitiesComponent } from '../../client/hrms/hr-activities/hr-activities.component';
 import { HrEventsComponent } from '../../client/hrms/hr-events/hr-events.component';
 import { HrHolidaysComponent } from '../../client/hrms/hr-holidays/hr-holidays.component';
 import { HrPayrollComponent } from '../../client/hrms/hr-payroll/hr-payroll.component';

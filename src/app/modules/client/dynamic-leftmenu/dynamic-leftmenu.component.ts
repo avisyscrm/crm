@@ -119,9 +119,8 @@ openDyanmicForm(){
     this.isSelected = !this.isSelected;
   }
   
-  press(data:String | undefined){
-    // alert('lkjhvc'+data)
-    this.allserviceService.isStringUrl.next(data);
+  press(data:String | undefined,name){
+    this.allserviceService.isStringUrl.next({data:data,name:name});
   }
   // 
 

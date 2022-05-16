@@ -35,10 +35,11 @@ export class ProductAtributeMasterComponent implements OnInit {
   constructor(private crm:CrmservicesService,private alertService:SweetalertServiceService,
     private activatedRoute: ActivatedRoute ) {
       this.activatedRoute.queryParams.subscribe(params => {
-        debugger
+        
         if (params.productAttributeId != undefined && params.productAttributeId != null) {
           this.label = "Update";
           this.crm.getProductAttributeById(params.productAttributeId).subscribe((sucess:any)=>{
+            debugger
            this.assignRole.patchValue(sucess);
           });
         } else {

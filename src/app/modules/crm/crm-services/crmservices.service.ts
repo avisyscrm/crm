@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'; 
 import { BehaviorSubject, Observable } from 'rxjs';
+//import { Producttemplatesection } from 'src/app/app/modules/client/Producttemplatesection.model';
 import { environment } from 'src/environments/environment';
 import { assingroles } from '../../admin/assignrole';
 import { ChangePassword } from '../../auth/changepassword';
@@ -23,6 +24,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
 
   
   export class CrmservicesService {
+ 
     getProductAttributeById(data){
       return this.http.get(environment.baseUrl+"/getProductAttributeById/"+data);
     }
@@ -43,12 +45,11 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
   getMasterProductAtribute(url) {
     return this.http.get(environment.baseUrl+"/getAllProductAttribute?"+url);
   }
+   
     edituser(id: any) {
       return this.http.get(this.editUsers+id);
     }
-  // getAllUsers() {
-  //   throw new Error('Method not implemented.');
-  // }
+ 
 
   gettabEditData(templateId,tabId,version) {
     return this.http.get(this.getTabWiseEditData+"templateId="+templateId+"&tabId="+tabId+"&version="+version);
@@ -523,8 +524,8 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
       return this.http.get(this.getdynamicTemplateData);
     }
     
-     public isStringUrl = new BehaviorSubject<String | undefined>("");
-     emit<T>(value : string){
+     public isStringUrl = new BehaviorSubject<any | undefined>("");
+     emit<T>(value : any){
         this.isStringUrl.next(value);
       }
     on<T>():Observable<String | undefined>{
@@ -643,5 +644,7 @@ PostChangePasswordWithRandomString(data : PostForgotPassword){
 getEmailTemplateVariables(){
   return [{'key':'CUSTOMER_NAME','value': 'CUSTOMERNAME'},{'key':'CUSTOMER_CONTACT_NUMBER','value': 'CUSTOMERCONTACTNUMBER'},{'key':'MOBILE_NUMBER','value':'MOBILENUMBER'}];
 }
+
+languageService = new BehaviorSubject('en');
 
 }
