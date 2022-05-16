@@ -130,6 +130,7 @@ export class SweetalertServiceService {
 
 roleAssigned() {
   Swal.fire({
+    title: 'Assigned',
     text: 'Role Assigned Successfully',
     icon: 'success',
     confirmButtonText: 'OK',
