@@ -1,3 +1,4 @@
+import { ProfilepageComponent } from './../crmCompont/profilepage/profilepage.component';
 import { ScheduleemailFormComponent } from './../crmCompont/scheduleemail-form/scheduleemail-form.component';
 import { EmailtemplateformComponent } from './../crmCompont/emailtemplateform/emailtemplateform.component';
 import { EmailtemplateComponent } from './../crmCompont/emailtemplate/emailtemplate.component';
@@ -173,6 +174,11 @@ const routes: Routes = [
                           path: 'scheduleEmail',
                           component: ScheduleemailFormComponent,
                           data: { title: 'Schedule Email ' }
+                        },
+                        {
+                          path: 'profile',
+                          component: ProfilepageComponent,
+                          data: { title: 'Profile' }
                         },
                       ]     
                       },
