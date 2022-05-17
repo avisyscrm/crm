@@ -29,7 +29,7 @@ export class ProductAtributeMasterSummmaryComponent implements OnInit {
     }else if(event.event=='edit'){
       this.router.navigate(["/crm/Product-Atribute-Master"],{ queryParams: event.data});
     }else if(event.event=='delete'){
-      this.crmService.deleteProductAttribute(event.data.productAttributeId,event.data.updatedBy).subscribe(sucess=>{
+      this.crmService.deleteProductAttribute(event.data.productAttributeId,JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe(sucess=>{
         this.sweetAlert.recordDeleted();
       this.changePageSortSearch(this.url);
       });
