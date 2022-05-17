@@ -30,7 +30,7 @@ export class ProductAtributeMasterComponent implements OnInit {
     runTimeConfigurable: new FormControl(false,[Validators.required]),
     assetizable: new FormControl(false, [Validators.required]),
     status: new FormControl(false,[Validators.required]),
-    createdBy: new FormControl('-1', []),
+    createdBy: new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId, []),
     isDeleted: new FormControl(false,[]),
   });
   statusCode: any;

@@ -26,15 +26,11 @@ export class LoginComponent implements OnInit {
   })
 
   submit() {
-    
     this.allservice.login(this.createUser.value).subscribe((data: any) => {
-      console.log(data);
-      
       sessionStorage.setItem('username', this.createUser.get('username').value);      
       sessionStorage.setItem('access_token', data.access_token);
-      sessionStorage.setItem('session_id', data.session_state); 
-      // alert(sessionStorage.getItem('access_token'));
-      // this.router.navigate(["/crm"])
+      sessionStorage.setItem('session_id', data.session_state);
+      sessionStorage.setItem('userDetails',JSON.stringify(data))
       this.router.navigate(["master"])
     }, error => {
       console.log(error);
@@ -45,7 +41,6 @@ export class LoginComponent implements OnInit {
       }
       else{
         this.invalidUser = true;
-        // alert("Error while logging infdgd.")
       }
       
       
