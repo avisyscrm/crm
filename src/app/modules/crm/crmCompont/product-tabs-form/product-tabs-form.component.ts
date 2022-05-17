@@ -52,7 +52,8 @@ export class ProductTabsFormComponent {
       this.AddTabs.controls['type'].patchValue('Section');
       this.AddTabs.addControl('screenLayout', new FormControl('', Validators.required));
       this.AddTabs.addControl('parentId', new FormControl('', Validators.required));
-    } else {
+    }
+     else {
       this.AddTabs.controls['type'].patchValue('Tab');
       this.AddTabs.removeControl('screenLayout');
       this.AddTabs.removeControl('parentId');
