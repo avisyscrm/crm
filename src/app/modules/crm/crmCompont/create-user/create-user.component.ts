@@ -27,7 +27,7 @@ export class CreateUserComponent implements OnInit {
   passwordShown: boolean = false;
   passwordType1: string = 'password';
   passwordShown1: boolean = false;
-  // createUser = new FormGroup({});
+  createUser = new FormGroup({});
   
   constructor(private alertService: SweetalertServiceService, private fb: FormBuilder, private service: CrmservicesService, private http: HttpClient, private router: Router, private route: ActivatedRoute,) {
     this.route.queryParams.subscribe(params => {
@@ -36,35 +36,42 @@ export class CreateUserComponent implements OnInit {
           this.label = "Update";
           this.createUser.addControl("userId",
             new FormControl(params.id, Validators.required));
-          this.createUser.removeControl('password');
-          this.createUser.removeControl('confirm_password');
+         
+          // this.createUser.get('confirm_password').clearValidators;
+          // this.createUser.get('confirm_password').updateValueAndValidity();
           this.createUser.patchValue(data);
           this.alluserrolesdata = data.avaliableRoles;
           this.SelectedArray = data.role;
+          this.createUser.removeControl('password');
+          this.createUser.removeControl('confirm_password');
         });
       } else {
         this.label = "Add";
-        this.service.getallRoles().subscribe((data: any) => {
+          this.service.getallRoles().subscribe((data: any) => {
           let data1 = [];
           
           data1 = data.map(x => x.name);
           this.alluserrolesdata = data1;
         })
+        // this.createUser.get('password').setValidators([Validators.required]);
+        // this.createUser.get('password').updateValueAndValidity();
+        // this.createUser.get('confirm_password').setValidators([Validators.required]);
+        // this.createUser.get('confirm_password').updateValueAndValidity();
       }
     });
 
-    // this.createUser = fb.group({
-    //   firstName: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]],
-    //   lastName: ['', Validators.required],
-    //   email: ['', Validators.required],
-    //   password: ['', Validators.required],
-    //   confirm_password: ['', Validators.required],
-    //   role: ['', Validators.required],
-    //   isTemporary : [false],
-    // }, {
-    //   validator: ConfirmedValidator('password', 'confirm_password')
-    // }
-    // )
+    this.createUser = fb.group({
+      firstName: ['', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]],
+      lastName: ['', Validators.required],
+      email: ['', Validators.required],
+      password: ['',Validators.required],
+      confirm_password: ['',Validators.required],
+      role: ['', Validators.required],
+      isTemporary : [false],
+    }, {
+      validator: ConfirmedValidator('password', 'confirm_password')
+    }
+    )
 
 
   }
@@ -98,15 +105,15 @@ export class CreateUserComponent implements OnInit {
   }
 
 
-  createUser = new FormGroup({
-    firstName: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
-    lastName: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.required),
-    password: new FormControl('', Validators.required),
-    confirm_password: new FormControl('', Validators.required),
-    role: new FormControl('', Validators.required),
-    isTemporary : new FormControl(false),
-  })
+  // createUser = new FormGroup({
+  //   firstName: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
+  //   lastName: new FormControl('', Validators.required),
+  //   email: new FormControl('', Validators.required),
+  //   password: new FormControl('', Validators.required),
+  //   confirm_password: new FormControl('', Validators.required),
+  //   role: new FormControl('', Validators.required),
+  //   isTemporary : new FormControl(false),
+  // })
 
   getRoles() {
     this.service.getAllRoles().subscribe((response) => {
@@ -129,7 +136,9 @@ export class CreateUserComponent implements OnInit {
   submit() {
     console.log(this.createUser.value);
     if (this.label == "Update") {
+      
       this.service.postOldUser(this.createUser.value).subscribe((res) => {
+     
         this.alertService.RecordUpdated('/crm/user-all');
       },
         (error) => {
