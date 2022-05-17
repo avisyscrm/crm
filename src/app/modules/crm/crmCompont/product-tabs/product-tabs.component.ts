@@ -19,7 +19,7 @@ headerList:any=[];
       this.headerList=sucess.headerlist  ; 
       this.data=sucess.page;
       },error=>{
-        alert(error);
+        // alert(error);
       }
       );
   }
@@ -38,7 +38,7 @@ this.router.navigate(['crm/product-tabs-form'],{ queryParams: { data: JSON.strin
     this.allService.getEntityTemplate(url).subscribe(sucess=>{
       this.data=sucess.page;
       },error=>{
-        alert(error);
+        // alert(error);
       }
       );
   }

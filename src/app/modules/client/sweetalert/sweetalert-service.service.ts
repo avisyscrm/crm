@@ -108,6 +108,24 @@ export class SweetalertServiceService {
 
 }
 
+RecordUpdatedStatic() {
+  Swal.fire({
+    title: 'Updated',
+    text: 'Your data is Updated ',
+    icon: 'success',
+    confirmButtonText: 'OK',
+    showClass: {
+      backdrop: 'swal2-noanimation', // disable backdrop animation
+      popup: '',                     // disable popup animation
+      icon: ''                       // disable icon animation
+    },
+    hideClass: {
+      popup: '',                     // disable popup fade-out animation
+    },
+  })
+
+}
+
 // add
  RecordAdded(path: any) {
   Swal.fire({
@@ -128,8 +146,27 @@ export class SweetalertServiceService {
   })
 }
 
+// add
+RecordAddedStatic() {
+  Swal.fire({
+    title: 'Added',
+    text: 'Record added successfully ',
+    icon: 'success',
+    confirmButtonText: 'OK',
+    showClass: {
+      backdrop: 'swal2-noanimation', // disable backdrop animation
+      popup: '',                     // disable popup animation
+      icon: ''                       // disable icon animation
+    },
+    hideClass: {
+      popup: '',                     // disable popup fade-out animation
+    },
+  })
+}
+
 roleAssigned() {
   Swal.fire({
+    title: 'Assigned',
     text: 'Role Assigned Successfully',
     icon: 'success',
     confirmButtonText: 'OK',

@@ -1,0 +1,83 @@
+{
+    "forms":{
+
+        "productFamily":{
+            "product-family-heading":"PRODUCT FAMILY ",
+            "product-family":"Product Family ",
+            "description":"Description",
+            "product-family-icon":"Product Family Icon"
+        },
+        "productLine":{
+            "Product-Line-heading":"PRODUCT LINE",
+            "product-family":"Product Family Id",
+            "product-line":"Product Line ",
+            "description":"Description",
+            "product-line-icon":"Product Line Icon"
+        },
+        "entityGroup":{
+            "Entity-group-heading":"ENTITY GROUP",
+            "product-family":"Product Family Id",
+            "product-line":"Product Line ",
+            "entity-groups":"Entity Groups ",
+            "description":"Description",
+            "entity-icon":"Entity Group Icon"
+        },
+        "template-form":{
+            "template-form-heading":"PRODUCT ENTITY TEMPLATES",
+            "product-family":"Product Family Id",
+            "product-line":"Product Line ",
+            "entity-groups":"Entity Groups ",
+            "product-entity-template":"Product Entity Template Name ",
+            "description":"Description",
+            "version":"Version",
+            "state":"State"
+        },
+        "template-tab":{
+            "template-tab-heading":"PRODUCT TEMPLATE TAB",
+            "product-entity-template":"Product Template  ",
+            "add-tab":"Add Tab ",
+            "add-section":"Add Section",
+            "tab-name":"Tab Name",
+            "sequence":"Sequence ",
+            "parent-id":"Parent Id",
+            "section-name":"Section Name",
+            "screenlayout":"Screen Layout"
+        },
+        "template-attribute":{
+            "template-attribute-heading":"PRODUCT ENTITY TEMPLATE ATTRIBUTES",
+            "product-entity-template-id":"Product Template ID ",
+            "tab":"Tab ",
+            "section":" Section",
+            "tab-name":"Tab Name",
+            "sequence":"Sequence Id ",
+            "product-attribute":"Product Attribute ",
+            "description":"Description",
+            "attribute-data-type":"Product Attribute Data Type",
+            "attribute-length":"Product Attribute Length",
+            "data-capture":"Data Capture Control",
+            "values":"Values",
+            "mandatory":"Mandatory",
+            "editable":"Editable"
+        },
+        "template-attribute-master":{
+            "template-master":"PRODUCT  ATTRIBUTE MASTER",
+            "Product-Attribute-Id":"Product Attribute ID ",
+            "Product-Attribute-Name":"Product Attribute Name ",
+            "Description":" Description",
+            "Data-Type":"Data Type",
+            "ProductAttributeLength":"Product Attribute Length ",
+            "data-capture":"Data Capture Control",
+            "default-values":"Default Value",
+            "read-only":"Read Only",
+            "visible":"Visible",
+            "Has-Rule":"Has Rule",
+            "Filterable":"Filterable",
+            "hidden":"Hidden",
+            "required":"Required",
+            "Run-time-configuration":"Run Time Configuration",
+            "assetizable":"Assetizable",
+            "status":"Status"
+     
+        }
+    }
+}

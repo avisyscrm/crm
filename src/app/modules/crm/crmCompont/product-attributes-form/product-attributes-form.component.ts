@@ -286,7 +286,7 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
      }
      else if(data.event == 'delete'){
    
-       this.service.deleteProdEntityAttribute(data.data.productEntityTemplateAttributesId,data.data.updatedBy).subscribe((res)=>{
+       this.service.deleteProdEntityAttribute(data.data.productEntityTemplateAttributesId,0).subscribe((res)=>{
         this.sweetAlert.recordDeleted();
         this.onDelete(data.data.productEntityTemplateId);
         this.getDatataless(data.data.productEntityTemplateId);

@@ -11,14 +11,14 @@
         <form [formGroup]="assignRole">
             <div class="card card-height">
                 <div class="card-header pf-head">
-                    <h3 class="card-title ">Create Roles</h3>
+                    <h3 class="card-title "><span>{{'forms.template-attribute-master.template-master' | translate}}</span></h3>
                 </div>
-                <div class="card-body">
+                 <div class="card-body">
                     <div class="row productfamily ">
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> Product Attribute Id</label>
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.Product-Attribute-Id' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-6">
                                     <input   [ngClass]="getControl.productAttributeId?.errors ? 'mandatory' : 'mandatoryG'"  [readonly]="label=='Update'" type="text" formControlName="productAttributeId" class="form-control" id="lname" name="last-name"
@@ -38,7 +38,7 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> Product Attribute Name</label>
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.Product-Attribute-Name' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
                                     <input type="text" formControlName="productAttributeName" class="form-control"  [ngClass]="getControl.productAttributeName?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
@@ -56,7 +56,7 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> Description</label>
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.Description' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
                                     <textarea type="text" formControlName="description" class="form-control" [ngClass]="getControl.description?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
@@ -72,7 +72,7 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> Data Type</label>
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.Data-Type' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
                                     <input type="text"  formControlName="dataType" class="form-control" [ngClass]="getControl.dataType?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
@@ -90,7 +90,7 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> Product Attribute Length</label>
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.ProductAttributeLength' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
                                     <input type="number" formControlName="productAttributeLength" class="form-control " [ngClass]="getControl.productAttributeLength?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
@@ -106,7 +106,7 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> Data Capture Control</label>
+                                    <label class="form-label">  <span>{{'forms.template-attribute-master.data-capture' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
                                     <input type="text" formControlName="dataCaptureControl" class="form-control " [ngClass]="getControl.dataCaptureControl?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
@@ -124,7 +124,7 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> Default Value</label>
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.default-values' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
                                     <input type="text" formControlName="defaultValue" class="form-control " [ngClass]="getControl.defaultValue?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
@@ -140,7 +140,7 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> Read Only</label>
+                                    <label class="form-label">  <span>{{'forms.template-attribute-master.read-only' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
                                        <div class="custom-switches-stacked">
@@ -157,7 +157,7 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> Visible</label>
+                                    <label class="form-label">  <span>{{'forms.template-attribute-master.visible' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
                                       <div class="custom-switches-stacked">
@@ -172,7 +172,7 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label">Filterable</label>
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.Filterable' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
                                     <!-- <input type="text" formControlName="filterable" class="form-control mandatory" id="lname" name="last-name"
@@ -191,7 +191,7 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> Has Rule</label>
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.Has-Rule' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
                                    
@@ -208,7 +208,7 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                             <div class="col-md-4">
-                                <label class="form-label">Hidden</label>
+                                <label class="form-label"><span>{{'forms.template-attribute-master.hidden' | translate}}</span></label>
                             </div>
                                 <div class="col-md-8">
                                     <div class="custom-switches-stacked">
@@ -225,7 +225,7 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                             <div class="col-md-4">
-                                <label class="form-label">Required</label>
+                                <label class="form-label"><span>{{'forms.template-attribute-master.required' | translate}}</span></label>
                             </div>
                                 <div class="col-md-8">
                                     <div class="custom-switches-stacked">
@@ -240,7 +240,7 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                             <div class="col-md-4">
-                                <label class="form-label">Run Time Configuration</label>
+                                <label class="form-label"><span>{{'forms.template-attribute-master.Run-time-configuration' | translate}}</span></label>
                             </div>
                                 <div class="col-md-8">
                                     <div class="custom-switches-stacked">
@@ -258,7 +258,7 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                             <div class="col-md-4">
-                                <label class="form-label">Assetizable</label>
+                                <label class="form-label"><span>{{'forms.template-attribute-master.assetizable' | translate}}</span></label>
                             </div>
                                 <div class="col-md-8">
                                     <div class="custom-switches-stacked">
@@ -273,7 +273,7 @@
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label">Status</label>
+                                    <label class="form-label"><span>{{'forms.template-attribute-master.status' | translate}}</span></label>
                                 </div>
                                     <div class="col-md-8">
                                         <div class="custom-switches-stacked">

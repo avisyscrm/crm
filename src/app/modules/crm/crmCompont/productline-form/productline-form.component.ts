@@ -80,7 +80,7 @@ export class ProductlineFormComponent implements OnInit {
 
   resetForm() {
 
-    this.addProductLine.controls['productFamilyId'].setValue("");
+    this.addProductLine.controls['productFamilyId'].reset();
     this.addProductLine.controls['productLine'].reset();
     this.addProductLine.controls['description'].reset();
     this.productLineIcons = '';

@@ -1,0 +1,84 @@
+{
+    "forms":{
+
+        "productFamily":{
+            "product-family-heading":"PRODUKTFAMILIE ",
+            "product-family":"Produktfamilie",
+            "description":"Beschreibung",
+            "product-family-icon":"Symbol für die Produktfamilie"
+         },
+        "productLine":{
+            "Product-Line-heading":"PRODUKTPALETTE",
+            "product-family":"Produktfamilie",
+            "product-line":"Produktfamilie",
+            "description":"Beschreibung",
+            "product-line-icon":"Symbol für die Produktlinie"
+        },
+        "entityGroup":{
+            "Entity-group-heading":"ENTITÄTSGRUPPE",
+            "product-family":"Produktfamilie",
+            "product-line":"Produktfamilie",
+            "entity-groups":"Entitätsgruppen ",
+            "description":"Beschreibung",
+            "entity-icon":"Symbol für die Entitätsgruppe"
+        },
+        "template-form":{
+            "template-form-heading":"PRODUKTENTITÄTSVORLAGEN",
+            "product-family":"Produktfamilie",
+            "product-line":"Produktfamilie",
+            "entity-groups":"Entitätsgruppen ",
+            "product-entity-template":"Name der Produktentitätsvorlage ",
+            "description":"Beschreibung",
+            "version":"Ausführung",
+            "state":"Bundesland"
+        },
+        "template-tab":{
+            "template-tab-heading":"PRODUKTVORLAGEN-TAB",
+            "product-entity-template":"Name der Produktentitätsvorlage  ",
+            "tab-name":"Registerkartenname",
+            "add-tab":" Hinzufügen Tab ",
+            "add-section":" Hinzufügen Abschnitt",
+            "sequence":"Reihenfolge ",
+            "parent-id":"Eltern ID",
+            "section-name":"Abteilungsname",
+            "screenlayout":"Bildschirmgestaltung"
+        },
+        "template-attribute":{
+            "template-attribute-heading":"PRODUKTENTITÄTSVORLAGEN-ATTRIBUTE",
+            "product-entity-template-id":"Produktvorlagen-ID ",
+            "tab":"Tab ",
+            "section":" Abschnitt",
+            "tab-name":"Registerkartenname",
+            "sequence":"Sequenz-ID ",
+            "product-attribute":"Produkteigenschaft ",
+            "description":"Beschreibung",
+            "attribute-data-type":"Produktattribut-Datentyp",
+            "attribute-length":"Länge des Produktattributs",
+            "data-capture":"Steuerung der Datenerfassung",
+            "values":"Werte",
+            "mandatory":"Verpflichtend",
+            "editable":"Bearbeitbar"
+        },
+        "template-attribute-master":{
+            "template-master":"PRODUKTATTRIBUT MASTER",
+            "Product-Attribute-Id":"Produktattribut-ID ",
+            "Product-Attribute-Name":"Name des Produktattributs ",
+            "Description":" Beschreibung",
+            "Data-Type":"Datentyp",
+            "ProductAttributeLength":"Länge des Produktattributs ",
+            "data-capture":"Steuerung der Datenerfassung",
+            "default-values":"Standardwert",
+            "read-only":"Schreibgeschützt",
+            "visible":"Sichtbar",
+            "Has-Rule":"Hat Regel",
+            "Filterable":"Filterbar",
+            "hidden":"Versteckt",
+            "required":"Erforderlich",
+            "Run-time-configuration":"Laufzeitkonfiguration",
+            "assetizable":"Aktivierbar",
+            "status":"Status"
+     
+        }
+
+    }
+}

@@ -8,7 +8,7 @@
                         </a></li>
                     <li class="nav-item"><a class="nav-link" href="#"></a>
                     </li>
-
+ 
                 </ul>
                 <!-- <div class="header-action">
                     <button type="button" class="btn btn-primary m-3"><i class="fe fe-plus mr-2"></i>Add</button>
@@ -23,14 +23,14 @@
                 <form [formGroup]="productEntity" (submit)="submitForm()"> 
                 <div class="card card-height">
                     <div class="card-header pf-head">
-                        <h3 class="card-title ">PRODUCT ENTITY TEMPLATES</h3>
+                        <h3 class="card-title "><span>{{'forms.template-form.template-form-heading' | translate}}</span></h3>
                     </div>
                     <div class="card-body">
                         <div class="row productfamily ">
                             <div class="col-md-6">
                                <div class="row mb-3">
                                     <div class=" form-group col-md-4">
-                                        <label class="form-label ">Product Family Id</label>
+                                        <label class="form-label "><span>{{'forms.template-form.product-family' | translate}}</span></label>
                                     </div>
                                     <div class=" form-group col-md-8">
                                         <select  #mySelect (change)="onOptionsSelected(mySelect.value)" name="cars" id="cars" class="form-control mandatory" formControlName="productFamilyId">
@@ -50,7 +50,7 @@
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label class="form-label">Product Line Id</label>
+                                        <label class="form-label"><span>{{'forms.template-form.product-line' | translate}}</span></label>
                                     </div>
                                     <div class="col-md-8">
                                         <select  #mySelect1 (change)="onOptionsSelectedEntity(mySelect1.value)"  name="cars" id="cars" class="form-control mandatory" formControlName="productLineId">
@@ -68,7 +68,7 @@
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label class="form-label">Entity Group</label>
+                                        <label class="form-label"><span>{{'forms.template-form.entity-groups' | translate}}</span></label>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group">
@@ -88,7 +88,7 @@
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label class="form-label "> Product Entity Template Name</label>
+                                        <label class="form-label "> <span>{{'forms.template-form.product-entity-template' | translate}}</span></label>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group">
@@ -108,7 +108,7 @@
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label class="form-label ">Description</label>
+                                        <label class="form-label "> <span>{{'forms.template-form.description' | translate}}</span></label>
                                     </div>
                                     <div class="col-md-8">
                                         <textarea type="text" class="form-control mandatory" formControlName="description"></textarea>
@@ -125,7 +125,7 @@
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label class="form-label ">Version</label>
+                                        <label class="form-label "> <span>{{'forms.template-form.version' | translate}}</span></label>
                                     </div>
                                     <div class="col-md-8">
                                         <input type="number" class="form-control mandatory" formControlName="version">
@@ -141,7 +141,7 @@
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label class="form-label ">State</label>
+                                        <label class="form-label "> <span>{{'forms.template-form.state' | translate}}</span></label>
                                     </div>
                                     <div class="col-md-8">
                                         <select  class="form-control mandatory"  formControlName="state" >
