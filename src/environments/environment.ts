@@ -5,8 +5,8 @@
 export const environment = {
   production: false,
 
-     baseUrl:"http://114.143.224.42:9090/masters", 
-   accessToken:"http://114.143.224.42:8030",
+  accessToken:"http://192.168.1.11:8040",
+  baseUrl: "http://192.168.1.11:8050/masters"
   //accessToken:"http://192.168.1.11:8040",
   //baseUrl: "http://192.168.1.11:8010/masters"
 };

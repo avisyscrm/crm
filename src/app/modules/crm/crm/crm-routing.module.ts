@@ -29,6 +29,7 @@ import { ShowUserComponent } from '../crmCompont/show-user/show-user.component';
 import { ChangepasswordComponent } from '../crmCompont/changepassword/changepassword.component';
 import { ProductAtributeMasterComponent } from '../crmCompont/product-atribute-master/product-atribute-master.component';
 import { ProductAtributeMasterSummmaryComponent } from '../crmCompont/product-atribute-master-summmary/product-atribute-master-summmary.component';
+import { EmailComponent } from '../crmCompont/email/email.component';
 
 
 
@@ -169,6 +170,11 @@ const routes: Routes = [
                           path: 'emailTemplateForm',
                           component: EmailtemplateformComponent,
                           data: { title: 'Email Template' }
+                        },
+                        {
+                          path: 'emails',
+                          component: EmailComponent,
+                          data: { title: 'Emails' }
                         },
                         {
                           path: 'scheduleEmail',

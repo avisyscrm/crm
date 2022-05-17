@@ -47,7 +47,228 @@ export class LeftmenuComponent implements OnInit {
   crmisActive:boolean = false;
   productisActive:boolean = false;
   crmAdminActive:boolean = false
-  
+  adminMenuList:any=[
+    {
+     name: "Dashaboard",
+     isHeading:true,
+     iconClass:"icon-speedometer",
+     isGheading:false,
+     routerLink:false,
+     dynamicMenuOpen:false,
+     translationKey:'',
+    },
+    {
+      name:"User Management",
+      controlId:"collapseBasic",
+      isCollapsed: true,
+      isHeading:false,
+      iconClass:"icon-user",
+      dynamicMenuOpen:false,
+      translationKey:'',
+      submenu:[
+          {
+            name:"Users",
+            routerLink:['/crm/user-all'],
+            translationKey:'',
+          },
+          {
+          name:"Roles",
+          routerLink:['/crm/adminRole-table'],
+          translationKey:'',
+        },{
+          name:"Assign Role",
+          routerLink:['/crm/assign-role'],
+          translationKey:'',
+        }
+      ]
+   },
+   {
+    name: "Email Templates",
+    isHeading:true,
+    iconClass:"icon-plus",
+    isGheading:false,
+    routerLink:['/crm/emailTemplate'],
+    dynamicMenuOpen:false,
+    translationKey:'',
+   },
+   {
+    name: "Emails",
+    isHeading:true,
+    iconClass:"icon-envelope",
+    isGheading:false,
+    routerLink:['/crm/emails'],
+    dynamicMenuOpen:false,
+    translationKey:'',
+   },
+   {
+    name: "Schedule Email",
+    isHeading:true,
+    iconClass:"icon-plus",
+    isGheading:false,
+    routerLink:['/crm/scheduleEmail'],
+    dynamicMenuOpen:false,
+    translationKey:'',
+   },
+   {
+    name: "Drop Down /LOVs",
+    isHeading:true,
+    iconClass:"icon-plus",
+    isGheading:false,
+    routerLink:false,
+    dynamicMenuOpen:false,
+    translationKey:'',
+   },
+   {
+    name: "Communication",
+    isHeading:true,
+    iconClass:"icon-plus",
+    isGheading:false,
+    routerLink:false,
+    dynamicMenuOpen:false,
+    translationKey:'',
+   },
+   {
+    name: "Notification",
+    isHeading:true,
+    iconClass:"icon-plus",
+    isGheading:false,
+    routerLink:false,
+    dynamicMenuOpen:false,
+    translationKey:'',
+   },
+   {
+    name: "Notification Template",
+    isHeading:true,
+    iconClass:"icon-plus",
+    isGheading:false,
+    routerLink:false,
+    dynamicMenuOpen:false,
+    translationKey:'',
+   },
+   {
+    name: "Logging",
+    isHeading:true,
+    iconClass:"icon-plus",
+    isGheading:false,
+    routerLink:false,
+    dynamicMenuOpen:false,
+    translationKey:'',
+   },
+   {
+    name: "Audit Trails",
+    isHeading:true,
+    iconClass:"icon-plus",
+    isGheading:false,
+    routerLink:false,
+    dynamicMenuOpen:false,
+    translationKey:'',
+   },
+   {
+    name: "CMS",
+    isHeading:true,
+    iconClass:"icon-plus",
+    isGheading:false,
+    routerLink:false,
+    dynamicMenuOpen:false,
+    translationKey:'',
+   },
+   {
+    name: "Data Adminstration",
+    isHeading:true,
+    iconClass:"icon-plus",
+    isGheading:false,
+    routerLink:false,
+    dynamicMenuOpen:false,
+    translationKey:'',
+   },
+   {
+    name: "Intergration",
+    isHeading:true,
+    iconClass:"icon-plus",
+    isGheading:false,
+    routerLink:false,
+    dynamicMenuOpen:false,
+    translationKey:'',
+   },
+   {
+    name: "Reports",
+    isHeading:true,
+    iconClass:"icon-plus",
+    isGheading:false,
+    routerLink:false,
+    dynamicMenuOpen:false,
+    translationKey:'',
+   }
+   ];
+  productMenuList:any =[
+    {
+      name:"Masters",
+      controlId:"collapseBasicMaster",
+      isCollapsed: true,
+      isHeading:false,
+      iconClass:"icon-rocket",
+      dynamicMenuOpen:false,
+      translationKey:'masters_main_menu_title',
+      submenu:[
+          {
+            name:"Product Family",
+            routerLink:['/crm/product-family'],
+            translationKey:'master_submenu_product_family',
+          },
+          {
+          name:"Product Line",
+          routerLink:['/crm/product-line'],
+          translationKey:'master_submenu_product_line',
+          },
+          {
+          name:"Entity Group",
+          routerLink:['/crm/entity-groups'],
+          translationKey:'master_submenu_entity_group',
+        }
+      ]
+   },
+   {
+    name:"Product Template",
+    controlId:"collapseBasicProduct",
+    isCollapsed: true,
+    isHeading:false,
+    iconClass:"icon-rocket",
+    dynamicMenuOpen:false,
+    translationKey:'product_main_menu_title',
+    submenu:[
+        {
+          name:"Product Template",
+          routerLink:['/crm/product-templates'],
+          translationKey:'product_submenu_product_template',
+        },
+        {
+        name:"Product Tab",
+        routerLink:['/crm/product-tabs'],
+        translationKey:'product_submenu_product_tab',
+        },
+        {
+        name:"Product Attribute",
+        routerLink:['/crm/product-attribute'],
+        translationKey:'product_submenu_product_attribute',
+      },
+      {
+        name:"Product Atribute Summmary",
+        routerLink:['/crm/Product-Atribute-Summmary'],
+        translationKey:'product_submenu_product_attribute_summary',
+      }
+    ]
+    },
+    {
+      name: "Dynamic Form",
+      isHeading:true,
+      iconClass:"icon-tag",
+      isGheading:false,
+      routerLink:false,
+      dynamicMenuOpen:true
+     }
+  ]
+  menuList:any = [];
+
 
   open(){
     this.allserviceService.getSideBar().subscribe(sucess=>{
@@ -83,11 +304,13 @@ let dataProp:string = sessionStorage.getItem('dataProp');
         this.crmisActive = false;
         this.crmAdminActive=false;
         this.productisActive = true;
+        this.menuList = this.productMenuList;
       }
       else if(dataProp == "crmAdminLogin"){
         this.crmisActive = false;
         this.productisActive = false;
         this.crmAdminActive=true;
+        this.menuList = this.adminMenuList;
       }
 
 // 
@@ -121,7 +344,7 @@ let dataProp:string = sessionStorage.getItem('dataProp');
   }
 
   
-
+  
 
   // 
   ulP1(i:any){

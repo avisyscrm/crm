@@ -468,8 +468,28 @@
     </h5>
     <nav id="left-sidebar-nav" class="sidebar-nav">
         <ul class="metismenu">
-            <!-- <li class="g_heading">Directories</li> -->
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" *ngIf="productisActive">
+            <div *ngFor="let menuRow of menuList">
+                <li  *ngIf="menuRow.isHeading"  >
+                    <a *ngIf="!menuRow.dynamicMenuOpen" href="javascript:void(0)" [routerLink]="menuRow.routerLink ? menuRow.routerLink : undefined" (click)="menuRow.isCollapsed = !menuRow.isCollapsed"
+                    [attr.aria-expanded]="!menuRow.isCollapsed" [attr.aria-controls]="menuRow.controlId"
+                    class="has-arrow arrow-c"><i [class]="menuRow.iconClass"></i><span>  &nbsp; {{menuRow.name}}</span></a>
+                    <a *ngIf="menuRow.dynamicMenuOpen" href="javascript:void(0)" (click)="open()" ><i [class]="menuRow.iconClass"></i><span>  &nbsp; {{menuRow.name}}</span></a>
+                </li>
+                <li  *ngIf="!menuRow.isHeading"  [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                    <a href="javascript:void(0)" (click)="menuRow.isCollapsed = !menuRow.isCollapsed" [attr.aria-expanded]="!menuRow.isCollapsed"
+                        [attr.aria-controls]="menuRow.controlId" class="has-arrow arrow-c"><i
+                            [class]="menuRow.iconClass"></i><span> &nbsp; {{ menuRow.name}}</span></a>
+                    <ul class="collapse" [id]="menuRow.controlId" [collapse]="menuRow.isCollapsed" [isAnimated]="true">
+                        <li *ngFor="let menuSubRow of menuRow.submenu" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                                [routerLink]="menuSubRow.routerLink" href="javascript:void(0)"><span>{{menuSubRow.name}}</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </div>
+             <!-- <li class="g_heading">Directories</li> -->
+
+             <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}" *ngIf="productisActive">
                 <a href="javascript:void(0)" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed"
                     aria-controls="collapseBasic" class="has-arrow arrow-c"><i
                         class="icon-rocket"></i><span>{{'leftmenu.menu1.mainHead' | translate}}</span></a>
@@ -486,7 +506,7 @@
 
                 </ul>
             </li>
-
+            
             <li  *ngIf="productisActive">
                 <a href="javascript:void(0)" (click)="isTemplateCollapsed = !isTemplateCollapsed"
                     [attr.aria-expanded]="!isTemplateCollapsed" aria-controls="JobCollapsed"
@@ -504,119 +524,16 @@
                             [routerLink]="['/crm/Product-Atribute-Summmary']" href="javascript:void(0)"><span>Product Atribute Summmary</span></a></li>
 
                 </ul>
-            </li>
-            <li *ngIf="crmAdminActive">
-                <a href="javascript:void(0)" (click)="isJobportalCollapsed = !isJobportalCollapsed"
-                    [attr.aria-expanded]="!isJobportalCollapsed" aria-controls="AuthCollapsed"
-                    class="has-arrow arrow-c"><i class="icon-speedometer"></i><span>Dashboard</span></a>
-   
-            </li>
-            <li *ngIf="crmAdminActive">
-                <a href="javascript:void(0)" (click)="isStaticticsCollapsed = !isStaticticsCollapsed"
-                    [attr.aria-expanded]="!isStaticticsCollapsed" aria-controls="AuthCollapsed"
-                    class="has-arrow arrow-c"><i class="icon-user"></i><span>User Management</span></a>
-                <ul class="submenu" class="collapse" id="AuthCollapsed" [collapse]="isStaticticsCollapsed"
-                    [isAnimated]="true">
-                    <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/crm/create-user']" href="javascript:void(0)">Create User</a></li> -->
-                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/crm/user-all']" href="javascript:void(0)">Users</a></li>
-                    <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="['/crm/change-password']" href="javascript:void(0)">Change Password</a></li> -->
-                    <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                             href="javascript:void(0)">Profile Details</a></li> -->
-                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                        [routerLink]="['/crm/adminRole-table']" href="javascript:void(0)">Roles</a></li>
-                    <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                        [routerLink]="['/crm/assign-role']"    href="javascript:void(0)">Assign Role</a></li>
-
-
-                </ul>
-            </li>
-            <li *ngIf="crmAdminActive">
-                <a href="javascript:void(0)" [routerLink]="['/crm/emailTemplate']" (click)="isDropDownCollapsed = !isDropDownCollapsed"
-                    [attr.aria-expanded]="!isDropDownCollapsed" aria-controls="AuthCollapsed"
-                    class="has-arrow arrow-c"><i class="icon-plus"></i><span>Create Email</span></a>
-            </li>
-            <li *ngIf="crmAdminActive">
-                <a href="javascript:void(0)" [routerLink]="['/crm/scheduleEmail']" (click)="isDropDownCollapsed = !isDropDownCollapsed"
-                    [attr.aria-expanded]="!isDropDownCollapsed" aria-controls="AuthCollapsed"
-                    class="has-arrow arrow-c"><i class="icon-plus"></i><span>Schedule Email</span></a>
-            </li>
-            <li *ngIf="crmAdminActive">
-                <a href="javascript:void(0)" (click)="isDropDownCollapsed = !isDropDownCollapsed"
-                    [attr.aria-expanded]="!isDropDownCollapsed" aria-controls="AuthCollapsed"
-                    class="has-arrow arrow-c"><i class="icon-plus"></i><span>Drop Down /LOVs</span></a>
-            </li>
-            <li *ngIf="crmAdminActive">
-                <a href="javascript:void(0)" (click)="isCommunication = !isCommunication"
-                    [attr.aria-expanded]="!isCommunication" aria-controls="AuthCollapsed"
-                    class="has-arrow arrow-c"><i class="icon-picture"></i><span>Communication</span></a>
-            </li>
-            <li *ngIf="crmAdminActive">
-                <a href="javascript:void(0)" (click)="isNotification = !isNotification"
-                    [attr.aria-expanded]="!isNotification" aria-controls="AuthCollapsed"
-                    class="has-arrow arrow-c"><i class="icon-pin"></i><span>Notification</span></a>
-            </li>
-            <li *ngIf="crmAdminActive">
-                <a href="javascript:void(0)" (click)="isNotificationTemplate = !isNotificationTemplate"
-                    [attr.aria-expanded]="!isNotificationTemplate" aria-controls="AuthCollapsed"
-                    class="has-arrow arrow-c"><i class="icon-grid"></i><span> Notification Template</span></a>
-            </li>
-            <li *ngIf="crmAdminActive">
-                <a href="javascript:void(0)" (click)="isLogging = !isLogging"
-                    [attr.aria-expanded]="!isLogging" aria-controls="AuthCollapsed"
-                    class="has-arrow arrow-c"><i class="icon-list"></i><span>Logging</span></a>
-            </li>
-            <li *ngIf="crmAdminActive">
-                <a href="javascript:void(0)" (click)="isAuditTrails = !isAuditTrails"
-                    [attr.aria-expanded]="!isAuditTrails" aria-controls="AuthCollapsed"
-                    class="has-arrow arrow-c"><i class="icon-user"></i><span>Audit Trails</span></a>
-            </li>
-            <li *ngIf="crmAdminActive">
-                <a href="javascript:void(0)" (click)="isCMS = !isCMS"
-                    [attr.aria-expanded]="!isCMS" aria-controls="AuthCollapsed"
-                    class="has-arrow arrow-c"><i class="icon-shield"></i><span> CMS</span></a>
-            </li>
-            <li *ngIf="crmAdminActive">
-                <a href="javascript:void(0)" (click)="isDataAdmin = !isDataAdmin"
-                    [attr.aria-expanded]="!isDataAdmin" aria-controls="AuthCollapsed"
-                    class="has-arrow arrow-c"><i class="icon-bell"></i><span>Data Adminstration</span></a>
-            </li>
-           
-            <li *ngIf="crmAdminActive">
-                <a href="javascript:void(0)" (click)="isIntergration = !isIntergration"
-                    [attr.aria-expanded]="!isIntergration" aria-controls="AuthCollapsed"
-                    class="has-arrow arrow-c"><i class="icon-wallet"></i><span>Intergration</span></a>
-            </li>
-            <li *ngIf="crmAdminActive">
-                <a href="javascript:void(0)" (click)="isReports = !isReports"
-                    [attr.aria-expanded]="!isReports" aria-controls="AuthCollapsed"
-                    class="has-arrow arrow-c"><i class="icon-speech"></i><span>Reports</span></a>
-            </li>
-            <li  *ngIf="crmisActive">
-                <a href="javascript:void(0)" (click)="isAuthCollapsed = !isAuthCollapsed"
-                    [attr.aria-expanded]="!isAuthCollapsed" aria-controls="AuthCollapsed" class="has-arrow arrow-c"><i
-                        class="icon-lock"></i><span>{{'leftmenu.menu3.mainHead' | translate}}</span></a>
-                <ul class="submenu" class="collapse" id="AuthCollapsed" [collapse]="isAuthCollapsed"
-                    [isAnimated]="true">
-                    <li [routerLinkActive]="['activ']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="" href="javascript:void(0)">{{'leftmenu.menu3.subHead1' | translate}}</a></li>
-                    <li [routerLinkActive]="['activ']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="" href="javascript:void(0)">{{'leftmenu.menu3.subHead2' | translate}}</a></li>
-                    <li [routerLinkActive]="['activ']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
-                            [routerLink]="" href="javascript:void(0)">{{'leftmenu.menu3.subHead3' | translate}}</a></li>
-
-                </ul>
-            </li>
+            </li> -->
+         
             <!-- <li class="g_heading">UI Elements</li> -->
-            <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="productisActive">
+            <!-- <li [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"  *ngIf="productisActive">
                 <a (click)="open()"
                     href="javascript:void(0)"><i class="icon-tag"></i><span>Dynamic
                         Form</span></a>
-            </li>
-
-        </ul>
+            </li> -->
+</ul>
+       
         <ul id="myUL" class="dynamic-myUL">
             <li *ngFor="let x of sidebar;let i = index" (click)="ulP1('p'+i)">
                 <span class=" crm-beverages " id="xp{{i}}"><i class="fa fa-folder pr-1" aria-hidden="true"></i>{{x.name}}</span>
