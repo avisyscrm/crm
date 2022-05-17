@@ -73,7 +73,7 @@ export class ProductTemplatesComponent implements OnInit {
         console.log(data, 'data')
     }
     else if(data.event == 'delete'){
-      this.allService.deleteProductTemplate(data.data.productEntityTemplateId,data.data.updatedBy).subscribe((res)=>{
+      this.allService.deleteProductTemplate(data.data.productEntityTemplateId,0).subscribe((res)=>{
         this.sweetAlert.recordDeleted();
         this.onDelete();
         this.onrefresh();

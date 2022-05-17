@@ -78,7 +78,7 @@ export class ProductlineTableComponent implements OnInit {
       console.log(data.data.updatedBy);
       
       
-      this.allService.deleteLine(data.data.productLineId, data.data.createdBy)
+      this.allService.deleteLine(data.data.productLineId, 0)
       .subscribe((res)=>{
         this.sweetAlert.recordDeleted();
         this.onrefresh();

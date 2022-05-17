@@ -79,7 +79,7 @@ if(data.event=='add'){
     console.log(data.data, 'data')
 } else if(data.event == 'delete'){
   // alert(JSON.stringify(  data));
-  this.allService.deleteProductFamily(data.data.productFamilyId, data.data.updatedBy).subscribe((res)=>{
+  this.allService.deleteProductFamily(data.data.productFamilyId, 0).subscribe((res)=>{
     this.sweetAlert.recordDeleted();
    this.onrefresh();
    this.onDelete();
