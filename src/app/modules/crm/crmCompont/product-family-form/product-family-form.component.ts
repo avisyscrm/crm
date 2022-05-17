@@ -6,6 +6,7 @@ import { onlyChar } from '../../../client/validators/validation';
 import Swal from 'sweetalert2';
 import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -16,10 +17,10 @@ import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/swee
 export class ProductFamilyFormComponent implements OnInit {
 
   
-  constructor( private service : CrmservicesService, private alertService: SweetalertServiceService, private route:ActivatedRoute, private router:Router) { 
+  constructor( private service : CrmservicesService,public translate: TranslateService, private alertService: SweetalertServiceService, private route:ActivatedRoute, private router:Router) { 
   }
 
-
+ 
   @ViewChild('file') myFileInput:any;
   @ViewChild('files') myInputVariable:any;
   addClass:boolean= true;

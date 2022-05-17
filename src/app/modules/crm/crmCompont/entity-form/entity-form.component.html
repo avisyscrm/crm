@@ -12,7 +12,7 @@
                     <!-- <div class="header-action">
                     <button type="button" class="btn btn-primary m-3"><i class="fe fe-plus mr-2"></i>Add</button>
                 </div> -->
-                </div>
+                </div> 
 
 
 
@@ -20,14 +20,14 @@
                 <form [formGroup]="entityGroup" (submit)="formSubmit()">
                 <div class="card card-height">
                     <div class="card-header pf-head">
-                        <h3 class="card-title ">ENTITY GROUPS</h3>
+                        <h3 class="card-title "><span>{{'forms.entityGroup.Entity-group-heading' | translate}}</span></h3>
                     </div>
                     <div class="card-body">
                         <div class="row productfamily ">
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class=" form-group col-md-4">
-                                        <label class="form-label ">Product Family Id</label>
+                                        <label class="form-label "><span>{{'forms.entityGroup.product-family' | translate}}</span></label>
                                     </div>
                                     <div class=" form-group col-md-8">
                                         <select   (change)="LineFromProductFamily(entityGroup.controls['productFamilyId'].value)" name="productFamilyId" id="productFamilyId" class="form-control mandatory" formControlName="productFamilyId">
@@ -47,7 +47,7 @@
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class=" form-group col-md-4">
-                                        <label class="form-label ">Product Line Id</label>
+                                        <label class="form-label "><span>{{'forms.entityGroup.product-line' | translate}}</span></label>
                                     </div>
                                     <div class=" form-group col-md-8">
                                         <select  name="cars" id="cars" class="form-control mandatory" formControlName="productLineId">
@@ -65,7 +65,7 @@
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label class="form-label">Entity Group</label>
+                                        <label class="form-label"><span>{{'forms.entityGroup.entity-groups' | translate}}</span></label>
                                     </div>
                                     <div class="col-md-8">
                                         <input type="text" class="form-control mandatory"  formControlName="entityGroups">
@@ -82,7 +82,7 @@
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label class="form-label">Description</label>
+                                        <label class="form-label"><span>{{'forms.entityGroup.description' | translate}}</span></label>
                                     </div>
                                     <div class="col-md-8">
 
@@ -101,7 +101,7 @@
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
-                                        <label class="form-label mt-3">Entity Group Icon</label>
+                                        <label class="form-label mt-3"><span>{{'forms.entityGroup.entity-icon' | translate}}</span></label>
                                     </div>
                                     <div class="col-md-8">
                                        

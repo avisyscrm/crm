@@ -25,7 +25,8 @@ export function HttpLoaderFactory(http: HttpClient) {
       // {prefix: "../assets/translate/modules/client/header/", suffix: ".json"},
       // {prefix: "../assets/translate/modules/client/leftmenu/", suffix: ".json"}
       {prefix: "assets/translate/modules/client/header/", suffix: ".json"},
-      {prefix: "assets/translate/modules/client/leftmenu/", suffix: ".json"}
+      {prefix: "assets/translate/modules/client/leftmenu/", suffix: ".json"},
+      {prefix: "../assets/translate/modules/crm/crmCompont/product-family-form/", suffix: ".json"}
   ]);
 }
 
