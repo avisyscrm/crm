@@ -16,20 +16,25 @@ export class ProductFamilyFormComponent implements OnInit {
     'productFamily': new FormControl('', [Validators.required, Validators.maxLength(30)]),
     'description': new FormControl('', [Validators.required, Validators.maxLength(100)]),
     'productFamilyIcon': new FormControl(''),
-    'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId, Validators.required),
-    'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId, Validators.required),
+    'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
+    'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
   });
   intialvalue: any;
   actionBtn = "Save";
   productFamilyIcons: any;
   file: any;
+  statusCode: any;
+  checkFlag: boolean;
+  msg: any;
   constructor(private service: CrmservicesService, public translate: TranslateService,
     private alertService: SweetalertServiceService, private route: ActivatedRoute) {
     this.intialvalue = this.productFamily.value;
     this.route.queryParams.subscribe((params: any) => {
       if (params.data != undefined) {
         this.actionBtn = "Update";
+        this.checkFlag=true;
         this.getValueByID(params.data);
+      
       }
     });
   }
@@ -46,7 +51,8 @@ export class ProductFamilyFormComponent implements OnInit {
   }
   ngOnInit(): void { }
   submit() {
-   
+    this.productFamily.controls['createdBy'].patchValue(JSON.parse(sessionStorage.getItem('userDetails')).userId);
+    this.productFamily.controls['updatedBy'].patchValue(JSON.parse(sessionStorage.getItem('userDetails')).userId);
     const formData = new FormData();
     formData.append('file', this.file);
     formData.append('productFamily', JSON.stringify(this.productFamily.value));
@@ -87,5 +93,23 @@ export class ProductFamilyFormComponent implements OnInit {
         this.productFamilyIcons = reader.result;
       }
     }
+  }
+
+  getValuefor(){
+      this.msg="";
+      this.checkFlag=false;
+  }
+
+  check(){
+    this.service.chcekFamilly(this.productFamily.controls.productFamily.value).subscribe((scucess:any)=>{
+      this.statusCode=scucess;
+      this.msg=scucess.message;
+      this.checkFlag=true;
+    },error=>{
+      if(error.status){
+        this.checkFlag=false;
+        this.msg=error.error.message;
+      }
+    });
   }
 }
