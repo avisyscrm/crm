@@ -36,10 +36,7 @@ export class CreateUserComponent implements OnInit {
           this.label = "Update";
           this.createUser.addControl("userId",
             new FormControl(params.id, Validators.required));
-         
-          // this.createUser.get('confirm_password').clearValidators;
-          // this.createUser.get('confirm_password').updateValueAndValidity();
-          this.createUser.patchValue(data);
+            this.createUser.patchValue(data);
           this.alluserrolesdata = data.avaliableRoles;
           this.SelectedArray = data.role;
           this.createUser.removeControl('password');
@@ -53,11 +50,7 @@ export class CreateUserComponent implements OnInit {
           data1 = data.map(x => x.name);
           this.alluserrolesdata = data1;
         })
-        // this.createUser.get('password').setValidators([Validators.required]);
-        // this.createUser.get('password').updateValueAndValidity();
-        // this.createUser.get('confirm_password').setValidators([Validators.required]);
-        // this.createUser.get('confirm_password').updateValueAndValidity();
-      }
+        }
     });
 
     this.createUser = fb.group({
@@ -105,16 +98,6 @@ export class CreateUserComponent implements OnInit {
   }
 
 
-  // createUser = new FormGroup({
-  //   firstName: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
-  //   lastName: new FormControl('', Validators.required),
-  //   email: new FormControl('', Validators.required),
-  //   password: new FormControl('', Validators.required),
-  //   confirm_password: new FormControl('', Validators.required),
-  //   role: new FormControl('', Validators.required),
-  //   isTemporary : new FormControl(false),
-  // })
-
   getRoles() {
     this.service.getAllRoles().subscribe((response) => {
       this.roles = response;
@@ -157,9 +140,7 @@ export class CreateUserComponent implements OnInit {
           }
         });
     }
-
-
-
+ 
   }
   exportSelectedArray(value) {
     this.SelectedArray = value;
@@ -169,33 +150,5 @@ export class CreateUserComponent implements OnInit {
   get getControl() {
     return this.createUser.controls;
   }
-  // get firstName() {
-  //   return this.createUser.get('firstName');
-  // }
 
-  // get lastName() {
-  //   return this.createUser.get('lastName');
-  // }
-
-  // get emailTemplateName() {
-  //   return this.createUser.get('emailTemplateName');
-  // }
-
-  // get email() {
-  //   return this.createUser.get('email');
-  // }
-
-  // get password() {
-  //   return this.createUser.get('password');
-  // }
-  // get confirm_password() {
-  //   return this.createUser.get('confirm_password');
-  // }
-
-  // get role() {
-  //   return this.createUser.get('role');
-  // }
-  // get isTemporary() {
-  //   return this.createUser.get('isTemporary');
-  // }
 }
