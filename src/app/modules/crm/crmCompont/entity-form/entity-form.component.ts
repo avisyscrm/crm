@@ -6,6 +6,7 @@ import { onlyChar, selectValidation } from '../../../client/validators/validatio
 // import Swal from 'sweetalert2';
 import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -14,180 +15,85 @@ import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/swee
   styleUrls: ['./entity-form.component.scss','../../crm/crm.component.scss']
 })
 export class EntityFormComponent implements OnInit {
-
-  @ViewChild('file') myFileInput:any;
-  groupbutton:string = "Save";
-  groupId!:string;
-  productLineList:any;
-  productfamIDslist:any=[];
-  prodLineid:any=[];
-  file:any;
-  data: any;
-  entityGroupsIcon:any;
-  constructor( private services: CrmservicesService,  private alertService: SweetalertServiceService, private router:Router, private route: ActivatedRoute) { }
-
-
-
-  ngOnInit(): void {
-    this.route.queryParams.subscribe((params)=>{
-      this.groupId = params.data;
-      console.log(this.groupId);
-    })
-
-    if(this.groupId){
-      this.groupbutton = "Update";
-        this.services.getentitygroupId(this.groupId).subscribe((res)=>{
-          console.log(res.entityGroupsId,"test");
-          if(res){
-            this.entityGroup.patchValue(res);
-            this.LineFromProductFamily(this.entityGroup.controls['productFamilyId'].value);
-            this.entityGroupsIcon=res.entityGroupsIcon;
-            this.myFileInput.nativeElement.value = res.entityGroupsIcon;
-            this.entityGroupsIcon = this.data.productLineIcon;
-           
-          }    
-        })
-      
-    }
-    this.services.productFamilyIDs().subscribe((data:any)=>{
-      this.productfamIDslist = data;
-      
-    })
-  }
-  LineFromProductFamily(value:any) { 
-    if(value!=undefined && value!=null && value!=""){
-      this.services.allProductLineFromProductFamilyDropDown(value).subscribe(sucess=>{
-        this.prodLineid=sucess;
-        });
-    } 
-  }
-
-  entityGroup = new FormGroup ({
-    productFamilyId: new FormControl ('', selectValidation),
-    productLineId : new FormControl ('', selectValidation ),
-    entityGroupsId : new FormControl ('' ),
-    entityGroups : new FormControl ('' ,[Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
-    description : new FormControl ('' , [Validators.required, Validators.maxLength(400), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
-    entityGroupsIcon : new FormControl (''),
-      createdBy : new FormControl ('-1' , Validators.required),
-     updatedBy : new FormControl ('1' , Validators.required),   
+  @ViewChild('files') myInputVariable: any;
+  entityGroups = new FormGroup({
+    'entityGroupsId': new FormControl(''),
+    'entityGroups': new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    'description': new FormControl('', [Validators.required, Validators.maxLength(100)]),
+    'entityGroupsIcon': new FormControl(''),
+    'createdBy': new FormControl('-1', Validators.required),
+    'updatedBy': new FormControl('-1', Validators.required),
   });
-
-  resetForm(){
-    this.entityGroup.controls['productFamilyId'].reset();
-    this.entityGroup.controls['productLineId'].reset();
-    this.entityGroup.controls['entityGroups'].reset();
-    this.entityGroup.controls['description'].reset();
-    this.entityGroupsIcon = '';
+  intialvalue: any;
+  actionBtn = "Save";
+  productFamilyIcons: any;
+  file: any;
+  constructor(private service: CrmservicesService, public translate: TranslateService,
+    private alertService: SweetalertServiceService, private route: ActivatedRoute) {
+    this.intialvalue = this.entityGroups.value;
+    this.route.queryParams.subscribe((params: any) => {
+      if (params.data != undefined) {
+        this.actionBtn = "Update";
+        this.getValueByID(params.data);
+      }
+    });
   }
-
-  //Add new groupn
-  // existing call 
-  postEntityGroup(){
-    this.services.postEntityGroup(this.entityGroup.value).subscribe((result)=>{
-      console.log('data', result);
-      // RecordUpdated();
-      this.entityGroup.reset();
-      this.alertService.RecordAdded('crm/entity-groups');
-      // alert('Record Added');  
-     
-    }) 
-  }
-
-  updateEntityGroup(){
-    const formData = new FormData();
-    formData.append('file',this.file);
-    formData.append('entityGroups',JSON.stringify(this.entityGroup.value));
-    console.log(this.entityGroup.value);
-    
-    this.services.putEntityGroup(formData).subscribe((res)=>{
-      console.log(res);
-      RecordUpdated();
-      // alert('Record Updated');
-      this.resetForm();
-      this.alertService.RecordUpdated('crm/entity-groups');
-      // this.router.navigate(['crm/entity-groups']); 
-      // this.entityGroup.reset();
-   
-    }, error =>{
-      console.log(error);
-     
-      
-    })
-  }
-
-  //form submi
+  getValueByID(id) {
+    this.service.getEntityGroupData(id).subscribe((sucess: any) => {
+      this.entityGroups.patchValue(sucess);
+      this.intialvalue = sucess;
+      this.entityGroups.patchValue(sucess);
+      this.productFamilyIcons = sucess.productLineIcon;
+    }, error => {
+      alert("Error while updating the record");
+    });
+  } 
+  ngOnInit(): void { }
+  submit() {
  
-  
-
-  formSubmit(){
-    console.log(this.entityGroup);
-    if(this.groupId){
-      this.entityGroup.valid? this.updateEntityGroup() : "";
-      // this.entityGroup.reset();
-    }
-
-    else if(this.entityGroup.valid){
-
     const formData = new FormData();
-    formData.append('file',this.file);
-    formData.append('entityGroups',JSON.stringify(this.entityGroup.value));
-     
-    this.services.entityGroupsPost(formData).subscribe(sucess=>{
-      this.resetForm();
-      this.alertService.RecordAdded('crm/entity-groups');
-    //  alert('Record Added');  
-    //  this.entityGroup.reset();
- 
-    // this.router.navigate(['crm/entity-groups']); 
-
-    })
-    // this.postEntityGroup();
-    }
-  }
-
-  // getting id of prodline through prod family
-
-  getprodLineId(value:number){
-    if(value!=undefined && value!=null ){
-      this.services.postEntityGroupnew(value).subscribe((data) =>{
-        this.prodLineid = data;
-        console.log(this.prodLineid, 'tabs');   
-      })
-    }
-  }
-
-
-  onFileSelect(event:any){
+    formData.append('file', this.file);
+    formData.append('entityGroups', JSON.stringify(this.entityGroups.value));
+    if (this.actionBtn == "Update") {
+      if(this.file!=undefined){
+        this.service.updatEentityGroupsData(formData).subscribe(sucess => {
+          this.alertService.RecordUpdated('crm/entity-groups');
+        });
+      }else{
+        this.service.updatEentityGroupsDataWithoutFile(this.entityGroups.value).subscribe(sucess => {
+          this.alertService.RecordUpdated('/crm/product-line');
+        });
+      }
     
-    if(event.target.files.length > 0) {
+    } else {
+      if(this.file!=undefined){ 
+        this.service.addEntityGroupsData(formData).subscribe(sucess => {
+          this.alertService.RecordAdded('crm/entity-groups');
+        })
+      }
+    else{
+      alert("Please select File");
+    }
+     
+    }
+    
+  }
+
+  resetForm() {
+    this.entityGroups.reset(this.intialvalue);
+  }
+  get getControl() {
+    return this.entityGroups.controls;
+  }
+
+  onFileSelect(event: any) {
+    if (event.target.files.length > 0) {
       this.file = event.target.files.item(0);
-      // alert("file"+this.file);
       var reader = new FileReader();
-      reader.readAsDataURL(this.file); 
-      reader.onload = (_event) => { 
-        this.entityGroupsIcon = reader.result; 
+      reader.readAsDataURL(this.file);
+      reader.onload = (_event) => {
+        this.productFamilyIcons = reader.result;
       }
     }
   }
-  get productFamilyId() {
-    return this.entityGroup.get('productFamilyId');
-  }
-  get productLineId() {
-    return this.entityGroup.get('productLineId');
-  }
-  get entityGroups(){
-    return this.entityGroup.get('entityGroups');
-  }
-
-  get description(){
-    return this.entityGroup.get('description');
-  } 
-  
-  get entityGroupsIcons(){
-    return this.entityGroup.get('entityGroupsIcon');
-  }
-
-
-
 }

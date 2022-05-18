@@ -25,6 +25,50 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
 
   
   export class CrmservicesService {
+
+updateProductFamilyWithoutFile(data){
+  return this.http.put(environment.baseUrl+"/updateProductFamily",data);
+
+}
+
+createProductFamilly(data){
+  return this.http.post(environment.baseUrl+"/createProductFamilyWithAttachment",data);
+}
+    getFamilly(id: any) {
+      return this.http.get(environment.baseUrl+"/productFamily/"+id);
+    }
+
+  getEntityGroupData(id: any) {
+    return this.http.get(environment.baseUrl+"/entityGroups/"+id);
+  }
+
+  addEntityGroupsData(data) {
+    return this.http.post(environment.baseUrl+"/createEntityGroupsWithAttachement",data);
+  }
+  updatEentityGroupsData(data) {
+    return this.http.put(environment.baseUrl+"/updateEntityGroupsWithAttachement",data);
+  }
+
+
+  updatEentityGroupsDataWithoutFile(data) {
+    return this.http.put(environment.baseUrl+"/updateEntityGroups",data);
+  }
+
+  
+
+  addProductLineData(data) {
+    return this.http.post(environment.baseUrl+"/createProductLineWithAttachment",data);
+  }
+  updateProductLineData(data) {
+    return this.http.put(environment.baseUrl+"/updateProductLineWithAttachement",data);
+  }
+
+  updateProductLineDatawithoutFile(data) {
+    return this.http.put(environment.baseUrl+"/updateProductLine",data);
+  }
+  getLineById(id: any) {
+  return this.http.get(environment.baseUrl+"/productLine/"+id);
+  }
  
     getProductAttributeById(data){
       return this.http.get(environment.baseUrl+"/getProductAttributeById/"+data);
@@ -428,8 +472,8 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     }
   
       putProductFamily(data:FormData){
-      console.log(data, 'datassssssss');
-      return this.http.put<any>(this.updateProductFamily, data)
+     
+      return this.http.put(this.updateProductFamily, data)
       }
   
       putProductLine(data:FormData){
