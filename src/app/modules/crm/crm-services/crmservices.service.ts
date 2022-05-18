@@ -17,14 +17,36 @@ import { ProductFamilyController } from '../crm/crmForm-model/productFamilyContr
 import { ProductHierachyModel } from '../crm/crmForm-model/productHierachy.model';
 import { ProductLineController } from '../crm/crmForm-model/productline.model';
 import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesection.model';
-
-
 @Injectable({
     providedIn: 'root'
   })
 
   
   export class CrmservicesService {
+
+
+    deleteHierarchy(id){
+      return this.http.delete(environment.baseUrl+"/deleteProductHierarchy/"+id+"/"+ JSON.parse(sessionStorage.getItem('userDetails')).userId);
+
+    }
+  putProductHierachy(value: any) {
+    return this.http.put(environment.baseUrl+"/updateProductHierarchy",value);
+  }
+  getproductHierarchybyId(id: any) {
+   return this.http.get(environment.baseUrl+"/productHierarchy/"+id);
+  }
+  SaveProducrHIrechy(value: any) {
+    return this.http.post(environment.baseUrl+"/createProductHierarchy",value);
+  }
+  getallProductLine() {
+    return this.http.get(environment.baseUrl+"/allProductLine");
+  }
+  getallProductFamily() {
+    return this.http.get(environment.baseUrl+"/allProductFamily");
+  }
+  allEntityGroups() {
+    return this.http.get(environment.baseUrl+"/allEntityGroups");
+  }
 
 updateProductFamilyWithoutFile(data){
   return this.http.put(environment.baseUrl+"/updateProductFamily",data);
@@ -400,9 +422,16 @@ createProductFamilly(data){
       return this.http.get(this.getProductHierachy1+url);
     }
   
+  
+
     getEntityGroup(url:string):Observable<any>{
       return this.http.get(this.getEntityGroup1+url);
     }
+
+    getproductHierarchy(url:string):Observable<any>{
+      return this.http.get(environment.baseUrl+"/productHierarchy?"+url);
+    }
+  
   
     getEntityTemplate(url:string):Observable<any>{
       return this.http.get(this.getEntityTemplate1+url);
