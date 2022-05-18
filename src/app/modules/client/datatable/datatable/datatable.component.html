@@ -58,8 +58,11 @@
         <tr *ngFor="let row of content;let I=index">
           <td scope="col" [style.width.%]="column?.width" *ngFor="let column of columns">
             <input type="radio" (click)="radioButton(row)" id="name" name="name" *ngIf="column?.type=='radio'">
-            <div *ngIf="column?.type!='radio' && column?.type!='icon'">
-              {{row[column.value]}}
+            <div *ngIf="column?.type!='radio' && column?.type!='icon' && column?.type!='button'">
+              {{row[column.value]}} 
+            </div>
+            <div *ngIf="column?.type=='button'">
+                <button class="btn btn-primary btn-sm ml-1" *ngFor="let btnRow of row[column.value]" (click)="alert()" >{{btnRow.label}}</button>
             </div>
             <div *ngIf="column?.type=='icon'">
             <img [src]="row[column.value]"  [width]="column?.width" [height]="column?.width" >

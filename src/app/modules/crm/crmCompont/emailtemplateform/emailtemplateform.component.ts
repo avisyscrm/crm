@@ -137,6 +137,7 @@ validateTemplateVariables(){
 }
 
 setVariable(Templatevariable:string){
+  console.log(this.ckeditorElementComponent)
    let editor = this.ckeditorElementComponent.editorInstance;
    const selection = editor.model.document.selection;
    const range = selection.getFirstRange();

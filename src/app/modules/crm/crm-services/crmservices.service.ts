@@ -145,6 +145,9 @@ createProductFamilly(data){
     private postSchedule = environment.baseUrl+"/scheduleEmail";
     private createUser1 = environment.accessToken+"/users/update";
     private getEmailTempateVariables = environment.baseUrl+"/templateVariables/";
+    private allEmails = environment.baseUrl+"/email/emailDetails?";
+    private resentEmail = environment.baseUrl+"/email/rescheduleEmail/";
+    
   // 
 
     private allContactURL = environment.baseUrl+"/allContact";
@@ -729,135 +732,14 @@ getEmailTemplateVariables(){
 }
 
 getEmails(url:string) {
-  return {
-  "headerlist": [
-    {
-      "header": "",
-      "value": "jobName",
-      "width": 10,
-      "type": "radio",
-      "search_key": "job_name"
-  },
-  {
-      "header": "From",
-      "value": "jobGroup",
-      "width": 30,
-      "type": "",
-      "search_key": "job_group"
-  },
-  {
-      "header": "Description",
-      "value": "description",
-      "width": 30,
-      "type": "",
-      "search_key": "description"
-  },
-  {
-      "header": "Start Time",
-      "value": "startTime",
-      "width": 30,
-      "type": "",
-      "search_key": "start_time"
-  },
-{
-      "header": "Action",
-      "value": "action",
-      "width": 30,
-      "type": "button",
-      "search_key": ""
-  }
-    
-  ],
-  "page": {
-    "content": [
-      {
-      "action":[
-        {
-            "label":"",
-            "color":"red"
-        },
-        {
-            "label":"",
-            "color":"green"
-        }
-        ],
-          "scheduleName": "quartzScheduler",
-          "triggerName": "aarohi.c@avisys.in:T:2022-05-11T16:00:02.129149700",
-          "triggerGroup": "email-triggers",
-          "jobName": "aarohi.c@avisys.in:T:2022-05-11T16:00:02.129149700",
-          "jobGroup": "Welcom User", // subject
-          "description": "Send Email Trigger",
-          "nextFireTime": -1,
-          "prevFireTime": 1652265012095,
-          "priority": 5,
-          "triggerState": "COMPLETE",
-          "triggerType": "SIMPLE",
-          "startTime": 1652265012095,
-          "endTime": 0,
-          "calendarName": null,
-          "misfireInstr": 1,
-          "jobData": "rO0ABXNyABVvcmcucXVhcnR6LkpvYkRhdGFNYXCfsIPov6mwywIAAHhyACZvcmcucXVhcnR6LnV0aWxzLlN0cmluZ0tleURpcnR5RmxhZ01hcIII6MP7xV0oAgABWgATYWxsb3dzVHJhbnNpZW50RGF0YXhyAB1vcmcucXVhcnR6LnV0aWxzLkRpcnR5RmxhZ01hcBPmLq0odgrOAgACWgAFZGlydHlMAANtYXB0AA9MamF2YS91dGlsL01hcDt4cAFzcgARamF2YS51dGlsLkhhc2hNYXAFB9rBwxZg0QMAAkYACmxvYWRGYWN0b3JJAAl0aHJlc2hvbGR4cD9AAAAAAAAMdwgAAAAQAAAAA3QAB3N1YmplY3R0AAdXZWxjb21ldAAEYm9keXQA+jxwPkhlbGxvIEFhcm9oaSBDLDwvcD48cD5XZWxjb21lIHRvIHRoZSBDUk0sIFBsZWFzZSBmb2xsb3cgbGluayB0byBsb2dpbiBpbnRvIENSTSwgYnkgdXNpbmcgY3JlZGVudGlhbHMgcHJvdmlkZWQgd2hpbGUgY3JlYXRpbmcgdGhlIGFjY291bnQuPGJyPjxwPkhvcGUgeW91IGdldCB0aGUgYmVzdCBleHBlcmllbmNlLi4hISE8L3A+PHA+Jm5ic3A7PC9wPjxwPlRoYW5raW5nIHlvdSwgJm5ic3A7PC9wPjxwPlRFQU0gQVZJU1lTIENSTTwvcD50AAVlbWFpbHQAEmFhcm9oaS5jQGF2aXN5cy5pbngA",
-          "jobClassName": "com.avisys.email.job.EmailJob",
-          "isDurable": true,
-          "isNonconcurrent": false,
-          "isUpdateData": false,
-          "requestsRecovery": false
-      },
-      {
-        "action":[
-          {
-              "label":"",
-              "color":"red"
-          },
-          {
-              "label":"",
-              "color":"green"
-          }
-          ],
-          "scheduleName": "quartzScheduler",
-          "triggerName": "aditi.patil@avisys.in:T:2022-05-13T11:52:39.978119200",
-          "triggerGroup": "email-triggers",
-          "jobName": "aditi.patil@avisys.in:T:2022-05-13T11:52:39.978119200",
-          "jobGroup": "Welcom User",
-          "description": "Send Email Trigger",
-          "nextFireTime": -1,
-          "prevFireTime": 1652422969948,
-          "priority": 5,
-          "triggerState": "COMPLETE",
-          "triggerType": "SIMPLE",
-          "startTime": 1652422969948,
-          "endTime": 0,
-          "calendarName": null,
-          "misfireInstr": 1,
-          "jobData": "rO0ABXNyABVvcmcucXVhcnR6LkpvYkRhdGFNYXCfsIPov6mwywIAAHhyACZvcmcucXVhcnR6LnV0aWxzLlN0cmluZ0tleURpcnR5RmxhZ01hcIII6MP7xV0oAgABWgATYWxsb3dzVHJhbnNpZW50RGF0YXhyAB1vcmcucXVhcnR6LnV0aWxzLkRpcnR5RmxhZ01hcBPmLq0odgrOAgACWgAFZGlydHlMAANtYXB0AA9MamF2YS91dGlsL01hcDt4cAFzcgARamF2YS51dGlsLkhhc2hNYXAFB9rBwxZg0QMAAkYACmxvYWRGYWN0b3JJAAl0aHJlc2hvbGR4cD9AAAAAAAAMdwgAAAAQAAAAA3QAB3N1YmplY3R0AAdXZWxjb21ldAAEYm9keXQA/TxwPkhlbGxvIEFkaXRpIFBhdGlsLDwvcD48cD5XZWxjb21lIHRvIHRoZSBDUk0sIFBsZWFzZSBmb2xsb3cgbGluayB0byBsb2dpbiBpbnRvIENSTSwgYnkgdXNpbmcgY3JlZGVudGlhbHMgcHJvdmlkZWQgd2hpbGUgY3JlYXRpbmcgdGhlIGFjY291bnQuPGJyPjxwPkhvcGUgeW91IGdldCB0aGUgYmVzdCBleHBlcmllbmNlLi4hISE8L3A+PHA+Jm5ic3A7PC9wPjxwPlRoYW5raW5nIHlvdSwgJm5ic3A7PC9wPjxwPlRFQU0gQVZJU1lTIENSTTwvcD50AAVlbWFpbHQAFWFkaXRpLnBhdGlsQGF2aXN5cy5pbngA",
-          "jobClassName": "com.avisys.email.job.EmailJob",
-          "isDurable": true,
-          "isNonconcurrent": false,
-          "isUpdateData": false,
-          "requestsRecovery": false
-      }
-  ],
-    "pageable": {
-      "offset": 0,
-      "pageSize": 5
-    },
-    "first": true,
-    "last": true,
-    "totalPages": 1,
-    "totalElements": 2,
-    "pageNumber": 1,
-    "numberOfElements": 2,
-    "sort": {
-      "empty": false,
-      "sorted": true,
-      "unsorted": false
-    },
-    "sortObjects": {
-      "key": "from",
-      "value": "ASC"
-    }
-  }
-};
+  console.log(this.allEmails+url);
+  return this.http.get(this.allEmails+url);
+}
+
+resendEmail(jobId:string) {
+  console.log(jobId);
+  
+  return this.http.get(this.resentEmail+jobId);
 }
 
 languageService = new BehaviorSubject('en');
