@@ -32,6 +32,8 @@ import { ProductAtributeMasterSummmaryComponent } from '../crmCompont/product-at
 import { EmailComponent } from '../crmCompont/email/email.component';
 import { ProductHierachyComponent } from '../crmCompont/product-hierachy/product-hierachy.component';
 import { ProductHierachyFormComponent } from '../crmCompont/product-hierachy-form/product-hierachy-form.component';
+import { ProductEntityTypeComponent } from '../crmCompont/product-entity-type/product-entity-type.component';
+import { ProductEntityTypeFromComponent } from '../crmCompont/product-entity-type-from/product-entity-type-from.component';
 
 
 
@@ -69,7 +71,19 @@ const routes: Routes = [
                           path: 'product-hierachy',
                           component: ProductHierachyComponent,
                           data: { title: 'Product Hierachy' }
-                        },{
+                        },
+                        {
+                          path: 'product-entity-type',
+                          component: ProductEntityTypeComponent,
+                          data: { title: 'Product Entity Type' }
+                        }, {
+                          path: 'product-entity-type-from',
+                          component: ProductEntityTypeFromComponent,
+                          data: { title: 'Product Entity Type From' }
+                        },
+                        
+                    
+                        {
                           path: 'product-hierachy-form',
                           component: ProductHierachyFormComponent,
                           data: { title: 'Product Hierachy Form' }

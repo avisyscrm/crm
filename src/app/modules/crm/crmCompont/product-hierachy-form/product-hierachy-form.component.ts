@@ -16,8 +16,8 @@ export class ProductHierachyFormComponent implements OnInit {
     'productFamilyId': new FormControl('', [Validators.required, Validators.maxLength(30)]),
     'productLineId': new FormControl('', [Validators.required, Validators.maxLength(30)]),
     'entityGroupsId': new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId, Validators.required),
-    'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId, Validators.required),
+    'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
+    'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
   });
 
   productFamilyList=[];
@@ -59,6 +59,8 @@ this.service.getallProductLine().subscribe((sucss:any)=>{
   }
   ngOnInit(): void { }
   submit() {
+    this.productFamily.controls['createdBy'].patchValue(JSON.parse(sessionStorage.getItem('userDetails')).userId);
+    this.productFamily.controls['updatedBy'].patchValue(JSON.parse(sessionStorage.getItem('userDetails')).userId);
     if (this.actionBtn == "Update") {
       this.service.putProductHierachy(this.productFamily.value).subscribe(sucess => {
         this.alertService.RecordUpdated('/crm/product-hierachy');

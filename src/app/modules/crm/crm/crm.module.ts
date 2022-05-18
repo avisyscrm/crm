@@ -34,6 +34,7 @@ import { EmailComponent } from '../crmCompont/email/email.component';
 import { ProductEntityTypeComponent } from '../crmCompont/product-entity-type/product-entity-type.component';
 import { ProductHierachyComponent } from '../crmCompont/product-hierachy/product-hierachy.component';
 import { ProductHierachyFormComponent } from '../crmCompont/product-hierachy-form/product-hierachy-form.component';
+import { ProductEntityTypeFromComponent } from '../crmCompont/product-entity-type-from/product-entity-type-from.component';
 @NgModule({
   declarations: [
     LayoutCrmComponent,
@@ -65,7 +66,8 @@ import { ProductHierachyFormComponent } from '../crmCompont/product-hierachy-for
     EmailComponent,
     ProductEntityTypeComponent,
     ProductHierachyComponent,
-    ProductHierachyFormComponent
+    ProductHierachyFormComponent,
+    ProductEntityTypeFromComponent
  
   ],
   imports: [

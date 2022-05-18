@@ -23,6 +23,12 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
 
   
   export class CrmservicesService {
+  chcekLine(value: any) {
+    return this.http.get(environment.baseUrl+"/checkIfProductLineExists/"+value);
+  }
+  chcekFamilly(id) {
+    return this.http.get(environment.baseUrl+"/checkIfProductFamilyExists/"+id);
+  }
 
 
     deleteHierarchy(id){
