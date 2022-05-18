@@ -74,7 +74,6 @@ export class ProductFamilyFormComponent implements OnInit {
     }else{
       alert("Please select File")
     }
-    
     }
   }
 

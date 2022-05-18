@@ -30,11 +30,13 @@ export class LoginComponent implements OnInit {
       sessionStorage.setItem('username', this.createUser.get('username').value);      
       sessionStorage.setItem('access_token', data.access_token);
       sessionStorage.setItem('session_id', data.session_state);
-      sessionStorage.setItem('userDetails',JSON.stringify(data))
+      sessionStorage.setItem('userDetails',JSON.stringify(data));
+      sessionStorage.setItem('userId',data.userId);
       this.router.navigate(["master"])
+      console.log(data);
+      
     }, error => {
       console.log(error);
-
       if(error.status == 428){
         sessionStorage.setItem('username', this.createUser.get('username').value); 
         this.router.navigate(["/crm/change-password"], { queryParams: {content: 'update-password'}})

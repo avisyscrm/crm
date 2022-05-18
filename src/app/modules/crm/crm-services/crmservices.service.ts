@@ -153,6 +153,8 @@ createProductFamilly(data){
     private getRoles = environment.accessToken+"/roles/getroles";
     private getAllUsersUrl= environment.accessToken+"/users/allUsers?";
     private deleteUserUrl =environment.accessToken+"/users/delete/";
+    private userProfileUrl = environment.baseUrl+"/fetchUserById/";
+    private updateProfileUrl = environment.baseUrl+"/updateUser";
     // dropdownlist
     private genderList= environment.baseUrl+"/commonMaster/gender?isCacheable=true";
     private countryList =environment.baseUrl+"/commonMaster/country?isCacheable=true";
@@ -857,6 +859,15 @@ getEmails(url:string) {
   }
 };
 }
+
 languageService = new BehaviorSubject('en');
+
+getUserProfile(id:any){
+return this.http.get(this.userProfileUrl+id)
+}
+
+postUserProfile(data:any){
+  return this.http.post(this.updateProfileUrl,data);
+}
 
 }

@@ -25,9 +25,9 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="position-relative">
-                                        <img [src]="userImg?userImg:imgUrl" class="img" alt="" (click)="inputField.click()">
-                                        <i class="fa fa-camera camera-image" (click)="inputField.click()"></i>
-                                        <input type="file" #inputField hidden (change)="uploadImage($event)" [(ngModel)]="userImg"  [ngModelOptions]="{standalone: true}">    
+                                        <img [src]="userImg?userImg:imgUrl" class="img" alt="" (click)="file.click()">
+                                        <i class="fa fa-camera camera-image" (click)="file.click()"></i>
+                                        <input type="file" #file hidden (change)="uploadImage($event)" [(ngModel)]="userImg"  [ngModelOptions]="{standalone: true}">    
                                     </div>
                                     
                                 </div>
@@ -39,7 +39,7 @@
                                     <label class="form-label ">First Name</label>
                                 </div>
                                 <div class=" form-group col-md-8">
-                                    <input name="" [ngClass]="getControl.fName?.errors ? 'mandatory' : 'mandatoryG'" type="text" class="form-control" value="" formControlName="fName">
+                                    <input name="" [ngClass]="getControl.firstName?.errors ? 'mandatory' : 'mandatoryG'" type="text" class="form-control" value="" formControlName="firstName">
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                                     <label class="form-label ">Last Name</label>
                                 </div>
                                 <div class=" form-group col-md-8">
-                                    <input name="" type="text" [ngClass]="getControl.fName?.errors ? 'mandatory' : 'mandatoryG'" class="form-control" value="" formControlName="lName">
+                                    <input name="" type="text" [ngClass]="getControl.lastName?.errors ? 'mandatory' : 'mandatoryG'" class="form-control" value="" formControlName="lastName">
                                 </div>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                                     <label class="form-label ">Email</label>
                                 </div>
                                 <div class=" form-group col-md-8">
-                                    <input name="" type="email" [ngClass]="getControl.fName?.errors ? 'mandatory' : 'mandatoryG'" class="form-control " value="" formControlName="email">
+                                    <input name="" type="email" [ngClass]="getControl.email?.errors ? 'mandatory' : 'mandatoryG'" class="form-control " value="" formControlName="email" readonly>
                                 </div>
                             </div>
                         </div>
@@ -69,7 +69,7 @@
                                     <label class="form-label ">Contact</label>
                                 </div>
                                 <div class=" form-group col-md-8">
-                                    <input name="" type="tel" [ngClass]="getControl.fName?.errors ? 'mandatory' : 'mandatoryG'" class="form-control " value="" formControlName="contact">
+                                    <input name="" type="tel" [ngClass]="getControl.contact?.errors ? 'mandatory' : 'mandatoryG'" class="form-control " value="" formControlName="contact">
                                 </div>
                             </div>
                         </div>
