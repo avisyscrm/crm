@@ -46,7 +46,7 @@ buttonEvent1(data:any){
 if(data.event=='add'){
   this.router.navigate(['crm/product-hierachy-form']);   
 }else if(data.event=='edit'){
-  this.router.navigate(['crm/product-hierachy-form'],{ queryParams: { data: JSON.stringify(data.data.entityGroupsId)} });
+  this.router.navigate(['crm/product-hierachy-form'],{ queryParams: { data: JSON.stringify(data.data.productHierarchyId)} });
     console.log(data, 'data')
 }
  else if(data.event=='delete'){

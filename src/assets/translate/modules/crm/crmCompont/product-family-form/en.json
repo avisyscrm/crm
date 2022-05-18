@@ -14,6 +14,12 @@
             "description":"Description",
             "product-line-icon":"Product Line Icon"
         },
+        "ProductEntityType":{
+            "Product-Entity-Type-heading":"Product Entity Type",
+            "productEntityType": "Product Entity Type",
+            "productEntityTypeDescription": "Product Entity Type Description",
+            "isLaunchable":"Is Launchable"
+        },
         "entityGroup":{
             "Entity-group-heading":"ENTITY GROUP",
             "product-family":"Product Family Id",
