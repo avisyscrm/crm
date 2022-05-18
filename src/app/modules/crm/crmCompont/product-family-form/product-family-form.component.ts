@@ -43,8 +43,8 @@ export class ProductFamilyFormComponent implements OnInit {
       this.productFamily.patchValue(sucess);
       this.intialvalue = sucess;
       this.productFamily.patchValue(sucess);
-      this.productFamilyIcons = sucess.productLineIcon;
-      this.file=sucess.productLineIcon;
+      debugger
+      this.productFamilyIcons = sucess.productFamilyIcon;
     }, error => {
       alert("Error while updating the record");
     });

@@ -47,7 +47,8 @@ export class EntityFormComponent implements OnInit {
       this.entityGroups.patchValue(sucess);
       this.intialvalue = sucess;
       this.entityGroups.patchValue(sucess);
-      this.productFamilyIcons = sucess.productLineIcon;
+      debugger
+      this.productFamilyIcons = sucess.entityGroupsIcon;
     }, error => {
       alert("Error while updating the record");
     });

@@ -26,7 +26,7 @@
                                 <div class=" form-group col-md-6">
                                     <input  (input)="getValuefor();"  name="" type="text" [readonly]="actionBtn == 'Update'"   [ngClass]="productFamily.controls.productFamily?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control " value="" formControlName="productFamily">
                                     <div  [ngStyle]="{'color':checkFlag  ? 'green' : 'red' }"  style=" font-size: 12px;" *ngIf="actionBtn == 'Save' && productFamily.controls.productFamily.value!=''">{{msg}}</div>
-                                    <div *ngIf="productFamily.controls.productLine?.invalid && productFamily.controls.productFamily?.touched">
+                                    <div *ngIf="productFamily.controls.productFamily?.invalid && productFamily.controls.productFamily?.touched">
                                         <span class="validate-text" *ngIf="productFamily.controls.productFamily?.errors?.required">Please Enter Product Family</span>
                                         <span class="validate-text" *ngIf="productFamily.controls.productFamily?.errors?.maxlength">Character exceed max limit 100</span>
                                         <span class="validate-text"   *ngIf="productFamily.controls.productFamily?.errors?.isChar">Invalid input. Only character allowed </span>
