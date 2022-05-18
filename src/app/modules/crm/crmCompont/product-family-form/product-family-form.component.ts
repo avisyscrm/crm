@@ -16,8 +16,8 @@ export class ProductFamilyFormComponent implements OnInit {
     'productFamily': new FormControl('', [Validators.required, Validators.maxLength(30)]),
     'description': new FormControl('', [Validators.required, Validators.maxLength(100)]),
     'productFamilyIcon': new FormControl(''),
-    'createdBy': new FormControl('-1', Validators.required),
-    'updatedBy': new FormControl('-1', Validators.required),
+    'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId, Validators.required),
+    'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId, Validators.required),
   });
   intialvalue: any;
   actionBtn = "Save";

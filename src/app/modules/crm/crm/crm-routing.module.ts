@@ -30,6 +30,8 @@ import { ChangepasswordComponent } from '../crmCompont/changepassword/changepass
 import { ProductAtributeMasterComponent } from '../crmCompont/product-atribute-master/product-atribute-master.component';
 import { ProductAtributeMasterSummmaryComponent } from '../crmCompont/product-atribute-master-summmary/product-atribute-master-summmary.component';
 import { EmailComponent } from '../crmCompont/email/email.component';
+import { ProductHierachyComponent } from '../crmCompont/product-hierachy/product-hierachy.component';
+import { ProductHierachyFormComponent } from '../crmCompont/product-hierachy-form/product-hierachy-form.component';
 
 
 
@@ -63,8 +65,16 @@ const routes: Routes = [
                           path: 'entity-groups',
                           component: EntityGroupsComponent,
                           data: { title: 'Entity Group' }
+                        },{
+                          path: 'product-hierachy',
+                          component: ProductHierachyComponent,
+                          data: { title: 'Product Hierachy' }
+                        },{
+                          path: 'product-hierachy-form',
+                          component: ProductHierachyFormComponent,
+                          data: { title: 'Product Hierachy Form' }
                         },
-                        
+                      
                         {
                           path: 'entity-form',
                           component: EntityFormComponent,

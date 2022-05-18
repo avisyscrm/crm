@@ -12,17 +12,18 @@ export class ProductHierachyComponent implements OnInit {
 
   permission:any=[true,true,true];
   headerList:any=[];
-  constructor(private allService:CrmservicesService,private router:Router,private sweetAlert: SweetalertServiceService) { }
+  constructor(private allService:CrmservicesService,private router:Router,
+    private sweetAlert: SweetalertServiceService) { }
   data:any={};
   ajayStri : any ;
   pageNo:any;
   pageSize:any;
   sortBy:any;
   sortDirection:any;
+  url="pageNo=1&pageSize=5";
   ngOnInit(): void {
-    this.allService.getEntityGroup("pageNo=1&pageSize=5").subscribe(sucess=>{
-    this.headerList=sucess.headerlist  ; //sucess.headerList;
-
+    this.allService.getproductHierarchy("pageNo=1&pageSize=5").subscribe(sucess=>{
+    this.headerList=sucess.headerlist  ;
     this.data=sucess.page;
     },error=>{
 
@@ -30,50 +31,28 @@ export class ProductHierachyComponent implements OnInit {
     );
   }
   changePageSortSearch(url:any){
-    this.ajayStri =""+ url.toString();
-    var splittedpaging = this.ajayStri.split('&',4);
-    this.pageNo=splittedpaging[0].substring(splittedpaging[0].indexOf("=")+1,splittedpaging[0].length);
-    this.pageSize=splittedpaging[1].substring(splittedpaging[1].indexOf("=")+1,splittedpaging[1].length);
-    this.sortBy=splittedpaging[2].substring(splittedpaging[2].indexOf("=")+1,splittedpaging[2].length);
-    this.sortDirection=splittedpaging[3].substring(splittedpaging[3].indexOf("=")+1,splittedpaging[3].length);
-    this.allService.getEntityGroup(url).subscribe(sucess=>{
+    this.url=url;
+    this.allService.getproductHierarchy(url).subscribe(sucess=>{
       this.data=sucess.page;
-      },error=>{
-  
-      }
-      );
-      console.log(url,'dattaaa')
+      },error=>{});
   }
   onDelete(){
-    this.allService.getEntityGroup("pageNo="+this.pageNo+"&pageSize="+this.pageSize).subscribe(sucess=>{
+    this.allService.getproductHierarchy(this.url).subscribe(sucess=>{
       this.data=sucess.page;
-      },error=>{
-  
-      }
+      },error=>{}
       );
   }
-
-  onrefresh(){
-    this.allService.getEntityGroup("pageNo=1&pageSize=5").subscribe(sucess=>{
-      // this.headerList=sucess.headerlist  ; //sucess.headerList;
-  
-      this.data=sucess.page;
-      })
-  }
-
-  buttonEvent1(data:any){
+buttonEvent1(data:any){
 if(data.event=='add'){
-  this.router.navigate(['crm/entity-form']);   
+  this.router.navigate(['crm/product-hierachy-form']);   
 }else if(data.event=='edit'){
-  // alert(JSON.stringify(data.data));
-  this.router.navigate(['crm/entity-form'],{ queryParams: { data: JSON.stringify(data.data.entityGroupsId)} });
+  this.router.navigate(['crm/product-hierachy-form'],{ queryParams: { data: JSON.stringify(data.data.entityGroupsId)} });
     console.log(data, 'data')
 }
  else if(data.event=='delete'){
-   this.allService.deleteEntitygroups(data.data.entityGroupsId,0).subscribe((res)=>{
+   this.allService.deleteHierarchy(data.data.productHierarchyId).subscribe((res)=>{
     this.sweetAlert.recordDeleted();  
     this.onDelete();
-    this.onrefresh(); 
    })
  } 
   
