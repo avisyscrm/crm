@@ -68,7 +68,7 @@ export class SweetalertServiceService {
     })
   }
   // Enter your email address and your password will be reset and emailed to you.
-  mailcheck(path: any) {
+  mailcheck(path: any| null) {
     Swal.fire({
       title: '',
       text: 'Please check your Email. ',
@@ -83,9 +83,14 @@ export class SweetalertServiceService {
         popup: '',                     // disable popup fade-out animation
       },
     }).then(() => {
-      this.router.navigate([path]); // navigate to other page
+      if(path !=null) {
+        this.router.navigate([path]); // navigate to other page
+      }
+     
     })
   }
+
+  
 
   // update
   RecordUpdated(path: any) {

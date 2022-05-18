@@ -1,7 +1,13 @@
 
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { emailTemplatevariableValidatio } from 'src/app/modules/client/validators/validation';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { CKEditorComponent } from '@ckeditor/ckeditor5-angular';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 
 @Component({
   selector: 'app-email',
@@ -9,6 +15,9 @@ import { CrmservicesService } from '../../crm-services/crmservices.service';
   styleUrls: ['./email.component.scss']
 })
 export class EmailComponent implements OnInit {
+  @ViewChild('ckeditorEleRef') ckeditorElementComponent:CKEditorComponent;
+  public Editor = ClassicEditor;
+ // public  ckeditorElementComponent:CKEditorComponent;
   permission:any=[true,true,true];
   headerList:any=[];
   ajayStri : any ;
@@ -18,21 +27,92 @@ export class EmailComponent implements OnInit {
   sortDirection:any;
   data:any={};
   byDefaultPaging:any = "pageNo=1&pageSize=5";
-
-  constructor(private allService:CrmservicesService, private router:Router) { }
-
+  modalRef: BsModalRef;
+  templateVariables:any=[];
+  isEmailTemplateVariableInValid:boolean = false;
+  constructor(private allService:CrmservicesService, private router:Router,private modalService: BsModalService,private sweetAlertService:SweetalertServiceService) {
+    this.allService.getEmailTemplateVariables().subscribe((response)=>{
+      this.templateVariables = response;
+     this.emailTemplate.setValidators(emailTemplatevariableValidatio(this.templateVariables))
+    })
+   }
+  
   ngOnInit(): void {
-    // this.allService.getEmails("pageNo=1&pageSize=5").subscribe((sucess:any)=>{
-    //   this.headerList=sucess.headerlist  ; //sucess.headerList;
-    // this.data=sucess.page;
-    // },
-    // (error)=>{
-    //   console.log(error)
-    // })
-    let sucess = this.allService.getEmails("pageNo=1&pageSize=5")
-    this.headerList=sucess.headerlist  ; //sucess.headerList;
+    this.allService.getEmails("pageNo=1&pageSize=5").subscribe((sucess:any)=>{
+      this.headerList=sucess.headerlist  ; //sucess.headerList;
     this.data=sucess.page;
+    },
+    (error)=>{
+      console.log(error)
+    })
+   
   }
+
+  
+  emailTemplate= new FormGroup({
+    emailId : new FormControl(''),
+    emailTo : new FormControl('',[Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+    emailSubject : new FormControl('',[Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+    emailContent : new FormControl('',[Validators.required,Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
+    createdBy : new FormControl('-1'),
+    updatedBy : new FormControl('-1'),
+  })
+
+  get emailTo(){
+    return this.emailTemplate.get('emailTo');
+  }
+
+  get emailSubject(){
+    return this.emailTemplate.get('emailSubject');
+  } 
+  
+  get emailContent(){
+    return this.emailTemplate.get('emailContent');
+  }
+
+  submit(){
+    console.log(this.emailTo.value);
+    if(this.emailTo.value!=undefined){
+      this.resendEmail()
+    }
+  }
+
+  resendEmail(){
+    this.allService.resendEmail(this.emailTo.value).subscribe((response)=>{
+     console.log(response);
+     this.sweetAlertService.mailcheck(null);
+     setTimeout(() => {
+      this.modalRef.hide();
+     }, 2000);
+    },
+    (error)=>{
+      console.log(error);
+    })
+  }
+  validateTemplateVariables(){
+    let emailContent = this.emailTemplate.get('emailContent').value;
+    let templateVariableList:any=this.templateVariables;
+    let curlyEmailContentTempVarFound = [];
+    const rxp = /{{([^}]+)}}/g;
+    let  curMatch;
+    while( curMatch = rxp.exec( emailContent ) ) {
+    curlyEmailContentTempVarFound.push( curMatch[1] );
+    }
+    let totalTemplatevariable = templateVariableList?.length;
+    let templateVariableKeys = [];
+    for(let i = 0; i<totalTemplatevariable;i++) {
+        templateVariableKeys.push(templateVariableList[i].key) ;
+    }
+    let isExist = curlyEmailContentTempVarFound.every(elem => templateVariableKeys.includes(elem));
+    if(!isExist)
+     {
+      this.isEmailTemplateVariableInValid = true;
+    } else {
+      this.isEmailTemplateVariableInValid = false;
+    }
+}
+
+
 
   pagination(url){
    
@@ -76,4 +156,33 @@ export class EmailComponent implements OnInit {
     } 
     }
 
+    setVariable(Templatevariable:string,template:ElementRef){
+      let editor = this.ckeditorElementComponent.editorInstance;
+      const selection = editor.model.document.selection;
+      const range = selection.getFirstRange();
+      editor.model.change ( writer => {
+          writer.insert( '{{'+Templatevariable+'}}', range.start );
+      } );
+      // console.log(this.ckeditorElementComponent);
+      // let editor = template;
+      //   const selection = editor;
+      // const range = selection.getFirstRange();
+      // editor.model.change ( writer => {
+      //     writer.insert( '{{'+Templatevariable+'}}', range.start );
+      // } );
+      console.log(template)
+      
+     }
+
+    openModal(template: TemplateRef<any>) {
+      this.modalRef = this.modalService.show(template,{class:'modal-lg'});
+      this.emailTo.setValue("ajay.shinde@avisys.in:T:2022-05-10T20:28:06.032944")
+      this.emailSubject.setValue("Test Email")
+      this.emailContent.setValue("<h4>Hello Email</h1>")
+     // @ViewChild('ckeditorEleRef') this.ckeditorElementComponent:CKEditorComponent;
+    }
+
 }
+
+
+
