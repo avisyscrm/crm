@@ -229,6 +229,12 @@ export class LeftmenuComponent implements OnInit {
           routerLink:['/crm/product-hierachy'],
           translationKey:'master_submenu_product-hierachy',
           
+        },
+        {
+          name:"product-entity-type",
+          routerLink:['/crm/product-entity-type'],
+          translationKey:'master_submenu_product-entity-type',
+          
         }
       ]
    },
