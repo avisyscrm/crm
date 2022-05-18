@@ -9,8 +9,7 @@
          },
         "productLine":{
             "Product-Line-heading":"PRODUKTPALETTE",
-            "product-family":"Produktfamilie",
-            "product-line":"Produktfamilie",
+            "product-line":"Produktline",
             "description":"Beschreibung",
             "product-line-icon":"Symbol für die Produktlinie"
         },
