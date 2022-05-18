@@ -23,6 +23,21 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
 
   
   export class CrmservicesService {
+  deleteEntityType(productEntityTypeId: any) {
+    return this.http.delete(environment.baseUrl+"/deleteProductEntityTypes/"+productEntityTypeId+"/"+ JSON.parse(sessionStorage.getItem('userDetails')).userId);
+  }
+  createProductEntity(data){
+    return this.http.post(environment.baseUrl+"/createProductEntityTypes",data);
+  }
+  putProductEntity(data){
+    return this.http.put(environment.baseUrl+"/updateProductEntityTypes",data);
+  }
+  getProductEntityID(id: any) {
+    return this.http.get(environment.baseUrl+"/productEntityTypes/"+id);
+  }
+  getProductEntity(arg0: string) {
+    return this.http.get(environment.baseUrl+"/productEntityTypes?"+arg0);
+  }
   chcekLine(value: any) {
     return this.http.get(environment.baseUrl+"/checkIfProductLineExists/"+value);
   }

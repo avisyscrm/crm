@@ -66,7 +66,7 @@ export class EntityFormComponent implements OnInit {
         });
       }else{
         this.service.updatEentityGroupsDataWithoutFile(this.entityGroups.value).subscribe(sucess => {
-          this.alertService.RecordUpdated('/crm/entity-form');
+          this.alertService.RecordUpdated('/crm/entity-groups');
         });
       }
     
