@@ -30,6 +30,7 @@ import { EmailtemplateComponent } from '../crmCompont/emailtemplate/emailtemplat
 import { ScheduleemailFormComponent } from '../crmCompont/scheduleemail-form/scheduleemail-form.component';
 import { ProductAtributeMasterSummmaryComponent } from '../crmCompont/product-atribute-master-summmary/product-atribute-master-summmary.component';
 import { ProductAtributeMasterComponent } from '../crmCompont/product-atribute-master/product-atribute-master.component';
+import { EmailComponent } from '../crmCompont/email/email.component';
 @NgModule({
   declarations: [
     LayoutCrmComponent,
@@ -57,7 +58,8 @@ import { ProductAtributeMasterComponent } from '../crmCompont/product-atribute-m
     EmailtemplateComponent,
     ScheduleemailFormComponent,
     ProductAtributeMasterSummmaryComponent,
-    ProductAtributeMasterComponent
+    ProductAtributeMasterComponent,
+    EmailComponent
  
   ],
   imports: [

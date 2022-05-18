@@ -85,7 +85,7 @@
                         <div class="col-md-4">
                             <div class="card border">
                                 <div class="card-body">
-                                    <h5 class="card-title">Add Template Variable </h5>
+                                    <h5 class="card-title">Add Template Variable</h5>
                                     <span class="btn btn-primary mr-1 mt-1" *ngFor="let templateVar of templateVariables;let i=index" (click)="setVariable(templateVar.key)">{{templateVar.value}}</span >
                                         <div *ngIf="isEmailTemplateVariableInValid">
                                             <span class="validate-text" *ngIf="isEmailTemplateVariableInValid">Email Template variable are not valid in Email Content</span>
@@ -108,4 +108,5 @@
         {{productFamily.invalid}}
      </pre> -->
     <!---product family-->
+
 </div>
