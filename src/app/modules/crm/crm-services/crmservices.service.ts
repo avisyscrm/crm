@@ -44,6 +44,10 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
   chcekFamilly(id) {
     return this.http.get(environment.baseUrl+"/checkIfProductFamilyExists/"+id);
   }
+  checkEntity(value:any){
+    return this.http.get(environment.baseUrl+"/checkIfEntityGroupExists/"+value);
+    
+  }
 
 
     deleteHierarchy(id){

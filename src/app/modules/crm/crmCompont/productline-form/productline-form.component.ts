@@ -24,6 +24,7 @@ export class ProductlineFormComponent implements OnInit {
   productFamilyIcons: any;
   file: any;
   checkFlag: boolean;
+  imageSet: boolean = true;
   statusCode: any;
   msg: any="";
   constructor(private service: CrmservicesService, public translate: TranslateService,
@@ -32,6 +33,7 @@ export class ProductlineFormComponent implements OnInit {
     this.route.queryParams.subscribe((params: any) => {
       if (params.data != undefined) {
         this.actionBtn = "Update";
+        this.imageSet = false;
         this.checkFlag=true;
         this.getValueByID(params.data);
       }
@@ -44,7 +46,7 @@ export class ProductlineFormComponent implements OnInit {
       this.productLine.patchValue(sucess);
       this.productFamilyIcons = sucess.productLineIcon;
     }, error => {
-      alert("Error while updating the record");
+      // alert("Error while updating the record");
     });
   }
   ngOnInit(): void { }
@@ -70,7 +72,7 @@ export class ProductlineFormComponent implements OnInit {
           this.alertService.RecordAdded('/crm/product-line');
         })
        } else{
-        alert("Please select File");
+        // alert("Please select File");
       }
       
     }
@@ -79,6 +81,11 @@ export class ProductlineFormComponent implements OnInit {
 
   resetForm() {
     this.productLine.reset(this.intialvalue);
+    if(this.actionBtn == 'Save'){
+      this.file = '';
+      this.productFamilyIcons = '';
+      this.imageSet = true;
+    }
   }
   get getControl() {
     return this.productLine.controls;
@@ -86,6 +93,7 @@ export class ProductlineFormComponent implements OnInit {
 
   onFileSelect(event: any) {
     if (event.target.files.length > 0) {
+      this.imageSet = false;
       this.file = event.target.files.item(0);
       var reader = new FileReader();
       reader.readAsDataURL(this.file);
