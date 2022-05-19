@@ -21,6 +21,9 @@
             "description":"Beschreibung",
             "entity-icon":"Symbol für die Entitätsgruppe"
         },
+        "productHierarchy":{
+            "hierarchy-heading":"Produkthierarchie"
+        },
         "template-form":{
             "template-form-heading":"PRODUKTENTITÄTSVORLAGEN",
             "product-family":"Produktfamilie",

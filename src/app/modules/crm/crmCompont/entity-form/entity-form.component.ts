@@ -31,13 +31,15 @@ export class EntityFormComponent implements OnInit {
   checkFlag: boolean;
   msg: string="";
   statusCode: any;
+  imageSet: boolean=true;
   constructor(private service: CrmservicesService, public translate: TranslateService,
     private alertService: SweetalertServiceService, private route: ActivatedRoute) {
     this.intialvalue = this.entityGroups.value;
     this.route.queryParams.subscribe((params: any) => {
       if (params.data != undefined) {
         this.actionBtn = "Update";
-        this.checkFlag=true;
+        this.imageSet = false;
+        this.checkFlag = true;
         this.getValueByID(params.data);
       }
     });
@@ -50,7 +52,7 @@ export class EntityFormComponent implements OnInit {
       debugger
       this.productFamilyIcons = sucess.entityGroupsIcon;
     }, error => {
-      alert("Error while updating the record");
+      // alert("Error while updating the record");
     });
   } 
   ngOnInit(): void { }
@@ -78,13 +80,18 @@ export class EntityFormComponent implements OnInit {
         })
       }
     else{
-      alert("Please select File");
+      // alert("Please select File");
     }
     }
   }
 
   resetForm() {
     this.entityGroups.reset(this.intialvalue);
+    if(this.actionBtn == 'Save'){
+      this.file = '';
+      this.productFamilyIcons = '';
+      this.imageSet = true;
+    }
   }
   get getControl() {
     return this.entityGroups.controls;
@@ -92,6 +99,7 @@ export class EntityFormComponent implements OnInit {
 
   onFileSelect(event: any) {
     if (event.target.files.length > 0) {
+      this.imageSet = false;
       this.file = event.target.files.item(0);
       var reader = new FileReader();
       reader.readAsDataURL(this.file);
@@ -106,7 +114,7 @@ export class EntityFormComponent implements OnInit {
     this.checkFlag=false;
 }
   check(){
-    this.service.chcekLine(this.entityGroups.controls.entityGroups.value).subscribe((scucess:any)=>{
+    this.service.checkEntity(this.entityGroups.controls.entityGroups.value).subscribe((scucess:any)=>{
       this.statusCode=scucess;
       this.msg=scucess.message;
       this.checkFlag=true;

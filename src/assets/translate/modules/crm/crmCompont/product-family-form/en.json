@@ -28,6 +28,9 @@
             "description":"Description",
             "entity-icon":"Entity Group Icon"
         },
+        "productHierarchy":{
+            "hierarchy-heading":"Product Hierarchy"
+        },
         "template-form":{
             "template-form-heading":"PRODUCT ENTITY TEMPLATES",
             "product-family":"Product Family Id",

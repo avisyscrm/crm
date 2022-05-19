@@ -15,7 +15,7 @@ export class ProductFamilyFormComponent implements OnInit {
     'productFamilyId': new FormControl(''),
     'productFamily': new FormControl('', [Validators.required, Validators.maxLength(30)]),
     'description': new FormControl('', [Validators.required, Validators.maxLength(100)]),
-    'productFamilyIcon': new FormControl(''),
+    'productFamilyIcon': new FormControl('',),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
   });
@@ -25,6 +25,7 @@ export class ProductFamilyFormComponent implements OnInit {
   file: any;
   statusCode: any;
   checkFlag: boolean;
+  imageSet:boolean = true;
   msg: any;
   constructor(private service: CrmservicesService, public translate: TranslateService,
     private alertService: SweetalertServiceService, private route: ActivatedRoute) {
@@ -32,6 +33,7 @@ export class ProductFamilyFormComponent implements OnInit {
     this.route.queryParams.subscribe((params: any) => {
       if (params.data != undefined) {
         this.actionBtn = "Update";
+        this.imageSet = false;
         this.checkFlag=true;
         this.getValueByID(params.data);
       
@@ -43,12 +45,12 @@ export class ProductFamilyFormComponent implements OnInit {
       this.productFamily.patchValue(sucess);
       this.intialvalue = sucess;
       this.productFamily.patchValue(sucess);
-      debugger
       this.productFamilyIcons = sucess.productFamilyIcon;
     }, error => {
-      alert("Error while updating the record");
+      // alert("Error while updating the record");
     });
   }
+
   ngOnInit(): void { }
   submit() {
     this.productFamily.controls['createdBy'].patchValue(JSON.parse(sessionStorage.getItem('userDetails')).userId);
@@ -57,6 +59,7 @@ export class ProductFamilyFormComponent implements OnInit {
     formData.append('file', this.file);
     formData.append('productFamily', JSON.stringify(this.productFamily.value));
     if (this.actionBtn == "Update") {
+      
       if(this.file!=undefined){
       this.service.putProductFamily(formData).subscribe(sucess => {
         this.alertService.RecordUpdated('/crm/product-family');
@@ -72,19 +75,25 @@ export class ProductFamilyFormComponent implements OnInit {
         this.alertService.RecordAdded('/crm/product-family');
       })
     }else{
-      alert("Please select File")
+      // alert("Please select File")
     }
     }
   }
 
   resetForm() {
     this.productFamily.reset(this.intialvalue);
+    if(this.actionBtn == 'Save'){
+      this.file = '';
+      this.productFamilyIcons = '';
+      this.imageSet = true;
+    }
   }
   get getControl() {
     return this.productFamily.controls;
   }
   onFileSelect(event: any) {
     if (event.target.files.length > 0) {
+      this.imageSet = false;
       this.file = event.target.files.item(0);
       var reader = new FileReader();
       reader.readAsDataURL(this.file);
@@ -104,7 +113,8 @@ export class ProductFamilyFormComponent implements OnInit {
       this.statusCode=scucess;
       this.msg=scucess.message;
       this.checkFlag=true;
-    },error=>{
+    },
+    error=>{
       if(error.status){
         this.checkFlag=false;
         this.msg=error.error.message;
