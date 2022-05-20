@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
@@ -10,22 +10,21 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./product-family-form.component.scss','../../crm/crm.component.scss']
 })
 export class ProductFamilyFormComponent implements OnInit {
-  @ViewChild('files') myInputVariable: any;
+  @ViewChild('file1') myInputVariable:ElementRef;
   productFamily = new FormGroup({
     'productFamilyId': new FormControl(''),
     'productFamily': new FormControl('', [Validators.required, Validators.maxLength(30)]),
     'description': new FormControl('', [Validators.required, Validators.maxLength(100)]),
-    'productFamilyIcon': new FormControl('',),
+    'productFamilyIcon': new FormControl('',Validators.required),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
   });
   intialvalue: any;
   actionBtn = "Save";
-  productFamilyIcons: any;
+  // productFamilyIcons: any;
   file: any;
   statusCode: any;
   checkFlag: boolean;
-  imageSet:boolean = true;
   msg: any;
   constructor(private service: CrmservicesService, public translate: TranslateService,
     private alertService: SweetalertServiceService, private route: ActivatedRoute) {
@@ -33,7 +32,6 @@ export class ProductFamilyFormComponent implements OnInit {
     this.route.queryParams.subscribe((params: any) => {
       if (params.data != undefined) {
         this.actionBtn = "Update";
-        this.imageSet = false;
         this.checkFlag=true;
         this.getValueByID(params.data);
       
@@ -42,15 +40,12 @@ export class ProductFamilyFormComponent implements OnInit {
   }
   getValueByID(id) {
     this.service.getFamilly(id).subscribe((sucess: any) => {
-      this.productFamily.patchValue(sucess);
       this.intialvalue = sucess;
       this.productFamily.patchValue(sucess);
-      this.productFamilyIcons = sucess.productFamilyIcon;
     }, error => {
-      // alert("Error while updating the record");
+      alert("Error while updating the record");
     });
   }
-
   ngOnInit(): void { }
   submit() {
     this.productFamily.controls['createdBy'].patchValue(JSON.parse(sessionStorage.getItem('userDetails')).userId);
@@ -59,7 +54,6 @@ export class ProductFamilyFormComponent implements OnInit {
     formData.append('file', this.file);
     formData.append('productFamily', JSON.stringify(this.productFamily.value));
     if (this.actionBtn == "Update") {
-      
       if(this.file!=undefined){
       this.service.putProductFamily(formData).subscribe(sucess => {
         this.alertService.RecordUpdated('/crm/product-family');
@@ -75,30 +69,26 @@ export class ProductFamilyFormComponent implements OnInit {
         this.alertService.RecordAdded('/crm/product-family');
       })
     }else{
-      // alert("Please select File")
+      alert("Please select File")
     }
     }
   }
 
   resetForm() {
     this.productFamily.reset(this.intialvalue);
-    if(this.actionBtn == 'Save'){
-      this.file = '';
-      this.productFamilyIcons = '';
-      this.imageSet = true;
-    }
+    this.myInputVariable.nativeElement.value = "";
   }
   get getControl() {
     return this.productFamily.controls;
   }
   onFileSelect(event: any) {
     if (event.target.files.length > 0) {
-      this.imageSet = false;
       this.file = event.target.files.item(0);
       var reader = new FileReader();
       reader.readAsDataURL(this.file);
       reader.onload = (_event) => {
-        this.productFamilyIcons = reader.result;
+        let imagePath=reader.result;
+         this.productFamily.controls['productFamilyIcon'].setValue(imagePath);
       }
     }
   }
@@ -107,14 +97,12 @@ export class ProductFamilyFormComponent implements OnInit {
       this.msg="";
       this.checkFlag=false;
   }
-
   check(){
     this.service.chcekFamilly(this.productFamily.controls.productFamily.value).subscribe((scucess:any)=>{
       this.statusCode=scucess;
       this.msg=scucess.message;
       this.checkFlag=true;
-    },
-    error=>{
+    },error=>{
       if(error.status){
         this.checkFlag=false;
         this.msg=error.error.message;
