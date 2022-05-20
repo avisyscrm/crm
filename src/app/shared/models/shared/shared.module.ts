@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DatatableComponent } from 'src/app/modules/client/datatable/datatable/datatable.component';
@@ -35,6 +36,7 @@ import { FromSectionComponent } from 'src/app/modules/client/from-section/from-s
 import { FromTabSectionComponent } from 'src/app/modules/client/from-tab-section/from-tab-section.component';
 import { DynamicRoleComponent } from 'src/app/modules/crm/crmCompont/dynamic-role/dynamic-role.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { LayoutCrmComponent } from 'src/app/modules/layout-crm/layout-crm.component';
 
 @NgModule({
   declarations: [
@@ -48,9 +50,10 @@ import { TranslateModule } from '@ngx-translate/core';
     ProfileComponent,
     FromSectionComponent,
     FromTabSectionComponent,
-    DynamicRoleComponent,
-
-    FooterComponent,],
+    DynamicRoleComponent,  
+    FooterComponent,
+    LayoutCrmComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -83,7 +86,6 @@ import { TranslateModule } from '@ngx-translate/core';
     FullCalendarModule,
     CKEditorModule,
   TranslateModule,
-
   ],
   exports:[
     DatatableComponent,
@@ -123,7 +125,7 @@ import { TranslateModule } from '@ngx-translate/core';
     FromTabSectionComponent,
     DynamicRoleComponent,
     TranslateModule,
-
+    LayoutCrmComponent
     ]
 })
 export class SharedModule { }

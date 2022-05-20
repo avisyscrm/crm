@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { LayoutCrmComponent } from '../../crm/layout-crm/layout-crm.component';
+import { LayoutCrmComponent } from '../../layout-crm/layout-crm.component';
 import { AdminroleTableComponent } from '../adminrole-table/adminrole-table.component';
 import { AssignRoleComponent } from '../assign-role/assign-role.component';
 import { CreateRoleComponent } from '../create-role/create-role.component';

@@ -16,7 +16,7 @@ import { ProductAttributeComponent } from '../../client/hrms/product-attribute/p
 import { ProductTabComponent } from '../../client/hrms/product-tab/product-tab.component';
 import { ProductFamilyFormComponent } from '../crmCompont/product-family-form/product-family-form.component';
 import { ProductFamilyComponent } from '../crmCompont/product-family/product-family.component';
-import { LayoutCrmComponent } from '../layout-crm/layout-crm.component';
+import { LayoutCrmComponent } from '../../layout-crm/layout-crm.component';
 import { ProductTemplatesComponent } from '../crmCompont/product-templates/product-templates.component';
 import { ProductTemplateFormComponent } from '../crmCompont/product-template-form/product-template-form.component';
 import { ProductTabsFormComponent } from '../crmCompont/product-tabs-form/product-tabs-form.component';
