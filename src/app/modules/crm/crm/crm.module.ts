@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CrmRoutingModule } from './crm-routing.module';
@@ -5,7 +6,6 @@ import { ProductTableComponent } from '../../client/hrms/product-table/product-t
 import { ProducttemplateFormComponent } from '../../client/hrms/producttemplate-form/producttemplate-form.component';
 import { SectionFromTemplateComponent } from '../../client/section-from-template/section-from-template.component';
 import { TabfromTemplateComponent } from '../../client/tabfrom-template/tabfrom-template.component';
-import { LayoutCrmComponent } from '../layout-crm/layout-crm.component';
 import { ProductFamilyComponent } from '../crmCompont/product-family/product-family.component';
 import { ProductlineFormComponent } from '../crmCompont/productline-form/productline-form.component';
 import { ProductlineTableComponent } from '../crmCompont/productline-table/productline-table.component';
@@ -39,7 +39,6 @@ import { ProfilepageComponent } from '../crmCompont/profilepage/profilepage.comp
 
 @NgModule({
   declarations: [
-    LayoutCrmComponent,
     ProductFamilyComponent,
     ProductFamilyFormComponent,
     ProductlineFormComponent,
@@ -70,7 +69,7 @@ import { ProfilepageComponent } from '../crmCompont/profilepage/profilepage.comp
     ProductHierachyComponent,
     ProductHierachyFormComponent,
     ProductEntityTypeFromComponent,
-    ProfilepageComponent
+    ProfilepageComponent,
 
   ],
   imports: [

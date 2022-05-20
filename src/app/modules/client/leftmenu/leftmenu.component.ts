@@ -47,6 +47,7 @@ export class LeftmenuComponent implements OnInit {
   crmisActive:boolean = false;
   productisActive:boolean = false;
   crmAdminActive:boolean = false
+  numberisActive:boolean = false;
   adminMenuList:any=[
     {
      name: "Dashaboard",
@@ -278,6 +279,34 @@ export class LeftmenuComponent implements OnInit {
       dynamicMenuOpen:true
      }
   ]
+  NumberMenuList:any =[
+    {
+      name:"Number Management",
+      controlId:"collapseBasicNumbers",
+      isCollapsed: true,
+      isHeading:false,
+      iconClass:"icon-rocket",
+      dynamicMenuOpen:false,
+      translationKey:'masters_main_menu_title',
+      submenu:[
+          {
+            name:"Number Type",
+            routerLink:['/number/numberType'],
+            translationKey:'master_submenu_product_family',
+          },
+          {
+            name:"Number Format",
+            routerLink:['/number/numberFormat'],
+            translationKey:'master_submenu_product_family',
+          },
+          {
+            name:"Number Scheme",
+            routerLink:['/number/numberScheme'],
+            translationKey:'master_submenu_product_family',
+          }
+      ]
+   }
+  ]
   menuList:any = [];
 
 
@@ -305,6 +334,7 @@ export class LeftmenuComponent implements OnInit {
 
 // 
 let dataProp:string = sessionStorage.getItem('dataProp');
+console.log(this.NumberMenuList);
       if (dataProp == "crmActive"){
         this.crmisActive = true;
         this.crmAdminActive=false;
@@ -322,6 +352,14 @@ let dataProp:string = sessionStorage.getItem('dataProp');
         this.productisActive = false;
         this.crmAdminActive=true;
         this.menuList = this.adminMenuList;
+      } else if (dataProp == "numberActive"){
+        this.crmisActive = false;
+        this.crmAdminActive=false;
+        this.productisActive = false;
+        this.numberisActive = true;
+        this.menuList = this.NumberMenuList;
+      
+        
       }
 
 // 
