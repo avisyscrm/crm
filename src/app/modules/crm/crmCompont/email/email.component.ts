@@ -18,7 +18,7 @@ export class EmailComponent implements OnInit {
   @ViewChild('ckeditorEleRef') ckeditorElementComponent:CKEditorComponent;
   public Editor = ClassicEditor;
  // public  ckeditorElementComponent:CKEditorComponent;
-  permission:any=[true,true,true];
+  permission:any=[false,false,false];
   headerList:any=[];
   ajayStri : any ;
   pageNo:any;
@@ -157,12 +157,10 @@ export class EmailComponent implements OnInit {
     }
 
     setVariable(Templatevariable:string,template:ElementRef){
-      let editor = this.ckeditorElementComponent.editorInstance;
-      const selection = editor.model.document.selection;
-      const range = selection.getFirstRange();
-      editor.model.change ( writer => {
-          writer.insert( '{{'+Templatevariable+'}}', range.start );
-      } );
+      
+      console.log(this.emailTemplate.controls['emailContent'].value);
+      this.emailTemplate.controls['emailContent'].setValue(this.emailTemplate.controls['emailContent'].value+'{{'+Templatevariable+'}}');
+    
       // console.log(this.ckeditorElementComponent);
       // let editor = template;
       //   const selection = editor;
@@ -175,13 +173,14 @@ export class EmailComponent implements OnInit {
      }
 
     openModal(template: TemplateRef<any>) {
-      this.modalRef = this.modalService.show(template,{class:'modal-lg'});
+      this.modalRef = this.modalService.show(template,{class:'modal-lg',animated: true});
+      document.getElementsByClassName("modal")[0].classList.add("right");
       this.emailTo.setValue("ajay.shinde@avisys.in:T:2022-05-10T20:28:06.032944")
       this.emailSubject.setValue("Test Email")
       this.emailContent.setValue("<h4>Hello Email</h1>")
      // @ViewChild('ckeditorEleRef') this.ckeditorElementComponent:CKEditorComponent;
     }
-
+    
 }
 
 
