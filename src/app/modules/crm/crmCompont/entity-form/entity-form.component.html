@@ -23,9 +23,9 @@
                                 <div class=" form-group col-md-4">
                                     <label class="form-label "><span>{{'forms.entityGroup.entity-groups' | translate}}</span> </label>
                                 </div>
-                                <div class=" form-group col-md-6">
-                                    <input name="" type="text"  (input)="getValuefor();"   [readonly]="actionBtn == 'Update'"   [ngClass]="entityGroups.controls.entityGroups?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control " value="" formControlName="entityGroups">
-                                    <div  [ngStyle]="{'color':checkFlag  ? 'green' : 'red' }"  style=" font-size: 12px;" *ngIf="actionBtn == 'Save' && entityGroups.controls.entityGroups.value!=''">{{msg}}</div>
+                                <div class=" form-group col-md-8">
+                                    <input name="" type="text"    [readonly]="actionBtn == 'Update'"   [ngClass]="entityGroups.controls.entityGroups?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control " value="" formControlName="entityGroups">
+                                  
                                     <div *ngIf="entityGroups.controls.entityGroups?.invalid && entityGroups.controls.entityGroups?.touched">
                                         <span class="validate-text" *ngIf="entityGroups.controls.entityGroups?.errors?.required">Please Enter Product Line</span>
                                         <span class="validate-text" *ngIf="entityGroups.controls.entityGroups?.errors?.maxlength">Character exceed max limit 100</span>
@@ -33,9 +33,7 @@
                                         <span class="validate-text"  *ngIf="entityGroups.controls.entityGroups?.errors?.pattern ">Field cant be empty</span>
                                      </div>
                                 </div>
-                                <div class=" form-group col-md-2">
-                                    <button [disabled]="actionBtn == 'Update'"  (click)="check();$event.stopPropagation()"  [disabled]="entityGroups.controls.entityGroups.value=='' || actionBtn == 'Update'" type="button" class="btn btn-primary">Verify</button>
-                                </div>
+    
                             </div>
                         </div>                
                         <div class="col-md-8">
@@ -66,7 +64,7 @@
                             </div>
                         </div>
                     </div>
-                    <button [disabled]="entityGroups.invalid || !checkFlag || imageSet" (click)="submit()" type="submit" class="btn btn-primary ">{{actionBtn}}</button>
+                    <button [disabled]="entityGroups.invalid  || imageSet" (click)="submit()" type="submit" class="btn btn-primary ">{{actionBtn}}</button>
                     <button type="button" (click)="resetForm()" class="btn btn-primary ml-3 ">Reset</button>
                 </div>
             </div>

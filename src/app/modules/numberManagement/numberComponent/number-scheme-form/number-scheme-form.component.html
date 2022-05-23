@@ -1,1 +1,312 @@
-<p>number-scheme-form works!</p>
+<div class="section-body  fixNavMargin">
+        <div class="container-fluid">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <ul class="nav nav-tabs page-header-tab">
+                    <li class="nav-item"><a class="nav-link" href="#">
+                        </a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"></a>
+                    </li>
+
+                </ul>
+            </div>
+            <form [formGroup]="numberScheme" >
+            <div class="card card-height">
+                <div class="card-header pf-head">
+                    <h3 class="card-title "><span>{{'forms.numberSchema.Number-Schema-heading' | translate}}</span> </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row productfamily ">
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Number-Schema-name' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input name="" type="text" class="form-control mandatory" value=""
+                                                    formControlName="schemeName">
+                                        <div *ngIf="numberScheme.controls.schemeName?.invalid && numberScheme.controls.schemeName?.touched">
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.schemeName?.errors?.required">Please Enter Schema Name</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.schemeName?.errors?.maxLength">Character exceed max limit 20</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.schemeName?.errors?.isChar">Invalid input. Only character allowed </span>
+                                         </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Number-Type' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <select  name="" type="text" class="form-control mandatory" value=""
+                                                    formControlName="numberType">
+                                        <option value="" >Select --</option>           
+                                        <option value="SIM" >SIM</option>           
+                                        <option value="IMSI" >IMSI</option>           
+                                        <option value="MSISDN" >MSISDN</option>  
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Sub-Type' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <select  name="" type="text" class="form-control mandatory" value=""
+                                                    formControlName="subType">
+                                        <option value="" >Select --</option>
+                                        <option value="test" >test</option>           
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Released' | translate}}</span></label>
+                                </div>
+                                <div class=" form-group col-md-8 ">
+                                    <div class="form-group ">
+                                     
+                                         <div class="custom-switches-stacked">
+                                            <label class="custom-switch">
+                                                <input type="checkbox" value="" class="custom-switch-input" formControlName="released">
+                                                <span class="custom-switch-indicator"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Format' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input  type="text" class="form-control mandatory" value=""
+                                                    formControlName="format">
+                                        <div *ngIf="numberScheme.controls.format?.invalid && numberScheme.controls.format?.touched">
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.format?.errors?.required">Please Enter Schema Format</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.format?.errors?.maxlength">Character exceed max limit {{numberScheme.controls.format?.errors.requiredLength}}</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.format?.errors?.isChar">Invalid input. Only character allowed </span>
+                                         </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Area' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <select  name="" type="text" class="form-control mandatory" value=""
+                                    formControlName="area">
+                                    <option value="" >Select --</option>   
+                                    <option value="MP" >MP</option>   
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Reuse-After-Disconnect' | translate}}</span></label>
+                                </div>
+                                <div class=" form-group col-md-8 ">
+                                    <div class="form-group ">
+                                     
+                                         <div class="custom-switches-stacked">
+                                            <label class="custom-switch">
+                                                <input type="checkbox" value="" class="custom-switch-input" formControlName="reuseAfterDisconnect">
+                                                <span class="custom-switch-indicator"></span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Quarantine-Period' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input  type="text" class="form-control mandatory" value=""
+                                                    formControlName="quarantinePeriod">
+                                        <div *ngIf="numberScheme.controls.quarantinePeriod?.invalid && numberScheme.controls.quarantinePeriod?.touched">
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.quarantinePeriod?.errors?.required">Please Enter Schema Name</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.quarantinePeriod?.errors?.maxlength">Character exceed max limit 100</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.quarantinePeriod?.errors?.isChar">Invalid input. Only character allowed </span>
+                                         </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Quarantine-Uom' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <select  name="" type="text" class="form-control mandatory" value=""
+                                                    formControlName="quarantineUom">
+                                        <option value="" >Select --</option>           
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Reservation-Period' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input  type="text" class="form-control mandatory" value=""
+                                                    formControlName="reservationPeriod">
+                                        <div *ngIf="numberScheme.controls.reservationPeriod?.invalid && numberScheme.controls.reservationPeriod?.touched">
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.reservationPeriod?.errors?.required">Please Enter Schema Name</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.reservationPeriod?.errors?.maxlength">Character exceed max limit 100</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.reservationPeriod?.errors?.isChar">Invalid input. Only character allowed </span>
+                                         </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Sequence' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input  type="text" class="form-control mandatory" value=""
+                                                    formControlName="sequence">
+                                        <div *ngIf="numberScheme.controls.sequence?.invalid && numberScheme.controls.sequence?.touched">
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.sequence?.errors?.required">Please Enter Schema Name</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.sequence?.errors?.maxlength">Character exceed max limit 100</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.sequence?.errors?.isChar">Invalid input. Only character allowed </span>
+                                         </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Level-Name' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input  type="text" class="form-control mandatory" value=""
+                                                    formControlName="levelName">
+                                        <div *ngIf="numberScheme.controls.levelName?.invalid && numberScheme.controls.levelName?.touched">
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.levelName?.errors?.required">Please Enter Schema Name</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.levelName?.errors?.maxlength">Character exceed max limit 100</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.levelName?.errors?.isChar">Invalid input. Only character allowed </span>
+                                         </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Description' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <textarea rows="3"  [ngClass]="numberScheme.controls.description?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" placeholder="Here can be your description"
+                                        value="Mike" formControlName="description"></textarea>
+                                        <div *ngIf="numberScheme.controls.description?.invalid && numberScheme.controls.description?.touched">
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.description?.errors?.required">Please Enter Entity Groups description</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.description?.errors?.maxlength">Character exceed max limit 100</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.description?.errors?.isChar">Invalid input. Only character allowed </span>
+                                         </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Level-Type' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <select  name="" type="text" class="form-control mandatory" value=""
+                                                    formControlName="levelType">
+                                        <option value="" >Select --</option>           
+                                        <option value="" >Running</option>           
+                                        <option value="" >Fixed</option>           
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Length' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input  type="text" class="form-control mandatory" value=""
+                                                    formControlName="length">
+                                        <div *ngIf="numberScheme.controls.length?.invalid && numberScheme.controls.length?.touched">
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.length?.errors?.required">Please Enter Entity Groups length</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.length?.errors?.maxlength">Character exceed max limit 100</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.length?.errors?.isChar">Invalid input. Only character allowed </span>
+                                         </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Value-Type' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                        <input  type="text" class="form-control mandatory" value=""
+                                                    formControlName="valueType">
+                                        <div *ngIf="numberScheme.controls.valueType?.invalid && numberScheme.controls.valueType?.touched">
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.valueType?.errors?.required">Please Enter Entity Groups valueType</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.valueType?.errors?.maxvalueType">Character exceed max limit 100</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.valueType?.errors?.isChar">Invalid input. Only character allowed </span>
+                                         </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Value' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                        <input  type="text" class="form-control mandatory" value=""
+                                        formControlName="value">
+                                        <div *ngIf="numberScheme.controls.value?.invalid && numberScheme.controls.value?.touched">
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.value?.errors?.required">Please Enter Entity Groups value</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.value?.errors?.maxvalue">Character exceed max limit 100</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.value?.errors?.isChar">Invalid input. Only character allowed </span>
+                                         </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.numberSchema.Delimiter' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <textarea rows="3"  [ngClass]="numberScheme.controls.delimiter?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" placeholder="Here can be your length"
+                                        value="Mike" formControlName="delimiter"></textarea>
+                                        <div *ngIf="numberScheme.controls.delimiter?.invalid && numberScheme.controls.delimiter?.touched">
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.delimiter?.errors?.required">Please Enter Entity Groups length</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.delimiter?.errors?.maxlength">Character exceed max limit 100</span>
+                                            <span class="validate-text"  *ngIf="numberScheme.controls.delimiter?.errors?.isChar">Invalid input. Only character allowed </span>
+                                         </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button [disabled]="numberScheme.invalid" (click)="submit()" type="submit" class="btn btn-primary ">{{actionBtn}}</button>
+                    <button type="button" (click)="resetForm()" class="btn btn-primary ml-3 ">Reset</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+

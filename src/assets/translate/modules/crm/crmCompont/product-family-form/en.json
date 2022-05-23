@@ -87,6 +87,27 @@
             "assetizable":"Assetizable",
             "status":"Status"
      
+        },
+        "numberSchema" : {
+            "Number-Schema-heading":"Number Schema",
+            "Number-Schema-name":"Schema Name",
+            "Number-Type":"Number Type",
+            "Sub-Type":"Sub Type",
+            "Released":"Released",
+            "Format":"Format",
+            "Area":"Area",
+            "Reuse-After-Disconnect":"Reuse After Disconnect",
+            "Quarantine-Period":"Quarantine Period",
+            "Quarantine-Uom":"Quarantine Uom",
+            "Reservation-Period":"Reservation Period",
+            "Sequence":"Sequence",
+            "Level-Name":"Level Name",
+            "Description":"Description",
+            "Level-Type":"Level Type",
+            "Length":"Length",
+            "Value-Type":"Value Type",
+            "Value":"Value",
+            "Delimiter":"Delimiter"
         }
     }
 }
