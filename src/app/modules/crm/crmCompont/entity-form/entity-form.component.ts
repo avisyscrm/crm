@@ -1,9 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
-import { onlyChar, selectValidation } from '../../../client/validators/validation';
-// import Swal from 'sweetalert2';
 import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { TranslateService } from '@ngx-translate/core';
@@ -15,27 +13,24 @@ import { TranslateService } from '@ngx-translate/core';
   styleUrls: ['./entity-form.component.scss','../../crm/crm.component.scss']
 })
 export class EntityFormComponent implements OnInit {
-  @ViewChild('files') myInputVariable: any;
+  @ViewChild('files') myInputVariable: ElementRef;
   entityGroups = new FormGroup({
     'entityGroupsId': new FormControl(''),
     'entityGroups': new FormControl('', [Validators.required, Validators.maxLength(30)]),
     'description': new FormControl('', [Validators.required, Validators.maxLength(100)]),
-    'entityGroupsIcon': new FormControl(''),
+    'entityGroupsIcon': new FormControl('', Validators.required),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
   });
   intialvalue: any;
   actionBtn = "Save";
-  productFamilyIcons: any; 
   file: any;
-  imageSet: boolean=true;
   constructor(private service: CrmservicesService, public translate: TranslateService,
     private alertService: SweetalertServiceService, private route: ActivatedRoute) {
     this.intialvalue = this.entityGroups.value;
     this.route.queryParams.subscribe((params: any) => {
       if (params.data != undefined) {
         this.actionBtn = "Update";
-        this.imageSet = false;
         this.getValueByID(params.data);
       }
     });
@@ -45,8 +40,6 @@ export class EntityFormComponent implements OnInit {
       this.entityGroups.patchValue(sucess);
       this.intialvalue = sucess;
       this.entityGroups.patchValue(sucess);
-      debugger
-      this.productFamilyIcons = sucess.entityGroupsIcon;
     }, error => {
       // alert("Error while updating the record");
     });
@@ -83,24 +76,39 @@ export class EntityFormComponent implements OnInit {
 
   resetForm() {
     this.entityGroups.reset(this.intialvalue);
-    if(this.actionBtn == 'Save'){
-      this.file = '';
-      this.productFamilyIcons = '';
-      this.imageSet = true;
-    }
+    this.myInputVariable.nativeElement.value = "";
+
+    // if(this.actionBtn == 'Save'){
+    //   this.file = '';
+    //   this.productFamilyIcons = '';
+    //   this.imageSet = true;
+    // }
+
   }
   get getControl() {
     return this.entityGroups.controls;
   }
 
+  // onFileSelect(event: any) {
+  //   if (event.target.files.length > 0) {
+  //     this.imageSet = false;
+  //     this.file = event.target.files.item(0);
+  //     var reader = new FileReader();
+  //     reader.readAsDataURL(this.file);
+  //     reader.onload = (_event) => {
+  //       this.productFamilyIcons = reader.result;
+  //     }
+  //   }
+  // }
+
   onFileSelect(event: any) {
     if (event.target.files.length > 0) {
-      this.imageSet = false;
       this.file = event.target.files.item(0);
       var reader = new FileReader();
       reader.readAsDataURL(this.file);
       reader.onload = (_event) => {
-        this.productFamilyIcons = reader.result;
+        let imagePath=reader.result;
+         this.entityGroups.controls['entityGroupsIcon'].setValue(imagePath);
       }
     }
   }

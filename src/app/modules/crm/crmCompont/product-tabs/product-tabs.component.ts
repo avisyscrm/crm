@@ -15,7 +15,7 @@ headerList:any=[];
   constructor(private allService: CrmservicesService,private router:Router) { }
 
   ngOnInit(): void {
-    this.allService.getEntityTemplate("?pageNo=1&pageSize=5").subscribe(sucess=>{
+    this.allService.getEntityTemplateSection("?pageNo=1&pageSize=5").subscribe(sucess=>{
       this.headerList=sucess.headerlist  ; 
       this.data=sucess.page;
       },error=>{
@@ -29,6 +29,14 @@ if(event.event=='add'){
   
 }else if(event.event=='edit'){
 this.router.navigate(['crm/product-tabs-form'],{ queryParams: { data: JSON.stringify(event.data.productEntityTemplateId)}});
+}else if(event.event=='inSidebtn'){
+if(event.btnEvent=='Attributes'){
+// alert("Attributes"+JSON.stringify(event.data));
+this.router.navigate(['crm/product-attribute'])
+}else if(event.btnEvent=='Delete'){
+  alert("Delete"+JSON.stringify(event.data));
+}
+
 }
   }
   changePageSortSearch(url:any){

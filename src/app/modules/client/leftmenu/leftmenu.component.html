@@ -480,7 +480,8 @@
                         [attr.aria-controls]="menuRow.controlId" class="has-arrow arrow-c"><i
                             [class]="menuRow.iconClass"></i><span> &nbsp; {{ menuRow.name}}</span></a>
                     <ul class="collapse" [id]="menuRow.controlId" [collapse]="menuRow.isCollapsed" [isAnimated]="true">
-                        <li *ngFor="let menuSubRow of menuRow.submenu" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}"><a class="submenu"
+                        <li *ngFor="let menuSubRow of menuRow.submenu" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">
+                            <a class="submenu"
                                 [routerLink]="menuSubRow.routerLink" href="javascript:void(0)"><span>{{menuSubRow.name}}</span>
                             </a>
                         </li>

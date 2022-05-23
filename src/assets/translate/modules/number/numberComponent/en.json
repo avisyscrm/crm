@@ -1,0 +1,33 @@
+{
+    "forms":{
+
+        "numberFormat":{
+            "number-format-defination":"NUMBER FORMAT DEFINATION ",
+            "Sequence":"Sequence ",
+            "level-name":"Level Name",
+            "Description":"Description",
+            "Length":"Length",
+            "value-type":"Value Type",
+            "delimeter": "Delimeter",
+            "level-type": "Level Type" 
+        },
+        "blockDefination":{
+            "blockDefinationTitle":"Block Defination",
+            "block-name":"Block Name",
+            "recieved-date":"Recieved Date",
+            "start-running":"Start Running Number",
+            "end-running":"End Running Number",
+            "total-count":"Total Count",
+            "status":"Status"
+        },
+        "generatedNumber":{
+            "generatedNumberTitle":"Generated Number",
+            "number":"Number",
+            "specialCategory":"Special Category",
+            "status":"Status",
+            "price":"Price",
+            "quarantine":"Quarantine Period",
+            "reservation":"Reservation Period"
+        }
+    }
+}

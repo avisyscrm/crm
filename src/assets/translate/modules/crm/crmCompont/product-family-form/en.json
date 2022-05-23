@@ -33,13 +33,14 @@
         },
         "template-form":{
             "template-form-heading":"PRODUCT ENTITY TEMPLATES",
-            "product-family":"Product Family Id",
-            "product-line":"Product Line ",
-            "entity-groups":"Entity Groups ",
             "product-entity-template":"Product Entity Template Name ",
+            "product-entity-template-type":"Product Entity Template Type",
             "description":"Description",
             "version":"Version",
-            "state":"State"
+            "state":"State",
+            "screenLayout":"Screen Layout",
+            "productHierarchy":"Product Hierarchy",
+            "numberOfTabPagesSections":"Number Of Tab Pages Sections"
         },
         "template-tab":{
             "template-tab-heading":"PRODUCT TEMPLATE TAB",

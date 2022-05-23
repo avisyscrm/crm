@@ -170,6 +170,15 @@ export class DatatableComponent implements OnInit {
     this.buttonEvent1.emit(data);
 
   }
+
+  btnEventInside(value:any,btnvalue){
+    let data = {
+      event: 'inSidebtn',
+      data: value,
+      btnEvent:btnvalue
+    }
+    this.buttonEvent1.emit(data);
+  }
   radioButton(value: any) {
     this.selectedData = value;
 

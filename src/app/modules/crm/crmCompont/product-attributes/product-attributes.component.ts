@@ -18,7 +18,7 @@ export class ProductAttributesComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.allService.getEntityTemplate("pageNo=1&pageSize=5").subscribe(sucess=>{
+    this.allService.getEntityTemplateAttribute("pageNo=1&pageSize=5").subscribe(sucess=>{
       this.headerList=sucess.headerlist  ; //sucess.headerList;
   
       this.data=sucess.page;
@@ -28,7 +28,7 @@ export class ProductAttributesComponent implements OnInit {
       );
   }
   changePageSortSearch(url:any){
-    this.allService.getEntityTemplate(url).subscribe(sucess=>{
+    this.allService.getEntityTemplateAttribute(url).subscribe(sucess=>{
       this.data=sucess.page;
       },error=>{
   
