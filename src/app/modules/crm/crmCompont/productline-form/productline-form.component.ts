@@ -23,10 +23,9 @@ export class ProductlineFormComponent implements OnInit {
   actionBtn = "Save";
   productFamilyIcons: any;
   file: any;
-  checkFlag: boolean;
   imageSet: boolean = true;
-  statusCode: any;
-  msg: any="";
+
+
   constructor(private service: CrmservicesService, public translate: TranslateService,
     private alertService: SweetalertServiceService, private route: ActivatedRoute) {
     this.intialvalue = this.productLine.value;
@@ -34,7 +33,6 @@ export class ProductlineFormComponent implements OnInit {
       if (params.data != undefined) {
         this.actionBtn = "Update";
         this.imageSet = false;
-        this.checkFlag=true;
         this.getValueByID(params.data);
       }
     });
@@ -101,22 +99,5 @@ export class ProductlineFormComponent implements OnInit {
         this.productFamilyIcons = reader.result;
       }
     }
-  }
-
-  getValuefor(){
-    this.msg="";
-    this.checkFlag=false;
-}
-  check(){
-    this.service.chcekLine(this.productLine.controls.productLine.value).subscribe((scucess:any)=>{
-      this.statusCode=scucess;
-      this.msg=scucess.message;
-      this.checkFlag=true;
-    },error=>{
-      if(error.status){
-        this.checkFlag=false;
-        this.msg=error.error.message;
-      }
-    });
   }
 }
