@@ -41,7 +41,7 @@
                                     <label class="form-label text-"><span>{{'forms.productLine.description' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
-                                    <textarea rows="3"  [ngClass]="productLine.controls.description?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" placeholder="Here can be your description"
+                                    <textarea rows="3"  [ngClass]="productLine.controls.description?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" placeholder=""
                                         value="Mike" formControlName="description"></textarea>
                                         <div *ngIf="productLine.controls.description?.invalid && productLine.controls.description?.touched">
                                             <span class="validate-text"  *ngIf="productLine.controls.description?.errors?.required">Please Enter Product Line description</span>
@@ -57,13 +57,14 @@
                                     <label class="form-label"><span>{{'forms.productLine.product-line-icon' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="file" #file  name="profile" [(ngModel)]="productFamilyIcons"  [ngModelOptions]="{standalone: true}" (change)="onFileSelect($event)" />  
-                                    <img  *ngIf="productFamilyIcons!='' && productFamilyIcons!=null && productFamilyIcons!=undefined"  [src]="productFamilyIcons" class="selected-image" >
+                                    <button type="button" mat-button (click)="files.click()">ChooseFile</button>     
+                                    <input hidden type="file" #files  name="profile"  (change)="onFileSelect($event)" accept="image/*"/>  
+                                    <img  *ngIf="productLine.controls.productLineIcon.value!='' && productLine.controls.productLineIcon.value!=null && productLine.controls.productLineIcon.value!=undefined"  [src]="productLine.controls.productLineIcon.value" class="selected-image" >
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <button [disabled]="productLine.invalid  || imageSet" (click)="submit()" type="submit" class="btn btn-primary ">{{actionBtn}}</button>
+                    <button [disabled]="productLine.invalid " (click)="submit()" type="submit" class="btn btn-primary ">{{actionBtn}}</button>
                     <button type="button" (click)="resetForm()" class="btn btn-primary ml-3 ">Reset</button>
                 </div>
             </div>
