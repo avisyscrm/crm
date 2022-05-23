@@ -25,14 +25,15 @@
             "hierarchy-heading":"Produkthierarchie"
         },
         "template-form":{
-            "template-form-heading":"PRODUKTENTITÄTSVORLAGEN",
-            "product-family":"Produktfamilie",
-            "product-line":"Produktfamilie",
-            "entity-groups":"Entitätsgruppen ",
-            "product-entity-template":"Name der Produktentitätsvorlage ",
-            "description":"Beschreibung",
-            "version":"Ausführung",
-            "state":"Bundesland"
+            "template-form-heading":"PRODUCT ENTITY TEMPLATES",
+            "product-entity-template":"Product Entity Template Name ",
+            "product-entity-template-type":"Product Entity Template Type",
+            "description":"Description",
+            "version":"Version",
+            "state":"State",
+            "screenLayout":"Screen Layout",
+            "productHierarchy":"Product Hierarchy",
+            "numberOfTabPagesSections":"Number Of Tab Pages Sections"
         },
         "template-tab":{
             "template-tab-heading":"PRODUKTVORLAGEN-TAB",

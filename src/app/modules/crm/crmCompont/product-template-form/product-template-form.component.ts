@@ -16,24 +16,60 @@ import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/swee
 export class ProductTemplateFormComponent implements OnInit {
   intialvalue: any;
   productTemplate = new FormGroup({
- 
+    productEntityTemplateId:new FormControl(""),
+    productEntityTemplateName:new FormControl("",[Validators.required, Validators.maxLength(100)]),
+    description:new FormControl("",[Validators.required, Validators.maxLength(100)]),
+    productHierarchyId:new FormControl("",[Validators.required, Validators.maxLength(100)]),
+    screenLayout:new FormControl("",[Validators.required, Validators.maxLength(100)]),
+    numberOfTabPagesSections:new FormControl("",[Validators.required, Validators.maxLength(100)]),
+    version:new FormControl("",[Validators.required, Validators.maxLength(100)]),
+    productEntityType:new FormControl("",[Validators.required, Validators.maxLength(30)]),
+    state:new FormControl("",[Validators.required, Validators.maxLength(100)]),
+    updatedBy:new FormControl(""),
+    cretedBy:new FormControl("")
   });
+  productEntityTypeList=[];
+  productHierarchyIdList=[];
   actionBtn: string="Save";
   constructor(private service : CrmservicesService,  private alertService: SweetalertServiceService, 
     private router:Router, private route:ActivatedRoute) { 
-
+      this.service.getHrichyList().subscribe((sucess:any)=>{
+        this.productHierarchyIdList=sucess;
+      });
+      this.service.productEntityTypeList().subscribe((sucess:any)=>{
+        this.productEntityTypeList=sucess;
+      });
       this.intialvalue = this.productTemplate.value;
     this.route.queryParams.subscribe((params: any) => {
       if (params.data != undefined) {
         this.actionBtn = "Update";
         this.getValueByID(params.data);
-      
       }
     });
     }
   ngOnInit(){}
 
   getValueByID(id){
-    
+this.service.productTemplate(id).subscribe((sucess:any)=>{
+this.productTemplate.patchValue(sucess);
+})
+  }
+
+  get getControl() {
+    return this.productTemplate.controls;
+  }
+
+  submit(){
+    if(this.actionBtn=="Save"){
+      this.service.SaveProductTemplate(this.productTemplate.value).subscribe(
+        (sucess:any)=>{
+          this.router.navigate(['crm/product-template-form'], { queryParams: { data: JSON.stringify(sucess.productEntityTemplateId) } });
+        });
+    }else{
+      this.service.updateProductTemplate(this.productTemplate.value).subscribe(
+        (sucess:any)=>{
+
+        });
+    }
   }
 }
