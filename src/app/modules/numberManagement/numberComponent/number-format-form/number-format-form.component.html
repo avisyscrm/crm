@@ -1,1 +1,116 @@
-<p>number-format-form works!</p>
+
+    <div class="section-body  fixNavMargin">
+        <div class="container-fluid">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <ul class="nav nav-tabs page-header-tab">
+                    <li class="nav-item"><a class="nav-link" href="#">
+                        </a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"></a>
+                    </li>
+
+                </ul>
+            </div>
+            <form [formGroup]="numberFormat" >
+            <div class="card card-height">
+                <div class="card-header pf-head">
+                    <h3 class="card-title ">Number Format Defination</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row productfamily ">
+                        <div class="col-md-6">
+                            <div class="row ">
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">Sequence </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <input type="text" class="form-control" [ngClass]="numberFormat.controls.sequence?.errors ? 'mandatory' : 'mandatoryG'" formControlName="sequence">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row ">
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">Level Name </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <input type="text" formControlName="levelName" class="form-control" [ngClass]="numberFormat.controls.sequence?.errors ? 'mandatory' : 'mandatoryG'" >
+                                </div>
+                            </div>
+                        </div>                
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-">Description</label>
+                                </div>
+                                <div class="col-md-8">
+                                    <textarea rows="3"  [ngClass]="numberFormat.controls.description?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" 
+                                        value="Mike" formControlName="description"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row ">
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">Length </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <input type="text" formControlName="length" class="form-control" [ngClass]="numberFormat.controls.sequence?.errors ? 'mandatory' : 'mandatoryG'" >
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="col-md-6">
+                            <div class="row ">
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">Value Type </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <select  name="cars" id="cars" class="form-control"
+                                        formControlName="valueType"  [ngClass]="numberFormat.controls.valueType?.errors ? 'mandatory' : 'mandatoryG'">
+                                        <option value="">Select --</option>
+                                        <option value="">CC-12</option>
+                                        <option value="">TNA-22</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>  
+                        <div class="col-md-6">
+                            <div class="row ">
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">Delimeter </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <select  class="form-control"
+                                        formControlName="delimeter"  [ngClass]="numberFormat.controls.valueType?.errors ? 'mandatory' : 'mandatoryG'">
+                                        <option value="None">None</option>
+                                        <option value="-">-</option>
+                                        <option value="/">/</option>
+                                        <option value="*">*</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>   
+                        <div class="col-md-6">
+                            <div class="row ">
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label ">Level Type </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <select  class="form-control"
+                                        formControlName="levelType"  [ngClass]="numberFormat.controls.valueType?.errors ? 'mandatory' : 'mandatoryG'">
+                                        <option value="" >Select</option>
+                                        <option value="Running">Running</option>
+                                        <option value="Fixed">Fixed</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div> 
+                    </div>
+                    <button [disabled]="numberFormat.invalid" (click)="submit()" type="submit" class="btn btn-primary ">{{actionBtn}}</button>
+                    <button type="button" (click)="resetForm()" class="btn btn-primary ml-3 ">Reset</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
