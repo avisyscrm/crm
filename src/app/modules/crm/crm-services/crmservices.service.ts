@@ -464,7 +464,8 @@ createProductFamilly(data){
   
   
     getEntityTemplate(url:string):Observable<any>{
-      return this.http.get(this.getEntityTemplate1+url);
+      //return this.http.get(this.getEntityTemplate1+url);
+    return this.http.get(environment.baseUrl+"/productEntityTemplates?"+url)
     }
   
     getEntityTemplateSection(url:string):Observable<any>{

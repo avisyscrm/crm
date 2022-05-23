@@ -23,9 +23,8 @@
                                 <div class=" form-group col-md-4">
                                     <label class="form-label "><span>{{'forms.productLine.product-line' | translate}}</span> </label>
                                 </div>
-                                <div class=" form-group col-md-6">
-                                    <input (input)="getValuefor();"   [readonly]="actionBtn == 'Update'"   name="" type="text"   [ngClass]="productLine.controls.productLine?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control " value="" formControlName="productLine">
-                                    <div  [ngStyle]="{'color':checkFlag  ? 'green' : 'red' }"  style=" font-size: 12px;" *ngIf="actionBtn == 'Save' && productLine.controls.productLine.value!=''">{{msg}}</div>
+                                <div class=" form-group col-md-8">
+                                    <input    [readonly]="actionBtn == 'Update'"   name="" type="text"   [ngClass]="productLine.controls.productLine?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control " value="" formControlName="productLine">
                                     <div *ngIf="productLine.controls.productLine?.invalid && productLine.controls.productLine?.touched">
                                         <span class="validate-text" *ngIf="productLine.controls.productLine?.errors?.required">Please Enter Product Line</span>
                                         <span class="validate-text" *ngIf="productLine.controls.productLine?.errors?.maxlength">Character exceed max limit 100</span>
@@ -33,9 +32,7 @@
                                         <span class="validate-text"  *ngIf="productLine.controls.productLine?.errors?.pattern ">Field cant be empty</span>
                                      </div>
                                 </div>
-                                <div class=" form-group col-md-2">
-                                    <button [disabled]="actionBtn == 'Update'"  (click)="check();$event.stopPropagation()"  [disabled]="productLine.controls.productLine.value=='' || actionBtn == 'Update'" type="button" class="btn btn-primary">Verify</button>
-                                </div>
+                               
                             </div>
                         </div>                
                         <div class="col-md-8">
@@ -66,7 +63,7 @@
                             </div>
                         </div>
                     </div>
-                    <button [disabled]="productLine.invalid || !checkFlag || imageSet" (click)="submit()" type="submit" class="btn btn-primary ">{{actionBtn}}</button>
+                    <button [disabled]="productLine.invalid  || imageSet" (click)="submit()" type="submit" class="btn btn-primary ">{{actionBtn}}</button>
                     <button type="button" (click)="resetForm()" class="btn btn-primary ml-3 ">Reset</button>
                 </div>
             </div>

@@ -21,18 +21,14 @@ export class ProductFamilyFormComponent implements OnInit {
   });
   intialvalue: any;
   actionBtn = "Save";
-  // productFamilyIcons: any;
   file: any;
   statusCode: any;
-  checkFlag: boolean;
-  msg: any;
   constructor(private service: CrmservicesService, public translate: TranslateService,
     private alertService: SweetalertServiceService, private route: ActivatedRoute) {
     this.intialvalue = this.productFamily.value;
     this.route.queryParams.subscribe((params: any) => {
       if (params.data != undefined) {
         this.actionBtn = "Update";
-        this.checkFlag=true;
         this.getValueByID(params.data);
       
       }
@@ -91,22 +87,5 @@ export class ProductFamilyFormComponent implements OnInit {
          this.productFamily.controls['productFamilyIcon'].setValue(imagePath);
       }
     }
-  }
-
-  getValuefor(){
-      this.msg="";
-      this.checkFlag=false;
-  }
-  check(){
-    this.service.chcekFamilly(this.productFamily.controls.productFamily.value).subscribe((scucess:any)=>{
-      this.statusCode=scucess;
-      this.msg=scucess.message;
-      this.checkFlag=true;
-    },error=>{
-      if(error.status){
-        this.checkFlag=false;
-        this.msg=error.error.message;
-      }
-    });
   }
 }
