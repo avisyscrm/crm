@@ -23,6 +23,21 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
 
   
   export class CrmservicesService {
+    productTemplate(id) {
+      return this.http.get(environment.baseUrl+"/productEntityTemplates/"+id);
+    }
+  updateProductTemplate(value: any) {
+    return this.http.put(environment.baseUrl+"/updateProductEntityTemplates",value);
+  }
+  SaveProductTemplate(value: any) {
+    return this.http.post(environment.baseUrl+"/createProductEntityTemplates",value);
+  }
+  productEntityTypeList() {
+    return this.http.get(environment.baseUrl+"/allProductEntityTypes");
+  }
+  getHrichyList() {
+    return this.http.get(environment.baseUrl+"/allProductHierarchy");
+  }
   deleteEntityType(productEntityTypeId: any) {
     return this.http.delete(environment.baseUrl+"/deleteProductEntityTypes/"+productEntityTypeId+"/"+ JSON.parse(sessionStorage.getItem('userDetails')).userId);
   }
