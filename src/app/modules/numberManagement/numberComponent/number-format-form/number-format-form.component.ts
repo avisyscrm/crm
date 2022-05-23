@@ -14,12 +14,12 @@ export class NumberFormatFormComponent implements OnInit {
   }
 
   numberFormat = new FormGroup({
-    'sequence': new FormControl(''),
+    'sequence': new FormControl('',Validators.required),
     'levelName': new FormControl('', [Validators.required, Validators.maxLength(15)]),
     'description': new FormControl('', [Validators.required, Validators.maxLength(100)]),
     'length': new FormControl('',[Validators.required, Validators.maxLength(10)]),
     'valueType': new FormControl('',Validators.required),
-    'delimiter': new FormControl('',Validators.required),
+    'delimeter': new FormControl('',Validators.required),
     'levelType': new FormControl('',Validators.required),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
@@ -33,11 +33,9 @@ export class NumberFormatFormComponent implements OnInit {
 
   submit(){
     console.log(JSON.stringify(this.numberFormat.value));
-    alert(JSON.stringify(this.numberFormat.value));
   }
 
   resetForm(){
-
   }
 
 }

@@ -42,7 +42,7 @@
                                     <label class="form-label text-"><span>{{'forms.productFamily.description' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
-                                    <textarea rows="3"  [ngClass]="productFamily.controls.description?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" placeholder="Here can be your description"
+                                    <textarea rows="3"  [ngClass]="productFamily.controls.description?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" placeholder=""
                                         value="Mike" formControlName="description"></textarea>
                                         <div *ngIf="productFamily.controls.description?.invalid && productFamily.controls.description?.touched">
                                             <span class="validate-text"  *ngIf="productFamily.controls.description?.errors?.required">Please Enter Product Line description</span>
@@ -57,7 +57,7 @@
                                 <div class="col-md-4">
                                     <label class="form-label"><span>{{'forms.productFamily.product-family-icon' | translate}}</span></label>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-8"> 
                                     <button type="button" mat-button (click)="file1.click()">ChooseFile</button>     
                                     <input hidden type="file" #file1 name="requestfile" (change)="onFileSelect($event)" accept="image/*">
                                     <img  *ngIf="productFamily.controls.productFamilyIcon.value!='' && productFamily.controls.productFamilyIcon.value!=null && productFamily.controls.productFamilyIcon.value!=undefined"  [src]="productFamily.controls.productFamilyIcon.value" class="selected-image" >
