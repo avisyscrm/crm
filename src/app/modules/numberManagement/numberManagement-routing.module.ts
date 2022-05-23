@@ -7,6 +7,9 @@ import { NumberTypeFormComponent } from './numberComponent/number-type-form/numb
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LayoutCrmComponent } from '../layout-crm/layout-crm.component';
+import { NumberSchemeConfigurationComponent } from './numberComponent/number-scheme-configuration/number-scheme-configuration.component';
+import { VanityPatternRulesComponent } from './numberComponent/vanity-pattern-rules/vanity-pattern-rules.component';
+import { NumberGenerationComponent } from './numberComponent/number-generation/number-generation.component';
 
 
 const routes: Routes = [
@@ -38,6 +41,22 @@ const routes: Routes = [
       component: GeneratedNumbersFormComponent,
       data: { title: 'Generated Number' }
     },
+    {
+      path: 'number-scheme-configuration',
+      component: NumberSchemeConfigurationComponent,
+      data: { title: 'Number Scheme' }
+    },
+    {
+      path: 'number-pattern-rules',
+      component: VanityPatternRulesComponent,
+      data: { title: 'Number Scheme' }
+    },
+    {
+      path: 'number-generation',
+      component: NumberGenerationComponent,
+      data: { title: 'Number Scheme' }
+    },
+    
   ]}
 ];
 

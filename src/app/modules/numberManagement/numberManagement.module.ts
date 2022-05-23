@@ -8,6 +8,9 @@ import { NumberSchemeFormComponent } from './numberComponent/number-scheme-form/
 import { BlockDefinationFormComponent } from './numberComponent/block-defination-form/block-defination-form.component';
 import { VanityNumberComponent } from './numberComponent/vanity-number/vanity-number.component';
 import { GeneratedNumbersFormComponent } from './numberComponent/generated-numbers-form/generated-numbers-form.component';
+import { NumberGenerationComponent } from './numberComponent/number-generation/number-generation.component';
+import { NumberSchemeConfigurationComponent } from './numberComponent/number-scheme-configuration/number-scheme-configuration.component';
+import { VanityPatternRulesComponent } from './numberComponent/vanity-pattern-rules/vanity-pattern-rules.component';
 
 
 
@@ -19,6 +22,10 @@ import { GeneratedNumbersFormComponent } from './numberComponent/generated-numbe
     BlockDefinationFormComponent,
     VanityNumberComponent,
     GeneratedNumbersFormComponent,
+    NumberSchemeConfigurationComponent,
+    VanityPatternRulesComponent,
+    NumberGenerationComponent,
+
     
   ],
   imports: [
