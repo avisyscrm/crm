@@ -15,7 +15,13 @@ export class FeatureComponent implements OnInit {
 
   activeSection(dataProp:string){
     sessionStorage.setItem('dataProp',dataProp);
-    this.router.navigate(['/crm']);
+    if(dataProp == 'numberActive')
+    {
+      this.router.navigate(['/number']);
+    }else{
+      this.router.navigate(['/crm']);
+    }
+    
     // alert()
   }
 

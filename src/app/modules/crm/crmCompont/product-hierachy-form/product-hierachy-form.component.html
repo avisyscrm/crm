@@ -1,0 +1,96 @@
+
+    <div class="section-body  fixNavMargin">
+        <div class="container-fluid">
+
+            <div class="d-flex justify-content-between align-items-center">
+                <ul class="nav nav-tabs page-header-tab">
+                    <li class="nav-item"><a class="nav-link" href="#">
+                        </a></li>
+                    <li class="nav-item"><a class="nav-link" href="#"></a>
+                    </li>
+
+                </ul>
+            </div>
+            <form [formGroup]="productFamily" >
+            <div class="card card-height">
+                <div class="card-header pf-head">
+                    <h3 class="card-title "><span>{{'forms.productHierarchy.hierarchy-heading' | translate}}</span> </h3>
+                </div>
+                <div class="card-body">
+                    <div class="row productfamily ">
+                        <div class="col-md-8">
+                            <div class="row ">
+                                <div class=" form-group col-md-4">
+                                    <label class="form-label "><span>{{'forms.productFamily.product-family' | translate}}</span> </label>
+                                </div>
+                                <div class=" form-group col-md-8">
+                                    <select  name="cars" id="cars" class="form-control"
+                                        formControlName="productFamilyId"  [ngClass]="productFamily.controls.productFamilyId?.errors ? 'mandatory' : 'mandatoryG'">
+                                        <option value="">Select --</option>
+                                        <option value="{{productFamily.productFamilyId}}" *ngFor="let productFamily of productFamilyList">
+                                            {{productFamily.productFamily}}
+                                        </option>
+                                    </select>
+                                    <!-- <input name="" type="text"   [ngClass]="productFamily.controls.productFamily?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control " value="" formControlName="productFamily"> -->
+                                    <div *ngIf="productFamily.controls.productFamilyId?.invalid && productFamily.controls.productFamilyId?.touched">
+                                        <span class="validate-text" *ngIf="productFamily.controls.productFamilyId?.errors?.required">Please Enter Product Family</span>
+                                        <span class="validate-text" *ngIf="productFamily.controls.productFamilyId?.errors?.maxlength">Character exceed max limit 100</span>
+                                        <span class="validate-text"   *ngIf="productFamily.controls.productFamilyId?.errors?.isChar">Invalid input. Only character allowed </span>
+                                        <span class="validate-text"  *ngIf="productFamily.controls.productFamilyId?.errors?.pattern ">Field cant be empty</span>
+                                     </div>
+                                </div>
+                            </div>
+                        </div>                
+                        <div class="col-md-8">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.productLine.product-line' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                        <select  name="cars" id="cars" class="form-control" [ngClass]="productFamily.controls.productLineId?.errors ? 'mandatory' : 'mandatoryG'"
+                                        formControlName="productLineId">
+                                        <option value="">Select --</option>
+                                        <option value="{{productLine.productLineId}}" *ngFor="let productLine of productLine">
+                                            {{productLine.productLine}}
+                                        </option>
+                                    </select>
+                                        <div *ngIf="productFamily.controls.productLineId?.invalid && productFamily.controls.productLineId?.touched">
+                                            <span class="validate-text"  *ngIf="productFamily.controls.productLineId?.errors?.required">Please Enter Product Line </span>
+                                            <span class="validate-text"  *ngIf="productFamily.controls.productLineId?.errors?.maxlength">Character exceed max limit 30</span>
+                                            <span class="validate-text"  *ngIf="productFamily.controls.productLineId?.errors?.isChar">Invalid input. Only character allowed </span>
+                                         </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label text-"><span>{{'forms.entityGroup.entity-groups' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                        <select  name="cars" id="cars" class="form-control" [ngClass]="productFamily.controls.entityGroupsId?.errors ? 'mandatory' : 'mandatoryG'"
+                                        formControlName="entityGroupsId">
+                                        <option value="">Select --</option>
+                                        <option value="{{entityGroup.entityGroupsId}}" *ngFor="let entityGroup of productGroup">
+                                            {{entityGroup.entityGroups}}
+                                        </option>
+                                    </select>
+                                        <div *ngIf="productFamily.controls.entityGroupsId?.invalid && productFamily.controls.entityGroupsId?.touched">
+                                            <span class="validate-text"  *ngIf="productFamily.controls.entityGroupsId?.errors?.required">Please Enter Entity Group</span>
+                                            <span class="validate-text"  *ngIf="productFamily.controls.entityGroupsId?.errors?.maxlength">Character exceed max limit 30</span>
+                                            <span class="validate-text"  *ngIf="productFamily.controls.entityGroupsId?.errors?.isChar">Invalid input. Only character allowed </span>
+                                         </div>
+                                </div>
+                            </div>
+                        </div>
+                     
+                    </div>
+                    <button [disabled]="productFamily.invalid" (click)="submit()" type="submit" class="btn btn-primary ">{{actionBtn}}</button>
+                    <button type="button" (click)="resetForm()" class="btn btn-primary ml-3 ">Reset</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+
+

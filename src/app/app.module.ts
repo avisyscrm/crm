@@ -22,9 +22,11 @@ import {MultiTranslateHttpLoader} from "ngx-translate-multi-http-loader";
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new MultiTranslateHttpLoader(http, [
-      {prefix: "../assets/translate/modules/client/header/", suffix: ".json"},
-      
-      {prefix: "../assets/translate/modules/client/leftmenu/", suffix: ".json"}
+      // {prefix: "../assets/translate/modules/client/header/", suffix: ".json"},
+      // {prefix: "../assets/translate/modules/client/leftmenu/", suffix: ".json"}
+      {prefix: "assets/translate/modules/client/header/", suffix: ".json"},
+      {prefix: "assets/translate/modules/client/leftmenu/", suffix: ".json"},
+      {prefix: "assets/translate/modules/crm/crmCompont/product-family-form/", suffix: ".json"}
   ]);
 }
 
@@ -35,6 +37,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     FeatureComponent,
     LoginAdminComponent,
     EmailtemplateformComponent,
+    
+    
 
 
   ],

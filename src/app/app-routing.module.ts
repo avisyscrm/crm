@@ -6,17 +6,19 @@ import { AuthModule } from './modules/auth/auth.module';
 import { CrmModule } from './modules/crm/crm/crm.module';
 import { ForgotPassFormComponent } from './modules/auth/forgot-pass-form/forgot-pass-form.component';
 import { AdminRoutingModule } from './modules/admin/admin/admin-routing.module';
+import { NumberMangementModule } from './modules/numberManagement/numberManagement.module';
 const routes: Routes = [ 
   { path :'master', component: FeatureComponent},
   { path: 'forgot-pass-forms', component: ForgotPassFormComponent},
   { path: 'auth', loadChildren: './modules/auth/auth.module#AuthModule' },
   { path: '', pathMatch: 'full', redirectTo: '/login' },
   { path: 'crm',  loadChildren:'./modules/crm/crm/crm.module#CrmModule' },
+  { path: 'number',  loadChildren:'./modules/numberManagement/numberManagement.module#NumberMangementModule'},
   { path: '**', redirectTo: '/login' },
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes,{ preloadingStrategy: PreloadModulesStrategy,useHash:true }), 
-    AuthModule,CrmModule, AdminRoutingModule],
+    AuthModule,CrmModule, AdminRoutingModule, NumberMangementModule ],
   exports: [RouterModule],
   providers:[PreloadModulesStrategy]
 })

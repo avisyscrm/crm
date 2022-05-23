@@ -15,7 +15,8 @@ export class ColumnComponent  {
 	@Input() cssClass:any;
 	@Input() search:any;
 	constructor(table: DatatableComponent) {
-		
+					console.log(this);
+					
 				 table.addColumn(this)
 				 
 		}

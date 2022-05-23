@@ -2,184 +2,121 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
-import { onlyChar, selectValidation } from '../../../client/validators/validation';
-import Swal from 'sweetalert2'; 
-import { RecordUpdated, RecordAdded } from '../../../client/sweetalert/sweetalert';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
-
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-productline-form',
   templateUrl: './productline-form.component.html',
-  styleUrls: ['./productline-form.component.scss','../../crm/crm.component.scss']
+  styleUrls: ['./productline-form.component.scss', '../../crm/crm.component.scss']
 })
 export class ProductlineFormComponent implements OnInit {
-
-  constructor(private service: CrmservicesService, private alertService: SweetalertServiceService, private router:Router, private route: ActivatedRoute) { }
-  @ViewChild('file') myFileInput: any;
-  private parameter: any;
-  prodId: any;
-  data: any;
-  actionBtn: string = "Save";
-  isupdate: boolean = false;
-  productfamIDslist: any;
-  productLineIcons: any;
+  @ViewChild('files') myInputVariable: any;
+  productLine = new FormGroup({
+    'productLineId': new FormControl(''),
+    'productLine': new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    'description': new FormControl('', [Validators.required, Validators.maxLength(100)]),
+    'productLineIcon': new FormControl(''),
+    'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
+    'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
+  });
+  intialvalue: any;
+  actionBtn = "Save";
+  productFamilyIcons: any;
   file: any;
-
-  ngOnInit(): void {
-
+  checkFlag: boolean;
+  imageSet: boolean = true;
+  statusCode: any;
+  msg: any="";
+  constructor(private service: CrmservicesService, public translate: TranslateService,
+    private alertService: SweetalertServiceService, private route: ActivatedRoute) {
+    this.intialvalue = this.productLine.value;
     this.route.queryParams.subscribe((params: any) => {
-
-      this.parameter = params;
-      this.prodId = this.parameter.data;
-      console.log(this.prodId, 'fam');
-      console.log(params, 'para');
-
-    })
-
-
-    if (this.prodId != undefined)
-      this.actionBtn = "Update";
-    this.service.getLineId(this.prodId).subscribe(res => {
-      this.data = res;
-      console.log(res);
-
-
-      if (this.data) { 
-        // this.actionBtn ="Update"
-        this.isupdate = true;
-
-        this.addProductLine.controls['productFamilyId'].setValue(this.data.productFamilyId);
-        this.addProductLine.controls['productLineId'].setValue(this.data.productLineId);
-        this.addProductLine.controls['productLine'].setValue(this.data.productLine);
-        this.addProductLine.controls['description'].setValue(this.data.description);
-        this.addProductLine.controls['productLineIcon'].setValue(this.data.productLineIcon);
-        this.productLineIcons = this.data.productLineIcon;
+      if (params.data != undefined) {
+        this.actionBtn = "Update";
+        this.imageSet = false;
+        this.checkFlag=true;
+        this.getValueByID(params.data);
       }
-
-    })
-
-
-    this.service.productFamilyIDs().subscribe((data: any) => {
-      this.productfamIDslist = data;
-    })
-
-
-
+    });
   }
-
-  addProductLine = new FormGroup({
-    productFamilyId: new FormControl('', [ selectValidation]),
-    productLineId: new FormControl(''),
-    productLine: new FormControl('', [Validators.required, Validators.maxLength(30), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/), onlyChar]),
-    description: new FormControl('', [Validators.required, Validators.maxLength(400), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
-    productLineIcon: new FormControl(''),
-    createdBy: new FormControl('-1'),
-    updatedBy: new FormControl('99')
-  })
+  getValueByID(id) {
+    this.service.getLineById(id).subscribe((sucess: any) => {
+      this.productLine.patchValue(sucess);
+      this.intialvalue = sucess;
+      this.productLine.patchValue(sucess);
+      this.productFamilyIcons = sucess.productLineIcon;
+    }, error => {
+      // alert("Error while updating the record");
+    });
+  }
+  ngOnInit(): void { }
+  submit() {
+    const formData = new FormData();
+    this.productLine.controls['createdBy'].patchValue(JSON.parse(sessionStorage.getItem('userDetails')).userId);
+    this.productLine.controls['updatedBy'].patchValue(JSON.parse(sessionStorage.getItem('userDetails')).userId);
+    formData.append('file', this.file);
+    formData.append('productLine', JSON.stringify(this.productLine.value));
+    if (this.actionBtn == "Update") {
+      if(this.file!=undefined){
+        this.service.updateProductLineData(formData).subscribe(sucess => {
+          this.alertService.RecordUpdated('/crm/product-line');
+        });
+      }else{
+        this.service.updateProductLineDatawithoutFile(this.productLine.value).subscribe(sucess => {
+          this.alertService.RecordUpdated('/crm/product-line');
+        });
+      }
+    } else {
+      if(this.file!=undefined){  
+        this.service.addProductLineData(formData).subscribe(sucess => {
+          this.alertService.RecordAdded('/crm/product-line');
+        })
+       } else{
+        // alert("Please select File");
+      }
+      
+    }
+  
+  }
 
   resetForm() {
-
-    this.addProductLine.controls['productFamilyId'].setValue("");
-    this.addProductLine.controls['productLine'].reset();
-    this.addProductLine.controls['description'].reset();
-    this.productLineIcons = '';
-
-  }
-
-  submit() {
-    console.log(this.addProductLine)
-    if (this.isupdate) {
-      this.addProductLine.valid ? this.updateProductLine() : "";
-      // this.resetForm();
-    }
-    else if (this.addProductLine.valid) {
-      const formData = new FormData();
-      formData.append('file', this.file);
-      formData.append('productLine', JSON.stringify(this.addProductLine.value))
-      this.service.productLinePost(formData).subscribe((res) => {
-        // alert("Record Added");
-        // RecordAdded();
-        // console.log(res);
-        this.resetForm();
-        this.alertService.RecordAdded('crm/product-line');
-        // this.router.navigate(['crm/product-line']); 
-        },
-        (error) => {
-          alert(error)
-        })
-
-      // this.addproductLine();
+    this.productLine.reset(this.intialvalue);
+    if(this.actionBtn == 'Save'){
+      this.file = '';
+      this.productFamilyIcons = '';
+      this.imageSet = true;
     }
   }
-
-  addproductLine() {
-    console.log(this.addProductLine.value);
-    this.service.postLineControler(this.addProductLine.value).subscribe((result) => {
-      console.log('getdatapost', result);
-      // this.addProductLine.reset();
-      // alert('Record Added');
-      this.resetForm();
-      this.alertService.RecordAdded('crm/product-line');
-    })
+  get getControl() {
+    return this.productLine.controls;
   }
 
-  updateProductLine() {
-    const formData = new FormData();
-      formData.append('file', this.file);
-      formData.append('productLine', JSON.stringify(this.addProductLine.value));
-    console.log(this.addProductLine, 'hrsh');
-
-    this.service.putProductLine(formData).
-      subscribe({
-        next: (res) => {
-          // alert("Record Updated ");
-          // RecordUpdated();
-          this.alertService.RecordUpdated('crm/product-line');
-          this.resetForm();
-          // this.router.navigate(['crm/product-line']); 
-        },
-        error: () => {
-          alert("error while updating the record");
-        }
-      })
-
-    // get firstName(){ 
-    //   return this.addProductLine.get('productLine');
-    // }
-  }
-
-  get productFamilyId() {
-    return this.addProductLine.get('productFamilyId');
-  }
-
-  get productLine() {
-    return this.addProductLine.get('productLine');
-  }
-
-  get description() {
-    return this.addProductLine.get('description');
-  }
-
-  get productLineIcon() {
-    return this.addProductLine.get('description');
-  }
-
-  // File
   onFileSelect(event: any) {
-
     if (event.target.files.length > 0) {
+      this.imageSet = false;
       this.file = event.target.files.item(0);
-      // alert("file"+this.file);
       var reader = new FileReader();
-      reader.readAsDataURL(this.file); 
-      reader.onload = (_event) => { 
-        this.productLineIcons = reader.result; 
+      reader.readAsDataURL(this.file);
+      reader.onload = (_event) => {
+        this.productFamilyIcons = reader.result;
       }
-
     }
   }
-  //
 
-
+  getValuefor(){
+    this.msg="";
+    this.checkFlag=false;
+}
+  check(){
+    this.service.chcekLine(this.productLine.controls.productLine.value).subscribe((scucess:any)=>{
+      this.statusCode=scucess;
+      this.msg=scucess.message;
+      this.checkFlag=true;
+    },error=>{
+      if(error.status){
+        this.checkFlag=false;
+        this.msg=error.error.message;
+      }
+    });
+  }
 }

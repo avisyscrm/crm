@@ -68,7 +68,7 @@ export class SweetalertServiceService {
     })
   }
   // Enter your email address and your password will be reset and emailed to you.
-  mailcheck(path: any) {
+  mailcheck(path: any| null) {
     Swal.fire({
       title: '',
       text: 'Please check your Email. ',
@@ -83,9 +83,14 @@ export class SweetalertServiceService {
         popup: '',                     // disable popup fade-out animation
       },
     }).then(() => {
-      this.router.navigate([path]); // navigate to other page
+      if(path !=null) {
+        this.router.navigate([path]); // navigate to other page
+      }
+     
     })
   }
+
+  
 
   // update
   RecordUpdated(path: any) {
@@ -104,6 +109,24 @@ export class SweetalertServiceService {
     },
   }).then(() => {
     this.router.navigate([path]); // navigate to other page
+  })
+
+}
+
+RecordUpdatedStatic() {
+  Swal.fire({
+    title: 'Updated',
+    text: 'Your data is Updated ',
+    icon: 'success',
+    confirmButtonText: 'OK',
+    showClass: {
+      backdrop: 'swal2-noanimation', // disable backdrop animation
+      popup: '',                     // disable popup animation
+      icon: ''                       // disable icon animation
+    },
+    hideClass: {
+      popup: '',                     // disable popup fade-out animation
+    },
   })
 
 }
@@ -128,8 +151,27 @@ export class SweetalertServiceService {
   })
 }
 
+// add
+RecordAddedStatic() {
+  Swal.fire({
+    title: 'Added',
+    text: 'Record added successfully ',
+    icon: 'success',
+    confirmButtonText: 'OK',
+    showClass: {
+      backdrop: 'swal2-noanimation', // disable backdrop animation
+      popup: '',                     // disable popup animation
+      icon: ''                       // disable icon animation
+    },
+    hideClass: {
+      popup: '',                     // disable popup fade-out animation
+    },
+  })
+}
+
 roleAssigned() {
   Swal.fire({
+    title: 'Assigned',
     text: 'Role Assigned Successfully',
     icon: 'success',
     confirmButtonText: 'OK',

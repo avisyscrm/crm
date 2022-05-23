@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CrmRoutingModule } from './crm-routing.module';
@@ -5,7 +6,6 @@ import { ProductTableComponent } from '../../client/hrms/product-table/product-t
 import { ProducttemplateFormComponent } from '../../client/hrms/producttemplate-form/producttemplate-form.component';
 import { SectionFromTemplateComponent } from '../../client/section-from-template/section-from-template.component';
 import { TabfromTemplateComponent } from '../../client/tabfrom-template/tabfrom-template.component';
-import { LayoutCrmComponent } from '../layout-crm/layout-crm.component';
 import { ProductFamilyComponent } from '../crmCompont/product-family/product-family.component';
 import { ProductlineFormComponent } from '../crmCompont/productline-form/productline-form.component';
 import { ProductlineTableComponent } from '../crmCompont/productline-table/productline-table.component';
@@ -30,9 +30,15 @@ import { EmailtemplateComponent } from '../crmCompont/emailtemplate/emailtemplat
 import { ScheduleemailFormComponent } from '../crmCompont/scheduleemail-form/scheduleemail-form.component';
 import { ProductAtributeMasterSummmaryComponent } from '../crmCompont/product-atribute-master-summmary/product-atribute-master-summmary.component';
 import { ProductAtributeMasterComponent } from '../crmCompont/product-atribute-master/product-atribute-master.component';
+import { EmailComponent } from '../crmCompont/email/email.component';
+import { ProductEntityTypeComponent } from '../crmCompont/product-entity-type/product-entity-type.component';
+import { ProductHierachyComponent } from '../crmCompont/product-hierachy/product-hierachy.component';
+import { ProductHierachyFormComponent } from '../crmCompont/product-hierachy-form/product-hierachy-form.component';
+import { ProductEntityTypeFromComponent } from '../crmCompont/product-entity-type-from/product-entity-type-from.component';
+import { ProfilepageComponent } from '../crmCompont/profilepage/profilepage.component';
+
 @NgModule({
   declarations: [
-    LayoutCrmComponent,
     ProductFamilyComponent,
     ProductFamilyFormComponent,
     ProductlineFormComponent,
@@ -57,8 +63,14 @@ import { ProductAtributeMasterComponent } from '../crmCompont/product-atribute-m
     EmailtemplateComponent,
     ScheduleemailFormComponent,
     ProductAtributeMasterSummmaryComponent,
-    ProductAtributeMasterComponent
- 
+    ProductAtributeMasterComponent,
+    EmailComponent,
+    ProductEntityTypeComponent,
+    ProductHierachyComponent,
+    ProductHierachyFormComponent,
+    ProductEntityTypeFromComponent,
+    ProfilepageComponent,
+
   ],
   imports: [
     CommonModule,

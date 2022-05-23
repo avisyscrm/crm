@@ -1,0 +1,136 @@
+<div class="section-body  fixNavMargin">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center">
+            <ul class="nav nav-tabs page-header-tab">
+                <li class="nav-item"><a class="nav-link" href="#">
+                    </a></li>
+                <li class="nav-item"><a class="nav-link" href="#"></a>
+                </li>
+
+            </ul>
+         
+        </div>
+        <button type="button" class="btn btn-primary" (click)="openModal(template)"><i
+            class="fe fe-plus mr-2"></i>Add</button>
+
+            
+        <div class="row">
+            <div class="card email-template">
+                <div class="card-header d-flex justify-content-between">
+                    <h3 class="card-title prod-name">Emails</h3>
+
+                </div>
+                <app-datatable [permission]="permission" (buttonEvent1)="buttonEvent1($event)"
+                    (changePageSortSearch)="changePageSortSearch($event)" [dataset]="data">
+                    <app-column [search]="x.search_key" [cssClass]="" [type]="x.type" *ngFor="let x of headerList"
+                        [value]="x.value" [width]="x.width" [header]="x.header"></app-column>
+                </app-datatable>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div> 
+    
+  
+<ng-template #template  class="right">
+    
+    <div class="modal-header">
+        <h4 class="modal-title pull-left">Email Details</h4>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="row clearfix">
+            <form [formGroup]="emailTemplate" (ngSubmit)="submit()">
+                <div class="card card-height">
+                    <div class="card-body">
+                        <div class="row ">
+                            <div class="col-md-12">
+                                    <div class="row productfamily ">
+                                        <div class="col-md-12">
+                                            <div class="row ">
+                                                <div class=" form-group col-md-4">
+                                                    <label class="form-label ">Receiver Email </label>
+                                                </div>
+                                                <div class=" form-group col-md-8">
+                                                    <input name="" type="text" class="form-control mandatory" value=""
+                                                        formControlName="emailTo" >
+                                                    <div *ngIf="emailTo?.invalid && emailTo?.touched">
+                                                    <span class="validate-text" *ngIf="emailTo?.errors?.required">Please Enter Receiver Email</span>
+                                                    <span class="validate-text"  *ngIf="emailTo?.errors?.pattern ">Field cant be empty</span>
+                                                    <span class="validate-text"  *ngIf="emailTo?.errors?.email ">Please enter valid Email</span>
+                                                 </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="row ">
+                                                <div class=" form-group col-md-4">
+                                                    <label class="form-label ">Email Subject </label>
+                                                </div>
+                                                <div class=" form-group col-md-8">
+                                                    <input name="" type="text" class="form-control mandatory" value=""
+                                                        formControlName="emailSubject" >
+                                                    <div *ngIf="emailSubject?.invalid && emailSubject?.touched">
+                                                        <span class="validate-text"
+                                                            *ngIf="emailSubject?.errors?.required">Please Enter Subject</span>
+                                                        <span class="validate-text" *ngIf="emailSubject?.errors?.pattern ">Field
+                                                            cant be empty</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="row mb-3">
+                                                <div class="col-md-4">
+                                                    <label class="form-label text-">Email Content</label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <ckeditor [editor]="Editor" formControlName="emailContent"
+                                                        style="height: 400px;" id="emailCon" #ckeditorEleRef  >
+                                                    </ckeditor>
+                                                    <div *ngIf="(emailContent?.invalid && emailContent?.touched)">
+                                                        <span class="validate-text"
+                                                            *ngIf="emailContent?.errors?.required">Please Enter Content</span>
+                                                        <span class="validate-text" *ngIf="emailContent?.errors?.pattern">Field
+                                                            cant be empty</span>
+                                                        <!-- <span class="validate-text" *ngIf="isEmailTemplateVariableInValid">Email Template variable are not validate</span> -->
+                                                    </div>
+                                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="row mb-3">
+                                                <div class="card border">
+                                                    <div class="card-body">
+                                                        <h5 class="card-title">Add Template Variable</h5>
+                                                        <span class="btn btn-primary btn-sm mr-1 mt-1" *ngFor="let templateVar of templateVariables;let i=index" (click)="setVariable(templateVar.key,ckeditorEleRef)">{{templateVar.value}}</span >
+                                                            <div *ngIf="isEmailTemplateVariableInValid">
+                                                                <span class="validate-text" *ngIf="isEmailTemplateVariableInValid">Email Template variable are not valid in Email Content</span>
+                                                            </div>
+                                                    </div>
+                                                  </div>
+                                                </div>
+                                                </div>
+                                    </div>
+                            </div>
+                           
+                        </div>
+                        <button type="submit" class="btn btn-primary"
+                            [disabled]="emailTemplate.invalid">Resend</button>
+                        <button type="button" (click)="validateTemplateVariables()" class="btn btn-primary ml-3 ">Validate Template variable</button>
+                
+                        <button type="button" class="btn btn-primary ml-3 " (click)="modalRef.hide()">Close</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</ng-template>
+

@@ -1,3 +1,4 @@
+import { ProfilepageComponent } from './../crmCompont/profilepage/profilepage.component';
 import { ScheduleemailFormComponent } from './../crmCompont/scheduleemail-form/scheduleemail-form.component';
 import { EmailtemplateformComponent } from './../crmCompont/emailtemplateform/emailtemplateform.component';
 import { EmailtemplateComponent } from './../crmCompont/emailtemplate/emailtemplate.component';
@@ -15,7 +16,7 @@ import { ProductAttributeComponent } from '../../client/hrms/product-attribute/p
 import { ProductTabComponent } from '../../client/hrms/product-tab/product-tab.component';
 import { ProductFamilyFormComponent } from '../crmCompont/product-family-form/product-family-form.component';
 import { ProductFamilyComponent } from '../crmCompont/product-family/product-family.component';
-import { LayoutCrmComponent } from '../layout-crm/layout-crm.component';
+import { LayoutCrmComponent } from '../../layout-crm/layout-crm.component';
 import { ProductTemplatesComponent } from '../crmCompont/product-templates/product-templates.component';
 import { ProductTemplateFormComponent } from '../crmCompont/product-template-form/product-template-form.component';
 import { ProductTabsFormComponent } from '../crmCompont/product-tabs-form/product-tabs-form.component';
@@ -28,6 +29,11 @@ import { ShowUserComponent } from '../crmCompont/show-user/show-user.component';
 import { ChangepasswordComponent } from '../crmCompont/changepassword/changepassword.component';
 import { ProductAtributeMasterComponent } from '../crmCompont/product-atribute-master/product-atribute-master.component';
 import { ProductAtributeMasterSummmaryComponent } from '../crmCompont/product-atribute-master-summmary/product-atribute-master-summmary.component';
+import { EmailComponent } from '../crmCompont/email/email.component';
+import { ProductHierachyComponent } from '../crmCompont/product-hierachy/product-hierachy.component';
+import { ProductHierachyFormComponent } from '../crmCompont/product-hierachy-form/product-hierachy-form.component';
+import { ProductEntityTypeComponent } from '../crmCompont/product-entity-type/product-entity-type.component';
+import { ProductEntityTypeFromComponent } from '../crmCompont/product-entity-type-from/product-entity-type-from.component';
 
 
 
@@ -61,8 +67,28 @@ const routes: Routes = [
                           path: 'entity-groups',
                           component: EntityGroupsComponent,
                           data: { title: 'Entity Group' }
+                        },{
+                          path: 'product-hierachy',
+                          component: ProductHierachyComponent,
+                          data: { title: 'Product Hierachy' }
+                        },
+                        {
+                          path: 'product-entity-type',
+                          component: ProductEntityTypeComponent,
+                          data: { title: 'Product Entity Type' }
+                        }, {
+                          path: 'product-entity-type-from',
+                          component: ProductEntityTypeFromComponent,
+                          data: { title: 'Product Entity Type From' }
                         },
                         
+                    
+                        {
+                          path: 'product-hierachy-form',
+                          component: ProductHierachyFormComponent,
+                          data: { title: 'Product Hierachy Form' }
+                        },
+                      
                         {
                           path: 'entity-form',
                           component: EntityFormComponent,
@@ -170,9 +196,19 @@ const routes: Routes = [
                           data: { title: 'Email Template' }
                         },
                         {
+                          path: 'emails',
+                          component: EmailComponent,
+                          data: { title: 'Emails' }
+                        },
+                        {
                           path: 'scheduleEmail',
                           component: ScheduleemailFormComponent,
                           data: { title: 'Schedule Email ' }
+                        },
+                        {
+                          path: 'profile',
+                          component: ProfilepageComponent,
+                          data: { title: 'Profile' }
                         },
                       ]     
                       },

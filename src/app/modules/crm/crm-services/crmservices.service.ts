@@ -17,14 +17,105 @@ import { ProductFamilyController } from '../crm/crmForm-model/productFamilyContr
 import { ProductHierachyModel } from '../crm/crmForm-model/productHierachy.model';
 import { ProductLineController } from '../crm/crmForm-model/productline.model';
 import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesection.model';
-
-
 @Injectable({
     providedIn: 'root'
   })
 
   
   export class CrmservicesService {
+  deleteEntityType(productEntityTypeId: any) {
+    return this.http.delete(environment.baseUrl+"/deleteProductEntityTypes/"+productEntityTypeId+"/"+ JSON.parse(sessionStorage.getItem('userDetails')).userId);
+  }
+  createProductEntity(data){
+    return this.http.post(environment.baseUrl+"/createProductEntityTypes",data);
+  }
+  putProductEntity(data){
+    return this.http.put(environment.baseUrl+"/updateProductEntityTypes",data);
+  }
+  getProductEntityID(id: any) {
+    return this.http.get(environment.baseUrl+"/productEntityTypes/"+id);
+  }
+  getProductEntity(arg0: string) {
+    return this.http.get(environment.baseUrl+"/productEntityTypes?"+arg0);
+  }
+  chcekLine(value: any) {
+    return this.http.get(environment.baseUrl+"/checkIfProductLineExists/"+value);
+  }
+  chcekFamilly(id) {
+    return this.http.get(environment.baseUrl+"/checkIfProductFamilyExists/"+id);
+  }
+  checkEntity(value:any){
+    return this.http.get(environment.baseUrl+"/checkIfEntityGroupExists/"+value);
+    
+  }
+
+
+    deleteHierarchy(id){
+      return this.http.delete(environment.baseUrl+"/deleteProductHierarchy/"+id+"/"+ JSON.parse(sessionStorage.getItem('userDetails')).userId);
+
+    }
+  putProductHierachy(value: any) {
+    return this.http.put(environment.baseUrl+"/updateProductHierarchy",value);
+  }
+  getproductHierarchybyId(id: any) {
+   return this.http.get(environment.baseUrl+"/productHierarchy/"+id);
+  }
+  SaveProducrHIrechy(value: any) {
+    return this.http.post(environment.baseUrl+"/createProductHierarchy",value);
+  }
+  getallProductLine() {
+    return this.http.get(environment.baseUrl+"/allProductLine");
+  }
+  getallProductFamily() {
+    return this.http.get(environment.baseUrl+"/allProductFamily");
+  }
+  allEntityGroups() {
+    return this.http.get(environment.baseUrl+"/allEntityGroups");
+  }
+
+updateProductFamilyWithoutFile(data){
+  return this.http.put(environment.baseUrl+"/updateProductFamily",data);
+
+}
+
+createProductFamilly(data){
+  return this.http.post(environment.baseUrl+"/createProductFamilyWithAttachment",data);
+}
+    getFamilly(id: any) {
+      return this.http.get(environment.baseUrl+"/productFamily/"+id);
+    }
+
+  getEntityGroupData(id: any) {
+    return this.http.get(environment.baseUrl+"/entityGroups/"+id);
+  }
+
+  addEntityGroupsData(data) {
+    return this.http.post(environment.baseUrl+"/createEntityGroupsWithAttachement",data);
+  }
+  updatEentityGroupsData(data) {
+    return this.http.put(environment.baseUrl+"/updateEntityGroupsWithAttachement",data);
+  }
+
+
+  updatEentityGroupsDataWithoutFile(data) {
+    return this.http.put(environment.baseUrl+"/updateEntityGroups",data);
+  }
+
+  
+
+  addProductLineData(data) {
+    return this.http.post(environment.baseUrl+"/createProductLineWithAttachment",data);
+  }
+  updateProductLineData(data) {
+    return this.http.put(environment.baseUrl+"/updateProductLineWithAttachement",data);
+  }
+
+  updateProductLineDatawithoutFile(data) {
+    return this.http.put(environment.baseUrl+"/updateProductLine",data);
+  }
+  getLineById(id: any) {
+  return this.http.get(environment.baseUrl+"/productLine/"+id);
+  }
  
     getProductAttributeById(data){
       return this.http.get(environment.baseUrl+"/getProductAttributeById/"+data);
@@ -73,6 +164,9 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     private postSchedule = environment.baseUrl+"/scheduleEmail";
     private createUser1 = environment.accessToken+"/users/update";
     private getEmailTempateVariables = environment.baseUrl+"/templateVariables/";
+    private allEmails = environment.baseUrl+"/email/emailDetails?";
+    private resentEmail = environment.baseUrl+"/email/rescheduleEmail/";
+    
   // 
 
     private allContactURL = environment.baseUrl+"/allContact";
@@ -81,6 +175,8 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     private getRoles = environment.accessToken+"/roles/getroles";
     private getAllUsersUrl= environment.accessToken+"/users/allUsers?";
     private deleteUserUrl =environment.accessToken+"/users/delete/";
+    private userProfileUrl = environment.baseUrl+"/fetchUserById/";
+    private updateProfileUrl = environment.baseUrl+"/updateUser";
     // dropdownlist
     private genderList= environment.baseUrl+"/commonMaster/gender?isCacheable=true";
     private countryList =environment.baseUrl+"/commonMaster/country?isCacheable=true";
@@ -356,9 +452,16 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
       return this.http.get(this.getProductHierachy1+url);
     }
   
+  
+
     getEntityGroup(url:string):Observable<any>{
       return this.http.get(this.getEntityGroup1+url);
     }
+
+    getproductHierarchy(url:string):Observable<any>{
+      return this.http.get(environment.baseUrl+"/productHierarchy?"+url);
+    }
+  
   
     getEntityTemplate(url:string):Observable<any>{
       return this.http.get(this.getEntityTemplate1+url);
@@ -428,8 +531,8 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
     }
   
       putProductFamily(data:FormData){
-      console.log(data, 'datassssssss');
-      return this.http.put<any>(this.updateProductFamily, data)
+     
+      return this.http.put(this.updateProductFamily, data)
       }
   
       putProductLine(data:FormData){
@@ -647,6 +750,25 @@ getEmailTemplateVariables(){
   return this.http.get(this.getEmailTempateVariables);
 }
 
+getEmails(url:string) {
+  console.log(this.allEmails+url);
+  return this.http.get(this.allEmails+url);
+}
+
+resendEmail(jobId:string) {
+  console.log(jobId);
+  
+  return this.http.get(this.resentEmail+jobId);
+}
+
 languageService = new BehaviorSubject('en');
+
+getUserProfile(id:any){
+return this.http.get(this.userProfileUrl+id)
+}
+
+postUserProfile(data:any){
+  return this.http.post(this.updateProfileUrl,data);
+}
 
 }

@@ -35,9 +35,9 @@
     <div class="crm-layout">
         <div class="container">
             <div class="row">
-                <div (click)="activeSection('crmActive')"  class="col-md-4 crm-first-section">
+                <div (click)="activeSection('crmActive')"  class="col-md-4 cursor crm-first-section">
                     
-                    <div class="crm-inner-section">
+                    <div class="crm-inner-section ">
                          <div class="crm-heading">Customer Relationship Management</div>
                         <div class="crm-subheading">Customer experience platform that helps you deliver an exceptional
                             experience </div>
@@ -49,7 +49,7 @@
                     </div>
                 </div>
 
-                <div class="col-md-8">
+                <div class="col-md-8 cursor">
                     <!-- rights side first card -->
                     <div class="d-flex crm-second-section" (click)="activeSection('productActive')"  >
                         <div class="col-md-7 ">
@@ -60,7 +60,7 @@
                                 <!-- <a routerLink="/crm" class="ml-10">  <button type="button" class="btn btn-outline-primary ">Learn More</button></a>  -->
                             </div>
                         </div>
-                        <div class="col-md-5 ">
+                        <div class="col-md-5  cursor">
                             <div class="crm-second-section">
                                 <img src="assets/images/crm/Picture.png" class="crm-image-two" alt="">
                             </div>
@@ -68,7 +68,7 @@
                        
                     </div>
                     <!-- right side first card end -->
-                    <div class="d-flex crm-third-section" >
+                    <div class="d-flex crm-third-section" (click)="activeSection('numberActive')" >
                         <div class="col-md-5">
                             <div class=" d-flex  justify-content-start mt-3">
                                 <img src="assets/images/crm/Picture2.png" class="crm-image-three" alt="">
