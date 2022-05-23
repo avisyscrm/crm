@@ -304,6 +304,7 @@ export class LeftmenuComponent implements OnInit {
             name:"Number Scheme",
             routerLink:['/number/numberScheme'],
             translationKey:'master_submenu_product_family',
+
           },{
             name:"Block Defination",
             routerLink:['/number/blockDefination'],
@@ -315,6 +316,21 @@ export class LeftmenuComponent implements OnInit {
           },{
             name:"Generated Number",
             routerLink:['/number/generatedNumber'],
+            translationKey:'master_submenu_product_family',
+          },
+          {
+            name:"Number Configuration",
+            routerLink:['/number/number-scheme-configuration'],
+            translationKey:'master_submenu_product_family',
+          },
+          {
+            name:"Vanity Number Pattern",
+            routerLink:['/number/number-pattern-rules'],
+            translationKey:'master_submenu_product_family',
+          },
+          {
+            name:"Number Generation",
+            routerLink:['/number/number-generation'],
             translationKey:'master_submenu_product_family',
           }
       ]
