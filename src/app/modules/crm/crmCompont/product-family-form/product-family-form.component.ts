@@ -7,15 +7,15 @@ import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-product-family-form',
   templateUrl: './product-family-form.component.html',
-  styleUrls: ['./product-family-form.component.scss','../../crm/crm.component.scss']
+  styleUrls: ['./product-family-form.component.scss', '../../crm/crm.component.scss']
 })
 export class ProductFamilyFormComponent implements OnInit {
-  @ViewChild('file1') myInputVariable:ElementRef;
+  @ViewChild('file1') myInputVariable: ElementRef;
   productFamily = new FormGroup({
     'productFamilyId': new FormControl(''),
     'productFamily': new FormControl('', [Validators.required, Validators.maxLength(30)]),
     'description': new FormControl('', [Validators.required, Validators.maxLength(100)]),
-    'productFamilyIcon': new FormControl('',Validators.required),
+    'productFamilyIcon': new FormControl('', Validators.required),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
   });
@@ -30,7 +30,7 @@ export class ProductFamilyFormComponent implements OnInit {
       if (params.data != undefined) {
         this.actionBtn = "Update";
         this.getValueByID(params.data);
-      
+
       }
     });
   }
@@ -50,23 +50,28 @@ export class ProductFamilyFormComponent implements OnInit {
     formData.append('file', this.file);
     formData.append('productFamily', JSON.stringify(this.productFamily.value));
     if (this.actionBtn == "Update") {
-      if(this.file!=undefined){
-      this.service.putProductFamily(formData).subscribe(sucess => {
-        this.alertService.RecordUpdated('/crm/product-family');
-      });
-    }else{
-      this.service.updateProductFamilyWithoutFile(this.productFamily.value).subscribe(sucess => {
-        this.alertService.RecordUpdated('/crm/product-family');
-      });
-    }
+      if (this.file != undefined) {
+        this.service.putProductFamily(formData).subscribe(sucess => {
+          this.alertService.RecordUpdated('/crm/product-family');
+        });
+      } else {
+        this.service.updateProductFamilyWithoutFile(this.productFamily.value).subscribe(sucess => {
+          this.alertService.RecordUpdated('/crm/product-family');
+        });
+      }
     } else {
-      if(this.file!=undefined){
-      this.service.createProductFamilly(formData).subscribe(sucess => {
-        this.alertService.RecordAdded('/crm/product-family');
-      })
-    }else{
-      alert("Please select File")
-    }
+      if (this.file != undefined) {
+        this.service.createProductFamilly(formData).subscribe((sucess: any) => {
+          if (sucess.statusCode == 23505) {
+            this.alertService.SelectRecord("Duplicate Product Family");
+          } else {
+            this.alertService.RecordAdded('/crm/product-family');
+          }
+
+        })
+      } else {
+        alert("Please select File")
+      }
     }
   }
 
@@ -83,8 +88,8 @@ export class ProductFamilyFormComponent implements OnInit {
       var reader = new FileReader();
       reader.readAsDataURL(this.file);
       reader.onload = (_event) => {
-        let imagePath=reader.result;
-         this.productFamily.controls['productFamilyIcon'].setValue(imagePath);
+        let imagePath = reader.result;
+        this.productFamily.controls['productFamilyIcon'].setValue(imagePath);
       }
     }
   }

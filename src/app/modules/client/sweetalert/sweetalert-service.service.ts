@@ -90,7 +90,22 @@ export class SweetalertServiceService {
     })
   }
 
+    SelectRecord(data) {
+    Swal.fire({
+      text: data,
+      icon: 'warning',
+      confirmButtonText: 'OK',
+      showClass: {
+        backdrop: 'swal2-noanimation', // disable backdrop animation
+        popup: '',                     // disable popup animation
+        icon: ''                       // disable icon animation
+      },
+      hideClass: {
+        popup: '',                     // disable popup fade-out animation
+      },
+    })
   
+  }
 
   // update
   RecordUpdated(path: any) {

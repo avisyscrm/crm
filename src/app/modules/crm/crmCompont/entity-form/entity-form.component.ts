@@ -61,12 +61,15 @@ export class EntityFormComponent implements OnInit {
           this.alertService.RecordUpdated('/crm/entity-groups');
         });
       }
-    
     } else {
       if(this.file!=undefined){ 
-        this.service.addEntityGroupsData(formData).subscribe(sucess => {
-          this.alertService.RecordAdded('crm/entity-groups');
-        })
+        this.service.addEntityGroupsData(formData).subscribe((sucess:any) => {
+          if (sucess.statusCode == 23505) {
+            this.alertService.SelectRecord("Duplicate Entity Groups");
+          } else {
+            this.alertService.RecordAdded('/crm/entity-groups');
+          }
+        });
       }
     else{
       // alert("Please select File");
@@ -78,28 +81,12 @@ export class EntityFormComponent implements OnInit {
     this.entityGroups.reset(this.intialvalue);
     this.myInputVariable.nativeElement.value = "";
 
-    // if(this.actionBtn == 'Save'){
-    //   this.file = '';
-    //   this.productFamilyIcons = '';
-    //   this.imageSet = true;
-    // }
 
   }
   get getControl() {
     return this.entityGroups.controls;
   }
 
-  // onFileSelect(event: any) {
-  //   if (event.target.files.length > 0) {
-  //     this.imageSet = false;
-  //     this.file = event.target.files.item(0);
-  //     var reader = new FileReader();
-  //     reader.readAsDataURL(this.file);
-  //     reader.onload = (_event) => {
-  //       this.productFamilyIcons = reader.result;
-  //     }
-  //   }
-  // }
 
   onFileSelect(event: any) {
     if (event.target.files.length > 0) {

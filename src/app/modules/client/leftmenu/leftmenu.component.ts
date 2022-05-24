@@ -264,11 +264,11 @@ export class LeftmenuComponent implements OnInit {
       //   routerLink:['/crm/product-attribute'],
       //   translationKey:'product_submenu_product_attribute',
       // },
-      // {
-      //   name:"Product Atribute Summmary",
-      //   routerLink:['/crm/Product-Atribute-Summmary'],
-      //   translationKey:'product_submenu_product_attribute_summary',
-      // }
+      {
+        name:"Product Atribute Summmary",
+        routerLink:['/crm/Product-Atribute-Summmary'],
+        translationKey:'product_submenu_product_attribute_summary',
+      }
     ]
     },
     {
