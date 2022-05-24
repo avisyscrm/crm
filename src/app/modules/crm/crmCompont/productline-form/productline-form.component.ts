@@ -15,24 +15,21 @@ export class ProductlineFormComponent implements OnInit {
     'productLineId': new FormControl(''),
     'productLine': new FormControl('', [Validators.required, Validators.maxLength(30)]),
     'description': new FormControl('', [Validators.required, Validators.maxLength(100)]),
-    'productLineIcon': new FormControl(''),
+    'productLineIcon': new FormControl('', Validators.required),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
   });
   intialvalue: any;
   actionBtn = "Save";
-  productFamilyIcons: any;
+  // productFamilyIcons: any;
   file: any;
-  imageSet: boolean = true;
-
-
+  statusCode: any;
   constructor(private service: CrmservicesService, public translate: TranslateService,
     private alertService: SweetalertServiceService, private route: ActivatedRoute) {
     this.intialvalue = this.productLine.value;
     this.route.queryParams.subscribe((params: any) => {
       if (params.data != undefined) {
         this.actionBtn = "Update";
-        this.imageSet = false;
         this.getValueByID(params.data);
       }
     });
@@ -42,7 +39,7 @@ export class ProductlineFormComponent implements OnInit {
       this.productLine.patchValue(sucess);
       this.intialvalue = sucess;
       this.productLine.patchValue(sucess);
-      this.productFamilyIcons = sucess.productLineIcon;
+      // this.productFamilyIcons = sucess.productLineIcon;
     }, error => {
       // alert("Error while updating the record");
     });
@@ -79,24 +76,38 @@ export class ProductlineFormComponent implements OnInit {
 
   resetForm() {
     this.productLine.reset(this.intialvalue);
-    if(this.actionBtn == 'Save'){
-      this.file = '';
-      this.productFamilyIcons = '';
-      this.imageSet = true;
-    }
+    this.myInputVariable.nativeElement.value = "";
+
+    // if(this.actionBtn == 'Save'){
+    //   this.file = '';
+    //   this.productFamilyIcons = '';
+    //   this.imageSet = true;
+    // }
   }
   get getControl() {
     return this.productLine.controls;
   }
 
+  // onFileSelect(event: any) {
+  //   if (event.target.files.length > 0) {
+  //     this.imageSet = false;
+  //     this.file = event.target.files.item(0);
+  //     var reader = new FileReader();
+  //     reader.readAsDataURL(this.file);
+  //     reader.onload = (_event) => {
+  //       this.productFamilyIcons = reader.result;
+  //     }
+  //   }
+  // }
+
   onFileSelect(event: any) {
     if (event.target.files.length > 0) {
-      this.imageSet = false;
       this.file = event.target.files.item(0);
       var reader = new FileReader();
       reader.readAsDataURL(this.file);
       reader.onload = (_event) => {
-        this.productFamilyIcons = reader.result;
+        let imagePath=reader.result;
+         this.productLine.controls['productLineIcon'].setValue(imagePath);
       }
     }
   }

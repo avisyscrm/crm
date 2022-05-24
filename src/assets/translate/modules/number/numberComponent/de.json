@@ -1,0 +1,33 @@
+{
+    "forms":{
+
+        "numberFormat":{
+            "number-format-defination":"DEFINICIÓN DE FORMATO DE NÚMERO ",
+            "Sequence":"Secuencia ",
+            "level-name":"Nombre del nivel",
+            "Description":"Descripción",
+            "Length":"Larga",
+            "value-type":"Tipo de valor",
+            "delimeter": "delimitador",
+            "level-type": "Tipo de nivel"
+        },
+        "blockDefination":{
+            "blockDefinationTitle":"Definición de bloque",
+            "block-name":"Nombre del bloque",
+            "recieved-date":"Fecha de recepción",
+            "start-running":"Iniciar número corriente",
+            "end-running":"Fin del número corriente",
+            "total-count":"Cuenta total",
+            "status":"Estado"
+        },
+        "generatedNumber":{
+            "generatedNumberTitle":"Número generado",
+            "number":"Número",
+            "specialCategory":"Categoría especial",
+            "status":"Estado",
+            "price":"Precio",
+            "quarantine":"Período de cuarentena",
+            "reservation":"Período de reserva"
+        }
+    }
+}

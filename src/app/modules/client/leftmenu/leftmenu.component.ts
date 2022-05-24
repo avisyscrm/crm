@@ -76,7 +76,8 @@ export class LeftmenuComponent implements OnInit {
           name:"Roles",
           routerLink:['/crm/adminRole-table'],
           translationKey:'',
-        },{
+        },
+        {
           name:"Assign Role",
           routerLink:['/crm/assign-role'],
           translationKey:'',
@@ -303,6 +304,34 @@ export class LeftmenuComponent implements OnInit {
             name:"Number Scheme",
             routerLink:['/number/numberScheme'],
             translationKey:'master_submenu_product_family',
+
+          },{
+            name:"Block Defination",
+            routerLink:['/number/blockDefination'],
+            translationKey:'master_submenu_product_family',
+          },{
+            name:"Vanity Number",
+            routerLink:['/number/vanityNumber'],
+            translationKey:'master_submenu_product_family',
+          },{
+            name:"Generated Number",
+            routerLink:['/number/generatedNumber'],
+            translationKey:'master_submenu_product_family',
+          },
+          {
+            name:"Number Configuration",
+            routerLink:['/number/number-scheme-configuration'],
+            translationKey:'master_submenu_product_family',
+          },
+          {
+            name:"Vanity Number Pattern",
+            routerLink:['/number/number-pattern-rules'],
+            translationKey:'master_submenu_product_family',
+          },
+          {
+            name:"Number Generation",
+            routerLink:['/number/number-generation'],
+            translationKey:'master_submenu_product_family',
           }
       ]
    }
@@ -339,7 +368,6 @@ console.log(this.NumberMenuList);
         this.crmisActive = true;
         this.crmAdminActive=false;
         this.productisActive = false;
-        
       }
       else if  (dataProp =="productActive"){
         this.crmisActive = false;

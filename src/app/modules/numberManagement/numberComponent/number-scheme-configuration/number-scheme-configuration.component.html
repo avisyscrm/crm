@@ -1,5 +1,4 @@
 
-
     <div class="section-body  fixNavMargin">
         <div class="container-fluid">
 
@@ -12,7 +11,7 @@
 
                 </ul>
             </div>
-            <form [formGroup]="numberType" >
+            <form [formGroup]="schemeConfiguration" >
             <div class="card card-height">
                 <div class="card-header pf-head">
                     <h3 class="card-title "></h3>
@@ -24,31 +23,20 @@
                         <div class="col-md-6">
                             <div class="row ">
                                 <div class=" form-group col-md-4">
-                                    <label class="form-label ">Type ID </label>
+                                    <label class="form-label ">Sequence</label>
                                 </div>
                                 <div class=" form-group col-md-8">
-                                    <input type="text" class="form-control mandatory" [ngClass]="numberType.controls.typeid?.errors ? 'mandatory' : 'mandatoryG'" formControlName="typeid">
+                                    <input type="text" class="form-control mandatory"  formControlName="sequence">
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row ">
                                 <div class=" form-group col-md-4">
-                                    <label class="form-label ">Type </label>
+                                    <label class="form-label ">Level Name </label>
                                 </div>
                                 <div class=" form-group col-md-8">
-                                    <!-- <input type="text"  class="form-control" [ngClass]="numberType.controls.type?.errors ? 'mandatory' : 'mandatoryG'" > -->
-                                    <select id="datalistOptions84"
-                                    class="form-control mandatory"
-                                    formControlName="type">
-                                    <option value="">Select --</option>
-                                    <option value="SINGLE COLUMN">SIM
-                                    </option>
-                                    <option value="DOUBLE COLUMN">IMSI
-                                    </option>
-                                    <option value="DOUBLE COLUMN">MSISDN
-                                    </option>
-                                 </select>
+                                    <input type="text"  formControlName="level-name" class="form-control"  >
                                 </div>
                             </div>
                         </div>                
@@ -58,7 +46,7 @@
                                     <label class="form-label text-">Description</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <textarea rows="3"  [ngClass]="numberType.controls.description?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" placeholder="Here can be your description"
+                                    <textarea rows="3"   class="form-control" placeholder="Here can be your description"
                                         value="Mike" formControlName="description"></textarea>
                                 </div>
                             </div>
@@ -66,23 +54,31 @@
                         <div class="col-md-6">
                             <div class="row ">
                                 <div class=" form-group col-md-4">
-                                    <label class="form-label ">Status After Generation </label>
+                                    <label class="form-label ">Level Type </label>
                                 </div>
                                 <div class=" form-group col-md-8">
-                                    <input type="text" formControlName="statusafterGeneration" class="form-control" [ngClass]="numberType.controls.statusafterGeneration    ?.errors ? 'mandatory' : 'mandatoryG'" >
+                                    <select id="datalistOptions84"
+                                    class="form-control mandatory"
+                                    formControlName="level-type">
+                                    <option value="">Select --</option>
+                                    <option value="SINGLE COLUMN">RUNNING 
+                                    </option>
+                                    <option value="DOUBLE COLUMN">FIXED
+                                    </option>
+                                 </select>   
                                 </div>
                             </div>
                         </div> 
                         <div class="col-md-6">
                             <div class="row ">
                                 <div class=" form-group col-md-4">
-                                    <label class="form-label ">Allocation Allowed</label>
+                                    <label class="form-label ">Length</label>
                                 </div>
                                 <div class=" form-group col-md-8">
                                     <div class="custom-switches-stacked">
                                         <label class="custom-switch">
-                                            <input formControlName="allocation-allowed"  type="checkbox" value="" class="custom-switch-input" >
-                                            <span class="custom-switch-indicator"></span>
+                                            <input type="text"  formControlName="length" class="form-control"  >
+
                                         </label>
                                     </div>
                                 </div>
@@ -93,13 +89,21 @@
                         <div class="col-md-6">
                             <div class="row ">
                                 <div class=" form-group col-md-4">
-                                    <label class="form-label ">Area-wise Scheme Definition</label>
+                                    <label class="form-label ">Value Type</label>
                                 </div>
                                 <div class=" form-group col-md-8">
                                     <div class="custom-switches-stacked">
                                         <label class="custom-switch">
-                                            <input formControlName="sceheme-definition"  type="checkbox" value="" class="custom-switch-input" >
-                                            <span class="custom-switch-indicator"></span>
+                                           
+                                            <select id="datalistOptions84"
+                                            class="form-control mandatory"
+                                            formControlName="level-type">
+                                            <option value="">Select --</option>
+                                            <option value="SINGLE COLUMN">Numeric 
+                                            </option>
+                                            <option value="DOUBLE COLUMN">Alphanumeric
+                                            </option>
+                                         </select>   
                                         </label>
                                     </div>
                                 </div>
@@ -108,13 +112,13 @@
                         <div class="col-md-6">
                             <div class="row ">
                                 <div class=" form-group col-md-4">
-                                    <label class="form-label ">Valid Format</label>
+                                    <label class="form-label ">Value</label>
                                 </div>
                                 <div class=" form-group col-md-8">
                                     <div class="custom-switches-stacked">
                                         <label class="custom-switch">
-                                            <input formControlName="valid-format"  type="checkbox" value="" class="custom-switch-input" >
-                                            <span class="custom-switch-indicator"></span>
+                                            <input type="text"  formControlName="value" class="form-control" >
+                                        
                                         </label>
                                     </div>
                                 </div>
@@ -124,34 +128,19 @@
                         <div class="col-md-6">
                             <div class="row ">
                                 <div class=" form-group col-md-4">
-                                    <label class="form-label ">Released</label>
+                                    <label class="form-label ">Delimeter</label>
                                 </div>
                                 <div class=" form-group col-md-8">
                                     <div class="custom-switches-stacked">
                                         <label class="custom-switch">
-                                            <input formControlName="released"  type="checkbox" value="" class="custom-switch-input" >
-                                            <span class="custom-switch-indicator"></span>
+                                            <input type="text"  formControlName="delimeter" class="form-control"  >
+
                                         </label>
                                     </div>
                                 </div>
                             </div>
                         </div>  
 
-                        <div class="col-md-6">
-                            <div class="row ">
-                                <div class=" form-group col-md-4">
-                                    <label class="form-label ">Technology  Generation</label>
-                                </div>
-                                <div class=" form-group col-md-8">
-                                    <div class="custom-switches-stacked">
-                                        <label class="custom-switch">
-                                            <input formControlName="technology-generation"  type="checkbox" value="" class="custom-switch-input" >
-                                            <span class="custom-switch-indicator"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>  
                     </div>
                     <button   (click)="submit()" type="submit" class="btn btn-primary ">Submit</button>
                     <button type="reset" class="btn btn-primary ml-3 ">Reset</button>
