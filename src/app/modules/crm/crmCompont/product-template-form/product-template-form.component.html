@@ -107,7 +107,6 @@
                                                     *ngIf="productTemplate.controls.productEntityType?.errors?.isChar">Invalid
                                                     input. Only character allowed </span>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
@@ -180,8 +179,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
                             <div class="col-md-6">
                                 <div class="row mb-3">
                                     <div class="col-md-4">
@@ -191,8 +188,8 @@
                                     </div>
                                     <div class="col-md-8">
                                         <input rows="3"
-                                            [ngClass]="productTemplate.controls.screenLayout?.errors ? 'mandatory' : 'mandatoryG'"
-                                            class="form-control" placeholder="Here can be your description" value="Mike"
+                                            [ngClass]="productTemplate.controls.numberOfTabPagesSections?.errors ? 'mandatory' : 'mandatoryG'"
+                                            class="form-control" placeholder="Here can be your description" value="Mike"  [attr.disabled]="true"
                                             formControlName="numberOfTabPagesSections">
                                         <div
                                             *ngIf="productTemplate.controls.numberOfTabPagesSections?.invalid && productTemplate.controls.numberOfTabPagesSections?.touched">
@@ -263,11 +260,21 @@
                                 </div>
                             </div>
                         </div>
+                        <br>
                         <button [disabled]="productTemplate.invalid" type="submit" class="btn btn-primary "
                             (click)="submit()">{{actionBtn}}</button>
-                        <button type="button" class="btn btn-primary ml-3">Reset</button>
+                        <button type="button" (click)="reset()" class="btn btn-primary ml-3">Reset</button>
                         <button type="button" class="btn btn-primary ml-3">Section/Tab Pages</button>
-                        <app-product-tabs></app-product-tabs>
+                        <!-- <app-product-tabs></app-product-tabs> -->
+                        <br>
+                        <app-datatable [permission]="permission"
+                        (buttonEvent1)="buttonEvent1($event,template)"
+                        (changePageSortSearch)="changePageSortSearch($event,false)"
+                        [dataset]="data">
+                        <app-column [search]="x.search_key" [cssClass]="" [type]="x.type"
+                        *ngFor="let x of headerList" [value]="x.value" [width]="x.width"
+                        [header]="x.header"></app-column>
+                        </app-datatable>
                     </div>
                 </div>
 
@@ -275,3 +282,178 @@
 
         </div>
     </div>
+
+
+    <ng-template #template style="height: 1% !important;">
+        <div class="modal-header">
+            <div class="card-header d-flex justify-content-between">
+                <h3 class="card-title prod-name"><span>{{'forms.template-tab.template-tab-heading' |
+                   translate}}</span>
+                </h3>
+             </div>
+           <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+              <span aria-hidden="true">×</span>
+           </button>
+        </div>
+        <div class="modal-body">
+            <div class="section-body fixNavMargin">
+                <div class="container-fluid">
+                <div class="d-flex justify-content-between align-items-center">
+                   <ul class="nav nav-tabs page-header-tab">
+                      <li class="nav-item"><a class="nav-link" href="#">
+                         </a>
+                      </li>
+                      <li class="nav-item"><a class="nav-link" href="#"></a>
+                      </li>
+                   </ul>
+                </div>
+                <form [formGroup]="AddTabs" #Formdata >
+                <div class="card " style="height: fit-content !important;">
+                 
+                   <div class="card-body">
+                      <div class="row productfamily ">
+                         <div class="col-md-12">
+                            <div class="row ">
+                               <div class=" form-group col-md-4">
+                                  <label class="form-label "><span>{{'forms.template-tab.product-entity-template'
+                                  | translate}}</span></label>
+                               </div>
+                               <div class=" form-group col-md-8">
+                                  <div class="form-group">
+                                     <select 
+                                     [attr.disabled]="true" [ngClass]="AddTabs.controls.productEntityTemplateId?.errors ? 'mandatory' : 'mandatoryG'"
+                                     class="form-control mandatory" formControlName="productEntityTemplateId"
+                                    >
+                                     <option value="">Select --</option>
+                                     <option aria-placeholder="select"
+                                        value="{{productline.productEntityTemplateId}}"
+                                        *ngFor="let productline of allProductEntityTempidd">
+                                        {{productline.productEntityTemplateName}}
+                                     </option>
+                                     </select>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <!--Product -->
+                         <div class="col-md-12">
+                            <div class="row mb-12">
+                               <div class="col-md-8">
+                                  <div class="row">
+                                     <div class="col-6">
+                                        <div class="radio-section">
+                                           <label class="custom-control custom-radio">
+                                              <input type="radio" class="custom-control-input" name="type"
+                                              
+                                                 value="Tab" formControlName="type"
+                                                 (click)="onTypeChange('Tab')">
+                                              <div class="custom-control-label add-tab ">
+                                                 <span>{{'forms.template-tab.add-tab' | translate}}</span>
+                                              </div>
+                                           </label>
+                                        </div>
+                                     </div>
+                                     <div class="col-6">
+                                        <div class="radio-section">
+                                           <label class="custom-control custom-radio">
+                                              <input type="radio" class="custom-control-input mandatory"
+                                                 name="type" value="Section" formControlName="type"
+                                                 (click)="onTypeChange('Section')">
+                                              <div class="custom-control-label add-tab">
+                                                 <span>{{'forms.template-tab.add-section' |
+                                                 translate}}</span>
+                                              </div>
+                                           </label>
+                                        </div>
+                                     </div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="addtab-sec w-100">
+                            <div class="col-md-12" *ngIf="typeTabDection!='Tab'">
+                               <div class="row mb-3">
+                                  <div class="col-md-4">
+                                     <label class="form-label"><span>{{'forms.template-tab.parent-id'
+                                     | translate}}</span> </label>
+                                  </div>
+                                  <div class="col-md-8">
+                                     <select #parentSelect id="parentId"
+                                        name="parentId"
+                                        [ngClass]="AddTabs.controls.parentId?.errors ? 'mandatory' : 'mandatoryG'"
+                                        class="form-control mandatory"
+                                        formControlName="parentId">
+                                        <option value="">Select --</option>
+                                        <option
+                                        [value]="tabids.productEntityTemplateSectionId"
+                                        *ngFor="let tabids of tabid">
+                                        {{tabids.section}}</option>
+                                     </select>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-md-12">
+                               <div class="row mb-3">
+                                  <div class="col-md-4">
+                                     <label class="form-label">
+                                     <span>{{'forms.template-tab.section-name' |
+                                     translate}}</span> </label>
+                                  </div>
+                                  <div class="col-md-8">
+                                     <input type="text"
+                                     [ngClass]="AddTabs.controls.section?.errors ? 'mandatory' : 'mandatoryG'"
+                                        class="form-control mandatory"
+                                        formControlName="section">
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-md-12" *ngIf="typeTabDection!='Tab'">
+                               <div class="row mb-3">
+                                  <div class="col-md-4">
+                                     <label class="form-label">
+                                     <span>{{'forms.template-tab.screenlayout' |
+                                     translate}}</span> </label>
+                                  </div>
+                                  <div class="col-md-8">
+                                     <select id="datalistOptions84"
+                                        class="form-control mandatory"
+                                        [ngClass]="AddTabs.controls.screenLayout?.errors ? 'mandatory' : 'mandatoryG'"
+                                        formControlName="screenLayout">
+                                        <option value="">Select --</option>
+                                        <option value="SINGLE COLUMN">Single column
+                                        </option>
+                                        <option value="DOUBLE COLUMN">Double column
+                                        </option>
+                                     </select>
+                                  </div>
+                               </div>
+                            </div>
+                            <div class="col-md-12">
+                               <div class="row mb-3">
+                                  <div class="col-md-4">
+                                      <label class="form-label">
+                                     <span>{{'forms.template-tab.sequence' |
+                                     translate}}</span> </label>
+                                  </div>
+                                  <div class="col-md-8">
+                                     <input type="text"
+                                     [ngClass]="AddTabs.controls.sequenceId?.errors ? 'mandatory' : 'mandatoryG'"
+                                        class="form-control mandatory"
+                                        formControlName="sequenceId">
+                                  </div>
+                               </div>
+                            </div>
+                            <button type="button" class="btn btn-primary"
+                               (click)="submit1()">{{actionBtn1}} </button>
+                         </div>
+                      </div>
+                   </div>
+                 </div>
+                </form>
+        </div>
+        <div class="modal-footer">
+           <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Close</button>
+        </div>
+        </div>
+        </div>
+    </ng-template>
