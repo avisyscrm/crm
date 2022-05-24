@@ -23,6 +23,9 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
 
   
   export class CrmservicesService {
+  getEntitytemplatesectionById(data: any) {
+    return this.http.get(environment.baseUrl+"/productEntityTemplateSection/"+data);
+  }
     productTemplate(id) {
       return this.http.get(environment.baseUrl+"/productEntityTemplates/"+id);
     }
@@ -340,8 +343,6 @@ createProductFamilly(data){
     // addTabs
   
     addingTabs(data :listAddTabs){
-  
-     // console.log(" +++++++ "+);
       return this.http.post(this.postTabs, data);
     }
   
@@ -536,7 +537,6 @@ createProductFamilly(data){
   
       // update code for sections    updateProductEntityTemplateSectionHH
       putProductTemplateSection(data:Producttemplatesection){
-        console.log(data, 'datassssssss');
          return this.http.put<any>(this.updateProductEntityTemplateSectionHH, data)
         }
   

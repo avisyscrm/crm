@@ -44,7 +44,6 @@ export class ProductTabsFormComponent {
     });
     this.crmservicesService.allProductEntityTemp().subscribe((data) => {
       this.allProductEntityTempidd = data;
-      console.log(this.allProductEntityTempidd, 'iuytfds');
     })
   }
   onTypeChange(event) {
@@ -122,6 +121,7 @@ checkIfSection(){
     this.getTabsIds(+value, false);
  this.getTabsID();
   }
+  
 
   getTabsID(){
     this.crmservicesService.gettabId(this.tempId).subscribe(sucess => {

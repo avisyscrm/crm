@@ -253,21 +253,21 @@ export class LeftmenuComponent implements OnInit {
           routerLink:['/crm/product-templates'],
           translationKey:'product_submenu_product_template',
         },
-        {
-        name:"Product Tab",
-        routerLink:['/crm/product-tabs'],
-        translationKey:'product_submenu_product_tab',
-        },
-        {
-        name:"Product Attribute",
-        routerLink:['/crm/product-attribute'],
-        translationKey:'product_submenu_product_attribute',
-      },
-      {
-        name:"Product Atribute Summmary",
-        routerLink:['/crm/Product-Atribute-Summmary'],
-        translationKey:'product_submenu_product_attribute_summary',
-      }
+      //   {
+      //   name:"Product Tab",
+      //   routerLink:['/crm/product-tabs'],
+      //   translationKey:'product_submenu_product_tab',
+      //   },
+      //   {
+      //   name:"Product Attribute",
+      //   routerLink:['/crm/product-attribute'],
+      //   translationKey:'product_submenu_product_attribute',
+      // },
+      // {
+      //   name:"Product Atribute Summmary",
+      //   routerLink:['/crm/Product-Atribute-Summmary'],
+      //   translationKey:'product_submenu_product_attribute_summary',
+      // }
     ]
     },
     {
