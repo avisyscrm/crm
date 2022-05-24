@@ -23,6 +23,9 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
 
   
   export class CrmservicesService {
+  getproductAttributeList() {
+    return this.http.get(environment.baseUrl+"/getProductAttribute");
+  }
   getEntitytemplatesectionById(data: any) {
     return this.http.get(environment.baseUrl+"/productEntityTemplateSection/"+data);
   }

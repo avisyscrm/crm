@@ -31,36 +31,29 @@ export class ProductAttributesFormComponent implements OnInit {
   tabsvalue:any;
   selectedSection:any="";
   tempattributeforsort:any;
-  ajayStri : any ;
-  pageNo:any;
-  pageSize:any;
-  sortBy:any;
+
   sortDirection:any;  
   httpClient: any;
   allSectionFromTabid: any;
-
+  productAttributeList=[]
   constructor( private http:HttpClient, private router:Router, private service : CrmservicesService,
-     private route : ActivatedRoute,private sweetAlert: SweetalertServiceService) { }
+     private route : ActivatedRoute,private sweetAlert: SweetalertServiceService) { 
+this.service.getproductAttributeList().subscribe((sucess:any)=>{
+this.productAttributeList=sucess;
+});
+      
+     }
 
 
   ngOnInit(): void {
-
-
-    // this.getTabsIds(1)
-     // id of temp to attribute table 
      this.route.queryParams.subscribe((params:any)=>{
         this.tempAttributeId = params.data ;
         this.tempattributeforsort = params.data;
          this.productEntityAttribute.controls['productEntityTemplateId'].patchValue( this.tempAttributeId);
-     })
-  
-      
+     });
      this.service.getEntityTemplateAttributeidd1(-1 + "?pageNo=1&pageSize=5").subscribe(sucess=>{
        this.headerList=sucess.headerlist  ;   
-       // this.data=sucess.page;
- 
        },error=>{
-         // alert(error);
        }
        );
  
@@ -127,18 +120,16 @@ export class ProductAttributesFormComponent implements OnInit {
    })
  
    resetForm(){
-    //  this.productEntityAttribute.controls['productEntityTemplateId'].setValue("");
-    //  this.productEntityAttribute.controls['tabId'].setValue("");
-     this.productEntityAttribute.controls['sectionId'].reset();
-     this.productEntityAttribute.controls['mandatory'].setValue("");
-     this.productEntityAttribute.controls['editable'].setValue("");
-     this.productEntityAttribute.controls['sequenceId'].reset();
-     this.productEntityAttribute.controls['productAttribute'].reset();
-     this.productEntityAttribute.controls['description'].reset();
-     this.productEntityAttribute.controls['productAttributeDataType'].reset();
-     this.productEntityAttribute.controls['productAttributeLength'].reset();
-     this.productEntityAttribute.controls['dataCaptureControl'].reset();
-     this.productEntityAttribute.controls['options'].setValue("");
+    //  this.productEntityAttribute.controls['sectionId'].reset();
+    //  this.productEntityAttribute.controls['mandatory'].setValue("");
+    //  this.productEntityAttribute.controls['editable'].setValue("");
+    //  this.productEntityAttribute.controls['sequenceId'].reset();
+    //  this.productEntityAttribute.controls['productAttribute'].reset();
+    //  this.productEntityAttribute.controls['description'].reset();
+    //  this.productEntityAttribute.controls['productAttributeDataType'].reset();
+    //  this.productEntityAttribute.controls['productAttributeLength'].reset();
+    //  this.productEntityAttribute.controls['dataCaptureControl'].reset();
+    //  this.productEntityAttribute.controls['options'].setValue("");
    }
  
  
@@ -251,14 +242,14 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
        }
    }
   
-   onDelete(value:any){
-     this.service.getEntityTemplateAttributeidd1(value + "?pageNo="+this.pageNo+"&pageSize="+this.pageSize).subscribe(sucess=>{
-       this.data=sucess.page;
-       },error=>{
-         // alert(error);
-       }
-       );
-   } 
+  //  onDelete(value:any){
+  //    this.service.getEntityTemplateAttributeidd1(value + "?pageNo="+this.pageNo+"&pageSize="+this.pageSize).subscribe(sucess=>{
+  //      this.data=sucess.page;
+  //      },error=>{
+  //        // alert(error);
+  //      }
+  //      );
+  //  } 
  
   
  
@@ -288,8 +279,8 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
    
        this.service.deleteProdEntityAttribute(data.data.productEntityTemplateAttributesId,0).subscribe((res)=>{
         this.sweetAlert.recordDeleted();
-        this.onDelete(data.data.productEntityTemplateId);
-        this.getDatataless(data.data.productEntityTemplateId);
+        // this.onDelete(data.data.productEntityTemplateId);
+        // this.getDatataless(data.data.productEntityTemplateId);
        })
      }
      
@@ -304,20 +295,20 @@ this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(
        } 
  
  
-     changePageSortSearch(url:any){
-      this.ajayStri =""+ url.toString();
-      var splittedpaging = this.ajayStri.split('&',4);
-      this.pageNo=splittedpaging[0].substring(splittedpaging[0].indexOf("=")+1,splittedpaging[0].length);
-      this.pageSize=splittedpaging[1].substring(splittedpaging[1].indexOf("=")+1,splittedpaging[1].length);
-      this.sortBy=splittedpaging[2].substring(splittedpaging[2].indexOf("=")+1,splittedpaging[2].length);
-      this.sortDirection=splittedpaging[3].substring(splittedpaging[3].indexOf("=")+1,splittedpaging[3].length);
+    //  changePageSortSearch(url:any){
+    //   this.ajayStri =""+ url.toString();
+    //   var splittedpaging = this.ajayStri.split('&',4);
+    //   this.pageNo=splittedpaging[0].substring(splittedpaging[0].indexOf("=")+1,splittedpaging[0].length);
+    //   this.pageSize=splittedpaging[1].substring(splittedpaging[1].indexOf("=")+1,splittedpaging[1].length);
+    //   this.sortBy=splittedpaging[2].substring(splittedpaging[2].indexOf("=")+1,splittedpaging[2].length);
+    //   this.sortDirection=splittedpaging[3].substring(splittedpaging[3].indexOf("=")+1,splittedpaging[3].length);
 
-       this.service.getEntityTemplateAttributeidd1(this.tempattributeforsort+'?' +url ).subscribe(sucess=>{
-         this.data=sucess.page;
-         },error=>{}
-         );
-         console.log(url,'dattaaa')
-     }
+    //    this.service.getEntityTemplateAttributeidd1(this.tempattributeforsort+'?' +url ).subscribe(sucess=>{
+    //      this.data=sucess.page;
+    //      },error=>{}
+    //      );
+    //      console.log(url,'dattaaa')
+    //  }
  
      onDataCapture(dataCapture:string){
 
