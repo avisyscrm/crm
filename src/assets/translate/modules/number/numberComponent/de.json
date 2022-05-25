@@ -44,11 +44,13 @@
             "quarantine-period":"Período de cuarentena"
         },
         "number-type":{
+            "heading":" NUMMERTYP",
             "type-id":"Typ-ID ",
-            "select":" auswählen",
-            "sim":"Sim",
+            "sim":"SIM",
             "imsi":"IMSI",
             "msisdn":"MSISDN",
+            "available":"erhältlich",
+            "not-available":"Nicht verfügbar",
             "type":"Typ",
             "description":"Beschreibung",
             "status-generation":"Status nach Generierung",

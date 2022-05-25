@@ -22,7 +22,7 @@ export class NumberTypeTableComponent implements OnInit {
   sortDirection:any;
   url="pageNo=1&pageSize=5";
   ngOnInit(): void {
-    this.allService.getproductHierarchy("pageNo=1&pageSize=5").subscribe(sucess=>{
+    this.allService.getnumberType("pageNo=1&pageSize=5").subscribe(sucess=>{
     this.headerList=sucess.headerlist  ;
     this.data=sucess.page;
     },error=>{
@@ -32,12 +32,12 @@ export class NumberTypeTableComponent implements OnInit {
   }
   changePageSortSearch(url:any){
     this.url=url;
-    this.allService.getproductHierarchy(url).subscribe(sucess=>{
+    this.allService.getnumberType(url).subscribe(sucess=>{
       this.data=sucess.page;
       },error=>{});
   }
   onDelete(){
-    this.allService.getproductHierarchy(this.url).subscribe(sucess=>{
+    this.allService.getnumberType(this.url).subscribe(sucess=>{
       this.data=sucess.page;
       },error=>{}
       );
@@ -46,11 +46,11 @@ buttonEvent1(data:any){
 if(data.event=='add'){
   this.router.navigate(['/number/numberType']);   
 }else if(data.event=='edit'){
-  this.router.navigate(['/number/numberType'],{ queryParams: { data: JSON.stringify(data.data.productHierarchyId)} });
+  this.router.navigate(['/number/numberType'],{ queryParams: { data:data.data.numberTypeId} });
     console.log(data, 'data')
 }
  else if(data.event=='delete'){
-   this.allService.deleteHierarchy(data.data.productHierarchyId).subscribe((res)=>{
+   this.allService.deletenumberType(data.data.numberTypeId).subscribe((res)=>{
     this.sweetAlert.recordDeleted();  
     this.onDelete();
    })

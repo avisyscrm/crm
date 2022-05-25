@@ -794,5 +794,25 @@ postUserProfile(data:any){
 }
 
 
+// number management
+  getnumberType(url:string):Observable<any>{
+    return this.http.get(environment.baseUrl+"/numberTypeDefinition?"+url);
+  }
 
+  getnumberTypeID(id: any) {
+    return this.http.get(environment.baseUrl+"/numberTypeDefinition/"+id);
+  }
+
+  updatenumberType(value: any) {
+    return this.http.put(environment.baseUrl+"/updateNumberTypeDefinition",value);
+  }
+
+  deletenumberType(id){
+    return this.http.delete(environment.baseUrl+"/deleteNumberTypeDefinition/"+id+"/"+ JSON.parse(sessionStorage.getItem('userDetails')).userId);
+  }
+  
+  
+createNumberType(data){
+  return this.http.post(environment.baseUrl+"/createNumberTypeDefinition",data);
+}
 }
