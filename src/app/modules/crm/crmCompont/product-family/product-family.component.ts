@@ -42,4 +42,5 @@ if(data.event=='add'){
    this.changePageSortSearch(this.url);
   })  
 } 
-}}
+}
+}

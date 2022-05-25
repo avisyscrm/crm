@@ -5,7 +5,7 @@
             "Sequence":"Sequence ",
             "level-name":"Level Name",
             "Description":"Description",
-            "Length":"Length",
+            "length":"Length",
             "value-type":"Value Type",
             "delimeter": "Delimeter",
             "level-type": "Level Type" 

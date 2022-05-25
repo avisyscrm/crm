@@ -1,5 +1,7 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-number-format-form',
@@ -7,9 +9,11 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./number-format-form.component.scss','../../numberManagement.scss']
 })
 export class NumberFormatFormComponent implements OnInit {
+  permission:any=[true,true,true];
+  data:any={};
+  headerList:any=[];
 
-  constructor() { }
-
+  constructor(private modalService: BsModalService, private http: HttpClient) { }
   ngOnInit(): void {
   }
 
@@ -26,6 +30,7 @@ export class NumberFormatFormComponent implements OnInit {
   });
   intialvalue: any;
   actionBtn = "Save";
+  modalRef: BsModalRef;
 
   get getControl() {
     return this.numberFormat.controls;
@@ -33,9 +38,31 @@ export class NumberFormatFormComponent implements OnInit {
 
   submit(){
     console.log(JSON.stringify(this.numberFormat.value));
+    this.http.post('assets/data/data.json',this.numberFormat.value).subscribe(()=>{
+      alert('done');
+    },
+    (error)=>{
+      alert('not');
+    })
   }
 
   resetForm(){
+  }
+
+  changePageSortSearch(url:any){
+
+  }
+  buttonEvent1(data:any,template){
+    if(data.event=='add'){
+      this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'gray modal-xl ' }));
+
+    }
+    else if(data.event=='edit'){
+
+    }
+    else if(data.event == 'delete'){
+    
+    } 
   }
 
 }

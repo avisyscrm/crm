@@ -59,7 +59,7 @@
                                     <label class="form-label"><span>{{'forms.productFamily.product-family-icon' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8"> 
-                                    <button type="button" mat-button (click)="file1.click()">ChooseFile</button>     
+                                    <button type="button" class="btn btn-primary " mat-button (click)="file1.click()">ChooseFile</button>     
                                     <input hidden type="file" #file1 name="requestfile" (change)="onFileSelect($event)" accept="image/*">
                                     <img  *ngIf="productFamily.controls.productFamilyIcon.value!='' && productFamily.controls.productFamilyIcon.value!=null && productFamily.controls.productFamilyIcon.value!=undefined"  [src]="productFamily.controls.productFamilyIcon.value" class="selected-image" >
                                 </div>
