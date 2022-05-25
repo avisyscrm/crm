@@ -111,15 +111,18 @@ export class ProductTemplateFormComponent {
       });
     } else if (event.event == 'add') {
       this.reset1()
+      this.actionBtn1 = 'Save';
+      this.onTypeChange('Tab');
+      this.typeTabDection = 'Tab';
       this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'gray modal-lg' }));
-
     } else if (event.event == 'inSidebtn') {
       if (event.btnEvent == 'Attributes') {
-        debugger
-        this.router.navigate(['crm/product-attribute'] ,{ queryParams: { data: JSON.stringify(event.data.productEntityTemplateId) }});
+        this.router.navigate(['crm/product-attribute'] ,
+        { queryParams: { data: JSON.stringify(event.data.productEntityTemplateId),
+                       data1: JSON.stringify(event.data.productEntityTemplateSectionId),
+                       data2: JSON.stringify(event.data.parentId)}});
       } else if (event.btnEvent == 'Delete') {
         this.DeleteRecord(event.data);
-       
       }
     }
   }

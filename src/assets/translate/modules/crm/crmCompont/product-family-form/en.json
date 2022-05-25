@@ -67,7 +67,7 @@
             "data-capture":"Data Capture Control",
             "values":"Values",
             "mandatory":"Mandatory",
-            "editable":"Editable"
+            "readonly":"Read only"
         },
         "template-attribute-master":{
             "template-master":"PRODUCT  ATTRIBUTE MASTER",
