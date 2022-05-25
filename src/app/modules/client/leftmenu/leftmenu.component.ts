@@ -302,7 +302,7 @@ export class LeftmenuComponent implements OnInit {
           },
           {
             name:"Number Format",
-            routerLink:['/number/numberFormat'],
+            routerLink:['/number/numberFormatAll'],
             translationKey:'master_submenu_product_family',
           },
           {

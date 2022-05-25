@@ -1,3 +1,4 @@
+import { NumberFormatAllComponent } from './numberComponent/number-format-all/number-format-all.component';
 import { GeneratedNumbersFormComponent } from './numberComponent/generated-numbers-form/generated-numbers-form.component';
 import { VanityNumberComponent } from './numberComponent/vanity-number/vanity-number.component';
 import { BlockDefinationFormComponent } from './numberComponent/block-defination-form/block-defination-form.component';
@@ -30,6 +31,10 @@ const routes: Routes = [
     {
       path: 'numberFormat',
       component: NumberFormatFormComponent,
+      data: { title: 'Number Format' }
+    }, {
+      path: 'numberFormatAll',
+      component: NumberFormatAllComponent,
       data: { title: 'Number Format' }
     }, {
       path: 'numberScheme',

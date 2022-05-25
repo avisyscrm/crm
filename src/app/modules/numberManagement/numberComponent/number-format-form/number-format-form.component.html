@@ -8,106 +8,176 @@
                     </li>
                 </ul>
             </div>
-            <form [formGroup]="numberFormat" >
-            <div class="card card-height">
-                <div class="card-header pf-head">
-                    <h3 class="card-title ">{{'forms.numberFormat.number-format-defination' | translate}}</h3>
-                </div>
-                <div class="card-body">
-                    <div class="row productfamily ">
-                        <div class="col-md-6">
-                            <div class="row ">
-                                <div class=" form-group col-md-4">
-                                    <label class="form-label "> {{'forms.numberFormat.Sequence' | translate}} </label>
-                                </div>
-                                <div class=" form-group col-md-8">
-                                    <input type="text" class="form-control" [ngClass]="numberFormat.controls.sequence?.errors ? 'mandatory' : 'mandatoryG'" formControlName="sequence">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row ">
-                                <div class=" form-group col-md-4">
-                                    <label class="form-label ">{{'forms.numberFormat.level-name' | translate}}</label>
-                                </div>
-                                <div class=" form-group col-md-8">
-                                    <input type="text" formControlName="levelName" class="form-control" [ngClass]="numberFormat.controls.levelName?.errors ? 'mandatory' : 'mandatoryG'" >
-                                </div>
-                            </div>
-                        </div>                
-                        <div class="col-md-6">
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label class="form-label text-">{{'forms.numberFormat.Description' | translate}}</label>
-                                </div>
-                                <div class="col-md-8">
-                                    <textarea rows="3"  [ngClass]="numberFormat.controls.description?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" 
-                                        value="Mike" formControlName="description"></textarea>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row ">
-                                <div class=" form-group col-md-4">
-                                    <label class="form-label ">{{'forms.numberFormat.length' | translate}} </label>
-                                </div>
-                                <div class=" form-group col-md-8">
-                                    <input type="text" formControlName="length" class="form-control" [ngClass]="numberFormat.controls.length?.errors ? 'mandatory' : 'mandatoryG'" >
-                                </div>
-                            </div>
-                        </div> 
-                        <div class="col-md-6">
-                            <div class="row ">
-                                <div class=" form-group col-md-4">
-                                    <label class="form-label ">{{'forms.numberFormat.value-type' | translate}} </label>
-                                </div>
-                                <div class=" form-group col-md-8">
-                                    <select  name="cars" id="cars" class="form-control"
-                                        formControlName="valueType"  [ngClass]="numberFormat.controls.valueType?.errors ? 'mandatory' : 'mandatoryG'">
-                                        <option value="">Select --</option>
-                                        <option value="Numeric">Numeric</option>
-                                        <option value="Alphanumeric">Alphanumeric</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>  
-                        <div class="col-md-6">
-                            <div class="row ">
-                                <div class=" form-group col-md-4">
-                                    <label class="form-label ">{{'forms.numberFormat.delimeter' | translate}} </label>
-                                </div>
-                                <div class=" form-group col-md-8">
-                                    <select  class="form-control"
-                                        formControlName="delimeter"  [ngClass]="numberFormat.controls.delimeter?.errors ? 'mandatory' : 'mandatoryG'">
-                                        <option value="None">None</option>
-                                        <option value="-">-</option>
-                                        <option value="/">/</option>
-                                        <option value="*">*</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>   
-                        <div class="col-md-6">
-                            <div class="row ">
-                                <div class=" form-group col-md-4">
-                                    <label class="form-label ">{{'forms.numberFormat.level-type' | translate}} </label>
-                                </div>
-                                <div class=" form-group col-md-8">
-                                    <select  class="form-control"
-                                        formControlName="levelType"  [ngClass]="numberFormat.controls.levelType?.errors ? 'mandatory' : 'mandatoryG'">
-                                        <option value="" >Select</option>
-                                        <option value="Running">Running</option>
-                                        <option value="Fixed">Fixed</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div> 
+            <form>
+                <div class="card card-height">
+                    <div class="card-header pf-head">
+                        <h3 class="card-title ">Number Format Defination</h3>
                     </div>
-                    <button [disabled]="numberFormat.invalid" (click)="submit()" type="submit" class="btn btn-primary ">{{actionBtn}}</button>
-                    <button type="button" (click)="resetForm()" class="btn btn-primary ml-3 ">Reset</button>
-                </div>
-            </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="row ">
+                                    <div class=" form-group col-md-4">
+                                        <label class="form-label "> Type Id</label>
+                                    </div>
+                                    <div class=" form-group col-md-8">
+                                        <select  name="cars" id="cars" class="form-control"
+                                        formControlName="valueType"  [ngClass]="numberFormat.controls.valueType?.errors ? 'mandatory' : 'mandatoryG'">
+                                            <option value="">Select --</option>
+                                            <option value="Numeric">Numeric</option>
+                                            <option value="Alphanumeric">Alphanumeric</option>
+                                       </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row ">
+                                    <div class=" form-group col-md-4">
+                                        <label class="form-label "> Type </label>
+                                    </div>
+                                    <div class=" form-group col-md-8">
+                                        <input type="text" class="form-control" [ngClass]="numberFormat.controls.sequence?.errors ? 'mandatory' : 'mandatoryG'" formControlName="sequence">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="row ">
+                                    <div class=" form-group col-md-4">
+                                        <label class="form-label "> Description </label>
+                                    </div>
+                                    <div class=" form-group col-md-8">
+                                        <textarea class="form-control" [ngClass]="numberFormat.controls.sequence?.errors ? 'mandatory' : 'mandatoryG'"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- DataTable -->
+                        <app-datatable [permission]="permission" (buttonEvent1)="buttonEvent1($event,template)"
+                            (changePageSortSearch)="changePageSortSearch($event)" [dataset]="data">
+                            <app-column [search]="x.search_key" [cssClass]="" [type]="x.type" *ngFor="let x of headerList"
+                                [value]="x.value" [width]="x.width" [header]="x.header"></app-column>
+                        </app-datatable>
+                        <!-- DataTable end -->
+                    </div>
+                </div>       
             </form>
+            <!-- PopUp starts -->
+            <ng-template #template style="height: 1% !important;">
+                <div class="modal-header">
+                    <div class="card-header d-flex justify-content-between">
+                        <h3 class="card-title prod-name"><span>Number Format Defination</span>
+                        </h3>
+                     </div>
+                   <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+                      <span aria-hidden="true">×</span>
+                   </button>
+                </div>
+                <div class="modal-body">
+                    <form [formGroup]="numberFormat" >
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row productfamily ">
+                                    <div class="col-md-6">
+                                        <div class="row ">
+                                            <div class=" form-group col-md-4">
+                                                <label class="form-label "> {{'forms.numberFormat.Sequence' | translate}} </label>
+                                            </div>
+                                            <div class=" form-group col-md-8">
+                                                <input type="text" class="form-control" [ngClass]="numberFormat.controls.sequence?.errors ? 'mandatory' : 'mandatoryG'" formControlName="sequence">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row ">
+                                            <div class=" form-group col-md-4">
+                                                <label class="form-label ">{{'forms.numberFormat.level-name' | translate}}</label>
+                                            </div>
+                                            <div class=" form-group col-md-8">
+                                                <input type="text" formControlName="levelName" class="form-control" [ngClass]="numberFormat.controls.levelName?.errors ? 'mandatory' : 'mandatoryG'" >
+                                            </div>
+                                        </div>
+                                    </div>                
+                                    <div class="col-md-6">
+                                        <div class="row mb-3">
+                                            <div class="col-md-4">
+                                                <label class="form-label text-">{{'forms.numberFormat.Description' | translate}}</label>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <textarea rows="3"  [ngClass]="numberFormat.controls.description?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" 
+                                                    value="Mike" formControlName="description"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="row ">
+                                            <div class=" form-group col-md-4">
+                                                <label class="form-label ">{{'forms.numberFormat.length' | translate}} </label>
+                                            </div>
+                                            <div class=" form-group col-md-8">
+                                                <input type="text" formControlName="length" class="form-control" [ngClass]="numberFormat.controls.length?.errors ? 'mandatory' : 'mandatoryG'" >
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-md-6">
+                                        <div class="row ">
+                                            <div class=" form-group col-md-4">
+                                                <label class="form-label ">{{'forms.numberFormat.value-type' | translate}} </label>
+                                            </div>
+                                            <div class=" form-group col-md-8">
+                                                <select  name="cars" id="cars" class="form-control"
+                                                    formControlName="valueType"  [ngClass]="numberFormat.controls.valueType?.errors ? 'mandatory' : 'mandatoryG'">
+                                                    <option value="">Select --</option>
+                                                    <option value="Numeric">Numeric</option>
+                                                    <option value="Alphanumeric">Alphanumeric</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                    <div class="col-md-6">
+                                        <div class="row ">
+                                            <div class=" form-group col-md-4">
+                                                <label class="form-label ">{{'forms.numberFormat.delimeter' | translate}} </label>
+                                            </div>
+                                            <div class=" form-group col-md-8">
+                                                <select  class="form-control"
+                                                    formControlName="delimeter"  [ngClass]="numberFormat.controls.delimeter?.errors ? 'mandatory' : 'mandatoryG'">
+                                                    <option value="None">None</option>
+                                                    <option value="-">-</option>
+                                                    <option value="/">/</option>
+                                                    <option value="*">*</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>   
+                                    <div class="col-md-6">
+                                        <div class="row ">
+                                            <div class=" form-group col-md-4">
+                                                <label class="form-label ">{{'forms.numberFormat.level-type' | translate}} </label>
+                                            </div>
+                                            <div class=" form-group col-md-8">
+                                                <select  class="form-control"
+                                                    formControlName="levelType"  [ngClass]="numberFormat.controls.levelType?.errors ? 'mandatory' : 'mandatoryG'">
+                                                    <option value="" >Select</option>
+                                                    <option value="Running">Running</option>
+                                                    <option value="Fixed">Fixed</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                </div>
+                                <button [disabled]="numberFormat.invalid" (click)="submit()" type="submit" class="btn btn-primary ">{{actionBtn}}</button>
+                                <button type="button" (click)="resetForm()" class="btn btn-primary ml-3 ">Reset</button>
+                            </div>
+                        </div>
+                        </form>
+                </div>
+                <div class="modal-footer">
+                     <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Close</button>
+                </div>
+            </ng-template>
+            <!-- PopUp Ends -->
+            
+            
         </div>
     </div>
 
