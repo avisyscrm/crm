@@ -60,6 +60,7 @@ export class ProductFamilyFormComponent implements OnInit {
         });
       }
     } else {
+
       if (this.file != undefined) {
         this.service.createProductFamilly(formData).subscribe((sucess: any) => {
           if (sucess.statusCode == 23505) {
@@ -72,6 +73,8 @@ export class ProductFamilyFormComponent implements OnInit {
       } else {
         alert("Please select File")
       }
+
+
     }
   }
 
