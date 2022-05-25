@@ -23,6 +23,9 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
 
   
   export class CrmservicesService {
+  getProductEntitytemplatesectionById(data: any) {
+    return this.http.get(environment.baseUrl+"/productEntityTemplateAttributes/"+data);
+  }
   getproductAttributeList() {
     return this.http.get(environment.baseUrl+"/getProductAttribute");
   }
@@ -499,9 +502,9 @@ createProductFamilly(data){
     }
   
   
-    getEntityTemplateAttributeidd1(id:any):Observable<any>{
-      return this.http.get(this.getEntityTemplateAttributeid1+id);
-      // return this.http.get("http://192.168.1.11:9090/allProductEntityTemplateAttributes/12?pageNo=1&pageSize=5");
+    getEntityTemplateAttributeidd1(id:any,sectionId,url):Observable<any>{
+      debugger
+      return this.http.get(this.getEntityTemplateAttributeid1+id+"/"+sectionId+"?"+url);
     }
   
     getEntityTemplateAttribute(url:string):Observable<any>{

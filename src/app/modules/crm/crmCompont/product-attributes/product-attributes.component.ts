@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 
 @Component({
@@ -7,55 +8,62 @@ import { CrmservicesService } from '../../crm-services/crmservices.service';
   templateUrl: './product-attributes.component.html',
   styleUrls: ['./product-attributes.component.scss']
 })
-export class ProductAttributesComponent implements OnInit {
-
-
-  permission:any=[true,true,false];
+export class ProductAttributesComponent  {
+  permission:any=[true,false,false];
   headerList:any=[];
-  constructor(private allService: CrmservicesService, private router:Router) { }
+  templateId: any;
+  sectionId: any;
   data:any={};
-  
-
-  ngOnInit(): void {
-
-    this.allService.getEntityTemplateAttribute("pageNo=1&pageSize=5").subscribe(sucess=>{
-      this.headerList=sucess.headerlist  ; //sucess.headerList;
-  
-      this.data=sucess.page;
-      },error=>{
-  
-      }
-      );
-  }
+  tabId: any;
+  constructor(private sweetAlert: SweetalertServiceService,private allService: CrmservicesService, private router:Router,private activateRoute:ActivatedRoute) { 
+this.activateRoute.queryParams.subscribe((params:any)=>{
+this.templateId=JSON.parse(params.data);
+this.sectionId=JSON.parse(params.data1);
+this.tabId=JSON.parse(params.data2);
+this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,"pageNo=1&pageSize=5").subscribe(sucess=>{
+  this.headerList=sucess.headerlist; 
+  this.data=sucess.page;
+  },error=>{}
+  );
+});}
   changePageSortSearch(url:any){
-    this.allService.getEntityTemplateAttribute(url).subscribe(sucess=>{
+    this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,url).subscribe(sucess=>{
       this.data=sucess.page;
-      },error=>{
-  
-      }
-      );
-      console.log(url,'dattaaa')
+      },error=>{});
   }
-  // getnavigation(event:any){
-    
-  // }
-
- 
     buttonEvent1(data:any){
     if(data.event=='add'){
-      this.router.navigate(['crm/product-attribute-form']);   
+      this.router.navigate(['crm/product-attribute-form'],
+      { queryParams: 
+        { 
+          templateId: this.templateId,
+          sectionId: this.sectionId,
+          tabId: this.tabId
+        } }); 
     }else if(data.event=='edit'){
-      // alert(JSON.stringify(data.data));
-      this.router.navigate(['crm/product-attribute-form'],{ queryParams: 
-        { data: JSON.stringify(data.data.productEntityTemplateId)} });
-        console.log(data, 'data')
+      this.router.navigate(['crm/product-attribute-form'],
+      { queryParams: 
+        { productEntityTemplateId: JSON.stringify(data.data.productEntityTemplateId)} });
     }
     else if(data.event == 'delete'){
-      // alert(data.data.productEntityTemplateId);
-      // this.allService.deleteProdEntityAttribute(data.data.productEntityTemplateId,data.data.updatedBy).subscribe((res)=>{
-      //   console.log(res);
-      //   this.ngOnInit();
-      // })
+      
+    }else if(data.event == "inSidebtn"){
+      if(data.btnEvent=='Update'){
+        this.router.navigate(['crm/product-attribute-form'],
+        { queryParams: 
+          { 
+            productEntityTemplateId: JSON.stringify(data.data.productEntityTemplateAttributesId),
+            templateId: this.templateId,
+            sectionId: this.sectionId,
+            tabId: this.tabId
+          }
+        });
+      }else if(data.btnEvent=='Delete'){
+        debugger
+      this.allService.deleteProdEntityAttribute(data.data.productEntityTemplateId,JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res)=>{
+        this.sweetAlert.recordDeleted();
+      });
+      }
     }
     }
 }
