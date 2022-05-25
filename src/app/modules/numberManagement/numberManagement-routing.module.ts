@@ -10,6 +10,7 @@ import { LayoutCrmComponent } from '../layout-crm/layout-crm.component';
 import { NumberSchemeConfigurationComponent } from './numberComponent/number-scheme-configuration/number-scheme-configuration.component';
 import { VanityPatternRulesComponent } from './numberComponent/vanity-pattern-rules/vanity-pattern-rules.component';
 import { NumberGenerationComponent } from './numberComponent/number-generation/number-generation.component';
+import { NumberTypeTableComponent } from './numberComponent/number-type-table/number-type-table.component';
 
 
 const routes: Routes = [
@@ -20,7 +21,13 @@ const routes: Routes = [
       path: 'numberType',
       component: NumberTypeFormComponent,
       data: { title: 'Number Type' }
-    }, {
+    },
+    {
+      path: 'numberTypeTable',
+      component: NumberTypeTableComponent,
+      data: { title: 'Number Type' }
+    },
+    {
       path: 'numberFormat',
       component: NumberFormatFormComponent,
       data: { title: 'Number Format' }

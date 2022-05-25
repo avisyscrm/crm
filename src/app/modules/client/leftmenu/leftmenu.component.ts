@@ -290,9 +290,14 @@ export class LeftmenuComponent implements OnInit {
       dynamicMenuOpen:false,
       translationKey:'masters_main_menu_title',
       submenu:[
+          // {
+          //   name:"Number Type",
+          //   routerLink:['/number/numberType'],
+          //   translationKey:'master_submenu_product_family',
+          // },
           {
-            name:"Number Type",
-            routerLink:['/number/numberType'],
+            name:"Number Type Table",
+            routerLink:['/number/numberTypeTable'],
             translationKey:'master_submenu_product_family',
           },
           {

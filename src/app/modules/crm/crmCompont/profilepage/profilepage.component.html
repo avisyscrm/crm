@@ -13,7 +13,7 @@
             <form [formGroup]="userProfile" (ngSubmit)="submit()">
             <div class="card card-height">
                 <div class="card-header pf-head">
-                    <h3 class="card-title ">User Profile</h3>
+                    <h3 class="card-title ">{{'header.profile.profileHeading' | translate}}</h3>
 
                 </div>
                 <div class="card-body">
@@ -21,7 +21,7 @@
                         <div class="col-md-8">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label">Profile Image</label>
+                                    <label class="form-label">{{'header.profile.profileImage' | translate}}</label>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="position-relative">
@@ -36,7 +36,7 @@
                         <div class="col-md-8">
                             <div class="row ">
                                 <div class=" form-group col-md-4">
-                                    <label class="form-label ">First Name</label>
+                                    <label class="form-label ">{{'header.profile.first-name' | translate}}</label>
                                 </div>
                                 <div class=" form-group col-md-8">
                                     <input name="" [ngClass]="getControl.firstName?.errors ? 'mandatory' : 'mandatoryG'" type="text" class="form-control" value="" formControlName="firstName">
@@ -50,7 +50,7 @@
                         <div class="col-md-8">
                             <div class="row ">
                                 <div class=" form-group col-md-4">
-                                    <label class="form-label ">Last Name</label>
+                                    <label class="form-label ">{{'header.profile.last-name' | translate}}</label>
                                 </div>
                                 <div class=" form-group col-md-8">
                                     <input name="" type="text" [ngClass]="getControl.lastName?.errors ? 'mandatory' : 'mandatoryG'" class="form-control" value="" formControlName="lastName">
@@ -64,7 +64,7 @@
                         <div class="col-md-8">
                             <div class="row ">
                                 <div class=" form-group col-md-4">
-                                    <label class="form-label ">Email</label>
+                                    <label class="form-label ">{{'header.profile.email' | translate}}</label>
                                 </div>
                                 <div class=" form-group col-md-8">
                                     <input name="" type="email" class="form-control mandatoryG" value="" formControlName="email" readonly>
@@ -74,7 +74,7 @@
                         <div class="col-md-8">
                             <div class="row ">
                                 <div class=" form-group col-md-4">
-                                    <label class="form-label ">Contact</label>
+                                    <label class="form-label ">{{'header.profile.contact' | translate}}</label>
                                 </div>
                                 <div class=" form-group col-md-8">
                                     <input name="" type="number" [ngClass]="getControl.contact?.errors ? 'mandatory' : 'mandatoryG'" class="form-control " value="" formControlName="contact">

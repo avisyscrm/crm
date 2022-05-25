@@ -14,90 +14,66 @@ import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/swee
   templateUrl: './product-attributes-form.component.html',
   styleUrls: ['./product-attributes-form.component.scss','../../crm/crm.component.scss']
 })
-export class ProductAttributesFormComponent implements OnInit {
-
-
+export class ProductAttributesFormComponent  {
   headerList:any=[];
-  btnName:string = "Add"; 
-  allProductEntityTempidd :any;
+  btnName:string = "Save"; 
+  allProductEntityTempidd :any=[];
   tabid:any=[];
-  data:any={};
-  groupId!:string;
-  attributeId: any;
-  tempAttributeId!:any;
-  sectionselected:any;
-  secid:any;
+  secid:any=[];
+
+  productAttributeList:any=[];
   permission:any=[true,true,true];
-  tabsvalue:any;
-  selectedSection:any="";
-  tempattributeforsort:any;
-
-  sortDirection:any;  
-  httpClient: any;
-  allSectionFromTabid: any;
-  productAttributeList=[]
-  constructor( private http:HttpClient, private router:Router, private service : CrmservicesService,
+  intialValue: any;
+  constructor(private router:Router, private service : CrmservicesService,private alertService: SweetalertServiceService,
      private route : ActivatedRoute,private sweetAlert: SweetalertServiceService) { 
-this.service.getproductAttributeList().subscribe((sucess:any)=>{
-this.productAttributeList=sucess;
-});
-      
+      this.route.queryParams.subscribe((params:any)=>{
+        this.productEntityAttribute.controls['productEntityTemplateId'].patchValue(params.templateId);
+        this.productEntityAttribute.controls['sectionId'].patchValue(params.sectionId);
+        this.productEntityAttribute.controls['tabId'].patchValue(params.tabId);
+        this.getTabsIds(params.templateId);
+        this.getSectionIds(params.tabId);
+        this.service.allProductEntityTemp().subscribe((sucess:any)=>{
+          this.allProductEntityTempidd=sucess;
+          this.service.getproductAttributeList().subscribe((sucess:any)=>{
+            this.productAttributeList=sucess;
+          }) 
+          });
+  if(params.productEntityTemplateId!=undefined){
+    this.btnName='Update';
+  this.getEditValue(params.productEntityTemplateId);
+  }else{
+    this.productEntityAttribute.controls['productEntityTemplateId'].patchValue(params.templateId);
+    this.productEntityAttribute.controls['sectionId'].patchValue(params.sectionId);
+    this.productEntityAttribute.controls['tabId'].patchValue(params.tabId);
+    this.intialValue=this.productEntityAttribute.value;
+  }
+          
+       });
      }
 
-
-  ngOnInit(): void {
-     this.route.queryParams.subscribe((params:any)=>{
-        this.tempAttributeId = params.data ;
-        this.tempattributeforsort = params.data;
-         this.productEntityAttribute.controls['productEntityTemplateId'].patchValue( this.tempAttributeId);
-     });
-     this.service.getEntityTemplateAttributeidd1(-1 + "?pageNo=1&pageSize=5").subscribe(sucess=>{
-       this.headerList=sucess.headerlist  ;   
-       },error=>{
-       }
-       );
- 
- 
-     this.route.queryParams.subscribe((params)=>{
-       this.attributeId = params.data;
-       this.tempAttributeId = params.data;
-       
-     })
- 
-     //get all the value to update
-     if(this.tempAttributeId != undefined){
-         this.btnName = "Update";  
-         this.service.getProdEntityTemplate(this.tempAttributeId).subscribe((resData)=>{
-         console.log(resData,"id");
-         if(resData){
-           this.productEntityAttribute.patchValue(resData);
-           this.onOptionsSelected(this.productEntityAttribute.controls['productEntityTemplateId'].value);
-           
-           }
-       },
-        (err)=>{
-        //  alert("Something Went Wrong")
-       })
-     }
+     onSelectSectionAdd(data){
+     var obj= this.productAttributeList.find(o => o.productAttributeId === data);
+     console.log(JSON.stringify(obj));
+     this.productEntityAttribute.controls['description'].patchValue(obj.description);
+     this.productEntityAttribute.controls['mandatory'].patchValue(obj.required);
+     this.productEntityAttribute.controls['productAttributeLength'].patchValue(obj.productAttributeLength);
+     this.productEntityAttribute.controls['productAttributeDataType'].patchValue(obj.dataType);
+     this.productEntityAttribute.controls['dataCaptureControl'].patchValue(obj.dataCaptureControl);
+     this.productEntityAttribute.controls['defaultValue'].patchValue(obj.defaultValue);
+     this.productEntityAttribute.controls['editable'].patchValue(obj.editable);
      
+     
+     
+     }
+
+  getEditValue(data) {
+  this.service.getProductEntitytemplatesectionById(data).subscribe((sucess:any)=>{
+    this.productEntityAttribute.patchValue(sucess);
+    this.intialValue=this.productEntityAttribute.value;
+  })
+  }
  
-     this.service.allProductEntityTemp().subscribe((data)=>{
-       this.allProductEntityTempidd =data;
-     })
- 
-   }
- 
-   getDatataless( value:number){
-     this.service.getEntityTemplateAttributeidd1(value + "?pageNo=1&pageSize=5").subscribe(sucess=>{
-       // this.headerList=sucess.headerlist  ;   
-       this.data=sucess.page;
-       
-       },error=>{
-         // alert(error);
-       }
-       );
-   } 
- 
+  
      productEntityAttribute = new FormGroup({
       productEntityTemplateId: new FormControl('',[ Validators.required, selectValidation]),
        productEntityTemplateAttributesId: new FormControl('', ),
@@ -108,10 +84,8 @@ this.productAttributeList=sucess;
        productAttributeLength:new FormControl('', Validators.required),
        dataCaptureControl: new FormControl('', [Validators.required,selectValidation]),
        options: new FormControl('',[Validators.required,selectValidation]),
-       // attributeOptionValues: new FormControl(''),
-       // value: new FormControl('d', Validators.required),
-       mandatory: new FormControl('', [Validators.required, selectValidation]),
-       editable: new FormControl('', [Validators.required,selectValidation]),
+       mandatory: new FormControl(false),
+       readOnly: new FormControl(false),
        sectionId: new FormControl('', [Validators.required, selectValidation]),
        tabId: new FormControl('', [Validators.required, selectValidation]),
        createdBy: new FormControl('-1', Validators.required),
@@ -120,249 +94,74 @@ this.productAttributeList=sucess;
    })
  
    resetForm(){
-    //  this.productEntityAttribute.controls['sectionId'].reset();
-    //  this.productEntityAttribute.controls['mandatory'].setValue("");
-    //  this.productEntityAttribute.controls['editable'].setValue("");
-    //  this.productEntityAttribute.controls['sequenceId'].reset();
-    //  this.productEntityAttribute.controls['productAttribute'].reset();
-    //  this.productEntityAttribute.controls['description'].reset();
-    //  this.productEntityAttribute.controls['productAttributeDataType'].reset();
-    //  this.productEntityAttribute.controls['productAttributeLength'].reset();
-    //  this.productEntityAttribute.controls['dataCaptureControl'].reset();
-    //  this.productEntityAttribute.controls['options'].setValue("");
+     this.productEntityAttribute.reset(this.intialValue);
    }
- 
- 
    onOptionsSelected(value:any){
-     this.tempattributeforsort = value;
-     console.log("the selected value is onOptionsSelected " + value);
-     // this.temattributeforsort = value;
      this.getTabsIds(parseInt(value));
-     this.getDatataless(value)
-     // this.idtemp= this.getTabsIds(parseInt(value));
      } 
  
    getTabsIds(value:number){
-    
-     
       this.service.gettabId(value).subscribe((data) =>{
        this.tabid = data;     
      })
    }
-  
-   // get Section value 
    onSelectSection(sectionId:any){ 
      console.log(sectionId);
      console.log(JSON.stringify(this.secid));
-     for(let i=0; i<this.secid.length; i++){
-       // console.log(this.secid[i].productEntityTemplateSectionId);
-       
+     for(let i=0; i<this.secid.length; i++){       
        if(this.secid[i].productEntityTemplateSectionId == sectionId){
-         console.log(this.secid[i].section);
-         // this.selectedSection = this.secid[i].section;
          this.productEntityAttribute.controls['section'].setValue(this.secid[i].section);
        }
      }
    }
- 
- // 
- onOptionsSelectedTab(value:any){
-  // console.log(value+"pass1");
-  
+
+ onOptionsSelectedTab(value:any){  
    this.getSectionIds(parseInt(value));
  }
-
   getSectionIds(value:number){
    this.service.getSectionFromTab(value).subscribe((data) =>{
-    console.log(JSON.stringify(data.parentId)+"pass3");
       this.secid = data;
-     console.log(this.secid);
    })
  } 
- 
- 
- async getSectionIdsAsync(tabId:number,resData:any){
-  //  console.log(value + "pass2");
-// 
-// const promise = await this.http.get(environment.baseUrl+"/allSectionFromTab/"+value).toPromise();
-this.http.get(environment.baseUrl+"/allSectionFromTab/"+tabId).toPromise().then(data => {
-  console.log('First Promise resolved.')
-  
-  this.secid=data;
-  
- 
-});
- 
 
-  
-   let data:any;
-   
- }
-   //add
-   postProductAttribute(){
-     this.service.postProductEntityAttribute(this.productEntityAttribute.value).subscribe((result)=>{
-   
-      console.log(result, 'posttttttt'); 
-
-      this.onOptionsSelected(this.productEntityAttribute.controls['productEntityTemplateId'].value);
-      
-      RecordAdded()
-      // alert("Record Added");
-       this.resetForm();
-      
-
-     },(error)=>{
-       console.log(error);
-     })
-   }  
- 
-   updateProductAttribute(){
-     this.service.putProdEntityAttribute(this.productEntityAttribute.value).subscribe({
-       next:(res)=>{
- 
-        //  alert("Record Updated");
-        RecordUpdated();
-           console.log(JSON.stringify(res.productEntityTemplateId)+"  updated code");
-           this.resetForm();
-           this.getDatataless(res.productEntityTemplateId);
-       },  
-       error:()=>{
-   
-       }
-     })
-   }
- 
    submitForm(){
-     console.log(this.productEntityAttribute)
-     if(this.tempAttributeId){
-       this.productEntityAttribute.valid ? this.updateProductAttribute() : "";
-       }
-     else if(this.productEntityAttribute.valid){
-         this.postProductAttribute();
-       }
-   }
-  
-  //  onDelete(value:any){
-  //    this.service.getEntityTemplateAttributeidd1(value + "?pageNo="+this.pageNo+"&pageSize="+this.pageSize).subscribe(sucess=>{
-  //      this.data=sucess.page;
-  //      },error=>{
-  //        // alert(error);
-  //      }
-  //      );
-  //  } 
- 
-  
- 
-   buttonEvent1(data:any){
-     if(data.event=='add'){
-       
-      this.btnName = "Add";  
-          this.productEntityAttribute.controls['tabId'].reset();
-      this.resetForm();
-      this.tempAttributeId= "";
-      //  this.router.navigate(['product-attribute-form']);   
-     }
-     else if(data.event=='edit'){
-       // alert(data.data)
-       this.btnName = "Update";  
+    if(this.btnName=='Save'){
+this.service.postProductEntityAttribute(this.productEntityAttribute.value).subscribe((sucess:any)=>{
+  this.sweetAlert.RecordAddedStatic();
+debugger
+  this.router.navigate(['/crm/product-attribute'], { queryParams: 
+    { 
+      data:  this.productEntityAttribute.controls['productEntityTemplateId'].value,
+      data1: this.productEntityAttribute.controls['sectionId'].value,
+      data2:this.productEntityAttribute.controls['tabId'].value,
+     
+    }
+  });
+});
+    }else{
+      this.service.putProdEntityAttribute(this.productEntityAttribute.value).subscribe((sucess:any)=>{
+      this.alertService.RecordUpdatedStatic();
 
-      //  this.getSectionIds(data.data.tabId);
-      this.tempAttributeId = data.data.productEntityTemplateId;
-       this.getSectionIdsAsync(data.data.tabId, data.data);
-       this.productEntityAttribute.patchValue(data.data);
-       console.log(data.data);
-        
-        console.log(this.productEntityAttribute.controls['tabId'].value, '23456yhnm');
-          
-     }
-     else if(data.event == 'delete'){
+      this.router.navigate(['/crm/product-attribute'], { queryParams: 
+        { 
+          data:  this.productEntityAttribute.controls['productEntityTemplateId'].value,
+          data1: this.productEntityAttribute.controls['sectionId'].value,
+          data2:this.productEntityAttribute.controls['tabId'].value,
+         
+        }
+      });
+      //('/crm/product-attribute?data=2&data1=21&data2=13');
+      });
+    }
    
-       this.service.deleteProdEntityAttribute(data.data.productEntityTemplateAttributesId,0).subscribe((res)=>{
-        this.sweetAlert.recordDeleted();
-        // this.onDelete(data.data.productEntityTemplateId);
-        // this.getDatataless(data.data.productEntityTemplateId);
-       })
-     }
-     
-     
-       }
-       
-       dataTable(value:number){
-         this.service.getEntityTemplateAttributeidd1(value + "?pageNo=1&pageSize=5" ).subscribe(sucess=>{
-           this.data=sucess.page;
-           },error=>{}
-           );
-       } 
- 
- 
-    //  changePageSortSearch(url:any){
-    //   this.ajayStri =""+ url.toString();
-    //   var splittedpaging = this.ajayStri.split('&',4);
-    //   this.pageNo=splittedpaging[0].substring(splittedpaging[0].indexOf("=")+1,splittedpaging[0].length);
-    //   this.pageSize=splittedpaging[1].substring(splittedpaging[1].indexOf("=")+1,splittedpaging[1].length);
-    //   this.sortBy=splittedpaging[2].substring(splittedpaging[2].indexOf("=")+1,splittedpaging[2].length);
-    //   this.sortDirection=splittedpaging[3].substring(splittedpaging[3].indexOf("=")+1,splittedpaging[3].length);
+   }
 
-    //    this.service.getEntityTemplateAttributeidd1(this.tempattributeforsort+'?' +url ).subscribe(sucess=>{
-    //      this.data=sucess.page;
-    //      },error=>{}
-    //      );
-    //      console.log(url,'dattaaa')
-    //  }
- 
      onDataCapture(dataCapture:string){
-
       if(dataCapture =='text' || dataCapture == 'date'){
        this.productEntityAttribute.controls['options'].disable();
      } else {
         this.productEntityAttribute.controls['options'].enable();
       }  
     }
-     getAttributeData(resData:any){
-       this.getSectionIds(resData.sectionId);
-     }
-     
-     get productEntityTemplateId(){
-      return this.productEntityAttribute.get('productEntityTemplateId');
-    }   
-    get tabId(){
-      return this.productEntityAttribute.get('tabId');
-    } 
-    
-    get sequenceId(){
-      return this.productEntityAttribute.get('sequenceId');
-    }  
-    get sectionId(){
-      return this.productEntityAttribute.get('sectionId');
-    }   
-    get productAttribute(){
-      return this.productEntityAttribute.get('productAttribute');
-    }   
-    get description(){
-      return this.productEntityAttribute.get('description');
-    }
-    get productAttributeDataType(){
-      return this.productEntityAttribute.get('productAttributeDataType');
-    }
-    get productAttributeLength(){
-      return this.productEntityAttribute.get('productAttributeLength');
-    } 
-    get dataCaptureControl(){
-      return this.productEntityAttribute.get('dataCaptureControl');
-    } 
-    get options(){
-      return this.productEntityAttribute.get('options');
-    } 
-    get mandatory(){
-      return this.productEntityAttribute.get('mandatory');
-    } 
-    get editable(){
-      return this.productEntityAttribute.get('editable');
-    } 
-  
-
-
-
-     
-
+   
 }

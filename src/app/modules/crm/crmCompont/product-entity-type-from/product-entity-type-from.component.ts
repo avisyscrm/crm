@@ -45,7 +45,7 @@ export class ProductEntityTypeFromComponent implements OnInit {
       this.productFamilyIcons = sucess.productLineIcon;
       this.file=sucess.productLineIcon;
     }, error => {
-      alert("Error while updating the record");
+      // alert("Error while updating the record");
     });
   }
   ngOnInit(): void { }
@@ -58,8 +58,13 @@ export class ProductEntityTypeFromComponent implements OnInit {
         this.alertService.RecordUpdated('/crm/product-entity-type');
       });
     } else {
-      this.service.createProductEntity(this.productFamily.value).subscribe(sucess => {
-        this.alertService.RecordAdded('/crm/product-entity-type');
+      this.service.createProductEntity(this.productFamily.value).subscribe((sucess:any) => {
+        if (sucess.statusCode == 23505) {
+          this.alertService.SelectRecord("Product Entity Type already exist");
+        } else {
+          this.alertService.RecordAdded('/crm/product-entity-type');
+        }
+        // this.alertService.RecordAdded('/crm/product-entity-type');
       })    
     }
   }

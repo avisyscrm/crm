@@ -240,10 +240,16 @@
                                                 translate}}</span></label>
                                     </div>
                                     <div class="col-md-8">
-                                        <input rows="3"
-                                            [ngClass]="productTemplate.controls.state?.errors ? 'mandatory' : 'mandatoryG'"
-                                            class="form-control" placeholder="Here can be your description" value="Mike"
-                                            formControlName="state">
+                                            <select id="datalistOptions84"
+                                        class="form-control mandatory"
+                                        [ngClass]="productTemplate.controls.state?.errors ? 'mandatory' : 'mandatoryG'"
+                                        formControlName="state">
+                                        <option value="">Select --</option>
+                                        <option value="Draft">Draft
+                                        </option>
+                                        <option value="Release">Release
+                                        </option>
+                                     </select>
                                         <div
                                             *ngIf="productTemplate.controls.state?.invalid && productTemplate.controls.state?.touched">
                                             <span class="validate-text"
@@ -265,7 +271,6 @@
                             (click)="submit()">{{actionBtn}}</button>
                         <button type="button" (click)="reset()" class="btn btn-primary ml-3">Reset</button>
                         <button type="button" class="btn btn-primary ml-3">Section/Tab Pages</button>
-                        <!-- <app-product-tabs></app-product-tabs> -->
                         <br>
                         <app-datatable [permission]="permission"
                         (buttonEvent1)="buttonEvent1($event,template)"
@@ -356,7 +361,7 @@
                                      <div class="col-6">
                                         <div class="radio-section">
                                            <label class="custom-control custom-radio">
-                                              <input type="radio" class="custom-control-input mandatory"
+                                              <input   type="radio" class="custom-control-input mandatory"
                                                  name="type" value="Section" formControlName="type"
                                                  (click)="onTypeChange('Section')">
                                               <div class="custom-control-label add-tab">
@@ -436,7 +441,7 @@
                                      translate}}</span> </label>
                                   </div>
                                   <div class="col-md-8">
-                                     <input type="text"
+                                     <input type="number"
                                      [ngClass]="AddTabs.controls.sequenceId?.errors ? 'mandatory' : 'mandatoryG'"
                                         class="form-control mandatory"
                                         formControlName="sequenceId">
