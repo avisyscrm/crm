@@ -11,14 +11,14 @@
         <form [formGroup]="vanityNumber" >
         <div class="card card-height">
             <div class="card-header pf-head">
-                <h3 class="card-title ">Vanity Number </h3>
+                <h3 class="card-title ">{{'forms.vanityNumber.vanityHeading' | translate}} </h3>
             </div>
             <div class="card-body">
                 <div class="row productfamily ">
                     <div class="col-md-6">
                         <div class="row ">
                             <div class=" form-group col-md-4">
-                                <label class="form-label ">Category Name </label>
+                                <label class="form-label ">{{'forms.vanityNumber.category-name' | translate}}</label>
                             </div>
                             <div class=" form-group col-md-8">
                                 <input type="text" class="form-control" [ngClass]="vanityNumber.controls.categoryName?.errors ? 'mandatory' : 'mandatoryG'" formControlName="categoryName">
@@ -28,7 +28,7 @@
                     <div class="col-md-6">
                         <div class="row ">
                             <div class=" form-group col-md-4">
-                                <label class="form-label ">Mask </label>
+                                <label class="form-label ">{{'forms.vanityNumber.mask' | translate}} </label>
                             </div>
                             <div class=" form-group col-md-8">
                                 <input type="text" formControlName="mask" class="form-control" [ngClass]="vanityNumber.controls.mask?.errors ? 'mandatory' : 'mandatoryG'" >
@@ -39,7 +39,7 @@
                     <div class="col-md-6">
                         <div class="row ">
                             <div class=" form-group col-md-4">
-                                <label class="form-label ">Mask Sequenced  </label>
+                                <label class="form-label ">{{'forms.vanityNumber.mask-sequenced' | translate}}  </label>
                             </div>
                             <div class=" form-group col-md-8">
                                 <div class="custom-controls-stacked">
@@ -55,7 +55,7 @@
                     <div class="col-md-6">
                         <div class="row ">
                             <div class=" form-group col-md-4">
-                                <label class="form-label ">Priority </label>
+                                <label class="form-label ">{{'forms.vanityNumber.priority' | translate}} </label>
                             </div>
                             <div class=" form-group col-md-8">
                                 <input type="text" formControlName="priority" class="form-control" [ngClass]="vanityNumber.controls.priority?.errors ? 'mandatory' : 'mandatoryG'" >
@@ -65,17 +65,17 @@
                     <div class="col-md-6">
                         <div class="row ">
                             <div class=" form-group col-md-4">
-                                <label class="form-label ">Start Date</label>
+                                <label class="form-label ">{{'forms.vanityNumber.start-date' | translate}}</label>
                             </div>
                             <div class=" form-group col-md-8">
-                                <input type="text" formControlName="startDate" class="form-control" [ngClass]="vanityNumber.controls.startDate?.errors ? 'mandatory' : 'mandatoryG'" >
+                                <input type="date" formControlName="startDate" class="form-control" [ngClass]="vanityNumber.controls.startDate?.errors ? 'mandatory' : 'mandatoryG'" >
                             </div>
                         </div>
                     </div> 
                     <div class="col-md-6">
                         <div class="row ">
                             <div class=" form-group col-md-4">
-                                <label class="form-label ">Rule Code</label>
+                                <label class="form-label ">{{'forms.vanityNumber.rule-code' | translate}}</label>
                             </div>
                             <div class=" form-group col-md-8">
                                 <select  name="cars" id="cars" class="form-control"
@@ -90,7 +90,7 @@
                     <div class="col-md-6">
                         <div class="row ">
                             <div class=" form-group col-md-4">
-                                <label class="form-label ">Rule Combination </label>
+                                <label class="form-label ">{{'forms.vanityNumber.rule-combination' | translate}} </label>
                             </div>
                             <div class=" form-group col-md-8">
                                 <select  class="form-control"
@@ -105,7 +105,7 @@
                     <div class="col-md-6">
                         <div class="row ">
                             <div class=" form-group col-md-4">
-                                <label class="form-label ">Default Category </label>
+                                <label class="form-label ">{{'forms.vanityNumber.default-category' | translate}} </label>
                             </div>
                             <div class=" form-group col-md-8">
                                 <select  class="form-control"
@@ -120,7 +120,7 @@
                     <div class="col-md-6">
                         <div class="row ">
                             <div class=" form-group col-md-4">
-                                <label class="form-label ">Reservation Period </label>
+                                <label class="form-label ">{{'forms.vanityNumber.reservation-period' | translate}} </label>
                             </div>
                             <div class=" form-group col-md-8">
                                 <input type="text" formControlName="reservation" class="form-control" [ngClass]="vanityNumber.controls.reservation?.errors ? 'mandatory' : 'mandatoryG'" >
@@ -130,7 +130,7 @@
                     <div class="col-md-6">
                         <div class="row ">
                             <div class=" form-group col-md-4">
-                                <label class="form-label ">Quarantine Period </label>
+                                <label class="form-label ">{{'forms.vanityNumber.quarantine-period' | translate}}</label>
                             </div>
                             <div class=" form-group col-md-8">
                                 <input type="text" formControlName="quarantine" class="form-control" [ngClass]="vanityNumber.controls.quarantine?.errors ? 'mandatory' : 'mandatoryG'" >

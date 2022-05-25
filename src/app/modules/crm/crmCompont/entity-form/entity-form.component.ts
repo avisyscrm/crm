@@ -65,7 +65,7 @@ export class EntityFormComponent implements OnInit {
       if(this.file!=undefined){ 
         this.service.addEntityGroupsData(formData).subscribe((sucess:any) => {
           if (sucess.statusCode == 23505) {
-            this.alertService.SelectRecord("Duplicate Entity Groups");
+            this.alertService.SelectRecord("Entity Group already exist");
           } else {
             this.alertService.RecordAdded('/crm/entity-groups');
           }

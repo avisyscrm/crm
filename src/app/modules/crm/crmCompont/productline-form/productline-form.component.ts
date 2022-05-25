@@ -65,7 +65,7 @@ export class ProductlineFormComponent implements OnInit {
       if(this.file!=undefined){  
         this.service.addProductLineData(formData).subscribe((sucess:any) => {
           if (sucess.statusCode == 23505) {
-            this.alertService.SelectRecord("Duplicate Product Line");
+            this.alertService.SelectRecord("Product Line already exist");
           } else {
             this.alertService.RecordAdded('/crm/product-line');
           }

@@ -67,8 +67,13 @@ this.service.getallProductLine().subscribe((sucss:any)=>{
       });
     }
      else {
-      this.service.SaveProducrHIrechy(this.productFamily.value).subscribe(sucess => {
-        this.alertService.RecordAdded('/crm/product-hierachy');
+      this.service.SaveProducrHIrechy(this.productFamily.value).subscribe((sucess:any) => {
+        if (sucess.statusCode == 409) {
+          this.alertService.SelectRecord("Product Hierarchy already exist");
+        } else {
+          this.alertService.RecordAdded('/crm/product-hierachy');
+        }
+        // this.alertService.RecordAdded('/crm/product-hierachy');
       });
     }
   }

@@ -63,7 +63,7 @@ export class ProductFamilyFormComponent implements OnInit {
       if (this.file != undefined) {
         this.service.createProductFamilly(formData).subscribe((sucess: any) => {
           if (sucess.statusCode == 23505) {
-            this.alertService.SelectRecord("Duplicate Product Family");
+            this.alertService.SelectRecord("Product Family already exist");
           } else {
             this.alertService.RecordAdded('/crm/product-family');
           }
