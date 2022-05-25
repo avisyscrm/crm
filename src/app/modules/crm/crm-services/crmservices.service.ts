@@ -790,4 +790,6 @@ postUserProfile(data:any){
   return this.http.post(this.updateProfileUrl,data);
 }
 
+
+
 }

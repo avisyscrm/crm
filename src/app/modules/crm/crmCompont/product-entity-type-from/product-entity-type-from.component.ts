@@ -45,7 +45,7 @@ export class ProductEntityTypeFromComponent implements OnInit {
       this.productFamilyIcons = sucess.productLineIcon;
       this.file=sucess.productLineIcon;
     }, error => {
-      alert("Error while updating the record");
+      // alert("Error while updating the record");
     });
   }
   ngOnInit(): void { }

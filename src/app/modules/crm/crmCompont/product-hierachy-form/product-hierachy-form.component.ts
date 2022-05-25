@@ -54,7 +54,7 @@ this.service.getallProductLine().subscribe((sucss:any)=>{
    
      
     }, error => {
-      alert("Error while updating the record");
+      // alert("Error while updating the record");
     });
   }
   ngOnInit(): void { }

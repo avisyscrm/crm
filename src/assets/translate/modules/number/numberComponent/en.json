@@ -41,6 +41,61 @@
             "default-category":"Default Category",
             "reservation-period":"Reservation Period",
             "quarantine-period":"Quarantine Period"
+        },       
+        "number-type":{
+            "type-id":"Type ID ",
+            "select":"Select",
+            "sim":"Sim",
+            "imsi":"IMSI",
+            "msisdn":"MSISDN",
+            "type":"Type",
+            "description":"Description",
+            "status-generation":"Status Generation",
+            "allocation-allowed":"Allocation Allowed",
+            "area-wise-scheme":"Area Wise Scheme Definition",
+            "released":"Released",
+            "submit":"Submit",
+            "reset":"Reset",
+            "technology-generation":"Technology Generation"
+        }, 
+        "number-configuration-linedetails":{
+            "sequence":"Sequence ",
+            "level-name":"Level Name",
+            "description":"Description",
+            "level-type":"Level Type",
+            "length":"Length",
+            "value-type":"Value Type",
+            "value":"Value",
+            "delimeter":"Delimiter"
+          
+         },
+        "vanity-pattern-rules":{
+            "rule-code":"Rule Code ",
+            "type":"Type",
+            "masks":"Mask",
+            "mask-sequenced":"Mask Sequenced",
+            "length":"Length",
+            "number-occurence":"No. Of Occurrence",
+            "reverse-check":"Reverse Check "
+        },
+        "number-generation":{
+            "scheme-name":"Scheme Name",
+            "type":"Type",
+            "sub-type":"Sub-Type",
+            "format":"Format",
+            "blockname":"Block name",
+            "block-range":"Block Range",
+            "start-running-later":"Start Running Number",
+            "quantity":"Quantity",
+            "end-running-number":"End Running Number",
+            "status":"Status",
+            "number-status":"Number status",
+            "allcated-to":"Allocated To ",
+            "execution-to":"Execution Time",
+            "checksum-requires":"CheckSUM requires",
+            "last-updated-by":"Last Updated By",
+            "last-update-on ":"Last Updated On"
+
         }
     }
 }
