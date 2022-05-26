@@ -349,7 +349,8 @@
                                         <div class="radio-section">
                                            <label class="custom-control custom-radio">
                                               <input type="radio" class="custom-control-input" name="type"
-                                              
+                                             
+                                              [attr.disabled] = "actionBtn1 === 'Update' ? 'disabled' : null"
                                                  value="Tab" formControlName="type"
                                                  (click)="onTypeChange('Tab')">
                                               <div class="custom-control-label add-tab ">
@@ -362,7 +363,7 @@
                                         <div class="radio-section">
                                            <label class="custom-control custom-radio">
                                               <input   type="radio" class="custom-control-input mandatory"
-                                                 name="type" value="Section" formControlName="type"
+                                                 name="type" value="Section" formControlName="type" [attr.disabled] = "actionBtn1 === 'Update' ? 'disabled' : null"
                                                  (click)="onTypeChange('Section')">
                                               <div class="custom-control-label add-tab">
                                                  <span>{{'forms.template-tab.add-section' |
@@ -401,7 +402,7 @@
                                <div class="row mb-3">
                                   <div class="col-md-4">
                                      <label class="form-label">
-                                     <span>{{'forms.template-tab.section-name' |
+                                     <span>  {{ AddTabs.controls['type'].value =='Tab'? ('forms.template-tab.tab-name' | translate) :'forms.template-tab.section-name' |
                                      translate}}</span> </label>
                                   </div>
                                   <div class="col-md-8">
