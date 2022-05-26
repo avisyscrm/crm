@@ -48,7 +48,7 @@ export class ProductAtributeMasterComponent implements OnInit {
         } else {
           this.label = "Add";
         }
-      });
+      }); 
 
      }
   ngOnInit(): void {

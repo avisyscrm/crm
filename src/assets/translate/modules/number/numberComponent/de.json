@@ -6,7 +6,7 @@
             "Sequence":"Secuencia ",
             "level-name":"Nombre del nivel",
             "Description":"Descripción",
-            "Length":"Larga",
+            "length":"Larga",
             "value-type":"Tipo de valor",
             "delimeter": "delimitador",
             "level-type": "Tipo de nivel"
@@ -28,6 +28,78 @@
             "price":"Precio",
             "quarantine":"Período de cuarentena",
             "reservation":"Período de reserva"
+        },
+
+        "vanityNumber":{
+            "vanityHeading":"NÚMERO DE VANIDAD",
+            "category-name":"nombre de la categoría",
+            "mask":"Máscara",
+            "mask-sequenced":"Máscara Secuenciada",
+            "priority":"Prioridad",
+            "start-date":"Fecha de inicio",
+            "rule-code":"Código de regla",
+            "rule-combination":"Combinación de reglas",
+            "default-category":"Categoría predeterminada",
+            "reservation-period":"Período de reserva",
+            "quarantine-period":"Período de cuarentena"
+        },
+        "number-type":{
+            "heading":" NUMMERTYP",
+            "type-id":"Typ-ID ",
+            "sim":"SIM",
+            "imsi":"IMSI",
+            "msisdn":"MSISDN",
+            "available":"erhältlich",
+            "not-available":"Nicht verfügbar",
+            "type":"Typ",
+            "description":"Beschreibung",
+            "status-generation":"Status nach Generierung",
+            "allocation-allowed":"Zuordnung erlaubt",
+            "area-wise-scheme":"Gebietsbezogene Schemadefinition",
+            "released":"Veröffentlicht",
+            "submit":"Einreichen",
+            "reset":"Zurücksetzen",
+            "technology-generation":"Technologie-Generation"
+        },
+        "number-configuration-linedetails":{
+            "sequence":"Reihenfolge ",
+            "level-name":"Ebenenname",
+            "description":"Beschreibung",
+            "level-type":"Ebene Typ",
+            "length":"Länge",
+            "value-type":"Werttyp",
+            "value":"Wert",
+            "delimeter":"Trennzeichen"
+          
+         },
+        "vanity-pattern-rules":{
+            "rule-code":"Regelcode",
+            "type":"Typ",
+            "masks":"Maske",
+            "mask-sequenced":"Maske Sequenziert",
+            "length":"Länge",
+            "number-occurence":"Nr.von Auftreten.",
+            "reverse-check":"Reverse Check"
+        },
+        "number-generation":{
+            "scheme-name":"Planen Name",
+            "type":"typ",
+            "sub-type":"Unterart",
+            "format":"format",
+            "blockname":"Blockname",
+            "block-range":"Bereich blockieren",
+            "start-running-later":"Lauf Anzahl",
+            "quantity":"Menge",
+            "end-running-number":"Schluss mit Laufen Anzahl",
+            "status":"status",
+            "number-status":"Nummernstatus",
+            "allcated-to":"zugeteilt zu ",
+            "execution-to":"Ausführung-zu",
+            "checksum-requires":"CheckSUM erfordert",
+            "last-updated-by":"Zuletzt aktualisiert von",
+            "last-update-on ":"Letzte Aktualisierung am"
+
         }
+
     }
 }

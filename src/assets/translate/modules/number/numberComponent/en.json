@@ -1,12 +1,11 @@
 {
     "forms":{
-
         "numberFormat":{
             "number-format-defination":"NUMBER FORMAT DEFINATION ",
             "Sequence":"Sequence ",
             "level-name":"Level Name",
             "Description":"Description",
-            "Length":"Length",
+            "length":"Length",
             "value-type":"Value Type",
             "delimeter": "Delimeter",
             "level-type": "Level Type" 
@@ -28,6 +27,98 @@
             "price":"Price",
             "quarantine":"Quarantine Period",
             "reservation":"Reservation Period"
+        },
+        "numberSchema" : {
+            "Number-Schema-heading":"Number Schema",
+            "Number-Schema-name":"Schema Name",
+            "Number-Type":"Number Type",
+            "Sub-Type":"Sub Type",
+            "Released":"Released",
+            "Format":"Format",
+            "Area":"Area",
+            "Reuse-After-Disconnect":"Reuse After Disconnect",
+            "Quarantine-Period":"Quarantine Period",
+            "Quarantine-Uom":"Quarantine Uom",
+            "Reservation-Period":"Reservation Period",
+            "Sequence":"Sequence",
+            "Level-Name":"Level Name",
+            "Description":"Description",
+            "Level-Type":"Level Type",
+            "Length":"Length",
+            "Value-Type":"Value Type",
+            "Value":"Value",
+            "Delimiter":"Delimiter"
+        },
+        "vanityNumber":{
+            "vanityHeading":"Vanity Number",
+            "category-name":"Category Name",
+            "mask":"Mask",
+            "mask-sequenced":"Mask Sequenced",
+            "priority":"Priority",
+            "start-date":"Start Date",
+            "rule-code":"Rule Code", 
+            "rule-combination":"Rule Combination",
+            "default-category":"Default Category",
+            "reservation-period":"Reservation Period",
+            "quarantine-period":"Quarantine Period"
+        },       
+        "number-type":{
+            "heading":"NUMBER TYPE",
+            "type-id":"Type ID ",
+            "select":"Select",
+            "sim":"SIM",
+            "imsi":"IMSI",
+            "msisdn":"MSISDN",
+            "type":"Type",
+            "available":"Available",
+            "not-available":"Not –Available",
+            "description":"Description",
+            "status-generation":"Status After Generation",
+            "allocation-allowed":"Allocation Allowed",
+            "area-wise-scheme":"Area Wise Scheme Definition",
+            "released":"Released",
+            "submit":"Submit",
+            "reset":"Reset",
+            "technology-generation":"Technology Generation"
+        }, 
+        "number-configuration-linedetails":{
+            "sequence":"Sequence ",
+            "level-name":"Level Name",
+            "description":"Description",
+            "level-type":"Level Type",
+            "length":"Length",
+            "value-type":"Value Type",
+            "value":"Value",
+            "delimeter":"Delimiter"
+          
+         },
+        "vanity-pattern-rules":{
+            "rule-code":"Rule Code ",
+            "type":"Type",
+            "masks":"Mask",
+            "mask-sequenced":"Mask Sequenced",
+            "length":"Length",
+            "number-occurence":"No. Of Occurrence",
+            "reverse-check":"Reverse Check "
+        },
+        "number-generation":{
+            "scheme-name":"Scheme Name",
+            "type":"Type",
+            "sub-type":"Sub-Type",
+            "format":"Format",
+            "blockname":"Block name",
+            "block-range":"Block Range",
+            "start-running-later":"Start Running Number",
+            "quantity":"Quantity",
+            "end-running-number":"End Running Number",
+            "status":"Status",
+            "number-status":"Number status",
+            "allcated-to":"Allocated To ",
+            "execution-to":"Execution Time",
+            "checksum-requires":"CheckSUM requires",
+            "last-updated-by":"Last Updated By",
+            "last-update-on ":"Last Updated On"
+
         }
     }
 }

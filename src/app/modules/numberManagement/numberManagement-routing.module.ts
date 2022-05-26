@@ -1,3 +1,4 @@
+import { NumberFormatAllComponent } from './numberComponent/number-format-all/number-format-all.component';
 import { GeneratedNumbersFormComponent } from './numberComponent/generated-numbers-form/generated-numbers-form.component';
 import { VanityNumberComponent } from './numberComponent/vanity-number/vanity-number.component';
 import { BlockDefinationFormComponent } from './numberComponent/block-defination-form/block-defination-form.component';
@@ -10,6 +11,7 @@ import { LayoutCrmComponent } from '../layout-crm/layout-crm.component';
 import { NumberSchemeConfigurationComponent } from './numberComponent/number-scheme-configuration/number-scheme-configuration.component';
 import { VanityPatternRulesComponent } from './numberComponent/vanity-pattern-rules/vanity-pattern-rules.component';
 import { NumberGenerationComponent } from './numberComponent/number-generation/number-generation.component';
+import { NumberTypeTableComponent } from './numberComponent/number-type-table/number-type-table.component';
 
 
 const routes: Routes = [
@@ -20,9 +22,19 @@ const routes: Routes = [
       path: 'numberType',
       component: NumberTypeFormComponent,
       data: { title: 'Number Type' }
-    }, {
+    },
+    {
+      path: 'numberTypeTable',
+      component: NumberTypeTableComponent,
+      data: { title: 'Number Type' }
+    },
+    {
       path: 'numberFormat',
       component: NumberFormatFormComponent,
+      data: { title: 'Number Format' }
+    }, {
+      path: 'numberFormatAll',
+      component: NumberFormatAllComponent,
       data: { title: 'Number Format' }
     }, {
       path: 'numberScheme',

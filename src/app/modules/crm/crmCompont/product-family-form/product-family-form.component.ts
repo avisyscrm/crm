@@ -30,7 +30,6 @@ export class ProductFamilyFormComponent implements OnInit {
       if (params.data != undefined) {
         this.actionBtn = "Update";
         this.getValueByID(params.data);
-
       }
     });
   }
@@ -54,7 +53,8 @@ export class ProductFamilyFormComponent implements OnInit {
         this.service.putProductFamily(formData).subscribe(sucess => {
           this.alertService.RecordUpdated('/crm/product-family');
         });
-      } else {
+      }
+       else {
         this.service.updateProductFamilyWithoutFile(this.productFamily.value).subscribe(sucess => {
           this.alertService.RecordUpdated('/crm/product-family');
         });
@@ -63,15 +63,16 @@ export class ProductFamilyFormComponent implements OnInit {
       if (this.file != undefined) {
         this.service.createProductFamilly(formData).subscribe((sucess: any) => {
           if (sucess.statusCode == 23505) {
-            this.alertService.SelectRecord("Duplicate Product Family");
+            this.alertService.SelectRecord("Product Family already exist");
           } else {
             this.alertService.RecordAdded('/crm/product-family');
           }
-
         })
       } else {
         alert("Please select File")
       }
+
+
     }
   }
 
@@ -82,6 +83,7 @@ export class ProductFamilyFormComponent implements OnInit {
   get getControl() {
     return this.productFamily.controls;
   }
+  
   onFileSelect(event: any) {
     if (event.target.files.length > 0) {
       this.file = event.target.files.item(0);

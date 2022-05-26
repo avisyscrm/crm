@@ -11,6 +11,9 @@ import { GeneratedNumbersFormComponent } from './numberComponent/generated-numbe
 import { NumberGenerationComponent } from './numberComponent/number-generation/number-generation.component';
 import { NumberSchemeConfigurationComponent } from './numberComponent/number-scheme-configuration/number-scheme-configuration.component';
 import { VanityPatternRulesComponent } from './numberComponent/vanity-pattern-rules/vanity-pattern-rules.component';
+import { NumberTypeTableComponent } from './numberComponent/number-type-table/number-type-table.component';
+import { NumberFormatAllComponent } from './numberComponent/number-format-all/number-format-all.component';
+
 
 
 
@@ -25,8 +28,8 @@ import { VanityPatternRulesComponent } from './numberComponent/vanity-pattern-ru
     NumberSchemeConfigurationComponent,
     VanityPatternRulesComponent,
     NumberGenerationComponent,
-
-    
+    NumberTypeTableComponent,
+    NumberFormatAllComponent
   ],
   imports: [
     CommonModule,
