@@ -71,7 +71,7 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,"p
           }
         });
       }else if(data.btnEvent=='Delete'){
-        debugger
+        
       this.allService.deleteProdEntityAttribute(data.data.productEntityTemplateAttributesId,JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res)=>{
         this.sweetAlert.recordDeleted();
       });

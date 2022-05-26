@@ -199,7 +199,7 @@ export class CalenderComponent implements OnInit {
   fullScreenSection(number) {
     if (number == 1) {
       if (this.isFull) {
-        // debugger
+        // 
         this.isFull = false;
       }
       else {

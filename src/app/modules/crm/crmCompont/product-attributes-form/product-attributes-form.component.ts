@@ -42,7 +42,7 @@ export class ProductAttributesFormComponent  {
         this.productEntityAttribute.controls['productEntityTemplateId'].patchValue(params.templateId);
         this.productEntityAttribute.controls['sectionId'].patchValue(params.sectionId);
         this.productEntityAttribute.controls['tabId'].patchValue(params.tabId);
-        debugger
+        
         this.isDetails=JSON.parse(params.isDetails);
         if(this.isDetails){
           this.productEntityAttribute.disable();

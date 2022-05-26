@@ -28,7 +28,7 @@ export class DynamicformDatatableComponent implements OnInit {
       this.headerList=sucess.headerlist;
     })
       this.allService.isStringUrl.subscribe(sucessId=>{
-        debugger
+        
         this.productEntityElementId = +sucessId?.data;
         this.name=sucessId.name;
         this.getDynamicTableData(this.productEntityElementId,this.byDefaultPaging);

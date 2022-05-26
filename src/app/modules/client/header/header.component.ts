@@ -31,7 +31,7 @@ export class HeaderComponent implements OnInit {
       this.service.languageService.next(this.browserLang);
     //Translate code ends
     this.title = route.url;
-    // debugger
+    // 
     this.title = this.title.replace(/\//g, '');
     this.title = this.title.toUpperCase();
   }
