@@ -15,7 +15,7 @@ export class ProductEntityTypeFromComponent implements OnInit {
     productEntityTypeId: new FormControl(''),
     productEntityType: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     productEntityTypeDescription: new FormControl('', [Validators.required, Validators.maxLength(100)]),
-    isLaunchable: new FormControl(false),
+    launchable: new FormControl(false),
     createdBy: new FormControl(''),
     updatedBy: new FormControl(''),
   });

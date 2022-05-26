@@ -15,8 +15,6 @@ import { NumberTypeTableComponent } from './numberComponent/number-type-table/nu
 import { NumberFormatAllComponent } from './numberComponent/number-format-all/number-format-all.component';
 
 
-
-
 @NgModule({
   declarations: [
     NumberTypeFormComponent,

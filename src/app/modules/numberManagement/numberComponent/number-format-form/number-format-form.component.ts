@@ -28,6 +28,13 @@ export class NumberFormatFormComponent implements OnInit {
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
   });
+
+  numberDefination = new FormGroup({
+    'typeId' : new FormControl(''),
+    'type' : new FormControl(''),
+    'description' : new FormControl('')
+  });
+
   intialvalue: any;
   actionBtn = "Save";
   modalRef: BsModalRef;
@@ -38,8 +45,10 @@ export class NumberFormatFormComponent implements OnInit {
 
   submit(){
     console.log(JSON.stringify(this.numberFormat.value));
+    alert(JSON.stringify(this.numberFormat.value));
     this.http.post('assets/data/data.json',this.numberFormat.value).subscribe(()=>{
       alert('done');
+
     },
     (error)=>{
       alert('not');
