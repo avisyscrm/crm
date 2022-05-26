@@ -15,18 +15,20 @@ export class ProductAttributesComponent  {
   sectionId: any;
   data:any={};
   tabId: any;
+  url: any="pageNo=1&pageSize=5";
   constructor(private sweetAlert: SweetalertServiceService,private allService: CrmservicesService, private router:Router,private activateRoute:ActivatedRoute) { 
 this.activateRoute.queryParams.subscribe((params:any)=>{
 this.templateId=JSON.parse(params.data);
 this.sectionId=JSON.parse(params.data1);
 this.tabId=JSON.parse(params.data2);
-this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,"pageNo=1&pageSize=5").subscribe(sucess=>{
+this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,this.url).subscribe(sucess=>{
   this.headerList=sucess.headerlist; 
   this.data=sucess.page;
   },error=>{}
   );
 });}
   changePageSortSearch(url:any){
+    this.url=url;
     this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,url).subscribe(sucess=>{
       this.data=sucess.page;
       },error=>{});
@@ -71,9 +73,9 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,"p
           }
         });
       }else if(data.btnEvent=='Delete'){
-        
       this.allService.deleteProdEntityAttribute(data.data.productEntityTemplateAttributesId,JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res)=>{
         this.sweetAlert.recordDeleted();
+        this.changePageSortSearch(this.url)
       });
       }else if(data.btnEvent=="Details"){
         this.router.navigate(['crm/product-attribute-form'],
@@ -89,4 +91,5 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,"p
       }
     }
     }
+
 }
