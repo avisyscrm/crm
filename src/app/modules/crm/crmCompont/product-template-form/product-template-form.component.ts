@@ -74,18 +74,23 @@ export class ProductTemplateFormComponent {
   headerList: any = []
   data: any = {};
   url: String = "pageNo=1&pageSize=5";
+
+  back(){
+    this.router.navigate(['/crm/product-templates']);
+  }
   submit() {
     if (this.actionBtn == "Save") {
       this.service.SaveProductTemplate(this.productTemplate.value).subscribe(
         (sucess: any) => {
-          this.sweetAlert.RecordAdded('/crm/product-templates');
-          this.router.navigate(['crm/product-template-form'], { queryParams: { data: JSON.stringify(sucess.productEntityTemplateId) } });
+          this.sweetAlert.RecordAddedStatic();
+        this.router.navigate(['crm/product-template-form'], { queryParams: { data: JSON.stringify(sucess.productEntityTemplateId) } });
          
         });
     } else {
       this.service.updateProductTemplate(this.productTemplate.value).subscribe(
         (sucess: any) => {
-          this.sweetAlert.RecordUpdated('/crm/product-templates');
+          //this.sweetAlert.RecordUpdated('/crm/product-templates');
+          this.sweetAlert.RecordUpdatedStatic();
         });
     }
   }
