@@ -69,6 +69,7 @@ export class ProductAttributesFormComponent  {
      }
 
      onSelectSectionAdd(data){
+       debugger
       this.service.getProductAttributeById(data).subscribe((obj:any)=>{
         this.productEntityAttribute.controls['description'].patchValue(obj.description);
         this.productEntityAttribute.controls['mandatory'].patchValue(obj.required);
@@ -76,7 +77,11 @@ export class ProductAttributesFormComponent  {
         this.productEntityAttribute.controls['productAttributeDataType'].patchValue(obj.dataType);
         this.productEntityAttribute.controls['dataCaptureControl'].patchValue(obj.dataCaptureControl);
         this.productEntityAttribute.controls['options'].patchValue(obj.defaultValue);
-        this.productEntityAttribute.controls['editable'].patchValue(obj.editable);
+        this.productEntityAttribute.controls['readOnly'].patchValue(obj.readOnly);
+        debugger
+        if(this.btnName=='Update'){
+          this.intialValue=this.productEntityAttribute.value;
+        }
       });
     //  var obj= this.productAttributeList.find(o => o.productAttributeId === data);
     //  console.log(JSON.stringify(obj));
@@ -89,7 +94,6 @@ export class ProductAttributesFormComponent  {
   getEditValue(data) {
   this.service.getProductEntitytemplatesectionById(data).subscribe((sucess:any)=>{
     this.productEntityAttribute.patchValue(sucess);
-    this.intialValue=this.productEntityAttribute.value;
     this.onSelectSectionAdd(sucess.productAttribute);
   })
   }
