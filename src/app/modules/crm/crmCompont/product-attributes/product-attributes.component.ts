@@ -31,6 +31,16 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,"p
       this.data=sucess.page;
       },error=>{});
   }
+
+  back(){
+
+    this.router.navigate(['/crm/product-template-form'],
+    { queryParams: 
+      { 
+        data: this.templateId
+      } });
+    
+  }
     buttonEvent1(data:any){
     if(data.event=='add'){
       this.router.navigate(['crm/product-attribute-form'],
@@ -38,7 +48,8 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,"p
         { 
           templateId: this.templateId,
           sectionId: this.sectionId,
-          tabId: this.tabId
+          tabId: this.tabId,
+          isDetails:false
         } }); 
     }else if(data.event=='edit'){
       this.router.navigate(['crm/product-attribute-form'],
@@ -55,14 +66,26 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,"p
             productEntityTemplateId: JSON.stringify(data.data.productEntityTemplateAttributesId),
             templateId: this.templateId,
             sectionId: this.sectionId,
-            tabId: this.tabId
+            tabId: this.tabId,
+            isDetails:false
           }
         });
       }else if(data.btnEvent=='Delete'){
-        debugger
+        
       this.allService.deleteProdEntityAttribute(data.data.productEntityTemplateAttributesId,JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res)=>{
         this.sweetAlert.recordDeleted();
       });
+      }else if(data.btnEvent=="Details"){
+        this.router.navigate(['crm/product-attribute-form'],
+        { queryParams: 
+          { 
+            productEntityTemplateId: JSON.stringify(data.data.productEntityTemplateAttributesId),
+            templateId: this.templateId,
+            sectionId: this.sectionId,
+            tabId: this.tabId,
+            isDetails:true
+          }
+        });
       }
     }
     }

@@ -57,7 +57,7 @@ export class ForgotPassFormComponent implements OnInit {
       console.log(this.parameter,"parammmssssster");
       
     })
-    //  debugger
+    //  
     this.service.getVerifyRandomCodes(this.parameter.verificationCode).subscribe((success)=>{
       this.randomcodesuccess=success.status;
           

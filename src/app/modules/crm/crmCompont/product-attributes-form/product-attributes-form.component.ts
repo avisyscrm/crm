@@ -24,12 +24,29 @@ export class ProductAttributesFormComponent  {
   productAttributeList:any=[];
   permission:any=[true,true,true];
   intialValue: any;
+  isDetails: boolean;
+
+  back(){
+    this.router.navigate(['/crm/product-attribute'], { queryParams: 
+      { 
+        data:  this.productEntityAttribute.controls['productEntityTemplateId'].value,
+        data1: this.productEntityAttribute.controls['sectionId'].value,
+        data2:this.productEntityAttribute.controls['tabId'].value,
+       
+      }
+    });
+  }
   constructor(private router:Router, private service : CrmservicesService,private alertService: SweetalertServiceService,
      private route : ActivatedRoute,private sweetAlert: SweetalertServiceService) { 
       this.route.queryParams.subscribe((params:any)=>{
         this.productEntityAttribute.controls['productEntityTemplateId'].patchValue(params.templateId);
         this.productEntityAttribute.controls['sectionId'].patchValue(params.sectionId);
         this.productEntityAttribute.controls['tabId'].patchValue(params.tabId);
+        
+        this.isDetails=JSON.parse(params.isDetails);
+        if(this.isDetails){
+          this.productEntityAttribute.disable();
+        }
         this.getTabsIds(params.templateId);
         this.getSectionIds(params.tabId);
         this.service.allProductEntityTemp().subscribe((sucess:any)=>{
@@ -52,15 +69,18 @@ export class ProductAttributesFormComponent  {
      }
 
      onSelectSectionAdd(data){
-     var obj= this.productAttributeList.find(o => o.productAttributeId === data);
-     console.log(JSON.stringify(obj));
-     this.productEntityAttribute.controls['description'].patchValue(obj.description);
-     this.productEntityAttribute.controls['mandatory'].patchValue(obj.required);
-     this.productEntityAttribute.controls['productAttributeLength'].patchValue(obj.productAttributeLength);
-     this.productEntityAttribute.controls['productAttributeDataType'].patchValue(obj.dataType);
-     this.productEntityAttribute.controls['dataCaptureControl'].patchValue(obj.dataCaptureControl);
-     this.productEntityAttribute.controls['defaultValue'].patchValue(obj.defaultValue);
-     this.productEntityAttribute.controls['editable'].patchValue(obj.editable);
+      this.service.getProductAttributeById(data).subscribe((obj:any)=>{
+        this.productEntityAttribute.controls['description'].patchValue(obj.description);
+        this.productEntityAttribute.controls['mandatory'].patchValue(obj.required);
+        this.productEntityAttribute.controls['productAttributeLength'].patchValue(obj.productAttributeLength);
+        this.productEntityAttribute.controls['productAttributeDataType'].patchValue(obj.dataType);
+        this.productEntityAttribute.controls['dataCaptureControl'].patchValue(obj.dataCaptureControl);
+        this.productEntityAttribute.controls['options'].patchValue(obj.defaultValue);
+        this.productEntityAttribute.controls['editable'].patchValue(obj.editable);
+      });
+    //  var obj= this.productAttributeList.find(o => o.productAttributeId === data);
+    //  console.log(JSON.stringify(obj));
+ 
      
      
      
@@ -70,6 +90,7 @@ export class ProductAttributesFormComponent  {
   this.service.getProductEntitytemplatesectionById(data).subscribe((sucess:any)=>{
     this.productEntityAttribute.patchValue(sucess);
     this.intialValue=this.productEntityAttribute.value;
+    this.onSelectSectionAdd(sucess.productAttribute);
   })
   }
  
@@ -128,7 +149,6 @@ export class ProductAttributesFormComponent  {
     if(this.btnName=='Save'){
 this.service.postProductEntityAttribute(this.productEntityAttribute.value).subscribe((sucess:any)=>{
   this.sweetAlert.RecordAddedStatic();
-debugger
   this.router.navigate(['/crm/product-attribute'], { queryParams: 
     { 
       data:  this.productEntityAttribute.controls['productEntityTemplateId'].value,

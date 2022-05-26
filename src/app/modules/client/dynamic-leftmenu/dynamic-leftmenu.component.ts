@@ -131,7 +131,7 @@ openDyanmicForm(){
   ngAfterViewInit() {
     let pThis: any = this;
     setTimeout(() => {
-      // debugger
+      // 
       if (sessionStorage.getItem("Font1") != "" && sessionStorage.getItem("Font1") != null) {
         this.fontSelect = sessionStorage.getItem("Font1");
       }
@@ -292,7 +292,7 @@ openDyanmicForm(){
   }
 
   onSubMenuIcon(type) {
-    // debugger
+    // 
     const submenuIconclass = document.getElementsByClassName('submenu');
     for (let index = 0; index < submenuIconclass.length; index++) {
       const element = submenuIconclass[index];

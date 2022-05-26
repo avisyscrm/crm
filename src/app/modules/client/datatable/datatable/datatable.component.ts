@@ -62,7 +62,7 @@ export class DatatableComponent implements OnInit {
   sortorder: any = 0;
 
   getCheck(data: any) {
-    // debugger
+    // 
     var check = false;
     for (var i = 0; i < this.checkedArray.length; i++) {
       if (data == this.checkedArray[i]) {

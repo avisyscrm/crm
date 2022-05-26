@@ -30,7 +30,8 @@ export class ProductAtributeMasterComponent implements OnInit {
     runTimeConfigurable: new FormControl(false,[Validators.required]),
     assetizable: new FormControl(false, [Validators.required]),
     status: new FormControl(false,[Validators.required]),
-    createdBy: new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId, []),
+    createdBy: new FormControl(-1),
+    updatedBy: new FormControl(-1),
     isDeleted: new FormControl(false,[]),
   });
   statusCode: any;
@@ -42,7 +43,7 @@ export class ProductAtributeMasterComponent implements OnInit {
           this.label = "Update";
           this.checkFlag=true;
           this.crm.getProductAttributeById(params.productAttributeId).subscribe((sucess:any)=>{
-            debugger
+            
            this.assignRole.patchValue(sucess);
           });
         } else {
@@ -60,10 +61,18 @@ export class ProductAtributeMasterComponent implements OnInit {
 
   submit(){
     if( this.label != "Update"){
-      this.crm.putProductAtributeMaster(this.assignRole.value).subscribe((sucess)=>{
+      this.crm.putProductAtributeMaster(this.assignRole.value).subscribe((sucess:any)=>{
+       if(sucess.statusCode==23505){
+        this.alertService.SelectRecord("Product Product Atribute already exist");
+       }else{
         this.alertService.RecordAdded('/crm/Product-Atribute-Summmary');
+       }
+       
       })
     }else{
+      this.assignRole.removeControl("isDeleted");
+      this.assignRole.removeControl("createdBy");
+      this.assignRole.controls['updatedBy'].patchValue(-1);
       this.crm.updateProductAtributeMaster(this.assignRole.value).subscribe((sucess)=>{
         this.alertService.RecordUpdated('/crm/Product-Atribute-Summmary');
       })

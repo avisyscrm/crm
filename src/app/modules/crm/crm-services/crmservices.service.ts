@@ -503,7 +503,7 @@ createProductFamilly(data){
   
   
     getEntityTemplateAttributeidd1(id:any,sectionId,url):Observable<any>{
-      debugger
+      
       return this.http.get(this.getEntityTemplateAttributeid1+id+"/"+sectionId+"?"+url);
     }
   
