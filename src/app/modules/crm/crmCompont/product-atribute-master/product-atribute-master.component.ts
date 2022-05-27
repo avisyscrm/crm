@@ -13,6 +13,7 @@ export class ProductAtributeMasterComponent implements OnInit {
 
   label = "Update";
   msg="";
+  intialValue: any;
   assignRole = new FormGroup({
     productAttributeId: new FormControl('', [Validators.required,Validators.maxLength(40)]),
     productAttributeName: new FormControl("",[Validators.required]),
@@ -38,13 +39,14 @@ export class ProductAtributeMasterComponent implements OnInit {
   checkFlag: boolean;
   constructor(private crm:CrmservicesService,private alertService:SweetalertServiceService,
     private activatedRoute: ActivatedRoute ) {
+      this.intialValue = this.assignRole.value;
       this.activatedRoute.queryParams.subscribe(params => {
         if (params.productAttributeId != undefined && params.productAttributeId != null) {
           this.label = "Update";
           this.checkFlag=true;
           this.crm.getProductAttributeById(params.productAttributeId).subscribe((sucess:any)=>{
-            
            this.assignRole.patchValue(sucess);
+           this.intialValue = sucess;
           });
         } else {
           this.label = "Add";
@@ -63,7 +65,7 @@ export class ProductAtributeMasterComponent implements OnInit {
     if( this.label != "Update"){
       this.crm.putProductAtributeMaster(this.assignRole.value).subscribe((sucess:any)=>{
        if(sucess.statusCode==23505){
-        this.alertService.SelectRecord("Product Product Atribute already exist");
+        this.alertService.SelectRecord("Product Attribute already exist");
        }else{
         this.alertService.RecordAdded('/crm/Product-Atribute-Summmary');
        }
@@ -78,6 +80,11 @@ export class ProductAtributeMasterComponent implements OnInit {
       })
     }
   }
+
+  resetForm(){
+    this.assignRole.reset(this.intialValue);
+  }
+
   check(){
     this.crm.chceck(this.assignRole.controls['productAttributeId'].value).subscribe((scucess:any)=>{
       this.statusCode=scucess;
@@ -86,7 +93,6 @@ export class ProductAtributeMasterComponent implements OnInit {
     },error=>{
       if(error.status){
         this.checkFlag=false;
-       
         this.msg=error.error.message;
       }
     });

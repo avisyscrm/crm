@@ -57,7 +57,7 @@
                                     <label class="form-label"><span>{{'forms.productLine.product-line-icon' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
-                                    <button type="button" class="btn btn-primary " mat-button (click)="files.click()">ChooseFile</button>     
+                                    <button type="button" class="btn btn-primary " mat-button (click)="files.click()">Choose File</button>     
                                     <input hidden type="file" #files  name="profile"  (change)="onFileSelect($event)" accept="image/*"/>  
                                     <img  *ngIf="productLine.controls.productLineIcon.value!='' && productLine.controls.productLineIcon.value!=null && productLine.controls.productLineIcon.value!=undefined"  [src]="productLine.controls.productLineIcon.value" class="selected-image" >
                                 </div>

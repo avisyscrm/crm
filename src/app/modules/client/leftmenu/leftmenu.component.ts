@@ -265,7 +265,7 @@ export class LeftmenuComponent implements OnInit {
       //   translationKey:'product_submenu_product_attribute',
       // },
       {
-        name:"Product Atribute Summmary",
+        name:"Product Attribute Master",
         routerLink:['/crm/Product-Atribute-Summmary'],
         translationKey:'product_submenu_product_attribute_summary',
       }

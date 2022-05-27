@@ -8,7 +8,7 @@
                     </li>
                 </ul>
             </div>
-            <form>
+            <form [formGroup]="numberDefination">
                 <div class="card card-height">
                     <div class="card-header pf-head">
                         <h3 class="card-title ">Number Format Defination</h3>
@@ -22,7 +22,7 @@
                                     </div>
                                     <div class=" form-group col-md-8">
                                         <select  name="cars" id="cars" class="form-control"
-                                        formControlName="valueType"  [ngClass]="numberFormat.controls.valueType?.errors ? 'mandatory' : 'mandatoryG'">
+                                        formControlName="typeId"  [ngClass]="numberFormat.controls.valueType?.errors ? 'mandatory' : 'mandatoryG'">
                                             <option value="">Select --</option>
                                             <option value="Numeric">Numeric</option>
                                             <option value="Alphanumeric">Alphanumeric</option>
@@ -36,7 +36,7 @@
                                         <label class="form-label "> Type </label>
                                     </div>
                                     <div class=" form-group col-md-8">
-                                        <input type="text" class="form-control" [ngClass]="numberFormat.controls.sequence?.errors ? 'mandatory' : 'mandatoryG'" formControlName="sequence">
+                                        <input type="text" class="form-control" formControlName="type" [ngClass]="numberFormat.controls.sequence?.errors ? 'mandatory' : 'mandatoryG'" >
                                     </div>
                                 </div>
                             </div>
@@ -46,21 +46,23 @@
                                         <label class="form-label "> Description </label>
                                     </div>
                                     <div class=" form-group col-md-8">
-                                        <textarea class="form-control" [ngClass]="numberFormat.controls.sequence?.errors ? 'mandatory' : 'mandatoryG'"></textarea>
+                                        <textarea class="form-control" formControlName="description" [ngClass]="numberFormat.controls.sequence?.errors ? 'mandatory' : 'mandatoryG'"></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <!-- DataTable -->
-                        <app-datatable [permission]="permission" (buttonEvent1)="buttonEvent1($event,template)"
-                            (changePageSortSearch)="changePageSortSearch($event)" [dataset]="data">
-                            <app-column [search]="x.search_key" [cssClass]="" [type]="x.type" *ngFor="let x of headerList"
-                                [value]="x.value" [width]="x.width" [header]="x.header"></app-column>
-                        </app-datatable>
-                        <!-- DataTable end -->
                     </div>
+                    <!-- DataTable -->
+                        <app-datatable [permission]="permission" (buttonEvent1)="buttonEvent1($event,template)"
+                        (changePageSortSearch)="changePageSortSearch($event)" [dataset]="data">
+                        <app-column [search]="x.search_key" [cssClass]="" [type]="x.type" *ngFor="let x of headerList"
+                            [value]="x.value" [width]="x.width" [header]="x.header"></app-column>
+                    </app-datatable>
+                    <!-- DataTable end -->
                 </div>       
             </form>
+            
+
             <!-- PopUp starts -->
             <ng-template #template style="height: 1% !important;">
                 <div class="modal-header">

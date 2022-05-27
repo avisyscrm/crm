@@ -58,7 +58,7 @@
                                     <label class="form-label"><span>{{'forms.entityGroup.entity-icon' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
-                                    <button type="button" class="btn btn-primary " mat-button (click)="files.click()">ChooseFile</button>     
+                                    <button type="button" class="btn btn-primary " mat-button (click)="files.click()">Choose File</button>     
                                     <input hidden type="file" #files  name="profile"  (change)="onFileSelect($event)" />  
                                     <img  *ngIf="entityGroups.controls.entityGroupsIcon.value!='' && entityGroups.controls.entityGroupsIcon.value!=null && 
                                     entityGroups.controls.entityGroupsIcon.value != undefined"  [src]="entityGroups.controls.entityGroupsIcon.value" class="selected-image" >

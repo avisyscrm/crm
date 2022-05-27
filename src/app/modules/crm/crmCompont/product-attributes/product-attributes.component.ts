@@ -73,7 +73,8 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,th
           }
         });
       }else if(data.btnEvent=='Delete'){
-      this.allService.deleteProdEntityAttribute(data.data.productEntityTemplateAttributesId,JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res)=>{
+      this.allService.deleteProdEntityAttribute(data.data.productEntityTemplateAttributesId,
+        JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res)=>{
         this.sweetAlert.recordDeleted();
         this.changePageSortSearch(this.url)
       });
