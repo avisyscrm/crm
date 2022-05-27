@@ -92,6 +92,7 @@ export class ProductAttributesFormComponent  {
      }
 
   getEditValue(data) {
+    debugger
   this.service.getProductEntitytemplatesectionById(data).subscribe((sucess:any)=>{
     this.productEntityAttribute.patchValue(sucess);
     this.onSelectSectionAdd(sucess.productAttribute);
