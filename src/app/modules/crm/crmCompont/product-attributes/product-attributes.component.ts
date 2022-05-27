@@ -62,10 +62,11 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,th
       
     }else if(data.event == "inSidebtn"){
       if(data.btnEvent=='Update'){
+        debugger
         this.router.navigate(['crm/product-attribute-form'],
         { queryParams: 
           { 
-            productEntityTemplateId: JSON.stringify(data.data.productEntityTemplateAttributesId),
+            productEntityTemplateId: data.data.productTemplateAttributeId,
             templateId: this.templateId,
             sectionId: this.sectionId,
             tabId: this.tabId,
@@ -73,7 +74,7 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,th
           }
         });
       }else if(data.btnEvent=='Delete'){
-      this.allService.deleteProdEntityAttribute(data.data.productEntityTemplateAttributesId,
+      this.allService.deleteProdEntityAttribute(data.data.productTemplateAttributeId,
         JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res)=>{
         this.sweetAlert.recordDeleted();
         this.changePageSortSearch(this.url)
@@ -82,7 +83,7 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,th
         this.router.navigate(['crm/product-attribute-form'],
         { queryParams: 
           { 
-            productEntityTemplateId: JSON.stringify(data.data.productEntityTemplateAttributesId),
+            productEntityTemplateId: data.data.productEntityTemplateAttributesId,
             templateId: this.templateId,
             sectionId: this.sectionId,
             tabId: this.tabId,
