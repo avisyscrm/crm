@@ -24,7 +24,7 @@ export class ProductTemplateFormComponent {
     productHierarchyId: new FormControl("", [Validators.required, Validators.maxLength(100)]),
     screenLayout: new FormControl("", [Validators.required, Validators.maxLength(100)]),
     numberOfTabPagesSections: new FormControl(0, [Validators.required, Validators.maxLength(100)]),
-    version: new FormControl("", [Validators.required, Validators.maxLength(100)]),
+    version: new FormControl("",),
     productEntityType: new FormControl("", [Validators.required, Validators.maxLength(30)]),
     state: new FormControl("", [Validators.required, Validators.maxLength(100)]),
     updatedBy: new FormControl(""),
@@ -196,7 +196,6 @@ export class ProductTemplateFormComponent {
             this.changePageSortSearch(this.url, false);
             if (this.AddTabs.controls['type'].value == 'Tab') {
               this.getTabsID(this.productTemplate.controls['productEntityTemplateId'].value);
-             
             }
           },
           error => {
@@ -250,7 +249,7 @@ export class ProductTemplateFormComponent {
 
           {
             title: 'Cancelled',
-            text: 'Your data is safe.',
+            text: 'Your data is safe',
             confirmButtonText: 'OK',
             icon: 'success',
             
