@@ -181,7 +181,6 @@ export class DatatableComponent implements OnInit {
   }
   radioButton(value: any) {
     this.selectedData = value;
-
   }
 
   DeleteRecord() {

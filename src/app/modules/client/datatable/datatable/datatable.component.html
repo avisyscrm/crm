@@ -55,9 +55,9 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let row of content;let I=index">
-          <td scope="col" [style.width.%]="column?.width" *ngFor="let column of columns">
-            <input type="radio" (click)="radioButton(row)" id="name" name="name" *ngIf="column?.type=='radio'">
+        <tr    *ngFor="let row   of content;let I=index" [ngClass]="selectedData==row?'selected':''" (click)="radioButton(row)">
+          <td scope="col"   [style.width.%]="column?.width" *ngFor="let column of columns">
+            <input type="radio"   [checked]="selectedData==row"  (click)="radioButton(row)" id="name" name="name" *ngIf="column?.type=='radio'">
             <div *ngIf="column?.type!='radio' && column?.type!='icon' && column?.type!='button'">
               {{row[column.value]}} 
             </div>
