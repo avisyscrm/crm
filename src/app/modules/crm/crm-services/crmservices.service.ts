@@ -815,4 +815,8 @@ postUserProfile(data:any){
 createNumberType(data){
   return this.http.post(environment.baseUrl+"/createNumberTypeDefinition",data);
 }
+
+getNumberScheme(): Observable<any>  {
+  return this.http.get("./assets/numberScheme.json");
+}
 }
