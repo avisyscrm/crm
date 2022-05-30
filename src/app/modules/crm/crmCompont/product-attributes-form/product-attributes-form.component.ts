@@ -68,8 +68,7 @@ export class ProductAttributesFormComponent  {
        });
      }
 
-     onSelectSectionAdd(data){
-       debugger
+     onSelectSectionAdd(data,flag){
       this.service.getProductAttributeById(data).subscribe((obj:any)=>{
         this.productEntityAttribute.controls['description'].patchValue(obj.description);
         this.productEntityAttribute.controls['mandatory'].patchValue(obj.required);
@@ -79,7 +78,7 @@ export class ProductAttributesFormComponent  {
         this.productEntityAttribute.controls['options'].patchValue(obj.defaultValue);
         this.productEntityAttribute.controls['readOnly'].patchValue(obj.readOnly);
         debugger
-        if(this.btnName=='Update'){
+        if(this.btnName=='Update' && flag){
           this.intialValue=this.productEntityAttribute.value;
         }
       });
@@ -95,7 +94,7 @@ export class ProductAttributesFormComponent  {
     debugger
   this.service.getProductEntitytemplatesectionById(data).subscribe((sucess:any)=>{
     this.productEntityAttribute.patchValue(sucess);
-    this.onSelectSectionAdd(sucess.productAttribute);
+    this.onSelectSectionAdd(sucess.productAttribute,true);
   })
   }
  
