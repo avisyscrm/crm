@@ -853,5 +853,8 @@ postUserProfile(data:any){
    delLevelNameData(levelName:String, id:any){
      return this.http.delete(this.deleteLevelNameURL+levelName+"/"+id)
    }
-}
 
+   getNumberScheme(): Observable<any>  {
+    return this.http.get("./assets/numberScheme.json");
+  }
+}

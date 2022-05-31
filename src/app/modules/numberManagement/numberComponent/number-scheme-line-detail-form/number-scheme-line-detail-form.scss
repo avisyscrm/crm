@@ -1,15 +1,15 @@
 
 .mandatory {
-    border-left: 3px solid #f27b77 !important;
+  border-left: 3px solid #f27b77 !important;
 }
 
 .required:after {
-    content:" *";
-    color: red;
-    
-  }
+  content:" *";
+  color: red;
+  
+}
 
-  .validate-text{
-    font-size: 12px;
-    color: red;
+.validate-text{
+  font-size: 12px;
+  color: red;
 }

@@ -311,6 +311,12 @@ export class LeftmenuComponent implements OnInit {
             translationKey:'master_submenu_product_family',
 
           },{
+            name:"Number Scheme (Line Details)",
+            routerLink:['/number/numberSchemeLineDetails'],
+            translationKey:'master_submenu_product_family',
+
+          }
+          ,{
             name:"Block Defination",
             routerLink:['/number/blockDefination'],
             translationKey:'master_submenu_product_family',
