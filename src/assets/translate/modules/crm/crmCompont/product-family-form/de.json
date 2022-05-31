@@ -63,7 +63,7 @@
             "editable":"Bearbeitbar"
         },
         "template-attribute-master":{
-            "template-master":"PRODUKTATTRIBUT MASTER",
+            "template-master":"PRODUKTATTRIBUT ",
             "Product-Attribute-Id":"Produktattribut-ID ",
             "Product-Attribute-Name":"Name des Produktattributs ",
             "Description":" Beschreibung",

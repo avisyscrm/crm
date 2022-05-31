@@ -236,7 +236,11 @@ export class LeftmenuComponent implements OnInit {
           name:"Product Entity Type",
           routerLink:['/crm/product-entity-type'],
           translationKey:'master_submenu_product-entity-type',
-          
+        },
+        {
+          name:"Product Attribute",
+          routerLink:['/crm/Product-Atribute-Summmary'],
+          translationKey:'product_submenu_product_attribute_summary',
         }
       ]
    },
@@ -264,11 +268,7 @@ export class LeftmenuComponent implements OnInit {
       //   routerLink:['/crm/product-attribute'],
       //   translationKey:'product_submenu_product_attribute',
       // },
-      {
-        name:"Product Attribute Master",
-        routerLink:['/crm/Product-Atribute-Summmary'],
-        translationKey:'product_submenu_product_attribute_summary',
-      }
+     
     ]
     },
     {

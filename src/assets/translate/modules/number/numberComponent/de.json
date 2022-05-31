@@ -46,6 +46,7 @@
         "number-type":{
             "heading":" NUMMERTYP",
             "type-id":"Typ-ID ",
+            "others":"Otros",
             "sim":"SIM",
             "imsi":"IMSI",
             "msisdn":"MSISDN",

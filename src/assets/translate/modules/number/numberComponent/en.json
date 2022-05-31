@@ -66,6 +66,7 @@
             "heading":"NUMBER TYPE",
             "type-id":"Type ID ",
             "select":"Select",
+            "others":"Others",
             "sim":"SIM",
             "imsi":"IMSI",
             "msisdn":"MSISDN",

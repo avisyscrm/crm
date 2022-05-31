@@ -15,14 +15,9 @@ export class NumberTypeTableComponent implements OnInit {
   constructor(private allService:CrmservicesService,private router:Router,
     private sweetAlert: SweetalertServiceService) { }
   data:any={};
-  ajayStri : any ;
-  pageNo:any;
-  pageSize:any;
-  sortBy:any;
-  sortDirection:any;
   url="pageNo=1&pageSize=5";
   ngOnInit(): void {
-    this.allService.getnumberType("pageNo=1&pageSize=5").subscribe(sucess=>{
+    this.allService.getnumberType(this.url).subscribe(sucess=>{
     this.headerList=sucess.headerlist  ;
     this.data=sucess.page;
     },error=>{
@@ -36,12 +31,7 @@ export class NumberTypeTableComponent implements OnInit {
       this.data=sucess.page;
       },error=>{});
   }
-  onDelete(){
-    this.allService.getnumberType(this.url).subscribe(sucess=>{
-      this.data=sucess.page;
-      },error=>{}
-      );
-  }
+ 
 buttonEvent1(data:any){
 if(data.event=='add'){
   this.router.navigate(['/number/numberType']);   
@@ -52,7 +42,7 @@ if(data.event=='add'){
  else if(data.event=='delete'){
    this.allService.deletenumberType(data.data.numberTypeId).subscribe((res)=>{
     this.sweetAlert.recordDeleted();  
-    this.onDelete();
+    this.changePageSortSearch(this.url);
    })
  } 
   

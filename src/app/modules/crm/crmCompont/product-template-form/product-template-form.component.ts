@@ -49,7 +49,6 @@ export class ProductTemplateFormComponent {
       if (params.data != undefined) {
         this.actionBtn = "Update";
         this.getValueByID(params.data);
-
       }
     });
   }
@@ -91,6 +90,7 @@ export class ProductTemplateFormComponent {
         (sucess: any) => {
           //this.sweetAlert.RecordUpdated('/crm/product-templates');
           this.sweetAlert.RecordUpdatedStatic();
+          this.productTemplate.patchValue(sucess);
           this.intialvalue=this.productTemplate.value;
         });
     }

@@ -77,13 +77,12 @@
                                        formControlName="dataType">
                                        <option value="">Select --</option>
                                        <option value="text">Text</option>
-                                       <option value="radio">Radio</option>
-                                       <option value="checkbox">Checkbox</option>
-                                       <option value="date">Date</option>
-                                       <option value="dropdown">Dropdown</option>
+                                       <option value="number">Number</option>
+                                       <option value="boolean">Boolean</option>
+                                       <option value="string">String</option>
                                    </select>
                                        <div *ngIf="getControl.dataType?.invalid && getControl.dataType?.touched">
-                                        <span class="validate-text" *ngIf="getControl.dataType?.errors?.required">Please Enter Data Type</span>
+                                        <span class="validate-text" *ngIf="getControl.dataType?.errors?.required">Please Select Data Type</span>
                                         <span class="validate-text" *ngIf="getControl.dataType?.errors?.maxlength ">Data Type Length Should Be 40 Charechter</span>
                                         
                                      </div>
@@ -113,7 +112,7 @@
                                 <div class="col-md-4">
                                     <label class="form-label">  <span>{{'forms.template-attribute-master.data-capture' | translate}}</span></label>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-6">
                                     <!-- <input type="text" formControlName="dataCaptureControl" class="form-control " [ngClass]="getControl.dataCaptureControl?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
                                        > -->
                                        <select id="datalistOptions84" class="form-control " [ngClass]="getControl.dataCaptureControl?.errors ? 'mandatory' : 'mandatoryG'" #dataCapture
@@ -126,10 +125,16 @@
                                        <option value="dropdown">Dropdown</option>
                                    </select>
                                        <div *ngIf="getControl.dataCaptureControl?.invalid && getControl.dataCaptureControl?.touched">
-                                        <span class="validate-text" *ngIf="getControl.dataCaptureControl?.errors?.required">Please Enter Data Capture Control</span>
+                                        <span class="validate-text" *ngIf="getControl.dataCaptureControl?.errors?.required">Please Select Data Capture Control</span>
                                         <span class="validate-text" *ngIf="getControl.dataCaptureControl?.errors?.maxlength ">Data Capture Control  Length Should Be 40 Charechter</span>
                                         
                                      </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <button  (click)="option(template)"  *ngIf="label=='Update' && (assignRole.controls['dataCaptureControl'].value == 'radio' || 
+                    assignRole.controls['dataCaptureControl'].value == 'checkbox' || 
+                    assignRole.controls['dataCaptureControl'].value == 'dropdown')"  
+                    type="button" class="btn btn-primary ml-3">Option</button>
                                 </div>
                             </div>
                         </div>
@@ -302,7 +307,7 @@
                     </div>
                     <button  (click)="submit()"   [disabled]="assignRole.invalid " type="submit" class="btn btn-primary ">{{label}}</button>
                     <button  class="btn btn-primary ml-3  " (click)="resetForm()">Reset</button>
-                    <button  (click)="option(template)"  *ngIf="label=='Update' && (assignRole.controls['dataType'].value == 'radio' || assignRole.controls['dataType'].value == 'checkbox' || assignRole.controls['dataType'].value == 'dropdown')"  type="button" class="btn btn-primary ml-3">Option</button>
+                    
                 </div>
             </div>
         </form>

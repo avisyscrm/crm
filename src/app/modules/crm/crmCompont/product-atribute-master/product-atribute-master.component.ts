@@ -130,7 +130,8 @@ export class ProductAtributeMasterComponent implements OnInit {
   buttonEvent1(data){
     
     if(data.event=='add'){
-       this.reset()
+     this.actionbtn1="Save";
+       this.reset();
     }
     else if(data.event=='edit'){
       this.actionbtn1='Update';
@@ -165,8 +166,9 @@ this.crm.getOptioDataTable(this.assignRole.controls['productAttributeId'].value,
   this.alertService.RecordAddedStatic();
      this.changePageSortSearch(this.url,false);
      this.optionFrom.patchValue(sucess);
-     this.actionbtn1="Update";
+     this.actionbtn1="Save";
      this.IntialValue=sucess;
+     this.reset();
    })
     }else{
       this.crm.updateOption(this.optionFrom.value).subscribe((sucess:any)=>{
@@ -175,6 +177,7 @@ this.crm.getOptioDataTable(this.assignRole.controls['productAttributeId'].value,
       this.optionFrom.patchValue(sucess);
       this.changePageSortSearch(this.url,false);
       this.IntialValue=sucess;
+     this.reset();
       })
       
     }

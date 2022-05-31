@@ -9,28 +9,25 @@ import { CrmservicesService } from 'src/app/modules/crm/crm-services/crmservices
 @Component({
   selector: 'app-number-type-form',
   templateUrl: './number-type-form.component.html',
-  styleUrls: ['./number-type-form.component.scss']
+  styleUrls: ['./number-type-form.component.scss','../../numberManagement.scss']
 })
 export class NumberTypeFormComponent implements OnInit {
 
-  @ViewChild('file1') myInputVariable:ElementRef;
   numberTypes = new FormGroup({
-    'numberTypeId': new FormControl(''),
-    'numberType': new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    'numberTypeDescription': new FormControl('', [Validators.required, Validators.maxLength(100)]),
+    'numberTypeId': new FormControl('',[Validators.required,Validators.maxLength(15)]),
+    'numberType': new FormControl('', [Validators.required]),
+    'numberTypeDescription': new FormControl('', [Validators.required, Validators.maxLength(255)]),
     'statusAfterGeneration': new FormControl('',Validators.required),
     'allocationAllowed': new FormControl(false,Validators.required),
     'areaWiseSchemeDefinition': new FormControl(false,Validators.required),
     'validFormat': new FormControl(false,Validators.required),
     'released': new FormControl(false,Validators.required),
-    'technologyGeneration': new FormControl('',Validators.required),
+    'technologyGeneration': new FormControl('',[Validators.required,Validators.maxLength(2)]),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
   });
 
   intialvalue: any;
   actionBtn = "Save";
-  statusCode: any;
-  sweetAlert: any;
   constructor(private service: CrmservicesService, public translate: TranslateService,
     private alertService: SweetalertServiceService, private route: ActivatedRoute, private http:HttpClient) {
       this.intialvalue = this.numberTypes.value;
@@ -38,7 +35,6 @@ export class NumberTypeFormComponent implements OnInit {
         if (params.data != undefined) {
           this.actionBtn = "Update";
           this.getValueByID(params.data);
-  
         }
       });
   }
@@ -48,7 +44,7 @@ export class NumberTypeFormComponent implements OnInit {
       this.intialvalue = sucess;
       this.numberTypes.patchValue(sucess);
     }, error => {
-      alert("Error while updating the record");
+      // alert("Error while updating the record");
     });
   }
 
