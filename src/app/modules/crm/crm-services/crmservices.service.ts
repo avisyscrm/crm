@@ -23,6 +23,21 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
 
   
   export class CrmservicesService {
+  updateOption(data) {
+    return this.http.put(environment.baseUrl+"/updateOption",data);
+  }
+  saveOption(data) {
+    return this.http.post(environment.baseUrl+"/createOption",data);
+  }
+  deleteOptionById(id: any,userID) {
+    return this.http.delete(environment.baseUrl+"/deleteOption/"+id+"/"+userID)
+  }
+  getOptionById(id: any) {
+    return this.http.get(environment.baseUrl+"/getOptionById/"+id)
+  }
+  getOptioDataTable(id,url: any) {
+   return this.http.get(environment.baseUrl+"/optionByAttributeId/"+id+"?"+url)
+  }
   getProductEntitytemplatesectionById(data: any) {
     return this.http.get(environment.baseUrl+"/productEntityTemplateAttributes/"+data);
   }
