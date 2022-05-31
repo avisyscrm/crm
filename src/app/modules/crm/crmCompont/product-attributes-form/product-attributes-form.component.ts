@@ -171,7 +171,6 @@ this.service.postProductEntityAttribute(this.productEntityAttribute.value).subsc
           data:  this.productEntityAttribute.controls['productEntityTemplateId'].value,
           data1: this.productEntityAttribute.controls['sectionId'].value,
           data2:this.productEntityAttribute.controls['tabId'].value,
-         
         }
       });
       //('/crm/product-attribute?data=2&data1=21&data2=13');
