@@ -1,0 +1,124 @@
+<div class="section-body  fixNavMargin">
+    <div class="container-fluid">
+
+        <div class="d-flex justify-content-between align-items-center">
+            <ul class="nav nav-tabs page-header-tab">
+                <li class="nav-item"><a class="nav-link" href="#">
+                    </a></li>
+                <li class="nav-item"><a class="nav-link" href="#"></a>
+                </li>
+
+            </ul>
+        </div>
+        <form [formGroup]="numberSchemeLine" >
+        <div class="card card-height">
+            <div class="card-header pf-head">
+                <h3 class="card-title "><span>{{'forms.numberSchemeLineDetails.Number-Schema-Line-heading' | translate}}</span> </h3>
+            </div>
+            <div class="card-body">
+                <div class="row productfamily ">
+                    <div class="col-md-6">
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label text-"><span>{{'forms.numberSchemeLineDetails.Sequence' | translate}}</span></label>
+                            </div>
+                            <div class="col-md-8">
+                                <input  type="number" class="form-control mandatory" value=""
+                                                formControlName="sequence"  [ngClass]="numberSchemeLine.controls.sequence?.errors ? 'mandatory' : 'mandatoryG'">
+                                   
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label text-"><span>{{'forms.numberSchemeLineDetails.Level-Name' | translate}}</span></label>
+                            </div>
+                            <div class="col-md-8">
+                                <input  type="text" class="form-control mandatory" value=""
+                                                formControlName="levelName" [ngClass]="numberSchemeLine.controls.levelName?.errors ? 'mandatory' : 'mandatoryG'">
+                                   
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label text-"><span>{{'forms.numberSchemeLineDetails.Description' | translate}}</span></label>
+                            </div>
+                            <div class="col-md-8">
+                                <textarea rows="3"  [ngClass]="numberSchemeLine.controls.description?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" placeholder="Here can be your description"
+                                    value="Mike" formControlName="description"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label text-"><span>{{'forms.numberSchemeLineDetails.Level-Type' | translate}}</span></label>
+                            </div>
+                            <div class="col-md-8">
+                                <select  name="" type="text" class="form-control mandatory" value=""
+                                                formControlName="levelType"  [ngClass]="numberSchemeLine.controls.levelType?.errors ? 'mandatory' : 'mandatoryG'">
+                                    <option value="" >Select --</option>           
+                                    <option value="Running" >Running</option>           
+                                    <option value="Fixed" >Fixed</option>           
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label text-"><span>{{'forms.numberSchemeLineDetails.Length' | translate}}</span></label>
+                            </div>
+                            <div class="col-md-8">
+                                <input  type="number" class="form-control mandatory" value=""
+                                                formControlName="length"  [ngClass]="numberSchemeLine.controls.length?.errors ? 'mandatory' : 'mandatoryG'">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label text-"><span>{{'forms.numberSchemeLineDetails.Value-Type' | translate}}</span></label>
+                            </div>
+                            <div class="col-md-8">
+                                    <input  type="text" class="form-control mandatory" value=""
+                                                formControlName="valueType"  [ngClass]="numberSchemeLine.controls.valueType?.errors ? 'mandatory' : 'mandatoryG'" >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label text-"><span>{{'forms.numberSchemeLineDetails.Value' | translate}}</span></label>
+                            </div>
+                            <div class="col-md-8">
+                                    <input  type="text" class="form-control mandatory" value=""
+                                    formControlName="value" [ngClass]="numberSchemeLine.controls.value?.errors ? 'mandatory' : 'mandatoryG'">
+                                    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label text-"><span>{{'forms.numberSchemeLineDetails.Delimiter' | translate}}</span></label>
+                            </div>
+                            <div class="col-md-8">
+                                <input  type="text" class="form-control mandatory" value=""
+                                    formControlName="delimiter" [ngClass]="numberSchemeLine.controls.delimiter?.errors ? 'mandatory' : 'mandatoryG'">
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button [disabled]="numberSchemeLine.invalid" (click)="submit()" type="submit" class="btn btn-primary ">{{actionBtn}}</button>
+                <button type="button" (click)="resetForm()" class="btn btn-primary ml-3 ">Reset</button>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+

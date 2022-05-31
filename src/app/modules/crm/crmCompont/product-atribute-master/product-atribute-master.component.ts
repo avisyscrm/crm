@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 
@@ -14,6 +15,14 @@ export class ProductAtributeMasterComponent implements OnInit {
   label = "Update";
   msg="";
   intialValue: any;
+  actionbtn1="Save";
+  optionFrom = new FormGroup({
+    key: new FormControl('', [Validators.required]),
+    value: new FormControl("",[Validators.required]),
+     productAttributeId: new FormControl('', [Validators.required]),
+    createdBy: new FormControl(-1),
+    updatedBy: new FormControl(-1),
+  });
   assignRole = new FormGroup({
     productAttributeId: new FormControl('', [Validators.required,Validators.maxLength(40)]),
     productAttributeName: new FormControl("",[Validators.required]),
@@ -37,8 +46,9 @@ export class ProductAtributeMasterComponent implements OnInit {
   });
   statusCode: any;
   checkFlag: boolean;
-  constructor(private crm:CrmservicesService,private alertService:SweetalertServiceService,
-    private activatedRoute: ActivatedRoute ) {
+  modalRef: BsModalRef;
+  constructor(private crm:CrmservicesService,private alertService:SweetalertServiceService,private modalService: BsModalService,
+    private activatedRoute: ActivatedRoute ) {  
       this.intialValue = this.assignRole.value;
       this.activatedRoute.queryParams.subscribe(params => {
         if (params.productAttributeId != undefined && params.productAttributeId != null) {
@@ -80,7 +90,9 @@ export class ProductAtributeMasterComponent implements OnInit {
       })
     }
   }
-
+  option(template){
+    this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'gray modal-lg' }));
+  }
   resetForm(){
     this.assignRole.reset(this.intialValue);
   }

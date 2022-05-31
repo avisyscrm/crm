@@ -302,9 +302,102 @@
                     </div>
                     <button  (click)="submit()"   [disabled]="assignRole.invalid " type="submit" class="btn btn-primary ">{{label}}</button>
                     <button  class="btn btn-primary ml-3  " (click)="resetForm()">Reset</button>
+                    <button  (click)="option(template)"  *ngIf="(assignRole.controls['dataType'].value == 'radio' || assignRole.controls['dataType'].value == 'checkbox' || assignRole.controls['dataType'].value == 'dropdown')"  type="button" class="btn btn-primary ml-3">Option</button>
                 </div>
             </div>
         </form>
 
     </div>
 </div>
+
+<ng-template #template style="height: 1% !important;">
+    <div class="modal-header">
+        <div class="card-header d-flex justify-content-between">
+            <h3 class="card-title prod-name"><span>{{'forms.template-tab.template-tab-heading' |
+               translate}}</span>
+            </h3>
+         </div>
+       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+          <span aria-hidden="true">×</span>
+       </button>
+    </div>
+    <div class="modal-body">
+        <div class="section-body fixNavMargin">
+            <div class="container-fluid">
+            <div class="d-flex justify-content-between align-items-center">
+               <ul class="nav nav-tabs page-header-tab">
+                  <li class="nav-item"><a class="nav-link" href="#">
+                     </a>
+                  </li>
+                  <li class="nav-item"><a class="nav-link" href="#"></a>
+                  </li>
+               </ul>
+            </div>
+            <form [formGroup]="optionFrom" #Formdata >
+            <div class="card " style="height: fit-content !important;">
+             
+               <div class="card-body">
+                  <div class="row productfamily ">
+                     <div class="col-md-12">
+                        <div class="row ">
+                           <div class="col-md-8">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.key' | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="text" formControlName="key" class="form-control " [ngClass]="optionFrom.controls.key.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
+                                      >
+                                      <div *ngIf="optionFrom.controls.key?.invalid && optionFrom.controls.key?.touched">
+                                        <span class="validate-text" *ngIf="optionFrom.controls.key.errors?.required">Please Enter Key</span>
+                                        <span class="validate-text" *ngIf="optionFrom.controls?.key?.maxlength ">Product Attribute  Length Should Be 40 Charechter</span>
+                                        
+                                     </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-8">
+                             <div class="row mb-3">
+                                 <div class="col-md-4">
+                                     <label class="form-label"> <span>{{'forms.template-attribute-master.value' | translate}}</span></label>
+                                 </div>
+                                 <div class="col-md-8">
+                                     <input type="text" formControlName="value" class="form-control " [ngClass]="optionFrom.controls.value?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
+                                       >
+                                       <div *ngIf="optionFrom.controls.value?.invalid && optionFrom.controls.value?.touched">
+                                         <span class="validate-text" *ngIf="optionFrom.controls.value?.errors?.required">Please Enter Value</span>
+                                         <span class="validate-text" *ngIf="optionFrom.controls.value?.errors?.maxlength ">Value Should Be 40 Charechter</span>
+                                         
+                                      </div>
+                                 </div>
+                             </div>
+                         </div>
+                         
+                         </div>
+                         <div class="row ">
+                            <div class="col-md-8">
+                             <div class="row mb-3">
+                                 <div class="col-md-4">
+
+                                    <button type="button" class="btn btn-primary" (click)="modalRef.hide()">{{actionbtn1}}</button>
+                                 </div>
+                                 </div>
+                                 </div>
+                                 </div>
+                     </div>
+                    
+                     
+                  </div>
+               </div>
+             </div>
+            </form>
+    </div>
+    <div class="modal-footer">
+       <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Close</button>
+    </div>
+    </div>
+    </div>
+</ng-template>
