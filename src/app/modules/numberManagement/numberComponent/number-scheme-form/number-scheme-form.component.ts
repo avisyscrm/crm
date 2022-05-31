@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { selectValidation } from 'src/app/modules/client/validators/validation';
+import { CrmservicesService } from 'src/app/modules/crm/crm-services/crmservices.service';
 
 @Component({
   selector: 'app-number-scheme-form',
@@ -16,26 +17,27 @@ export class NumberSchemeFormComponent implements OnInit {
     'format': new FormControl('',[Validators.required,Validators.maxLength(30),Validators.minLength(3)]),
     'area': new FormControl('',[Validators.required]),
     'reuseAfterDisconnect': new FormControl('',[Validators.required]),
-    'quarantinePeriod': new FormControl('',[Validators.required]),
-    'quarantineUom': new FormControl('',[Validators.required]),
-    'reservationPeriod': new FormControl('',[Validators.required]),
-    'sequence': new FormControl('',[Validators.required]),
-    'levelName': new FormControl('',[Validators.required]),
-    'description': new FormControl('',[Validators.required]),
-    'levelType': new FormControl('',[Validators.required]),
-    'length': new FormControl('',[Validators.required]),
-    'valueType': new FormControl('',[Validators.required]),
-    'value': new FormControl('',[Validators.required]),
-    'delimiter': new FormControl('',[Validators.required]),
+    'quarantinePeriod': new FormControl('',[Validators.pattern('^(0|[1-9][0-9]*)$')]),
+    'quarantineUom': new FormControl(''),
+    'reservationPeriod': new FormControl('',[Validators.required,Validators.pattern('^(0|[1-9][0-9]*)$')]),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
   });
   intialvalue: any;
   actionBtn:string;
-  constructor() {
+  numberTypes:any=[];
+  constructor(private allService: CrmservicesService) {
+    console.log("Hello");
+    this.allService.getNumberScheme().subscribe(data => {
+      console.log((data));
+  });
     this.actionBtn  = "Save";
     console.log(this.actionBtn);
-    
+    this.numberTypes = [
+      {name:"SIM"},
+      {name:"IMSI"},
+      {name:"MSISDN"},
+    ]
    }
 
   ngOnInit(): void {

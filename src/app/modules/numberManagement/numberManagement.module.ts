@@ -13,6 +13,7 @@ import { NumberSchemeConfigurationComponent } from './numberComponent/number-sch
 import { VanityPatternRulesComponent } from './numberComponent/vanity-pattern-rules/vanity-pattern-rules.component';
 import { NumberTypeTableComponent } from './numberComponent/number-type-table/number-type-table.component';
 import { NumberFormatAllComponent } from './numberComponent/number-format-all/number-format-all.component';
+import { NumberSchemeLineDetailFormComponent } from './numberComponent/number-scheme-line-detail-form/number-scheme-line-detail-form.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { NumberFormatAllComponent } from './numberComponent/number-format-all/nu
     NumberTypeFormComponent,
     NumberFormatFormComponent,
     NumberSchemeFormComponent,
+    NumberSchemeLineDetailFormComponent,
     BlockDefinationFormComponent,
     VanityNumberComponent,
     GeneratedNumbersFormComponent,

@@ -29,7 +29,7 @@
             "reservation":"Reservation Period"
         },
         "numberSchema" : {
-            "Number-Schema-heading":"Number Schema",
+            "Number-Schema-heading":"Number Scheme",
             "Number-Schema-name":"Schema Name",
             "Number-Type":"Number Type",
             "Sub-Type":"Sub Type",
@@ -39,7 +39,10 @@
             "Reuse-After-Disconnect":"Reuse After Disconnect",
             "Quarantine-Period":"Quarantine Period",
             "Quarantine-Uom":"Quarantine Uom",
-            "Reservation-Period":"Reservation Period",
+            "Reservation-Period":"Reservation Period"
+        },
+        "numberSchemeLineDetails":{
+            "Number-Schema-Line-heading":"Number Scheme Line Details",
             "Sequence":"Sequence",
             "Level-Name":"Level Name",
             "Description":"Description",
