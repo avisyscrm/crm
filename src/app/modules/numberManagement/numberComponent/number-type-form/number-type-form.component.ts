@@ -62,7 +62,7 @@ export class NumberTypeFormComponent implements OnInit {
     } else {
       this.service.updatenumberType(this.numberTypes.value).subscribe(
         (sucess: any) => {
-          this.alertService.RecordUpdated('/number/numberType');
+          this.alertService.RecordUpdated('/number/numberTypeTable');
           this.resetForm();
         });
     }

@@ -30,7 +30,7 @@
                                     <div class=" form-group col-md-8">
                                         <input rows="3"
                                             [ngClass]="productTemplate.controls.productEntityTemplateName?.errors ? 'mandatory' : 'mandatoryG'"
-                                            class="form-control" placeholder="Here can be your description" value="Mike"
+                                            class="form-control" placeholder="" value="Mike"
                                             formControlName="productEntityTemplateName">
                                         <div
                                             *ngIf="productTemplate.controls.productEntityTemplateName?.invalid && productTemplate.controls.productEntityTemplateName?.touched">
@@ -59,7 +59,7 @@
                                     <div class="col-md-8">
                                         <textarea rows="3"
                                             [ngClass]="productTemplate.controls.description?.errors ? 'mandatory' : 'mandatoryG'"
-                                            class="form-control" placeholder="Here can be your description" value="Mike"
+                                            class="form-control" placeholder="" value="Mike"
                                             formControlName="description"></textarea>
                                         <div
                                             *ngIf="productTemplate.controls.description?.invalid && productTemplate.controls.description?.touched">
@@ -188,7 +188,7 @@
                                     <div class="col-md-8">
                                         <input rows="3"
                                             [ngClass]="productTemplate.controls.numberOfTabPagesSections?.errors ? 'mandatory' : 'mandatoryG'"
-                                            class="form-control" placeholder="Here can be your description" value="Mike"  [attr.disabled]="true"
+                                            class="form-control" placeholder="" value="Mike"  [attr.disabled]="true"
                                             formControlName="numberOfTabPagesSections">
                                         <div
                                             *ngIf="productTemplate.controls.numberOfTabPagesSections?.invalid && productTemplate.controls.numberOfTabPagesSections?.touched">
@@ -214,21 +214,9 @@
                                     </div>
                                     <div class="col-md-8">
                                         <input rows="3"
-                                            [ngClass]="productTemplate.controls.version?.errors ? 'mandatory' : 'mandatoryG'"
-                                            class="form-control" placeholder="Here can be your description" value="Mike"
-                                            formControlName="version">
-                                        <div
-                                            *ngIf="productTemplate.controls.version?.invalid && productTemplate.controls.version?.touched">
-                                            <span class="validate-text"
-                                                *ngIf="productTemplate.controls.version?.errors?.required">Please Enter
-                                                {{'forms.template-form.version' | translate}}</span>
-                                            <span class="validate-text"
-                                                *ngIf="productTemplate.controls.version?.errors?.maxlength">Character
-                                                exceed max limit 100</span>
-                                            <span class="validate-text"
-                                                *ngIf="productTemplate.controls.version?.errors?.isChar">Invalid input.
-                                                Only character allowed </span>
-                                        </div>
+                                            class="form-control mandatoryG" placeholder="" value="Mike"
+                                            formControlName="version" readonly>
+                      
                                     </div>
                                 </div>
                             </div>

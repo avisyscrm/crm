@@ -83,7 +83,7 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,th
         this.router.navigate(['crm/product-attribute-form'],
         { queryParams: 
           { 
-            productEntityTemplateId: data.data.productEntityTemplateAttributesId,
+            productEntityTemplateId: data.data.productTemplateAttributeId,
             templateId: this.templateId,
             sectionId: this.sectionId,
             tabId: this.tabId,

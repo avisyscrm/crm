@@ -213,7 +213,7 @@ export class DatatableComponent implements OnInit {
 
           {
             title: 'Cancelled',
-            text: 'Your data is safe.',
+            text: 'Your data is safe',
             confirmButtonText: 'OK',
             icon: 'success',
             

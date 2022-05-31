@@ -25,7 +25,8 @@
                                     <label class="form-label "><span>{{'forms.number-type.type-id' | translate}}</span> </label>
                                 </div>
                                 <div class=" form-group col-md-8">
-                                    <input type="text" class="form-control mandatory" [ngClass]="numberTypes.controls.typeid?.errors ? 'mandatory' : 'mandatoryG'" formControlName="numberTypeId">
+                                    <input type="text" class="form-control mandatory"
+                                     [ngClass]="numberTypes.controls.typeid?.errors ? 'mandatory' : 'mandatoryG'" formControlName="numberTypeId">
                                 </div>
                             </div>
                         </div>
