@@ -86,7 +86,10 @@
             "required":"Required",
             "Run-time-configuration":"Run Time Configuration",
             "assetizable":"Assetizable",
-            "status":"Status"
+            "status":"Status",
+            "key":"Key",
+            "value":"Value",
+            "template-option-heading":"Templat Option"
      
         }
     }

@@ -84,13 +84,14 @@ export class ProductTemplateFormComponent {
         (sucess: any) => {
           this.sweetAlert.RecordAddedStatic();
         this.router.navigate(['crm/product-template-form'], { queryParams: { data: JSON.stringify(sucess.productEntityTemplateId) } });
-         
+           this.intialvalue=this.productTemplate.value;
         });
     } else {
       this.service.updateProductTemplate(this.productTemplate.value).subscribe(
         (sucess: any) => {
           //this.sweetAlert.RecordUpdated('/crm/product-templates');
           this.sweetAlert.RecordUpdatedStatic();
+          this.intialvalue=this.productTemplate.value;
         });
     }
   }
@@ -216,55 +217,16 @@ export class ProductTemplateFormComponent {
     this.AddTabs.controls['productEntityTemplateId'].patchValue(this.productTemplate.controls['productEntityTemplateId'].value)
   }
 
-  DeleteRecord(data1) {
-    let data = {
-      event: 'delete',
-     data: data1
-    }
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'You want to delete the data',
-      icon: 'warning',
-      showCancelButton: true,
-      cancelButtonText: 'Cancel',
-      confirmButtonColor: "rgb(220, 53, 69)",
-      confirmButtonText: 'Yes  ',
-      showClass: {
-        backdrop: 'swal2-noanimation', // disable backdrop animation
-        popup: '',                     // disable popup animation
-        icon: ''                       // disable icon animation
-      },
-      hideClass: {
-        popup: '',                     // disable popup fade-out animation
-      },
-    }).then((result) => {
-      if (result.value) {
-        
-        this.service.deleteProdTempSection(data1.productEntityTemplateSectionId, JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res) => {
+  async DeleteRecord(data1) {
+
+    var data =await  this.sweetAlert.DeleteRecord(data1);
+    if(data){
+          this.service.deleteProdTempSection(data1.productEntityTemplateSectionId, JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res) => {
           this.changePageSortSearch(this.url, false);
           this.sweetAlert.recordDeleted();
         });
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        Swal.fire(
-
-          {
-            title: 'Cancelled',
-            text: 'Your data is safe',
-            confirmButtonText: 'OK',
-            icon: 'success',
-            
-            showClass: {
-              backdrop: 'swal2-noanimation', // disable backdrop animation
-              popup: '',                     // disable popup animation
-              icon: ''                       // disable icon animation
-            },
-            hideClass: {
-              popup: '',                     // disable popup fade-out animation
-            },
-          }
-        )
-      }
-    })
+    }
+   
   }
 }
 

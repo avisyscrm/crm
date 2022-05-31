@@ -221,5 +221,62 @@ recordDeleted(){
 }
 
 
+returValue=true;
+
+  async DeleteRecord(data1) {
+  let data = {
+    event: 'delete',
+   data: data1
+  }
+await   Swal.fire({
+    title: 'Are you sure?',
+    text: 'You want to delete the data',
+    icon: 'warning',
+    showCancelButton: true,
+    cancelButtonText: 'Cancel',
+    confirmButtonColor: "rgb(220, 53, 69)",
+    confirmButtonText: 'Yes  ',
+    showClass: {
+      backdrop: 'swal2-noanimation', // disable backdrop animation
+      popup: '',                     // disable popup animation
+      icon: ''                       // disable icon animation
+    },
+    hideClass: {
+      popup: '',                     // disable popup fade-out animation
+    },
+  }).then(async (result) =>  {
+    if (result.value) {
+      
+   this.returValue  =  await this.func();
+    
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+     await Swal.fire(
+
+        {
+          title: 'Cancelled',
+          text: 'Your data is safe',
+          confirmButtonText: 'OK',
+          icon: 'success',
+          
+          showClass: {
+            backdrop: 'swal2-noanimation', // disable backdrop animation
+            popup: '',                     // disable popup animation
+            icon: ''                       // disable icon animation
+          },
+          hideClass: {
+            popup: '',                     // disable popup fade-out animation
+          },
+        }
+      )
+      this.returValue= false;
+    }
+  
+  });
+  return this.returValue;
+}
+  func() {
+   return true;
+  }
+
 }
 

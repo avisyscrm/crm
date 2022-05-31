@@ -43,7 +43,7 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,th
       } });
     
   }
-    buttonEvent1(data:any){
+    async buttonEvent1(data:any){
     if(data.event=='add'){
       this.router.navigate(['crm/product-attribute-form'],
       { queryParams: 
@@ -74,11 +74,16 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,th
           }
         });
       }else if(data.btnEvent=='Delete'){
-      this.allService.deleteProdEntityAttribute(data.data.productTemplateAttributeId,
+        
+    var data1 =await  this.sweetAlert.DeleteRecord("delete");
+    if(data1){
+         this.allService.deleteProdEntityAttribute(data.data.productTemplateAttributeId,
         JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res)=>{
         this.sweetAlert.recordDeleted();
         this.changePageSortSearch(this.url)
       });
+    }
+     
       }else if(data.btnEvent=="Details"){
         this.router.navigate(['crm/product-attribute-form'],
         { queryParams: 

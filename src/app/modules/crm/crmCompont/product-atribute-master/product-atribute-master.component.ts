@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 
@@ -14,6 +15,15 @@ export class ProductAtributeMasterComponent implements OnInit {
   label = "Update";
   msg="";
   intialValue: any;
+  actionbtn1="Save";
+  optionFrom = new FormGroup({
+    key: new FormControl('', [Validators.required]),
+    value: new FormControl("",[Validators.required]),
+     productAttributeId: new FormControl(''),
+     optionId: new FormControl(''),
+    createdBy: new FormControl(-1),
+    updatedBy: new FormControl(-1),
+  });
   assignRole = new FormGroup({
     productAttributeId: new FormControl('', [Validators.required,Validators.maxLength(40)]),
     productAttributeName: new FormControl("",[Validators.required]),
@@ -37,8 +47,13 @@ export class ProductAtributeMasterComponent implements OnInit {
   });
   statusCode: any;
   checkFlag: boolean;
-  constructor(private crm:CrmservicesService,private alertService:SweetalertServiceService,
-    private activatedRoute: ActivatedRoute ) {
+  modalRef: BsModalRef;
+   url="pageNo=1&pageSize=5";
+  defultIntialValue: any;
+  IntialValue: any;
+  constructor(private crm:CrmservicesService,private alertService:SweetalertServiceService,private modalService: BsModalService,
+    private activatedRoute: ActivatedRoute ) {  
+      this.defultIntialValue=this.optionFrom.value;
       this.intialValue = this.assignRole.value;
       this.activatedRoute.queryParams.subscribe(params => {
         if (params.productAttributeId != undefined && params.productAttributeId != null) {
@@ -80,7 +95,13 @@ export class ProductAtributeMasterComponent implements OnInit {
       })
     }
   }
+  option(template){
+    this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'gray modal-lg' }));
+    this.changePageSortSearch(this.url,true);
+    this.actionbtn1='Save';
+    this.reset();
 
+  }
   resetForm(){
     this.assignRole.reset(this.intialValue);
   }
@@ -97,4 +118,66 @@ export class ProductAtributeMasterComponent implements OnInit {
       }
     });
   }
+  permission=[true,true,true];
+  reset(){
+    if( this.actionbtn1=='Save'){
+      this.optionFrom.reset(this.defultIntialValue);
+    }else{
+      this.optionFrom.reset(this.IntialValue);
+    }
+    
+  }
+  buttonEvent1(data){
+    
+    if(data.event=='add'){
+       this.reset()
+    }
+    else if(data.event=='edit'){
+      this.actionbtn1='Update';
+   this.crm.getOptionById(data.data.optionId).subscribe((sucess:any)=>{
+     this.optionFrom.patchValue(sucess);
+     this.IntialValue=sucess;
+   });
+    }
+    else if(data.event == 'delete'){
+      this.crm.deleteOptionById(data.data.optionId,"dsd").subscribe((sucess:any)=>{
+      this.changePageSortSearch(this.url,false);
+      this.alertService.recordDeleted();
+      });
+    }
+  }
+  changePageSortSearch(url,flag){
+    this.url=url;
+this.crm.getOptioDataTable(this.assignRole.controls['productAttributeId'].value,url).subscribe((sucess:any)=>{
+  this.data=sucess.page;
+  if(flag && this.headerList.length==0){
+    this.headerList=sucess.headerlist;
+  }
+ 
+})
+  }
+  headerList=[];
+  data=[];
+  actionbtn1submit(){
+    this.optionFrom.controls['productAttributeId'].patchValue(this.assignRole.controls['productAttributeId'].value)
+    if(this.actionbtn1=='Save'){
+   this.crm.saveOption(this.optionFrom.value).subscribe((sucess:any)=>{
+  this.alertService.RecordAddedStatic();
+     this.changePageSortSearch(this.url,false);
+     this.optionFrom.patchValue(sucess);
+     this.actionbtn1="Update";
+     this.IntialValue=sucess;
+   })
+    }else{
+      this.crm.updateOption(this.optionFrom.value).subscribe((sucess:any)=>{
+        this.alertService.RecordAddedStatic();
+      this.alertService.RecordUpdatedStatic();
+      this.optionFrom.patchValue(sucess);
+      this.changePageSortSearch(this.url,false);
+      this.IntialValue=sucess;
+      })
+      
+    }
+  }
+  
 }
