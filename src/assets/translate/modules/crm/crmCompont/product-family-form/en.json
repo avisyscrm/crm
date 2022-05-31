@@ -55,7 +55,7 @@
         },
         "template-attribute":{
             "template-attribute-heading":"PRODUCT ENTITY TEMPLATE ATTRIBUTES",
-            "product-entity-template-id":"Product Template ID ",
+            "product-entity-template-id":"Product Template Id ",
             "tab":"Tab ",
             "section":" Section",
             "tab-name":"Tab Name",
@@ -70,7 +70,7 @@
             "readonly":"Read only"
         },
         "template-attribute-master":{
-            "template-master":"PRODUCT  ATTRIBUTE MASTER",
+            "template-master":"PRODUCT  ATTRIBUTE",
             "Product-Attribute-Id":"Product Attribute ID ",
             "Product-Attribute-Name":"Product Attribute Name ",
             "Description":" Description",
@@ -89,7 +89,7 @@
             "status":"Status",
             "key":"Key",
             "value":"Value",
-            "template-option-heading":"Templat Option"
+            "template-option-heading":"Template Option"
      
         }
     }

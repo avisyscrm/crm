@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { CrmservicesService } from 'src/app/modules/crm/crm-services/crmservices.service';
@@ -24,7 +24,7 @@ export class NumberFormatFormComponent implements OnInit {
   url:string ="pageNo=1&pageSize=5";
 
   constructor(private modalService: BsModalService, private http: HttpClient,
-     private route: ActivatedRoute, private service: CrmservicesService,private alertService: SweetalertServiceService) { 
+     private route: ActivatedRoute, private router: Router, private service: CrmservicesService,private alertService: SweetalertServiceService) { 
     this.defaultIntialValue = this.numberFormat.value;
       this.route.queryParams.subscribe((params: any) => {
         if (params.data != undefined) {
@@ -109,6 +109,12 @@ export class NumberFormatFormComponent implements OnInit {
 
   resetForm(){
     this.numberFormat.reset(this.actionBtn == 'Save'? this: this.intialvalue);
+  }
+
+  back(){
+
+    this.router.navigate(['/number/numberFormatAll']);
+    
   }
 
   changePageSortSearch(url:any){
