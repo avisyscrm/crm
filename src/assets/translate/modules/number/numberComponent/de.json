@@ -2,6 +2,7 @@
     "forms":{
 
         "numberFormat":{
+            "number-format":"Formato numérico",
             "number-format-defination":"DEFINICIÓN DE FORMATO DE NÚMERO ",
             "Sequence":"Secuencia ",
             "level-name":"Nombre del nivel",
@@ -57,6 +58,7 @@
             "status-generation":"Status nach Generierung",
             "allocation-allowed":"Zuordnung erlaubt",
             "area-wise-scheme":"Gebietsbezogene Schemadefinition",
+            "validFormat":"Formato válido",
             "released":"Veröffentlicht",
             "submit":"Einreichen",
             "reset":"Zurücksetzen",
