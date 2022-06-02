@@ -13,6 +13,7 @@ import { VanityPatternRulesComponent } from './numberComponent/vanity-pattern-ru
 import { NumberGenerationComponent } from './numberComponent/number-generation/number-generation.component';
 import { NumberTypeTableComponent } from './numberComponent/number-type-table/number-type-table.component';
 import { NumberSchemeLineDetailFormComponent } from './numberComponent/number-scheme-line-detail-form/number-scheme-line-detail-form.component';
+import { NumberSchemeTableComponent } from './numberComponent/number-scheme-table/number-scheme-table.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,10 @@ const routes: Routes = [
       path: 'numberFormatAll',
       component: NumberFormatAllComponent,
       data: { title: 'Number Format' }
+    }, {
+      path: 'numberSchemeTable',
+      component: NumberSchemeTableComponent,
+      data: { title: 'Number Scheme Table' }
     }, {
       path: 'numberScheme',
       component: NumberSchemeFormComponent,

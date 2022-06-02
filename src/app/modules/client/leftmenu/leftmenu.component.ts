@@ -306,12 +306,12 @@ export class LeftmenuComponent implements OnInit {
             translationKey:'master_submenu_product_family',
           },
           {
-            name:"Number Scheme",
-            routerLink:['/number/numberScheme'],
+            name:"Number Schemes",
+            routerLink:['/number/numberSchemeTable'],
             translationKey:'master_submenu_product_family',
 
           },{
-            name:"Number Scheme (Line Details)",
+            name:"Number Schemes (Line Details) ",
             routerLink:['/number/numberSchemeLineDetails'],
             translationKey:'master_submenu_product_family',
 

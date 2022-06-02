@@ -14,6 +14,7 @@ import { VanityPatternRulesComponent } from './numberComponent/vanity-pattern-ru
 import { NumberTypeTableComponent } from './numberComponent/number-type-table/number-type-table.component';
 import { NumberFormatAllComponent } from './numberComponent/number-format-all/number-format-all.component';
 import { NumberSchemeLineDetailFormComponent } from './numberComponent/number-scheme-line-detail-form/number-scheme-line-detail-form.component';
+import { NumberSchemeTableComponent } from './numberComponent/number-scheme-table/number-scheme-table.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { NumberSchemeLineDetailFormComponent } from './numberComponent/number-sc
     VanityPatternRulesComponent,
     NumberGenerationComponent,
     NumberTypeTableComponent,
-    NumberFormatAllComponent
+    NumberFormatAllComponent,
+    NumberSchemeTableComponent
   ],
   imports: [
     CommonModule,
