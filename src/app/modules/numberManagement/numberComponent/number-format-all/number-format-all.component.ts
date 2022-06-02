@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
-import { CrmservicesService } from 'src/app/modules/crm/crm-services/crmservices.service';
+import { NumberservicesService } from '../../numberServices/numberservices.service';
 
 @Component({
   selector: 'app-number-format-all',
@@ -13,41 +13,33 @@ export class NumberFormatAllComponent implements OnInit {
   data:any={};
   headerList:any=[];
 
-  constructor(private allService:CrmservicesService,private router:Router,
+  constructor(private allService: NumberservicesService,private router:Router,
     private sweetAlert: SweetalertServiceService) { }
 
-  url="pageNo=1&pageSize=5";
-  ngOnInit(): void {
-    this.allService.getnumberType("pageNo=1&pageSize=5").subscribe(sucess=>{
-    this.headerList=sucess.headerlist  ;
-    this.data=sucess.page;
-    },error=>{
-
-    }
-    );
-  }
-  changePageSortSearch(url:any){
-    this.url=url;
-    this.allService.getnumberType(url).subscribe(sucess=>{
+    url="pageNo=1&pageSize=5";
+    ngOnInit(): void {
+      this.allService.getnumberType(this.url).subscribe(sucess=>{
+      this.headerList=sucess.headerlist  ;
       this.data=sucess.page;
-      },error=>{});
-  }
-  onDelete(){
-    this.allService.getnumberType(this.url).subscribe(sucess=>{
-      this.data=sucess.page;
-      },error=>{}
-      );
-  }
-buttonEvent1(data:any){
-if(data.event=='add'){
-  this.router.navigate(['/number/numberFormat']);   
-}else if(data.event=='edit'){
-  this.router.navigate(['/number/numberFormat'],{ queryParams: { data:data.data.numberTypeId} });
-    console.log(data, 'data')
-}
- else if(data.event=='delete'){
- } 
+      },error=>{
   
-}
+      }
+      );
+    }
+    changePageSortSearch(url:any){
+      this.url=url;
+      this.allService.getnumberType(url).subscribe(sucess=>{
+        this.data=sucess.page;
+        },error=>{});
+    }
+   
+  buttonEvent1(data:any){
+  if(data.event=='add'){}
+  else if(data.event=='edit'){
+    this.router.navigate(['/number/numberFormat'],{ queryParams: { data:data.data.numberTypeId} });
+  }
+   else if(data.event=='delete'){} 
+    
+  }
 
 }

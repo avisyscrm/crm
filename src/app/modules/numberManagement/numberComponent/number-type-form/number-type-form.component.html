@@ -14,8 +14,9 @@
             </div>
             <form [formGroup]="numberTypes" >
             <div class="card card-height">
-                <div class="card-header pf-head">
+                <div class="card-header pf-head d-flex justify-content-between">
                     <h3 class="card-title "><span>{{'forms.number-type.heading' | translate}}</span></h3>
+                    <button type="button"  (click)="back()" class="btn btn-dark " >Back</button>
                 </div>
                 <div class="card-body">
                      <div class="row productfamily ">
@@ -43,12 +44,12 @@
                                 </div>
                                 <div class=" form-group col-md-8">
                                     <!-- <input type="text"  class="form-control" [ngClass]="numberType.controls.type?.errors ? 'mandatory' : 'mandatoryG'" > -->
-                                    <select id="datalistOptions84"
-                                    class="form-control mandatory"
+                                    <select 
+                                    class="form-control " #mySelect (change)="onOptionsSelected(mySelect.value)"
                                     [ngClass]="numberTypes.controls.numberType?.errors ? 'mandatory' : 'mandatoryG'"
                                     formControlName="numberType"
                                     >
-                                    <option value="others"> <span>{{'forms.number-type.others' | translate}}</span></option>
+                                    <option value="others" selected> <span>{{'forms.number-type.others' | translate}}</span></option>
                                     <option value="SIM"> <span>{{'forms.number-type.sim' | translate}}</span>
                                     </option>
                                     <option value="IMSI"><span>{{'forms.number-type.imsi' | translate}}</span>
@@ -174,12 +175,18 @@
                                 <div class=" form-group col-md-4">
                                     <label class="form-label "><span>{{'forms.number-type.technology-generation' | translate}}</span></label>
                                 </div>
+
                                 <div class=" form-group col-md-8">
-                                    <input type="text" class="form-control mandatory" [ngClass]="numberTypes.controls.technologyGeneration?.errors ? 'mandatory' : 'mandatoryG'" formControlName="technologyGeneration">
+                                   
+                                    <select class="form-control mandatory" [ngClass]="numberTypes.controls.technologyGeneration?.errors ? 'mandatory' : 'mandatoryG'" 
+                                    formControlName="technologyGeneration">
+                                    <option value="">Select --</option>
+                                    <option value="4G">4G</option>
+                                    <option value="5G">5G</option>
+                                    </select>
                                     <div *ngIf="numberTypes.controls.technologyGeneration?.invalid && numberTypes.controls.technologyGeneration?.touched">
-                                        <span class="validate-text" *ngIf="numberTypes.controls.technologyGeneration?.errors?.required">Please Enter Technology Generation</span>
-                                        <span class="validate-text" *ngIf="numberTypes.controls.technologyGeneration?.errors?.maxlength">Character exceed max limit 2</span>
-                                      
+                                        <!-- <span class="validate-text" *ngIf="numberTypes.controls.technologyGeneration?.errors?.required">Please Enter Technology Generation</span>
+                                        <span class="validate-text" *ngIf="numberTypes.controls.technologyGeneration?.errors?.maxlength">Character exceed max limit 2</span> -->
                                     </div> 
                                 </div>
                             </div>

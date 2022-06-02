@@ -48,7 +48,7 @@ export class ProductTemplateFormComponent {
     this.route.queryParams.subscribe((params: any) => {
       if (params.data != undefined) {
         this.actionBtn = "Update";
-        this.getValueByID(params.data);
+        this.getValueByID(params.data,true);
       }
     });
   }
@@ -56,13 +56,13 @@ export class ProductTemplateFormComponent {
     this.productTemplate.reset(this.intialvalue);
   }
 
-  getValueByID(id) {
+  getValueByID(id,flag) {
     this.service.productTemplate(id).subscribe((sucess: any) => {
       this.productTemplate.patchValue(sucess);
       this.intialvalue = this.productTemplate.value;
       this.getAllTemplateId();
       this.getTabsID(id);
-      this.changePageSortSearch(this.url, true);
+      this.changePageSortSearch(this.url, flag);
     })
   }
 
@@ -92,6 +92,8 @@ export class ProductTemplateFormComponent {
           this.sweetAlert.RecordUpdatedStatic();
           this.productTemplate.patchValue(sucess);
           this.intialvalue=this.productTemplate.value;
+          alert(JSON.stringify(sucess));
+        this.getValueByID(sucess.productEntityTemplateId,false);
         });
     }
   }

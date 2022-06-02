@@ -140,8 +140,6 @@ createProductFamilly(data){
     return this.http.put(environment.baseUrl+"/updateEntityGroups",data);
   }
 
-  
-
   addProductLineData(data) {
     return this.http.post(environment.baseUrl+"/createProductLineWithAttachment",data);
   }
@@ -262,11 +260,7 @@ createProductFamilly(data){
   
     private postTabsid = environment.baseUrl+"/allProductEntityTemplateTab/";
     private postSectionids = environment.baseUrl+"/allProductEntityTemplateSection/";
-    private numberFormatURL = environment.baseUrl+"/createNumberFormatDefinition";
-    private allNumberFormat = environment.baseUrl+"/numberFormatDefinitionByTypeId/";
-    private getLevelNameURL = environment.baseUrl+"/numberFormatDefinition/";
-    private putLevelNameURL = environment.baseUrl+"/updateNumberFormatDefinition/";
-    private deleteLevelNameURL = environment.baseUrl+"/deleteNumberFormatDefinition/"
+   
     // add 
     private postTabs = environment.baseUrl+"/persistFormData";
     private postDynamicFormData = environment.baseUrl+"/createTemplateData";
@@ -814,45 +808,8 @@ postUserProfile(data:any){
 
 
 // number management
-  getnumberType(url:string):Observable<any>{
-    return this.http.get(environment.baseUrl+"/numberTypeDefinition?"+url);
-  }
 
-  getnumberTypeID(id: any) {
-    return this.http.get(environment.baseUrl+"/numberTypeDefinition/"+id);
-  }
 
-  updatenumberType(value: any) {
-    return this.http.put(environment.baseUrl+"/updateNumberTypeDefinition",value);
-  }
-
-  deletenumberType(id){
-    return this.http.delete(environment.baseUrl+"/deleteNumberTypeDefinition/"+id+"/"+ JSON.parse(sessionStorage.getItem('userDetails')).userId);
-  }
-  
-  createNumberType(data){
-    return this.http.post(environment.baseUrl+"/createNumberTypeDefinition",data);
-  }
-
-  postNumberFormat(data){
-    return this.http.post(this.numberFormatURL,data);
-  }
-
-  getAllNumberFormat(id:number,url:string){
-    return this.http.get(this.allNumberFormat+id+"?"+url);
-  }
-
-  getLevelNameData(levelName:string){
-    return this.http.get(this.getLevelNameURL+levelName)
-  }
-
-  updateLevelNameData(levelData:string){
-    return this.http.put(this.putLevelNameURL,levelData);
-  }
-  
-   delLevelNameData(levelName:String, id:any){
-     return this.http.delete(this.deleteLevelNameURL+levelName+"/"+id)
-   }
 
    getNumberScheme(): Observable<any>  {
     return this.http.get("./assets/numberScheme.json");
