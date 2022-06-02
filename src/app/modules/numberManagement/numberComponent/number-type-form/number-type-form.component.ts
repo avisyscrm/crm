@@ -1,10 +1,10 @@
+import { NumberservicesService } from './../../numberServices/numberservices.service';
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
-import { CrmservicesService } from 'src/app/modules/crm/crm-services/crmservices.service';
 
 @Component({
   selector: 'app-number-type-form',
@@ -15,22 +15,24 @@ export class NumberTypeFormComponent implements OnInit {
 
   numberTypes = new FormGroup({
     'numberTypeId': new FormControl('',[Validators.required,Validators.maxLength(15)]),
-    'numberType': new FormControl('', [Validators.required]),
+    'numberType': new FormControl('others', [Validators.required]),
     'numberTypeDescription': new FormControl('', [Validators.required, Validators.maxLength(255)]),
     'statusAfterGeneration': new FormControl('',Validators.required),
     'allocationAllowed': new FormControl(false,Validators.required),
     'areaWiseSchemeDefinition': new FormControl(false,Validators.required),
     'validFormat': new FormControl(false,Validators.required),
     'released': new FormControl(false,Validators.required),
-    'technologyGeneration': new FormControl('',[Validators.required,Validators.maxLength(2)]),
+    'technologyGeneration': new FormControl(''),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
   });
 
   intialvalue: any;
   actionBtn = "Save";
-  constructor(private service: CrmservicesService, public translate: TranslateService,
-    private alertService: SweetalertServiceService, private route: ActivatedRoute, private http:HttpClient) {
+  constructor(private service: NumberservicesService, private router: Router,
+    private alertService: SweetalertServiceService, private route: ActivatedRoute,
+     private http:HttpClient) {
       this.intialvalue = this.numberTypes.value;
+      this.numberTypes.controls['technologyGeneration'].disable();
       this.route.queryParams.subscribe((params: any) => {
         if (params.data != undefined) {
           this.actionBtn = "Update";
@@ -43,6 +45,7 @@ export class NumberTypeFormComponent implements OnInit {
     this.service.getnumberTypeID(id).subscribe((sucess: any) => {
       this.intialvalue = sucess;
       this.numberTypes.patchValue(sucess);
+      this.onOptionsSelected(sucess.numberType);
     }, error => {
       // alert("Error while updating the record");
     });
@@ -72,5 +75,17 @@ export class NumberTypeFormComponent implements OnInit {
   }
   ngOnInit(): void { }
 
+  onOptionsSelected(optValue){
+    if(optValue == "IMSI"){
+      this.numberTypes.controls['technologyGeneration'].enable();
+    }else{
+      this.numberTypes.controls['technologyGeneration'].disable();
+      this.numberTypes.controls['technologyGeneration'].reset();
+    }
+  }
+
+  back(){
+    this.router.navigate(['number/numberTypeTable']);
+  }
 
 }

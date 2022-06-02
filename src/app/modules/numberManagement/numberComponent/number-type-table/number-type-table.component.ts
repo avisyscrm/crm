@@ -1,3 +1,4 @@
+import { NumberservicesService } from './../../numberServices/numberservices.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
@@ -12,8 +13,8 @@ export class NumberTypeTableComponent implements OnInit {
 
   permission:any=[true,true,true];
   headerList:any=[];
-  constructor(private allService:CrmservicesService,private router:Router,
-    private sweetAlert: SweetalertServiceService) { }
+  constructor(private router:Router,
+    private sweetAlert: SweetalertServiceService, private allService: NumberservicesService) { }
   data:any={};
   url="pageNo=1&pageSize=5";
   ngOnInit(): void {

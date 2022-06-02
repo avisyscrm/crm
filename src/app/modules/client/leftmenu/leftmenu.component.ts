@@ -296,7 +296,7 @@ export class LeftmenuComponent implements OnInit {
           //   translationKey:'master_submenu_product_family',
           // },
           {
-            name:"Number Type Table",
+            name:"Number Type",
             routerLink:['/number/numberTypeTable'],
             translationKey:'master_submenu_product_family',
           },

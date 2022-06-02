@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { CrmservicesService } from 'src/app/modules/crm/crm-services/crmservices.service';
+import { NumberservicesService } from '../../numberServices/numberservices.service';
 
 @Component({
   selector: 'app-number-format-form',
@@ -24,7 +25,7 @@ export class NumberFormatFormComponent implements OnInit {
   url:string ="pageNo=1&pageSize=5";
 
   constructor(private modalService: BsModalService, private http: HttpClient,
-     private route: ActivatedRoute, private router: Router, private service: CrmservicesService,private alertService: SweetalertServiceService) { 
+     private route: ActivatedRoute, private router: Router,private alertService: SweetalertServiceService,private service: NumberservicesService) { 
     this.defaultIntialValue = this.numberFormat.value;
       this.route.queryParams.subscribe((params: any) => {
         if (params.data != undefined) {
@@ -61,7 +62,7 @@ export class NumberFormatFormComponent implements OnInit {
     'numberFormatDescription': new FormControl('', [Validators.required, Validators.maxLength(100)]),
     'numberFormatLength': new FormControl('',[Validators.required, Validators.maxLength(10)]),
     'numberFormatValueType': new FormControl('',[Validators.required, Validators.maxLength(30)]),
-    'numberFormatDelimiter': new FormControl('',Validators.required),
+    'numberFormatDelimiter': new FormControl('None',Validators.required),
     'numberFormatLevelType': new FormControl('',Validators.required),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
@@ -108,7 +109,7 @@ export class NumberFormatFormComponent implements OnInit {
   }
 
   resetForm(){
-    this.numberFormat.reset(this.actionBtn == 'Save'? this: this.intialvalue);
+    this.numberFormat.reset(this.actionBtn == "Save"? this.defaultIntialValue : this.intialvalue);
   }
 
   back(){
