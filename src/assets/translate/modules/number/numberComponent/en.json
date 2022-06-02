@@ -1,6 +1,7 @@
 {
     "forms":{
         "numberFormat":{
+            "number-format":"Number Format",
             "number-format-defination":"NUMBER FORMAT DEFINATION ",
             "Sequence":"Sequence ",
             "level-name":"Level Name",
@@ -80,6 +81,7 @@
             "status-generation":"Status After Generation",
             "allocation-allowed":"Allocation Allowed",
             "area-wise-scheme":"Area Wise Scheme Definition",
+            "validFormat":"Valid Format",
             "released":"Released",
             "submit":"Submit",
             "reset":"Reset",

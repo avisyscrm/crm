@@ -125,8 +125,8 @@ export class ProductAtributeMasterComponent implements OnInit {
     }else{
       this.optionFrom.reset(this.IntialValue);
     }
-    
   }
+
   buttonEvent1(data){
     
     if(data.event=='add'){
@@ -172,12 +172,13 @@ this.crm.getOptioDataTable(this.assignRole.controls['productAttributeId'].value,
    })
     }else{
       this.crm.updateOption(this.optionFrom.value).subscribe((sucess:any)=>{
-        this.alertService.RecordAddedStatic();
+        debugger
+        // this.alertService.RecordAddedStatic();
       this.alertService.RecordUpdatedStatic();
-      this.optionFrom.patchValue(sucess);
+      // this.optionFrom.patchValue(this.defultIntialValue);
       this.changePageSortSearch(this.url,false);
-      this.IntialValue=sucess;
-     this.reset();
+      this.IntialValue=this.defultIntialValue;
+      this.reset();
       })
       
     }
