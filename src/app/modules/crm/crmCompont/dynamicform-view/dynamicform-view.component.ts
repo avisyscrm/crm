@@ -16,7 +16,7 @@ export class DynamicformViewComponent implements OnInit {
   constructor(private allService:CrmservicesService, private activateRoute: ActivatedRoute ) {
     this.activateRoute.queryParams.subscribe(data =>{
       this.prodEntityTemplateId = data.id;
-      this.version = data.version;
+      this.version = data.version==undefined? 0:data.version;
       this.allService.getsectionFrom(this.prodEntityTemplateId).subscribe((data:any)=>{
         this.detailsForm=data;
         this.isSection=data.page[0].tabSections[0].section.type;

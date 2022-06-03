@@ -449,6 +449,7 @@ console.log(this.NumberMenuList);
   }
 
   press(data:String | undefined,name){
+    
     this.router.navigate(['/crm/dynamicDataTable']);
     this.allserviceService.isStringUrl.next({data:data,name:name});
   }

@@ -77,7 +77,7 @@ export class ProductAttributesFormComponent  {
         this.productEntityAttribute.controls['dataCaptureControl'].patchValue(obj.dataCaptureControl);
         this.productEntityAttribute.controls['options'].patchValue(obj.defaultValue);
         this.productEntityAttribute.controls['readOnly'].patchValue(obj.readOnly);
-        debugger
+        
         if(this.btnName=='Update' && flag){
           this.intialValue=this.productEntityAttribute.value;
         }
@@ -91,7 +91,7 @@ export class ProductAttributesFormComponent  {
      }
 
   getEditValue(data) {
-    debugger
+    
   this.service.getProductEntitytemplatesectionById(data).subscribe((sucess:any)=>{
     this.productEntityAttribute.patchValue(sucess);
     this.onSelectSectionAdd(sucess.productAttribute,true);

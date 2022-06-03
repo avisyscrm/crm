@@ -62,7 +62,7 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,th
       
     }else if(data.event == "inSidebtn"){
       if(data.btnEvent=='Update'){
-        debugger
+        
         this.router.navigate(['crm/product-attribute-form'],
         { queryParams: 
           { 
