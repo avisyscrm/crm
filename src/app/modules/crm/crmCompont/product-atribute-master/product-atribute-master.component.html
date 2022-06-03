@@ -11,39 +11,58 @@
         <form [formGroup]="assignRole">
             <div class="card card-height">
                 <div class="card-header pf-head">
-                    <h3 class="card-title "><span>{{'forms.template-attribute-master.template-master' | translate}}</span></h3>
+                    <h3 class="card-title "><span>{{'forms.template-attribute-master.template-master' |
+                            translate}}</span></h3>
                 </div>
-                 <div class="card-body">
+                <div class="card-body">
                     <div class="row productfamily ">
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> <span>{{'forms.template-attribute-master.Product-Attribute-Id' | translate}}</span></label>
+                                    <label class="form-label">
+                                        <span>{{'forms.template-attribute-master.Product-Attribute-Id' |
+                                            translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input   [ngClass]="getControl.productAttributeId?.errors ? 'mandatory' : 'mandatoryG'"  [readonly]="label=='Update'" type="text" formControlName="productAttributeId" class="form-control" id="lname" name="last-name">
-  
-                                      <div *ngIf="getControl.productAttributeId?.invalid && getControl.productAttributeId?.touched">
-                                        <span class="validate-text" *ngIf="getControl.productAttributeId?.errors?.required">Please Enter Product Attribute Id</span>
-                                        <span class="validate-text" *ngIf="getControl.productAttributeId?.errors?.maxlength ">length Should Be 40 </span>
-                                     </div>
+                                    <input
+                                        [ngClass]="getControl.productAttributeId?.errors ? 'mandatory' : 'mandatoryG'"
+                                        [readonly]="label=='Update'" type="text" formControlName="productAttributeId"
+                                        class="form-control" id="lname" name="last-name">
+
+                                    <div
+                                        *ngIf="getControl.productAttributeId?.invalid && getControl.productAttributeId?.touched">
+                                        <span class="validate-text"
+                                            *ngIf="getControl.productAttributeId?.errors?.required">Please Enter Product
+                                            Attribute Id</span>
+                                        <span class="validate-text"
+                                            *ngIf="getControl.productAttributeId?.errors?.maxlength ">length Should Be
+                                            40 </span>
+                                    </div>
                                 </div>
-                              
+
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> <span>{{'forms.template-attribute-master.Product-Attribute-Name' | translate}}</span></label>
+                                    <label class="form-label">
+                                        <span>{{'forms.template-attribute-master.Product-Attribute-Name' |
+                                            translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" formControlName="productAttributeName" class="form-control"  [ngClass]="getControl.productAttributeName?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
-                                       >
-                                       <div *ngIf="getControl.productAttributeName?.invalid && getControl.productAttributeName?.touched">
-                                        <span class="validate-text" *ngIf="getControl.productAttributeName?.errors?.required">Please Enter Product Attribute Name</span>
-                                        <span class="validate-text" *ngIf="getControl.productAttributeName?.errors?.maxlength ">Product Attribute Name Length Should Be 40 Charechter</span>
-                                        
-                                     </div>
+                                    <input type="text" formControlName="productAttributeName" class="form-control"
+                                        [ngClass]="getControl.productAttributeName?.errors ? 'mandatory' : 'mandatoryG'"
+                                        id="lname" name="last-name">
+                                    <div
+                                        *ngIf="getControl.productAttributeName?.invalid && getControl.productAttributeName?.touched">
+                                        <span class="validate-text"
+                                            *ngIf="getControl.productAttributeName?.errors?.required">Please Enter
+                                            Product Attribute Name</span>
+                                        <span class="validate-text"
+                                            *ngIf="getControl.productAttributeName?.errors?.maxlength ">Product
+                                            Attribute Name Length Should Be 40 Charechter</span>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -52,119 +71,154 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> <span>{{'forms.template-attribute-master.Description' | translate}}</span></label>
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.Description' |
+                                            translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
-                                    <textarea type="text" formControlName="description" class="form-control" [ngClass]="getControl.description?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
-                                      ></textarea>
-                                      <div *ngIf="getControl.description?.invalid && getControl.description?.touched">
-                                        <span class="validate-text" *ngIf="getControl.description?.errors?.required">Please Enter Description</span>
-                                        <span class="validate-text" *ngIf="getControl.description?.errors?.maxlength ">Description Length Should Be 40 Charechter</span>
-                                        
-                                     </div>
+                                    <textarea type="text" formControlName="description" class="form-control"
+                                        [ngClass]="getControl.description?.errors ? 'mandatory' : 'mandatoryG'"
+                                        id="lname" name="last-name"></textarea>
+                                    <div *ngIf="getControl.description?.invalid && getControl.description?.touched">
+                                        <span class="validate-text"
+                                            *ngIf="getControl.description?.errors?.required">Please Enter
+                                            Description</span>
+                                        <span class="validate-text"
+                                            *ngIf="getControl.description?.errors?.maxlength ">Description Length Should
+                                            Be 40 Charechter</span>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> <span>{{'forms.template-attribute-master.Data-Type' | translate}}</span></label>
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.Data-Type' |
+                                            translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
                                     <!-- <input type="text"  formControlName="dataType" class="form-control" [ngClass]="getControl.dataType?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
                                        > -->
-                                       <select id="datalistOptions84" class="form-control " [ngClass]="getControl.dataType?.errors ? 'mandatory' : 'mandatoryG'" #dataCapture
-                                       formControlName="dataType">
-                                       <option value="">Select --</option>
-                                       <option value="text">Text</option>
-                                       <option value="number">Number</option>
-                                       <option value="boolean">Boolean</option>
-                                       <option value="string">String</option>
-                                   </select>
-                                       <div *ngIf="getControl.dataType?.invalid && getControl.dataType?.touched">
-                                        <span class="validate-text" *ngIf="getControl.dataType?.errors?.required">Please Select Data Type</span>
-                                        <span class="validate-text" *ngIf="getControl.dataType?.errors?.maxlength ">Data Type Length Should Be 40 Charechter</span>
-                                        
-                                     </div>
+                                    <select id="datalistOptions84" class="form-control "
+                                        [ngClass]="getControl.dataType?.errors ? 'mandatory' : 'mandatoryG'"
+                                        #dataCapture formControlName="dataType">
+                                        <option value="">Select --</option>
+                                        <option value="text">Text</option>
+                                        <option value="number">Number</option>
+                                        <option value="boolean">Boolean</option>
+                                        <option value="string">String</option>
+                                        <option value="date">Date</option>
+                                       
+                                    </select>
+                                    <div *ngIf="getControl.dataType?.invalid && getControl.dataType?.touched">
+                                        <span class="validate-text" *ngIf="getControl.dataType?.errors?.required">Please
+                                            Select Data Type</span>
+                                        <span class="validate-text" *ngIf="getControl.dataType?.errors?.maxlength ">Data
+                                            Type Length Should Be 40 Charechter</span>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="row productfamily ">
+
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> <span>{{'forms.template-attribute-master.ProductAttributeLength' | translate}}</span></label>
-                                </div>
-                                <div class="col-md-8">
-                                    <input type="number" formControlName="productAttributeLength" class="form-control " [ngClass]="getControl.productAttributeLength?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
-                                      >
-                                      <div *ngIf="getControl.productAttributeLength?.invalid && getControl.productAttributeLength?.touched">
-                                        <span class="validate-text" *ngIf="getControl.productAttributeLength?.errors?.required">Please Enter Product Attribute Length</span>
-                                        <span class="validate-text" *ngIf="getControl.productAttributeLength?.errors?.maxlength ">Product Attribute  Length Should Be 40 Charechter</span>
-                                        
-                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label class="form-label">  <span>{{'forms.template-attribute-master.data-capture' | translate}}</span></label>
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.data-capture' |
+                                            translate}}</span></label>
                                 </div>
                                 <div class="col-md-6">
                                     <!-- <input type="text" formControlName="dataCaptureControl" class="form-control " [ngClass]="getControl.dataCaptureControl?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
                                        > -->
-                                       <select id="datalistOptions84" class="form-control " [ngClass]="getControl.dataCaptureControl?.errors ? 'mandatory' : 'mandatoryG'" #dataCapture
-                                       formControlName="dataCaptureControl">
-                                       <option value="">Select --</option>
-                                       <option value="text">Text</option>
-                                       <option value="radio">Radio</option>
-                                       <option value="checkbox">Checkbox</option>
-                                       <option value="date">Date</option>
-                                       <option value="dropdown">Dropdown</option>
-                                   </select>
-                                       <div *ngIf="getControl.dataCaptureControl?.invalid && getControl.dataCaptureControl?.touched">
-                                        <span class="validate-text" *ngIf="getControl.dataCaptureControl?.errors?.required">Please Select Data Capture Control</span>
-                                        <span class="validate-text" *ngIf="getControl.dataCaptureControl?.errors?.maxlength ">Data Capture Control  Length Should Be 40 Charechter</span>
-                                        
-                                     </div>
+                                    <select id="datalistOptions84" class="form-control "
+                                        [ngClass]="getControl.dataCaptureControl?.errors ? 'mandatory' : 'mandatoryG'"
+                                        #dataCapture formControlName="dataCaptureControl">
+                                        <option value="">Select --</option>
+                                        <option value="text">Text</option>
+                                        <option value="radio">Radio</option>
+                                        <option value="checkbox">Checkbox</option>
+                                        <option value="date">Date</option>
+                                        <option value="dropdown">Dropdown</option>
+                                    </select>
+                                    <div
+                                        *ngIf="getControl.dataCaptureControl?.invalid && getControl.dataCaptureControl?.touched">
+                                        <span class="validate-text"
+                                            *ngIf="getControl.dataCaptureControl?.errors?.required">Please Select Data
+                                            Capture Control</span>
+                                        <span class="validate-text"
+                                            *ngIf="getControl.dataCaptureControl?.errors?.maxlength ">Data Capture
+                                            Control Length Should Be 40 Charechter</span>
+
+                                    </div>
                                 </div>
                                 <div class="col-md-2">
-                                    <button  (click)="option(template)"  *ngIf="label=='Update' && (assignRole.controls['dataCaptureControl'].value == 'radio' || 
+                                    <button (click)="option(template)" *ngIf="label=='Update' && (assignRole.controls['dataCaptureControl'].value == 'radio' || 
                     assignRole.controls['dataCaptureControl'].value == 'checkbox' || 
-                    assignRole.controls['dataCaptureControl'].value == 'dropdown')"  
-                    type="button" class="btn btn-primary ml-3">Option</button>
+                    assignRole.controls['dataCaptureControl'].value == 'dropdown')" type="button"
+                                        class="btn btn-primary ml-3">Option</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row productfamily ">
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> <span>{{'forms.template-attribute-master.default-values' | translate}}</span></label>
+                                    <label class="form-label">
+                                        <span>{{'forms.template-attribute-master.ProductAttributeLength' |
+                                            translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input type="text" formControlName="defaultValue" class="form-control " [ngClass]="getControl.defaultValue?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
-                                      >
-                                      <div *ngIf="getControl.defaultValue?.invalid && getControl.defaultValue?.touched">
-                                        <span class="validate-text" *ngIf="getControl.defaultValue?.errors?.required">Please Enter Default Value</span>
-                                        <span class="validate-text" *ngIf="getControl.defaultValue?.errors?.maxlength ">Default Value  Length Should Be 40 Charechter</span>
+                                    <input type="number" formControlName="productAttributeLength" class="form-control "
                                         
-                                     </div>
+                                        id="lname" name="last-name">
+                                    <div
+                                        *ngIf="getControl.productAttributeLength?.invalid && getControl.productAttributeLength?.touched">
+                                        <span class="validate-text"
+                                            *ngIf="getControl.productAttributeLength?.errors?.required">Please Enter
+                                            Product Attribute Length</span>
+                                        <span class="validate-text"
+                                            *ngIf="getControl.productAttributeLength?.errors?.maxlength ">Product
+                                            Attribute Length Should Be 40 Charechter</span>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row productfamily ">
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.default-values'
+                                            | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <input type="text" formControlName="defaultValue" class="form-control " id="lname"
+                                        name="last-name">
+                                    <div *ngIf="getControl.defaultValue?.invalid && getControl.defaultValue?.touched">
+                                        <span class="validate-text"
+                                            *ngIf="getControl.defaultValue?.errors?.required">Please Enter Default
+                                            Value</span>
+                                        <span class="validate-text"
+                                            *ngIf="getControl.defaultValue?.errors?.maxlength ">Default Value Length
+                                            Should Be 40 Charechter</span>
+
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label">  <span>{{'forms.template-attribute-master.read-only' | translate}}</span></label>
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.read-only' |
+                                            translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
-                                       <div class="custom-switches-stacked d-inline  d-inline">
+                                    <div class="custom-switches-stacked d-inline  d-inline">
                                         <label class="custom-switch">
-                                            <input type="checkbox"  formControlName="readOnly"  value="" class="custom-switch-input" >
+                                            <input type="checkbox" formControlName="readOnly" value=""
+                                                class="custom-switch-input">
                                             <span class="custom-switch-indicator"></span>
                                         </label>
                                     </div>
@@ -176,12 +230,14 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label">  <span>{{'forms.template-attribute-master.visible' | translate}}</span></label>
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.visible' |
+                                            translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
-                                      <div class="custom-switches-stacked d-inline ">
+                                    <div class="custom-switches-stacked d-inline ">
                                         <label class="custom-switch">
-                                            <input type="checkbox"  formControlName="visible"  value="" class="custom-switch-input" >
+                                            <input type="checkbox" formControlName="visible" value=""
+                                                class="custom-switch-input">
                                             <span class="custom-switch-indicator"></span>
                                         </label>
                                     </div>
@@ -191,14 +247,16 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> <span>{{'forms.template-attribute-master.Filterable' | translate}}</span></label>
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.Filterable' |
+                                            translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
                                     <!-- <input type="text" formControlName="filterable" class="form-control mandatory" id="lname" name="last-name"
                                        > -->
-                                       <div class="custom-switches-stacked d-inline ">
+                                    <div class="custom-switches-stacked d-inline ">
                                         <label class="custom-switch">
-                                            <input type="checkbox"  formControlName="filterable"  value="" class="custom-switch-input" >
+                                            <input type="checkbox" formControlName="filterable" value=""
+                                                class="custom-switch-input">
                                             <span class="custom-switch-indicator"></span>
                                         </label>
                                     </div>
@@ -210,104 +268,117 @@
                         <div class="col-md-6">
                             <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"> <span>{{'forms.template-attribute-master.Has-Rule' | translate}}</span></label>
+                                    <label class="form-label"> <span>{{'forms.template-attribute-master.Has-Rule' |
+                                            translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
-                                   
-                                      <div class="custom-switches-stacked d-inline ">
+
+                                    <div class="custom-switches-stacked d-inline ">
                                         <label class="custom-switch">
-                                            <input type="checkbox"  formControlName="hasRule"  value="" class="custom-switch-input" >
+                                            <input type="checkbox" formControlName="hasRule" value=""
+                                                class="custom-switch-input">
                                             <span class="custom-switch-indicator"></span>
                                         </label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="col-md-6">
                             <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label class="form-label"><span>{{'forms.template-attribute-master.hidden' | translate}}</span></label>
-                            </div>
-                                <div class="col-md-8">
-                                    <div class="custom-switches-stacked d-inline ">
-                                        <label class="custom-switch">
-                                            <input type="checkbox"  formControlName="hidden"  value="" class="custom-switch-input" >
-                                            <span class="custom-switch-indicator"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                    </div>
-                    <div class="row productfamily ">
-                        <div class="col-md-6">
-                            <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label class="form-label"><span>{{'forms.template-attribute-master.required' | translate}}</span></label>
-                            </div>
-                                <div class="col-md-8">
-                                    <div class="custom-switches-stacked d-inline ">
-                                        <label class="custom-switch">
-                                            <input formControlName="required"  type="checkbox" value="" class="custom-switch-input" >
-                                            <span class="custom-switch-indicator"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                        <div class="col-md-6">
-                            <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label class="form-label"><span>{{'forms.template-attribute-master.Run-time-configuration' | translate}}</span></label>
-                            </div>
-                                <div class="col-md-8">
-                                    <div class="custom-switches-stacked d-inline ">
-                                        <label class="custom-switch">
-                                            <input  formControlName="runTimeConfigurable" type="checkbox" value="" class="custom-switch-input" >
-                                            <span class="custom-switch-indicator"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                    
-                    </div>
-                    <div class="row productfamily ">
-                        <div class="col-md-6"> 
-                            <div class="row mb-3">
-                            <div class="col-md-4">
-                                <label class="form-label"><span>{{'forms.template-attribute-master.assetizable' | translate}}</span></label>
-                            </div>
-                                <div class="col-md-8">
-                                    <div class="custom-switches-stacked d-inline ">
-                                        <label class="custom-switch">
-                                            <input formControlName="assetizable" type="checkbox" value="" class="custom-switch-input" >
-                                            <span class="custom-switch-indicator"></span>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="row mb-3">
                                 <div class="col-md-4">
-                                    <label class="form-label"><span>{{'forms.template-attribute-master.status' | translate}}</span></label>
+                                    <label class="form-label"><span>{{'forms.template-attribute-master.hidden' |
+                                            translate}}</span></label>
                                 </div>
-                                    <div class="col-md-8">
-                                        <div class="custom-switches-stacked d-inline ">
-                                            <label class="custom-switch">
-                                                <input formControlName="status"  type="checkbox" value="" class="custom-switch-input" >
-                                                <span class="custom-switch-indicator"></span>
-                                            </label>
-                                        </div>
+                                <div class="col-md-8">
+                                    <div class="custom-switches-stacked d-inline ">
+                                        <label class="custom-switch">
+                                            <input type="checkbox" formControlName="hidden" value=""
+                                                class="custom-switch-input">
+                                            <span class="custom-switch-indicator"></span>
+                                        </label>
                                     </div>
                                 </div>
-                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <button  (click)="submit()"   [disabled]="assignRole.invalid " type="submit" class="btn btn-primary ">{{label}}</button>
-                    <button  class="btn btn-primary ml-3  " (click)="resetForm()">Reset</button>
-                    
+                    <div class="row productfamily ">
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label"><span>{{'forms.template-attribute-master.required' |
+                                            translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="custom-switches-stacked d-inline ">
+                                        <label class="custom-switch">
+                                            <input formControlName="required" type="checkbox" value=""
+                                                class="custom-switch-input">
+                                            <span class="custom-switch-indicator"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label"><span>{{'forms.template-attribute-master.Run-time-configuration'
+                                            | translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="custom-switches-stacked d-inline ">
+                                        <label class="custom-switch">
+                                            <input formControlName="runTimeConfigurable" type="checkbox" value=""
+                                                class="custom-switch-input">
+                                            <span class="custom-switch-indicator"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row productfamily ">
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label"><span>{{'forms.template-attribute-master.assetizable' |
+                                            translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="custom-switches-stacked d-inline ">
+                                        <label class="custom-switch">
+                                            <input formControlName="assetizable" type="checkbox" value=""
+                                                class="custom-switch-input">
+                                            <span class="custom-switch-indicator"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row mb-3">
+                                <div class="col-md-4">
+                                    <label class="form-label"><span>{{'forms.template-attribute-master.status' |
+                                            translate}}</span></label>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="custom-switches-stacked d-inline ">
+                                        <label class="custom-switch">
+                                            <input formControlName="status" type="checkbox" value=""
+                                                class="custom-switch-input">
+                                            <span class="custom-switch-indicator"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button (click)="submit()" [disabled]="assignRole.invalid " type="submit"
+                        class="btn btn-primary ">{{label}}</button>
+                    <button class="btn btn-primary ml-3  " (click)="resetForm()">Reset</button>
+
                 </div>
             </div>
         </form>
@@ -319,104 +390,122 @@
     <div class="modal-header">
         <div class="card-header d-flex justify-content-between">
             <h3 class="card-title prod-name"><span>{{'forms.template-attribute-master.template-option-heading' |
-               translate}}</span>
+                    translate}}</span>
             </h3>
-         </div>
-       <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-          <span aria-hidden="true">×</span>
-       </button>
+        </div>
+        <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">×</span>
+        </button>
     </div>
     <div class="modal-body">
         <div class="section-body fixNavMargin">
             <div class="container-fluid">
-            <div class="d-flex justify-content-between align-items-center">
-               <ul class="nav nav-tabs page-header-tab">
-                  <li class="nav-item"><a class="nav-link" href="#">
-                     </a>
-                  </li>
-                  <li class="nav-item"><a class="nav-link" href="#"></a>
-                  </li>
-               </ul>
-            </div>
-            <form [formGroup]="optionFrom" #Formdata >
-            <div class="card " style="height: fit-content !important;">
-             
-               <div class="card-body">
-                  <div class="row productfamily ">
-                     <div class="col-md-12">
-                        <div class="row ">
-                           <div class="col-md-8">
-                            <div class="row mb-3">
-                                <div class="col-md-4">
-                                    <label class="form-label"> <span>{{'forms.template-attribute-master.key' | translate}}</span></label>
+                <div class="d-flex justify-content-between align-items-center">
+                    <ul class="nav nav-tabs page-header-tab">
+                        <li class="nav-item"><a class="nav-link" href="#">
+                            </a>
+                        </li>
+                        <li class="nav-item"><a class="nav-link" href="#"></a>
+                        </li>
+                    </ul>
+                </div>
+                <form [formGroup]="optionFrom" #Formdata>
+                    <div class="card " style="height: fit-content !important;">
+
+                        <div class="card-body">
+                            <div class="row productfamily ">
+                                <div class="col-md-12">
+                                    <div class="row ">
+                                        <div class="col-md-8">
+                                            <div class="row mb-3">
+                                                <div class="col-md-4">
+                                                    <label class="form-label">
+                                                        <span>{{'forms.template-attribute-master.key' |
+                                                            translate}}</span></label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="text" formControlName="key" class="form-control "
+                                                        [ngClass]="optionFrom.controls.key.errors ? 'mandatory' : 'mandatoryG'"
+                                                        id="lname" name="last-name">
+                                                    <div
+                                                        *ngIf="optionFrom.controls.key?.invalid && optionFrom.controls.key?.touched">
+                                                        <span class="validate-text"
+                                                            *ngIf="optionFrom.controls.key.errors?.required">Please
+                                                            Enter Key</span>
+                                                        <span class="validate-text"
+                                                            *ngIf="optionFrom.controls?.key?.maxlength ">Product
+                                                            Attribute Length Should Be 40 Charechter</span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-md-8">
+                                            <div class="row mb-3">
+                                                <div class="col-md-4">
+                                                    <label class="form-label">
+                                                        <span>{{'forms.template-attribute-master.value' |
+                                                            translate}}</span></label>
+                                                </div>
+                                                <div class="col-md-8">
+                                                    <input type="text" formControlName="value" class="form-control "
+                                                        [ngClass]="optionFrom.controls.value?.errors ? 'mandatory' : 'mandatoryG'"
+                                                        id="lname" name="last-name">
+                                                    <div
+                                                        *ngIf="optionFrom.controls.value?.invalid && optionFrom.controls.value?.touched">
+                                                        <span class="validate-text"
+                                                            *ngIf="optionFrom.controls.value?.errors?.required">Please
+                                                            Enter Value</span>
+                                                        <span class="validate-text"
+                                                            *ngIf="optionFrom.controls.value?.errors?.maxlength ">Value
+                                                            Should Be 40 Charechter</span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <div class="row ">
+                                        <div class="col-md-8">
+
+
+                                            <button type="button" [disabled]="this.optionFrom.invalid"
+                                                class="btn btn-primary"
+                                                (click)="actionbtn1submit()">{{actionbtn1}}</button>
+                                            <button class="btn btn-primary ml-3  " (click)="reset()">Reset</button>
+
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="col-md-8">
-                                    <input type="text" formControlName="key" class="form-control " [ngClass]="optionFrom.controls.key.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
-                                      >
-                                      <div *ngIf="optionFrom.controls.key?.invalid && optionFrom.controls.key?.touched">
-                                        <span class="validate-text" *ngIf="optionFrom.controls.key.errors?.required">Please Enter Key</span>
-                                        <span class="validate-text" *ngIf="optionFrom.controls?.key?.maxlength ">Product Attribute  Length Should Be 40 Charechter</span>
-                                        
-                                     </div>
-                                </div>
+
+
                             </div>
                         </div>
-                        
-                        </div>
-                        <div class="row ">
-                            <div class="col-md-8">
-                             <div class="row mb-3">
-                                 <div class="col-md-4">
-                                     <label class="form-label"> <span>{{'forms.template-attribute-master.value' | translate}}</span></label>
-                                 </div>
-                                 <div class="col-md-8">
-                                     <input type="text" formControlName="value" class="form-control " [ngClass]="optionFrom.controls.value?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
-                                       >
-                                       <div *ngIf="optionFrom.controls.value?.invalid && optionFrom.controls.value?.touched">
-                                         <span class="validate-text" *ngIf="optionFrom.controls.value?.errors?.required">Please Enter Value</span>
-                                         <span class="validate-text" *ngIf="optionFrom.controls.value?.errors?.maxlength ">Value Should Be 40 Charechter</span>
-                                         
-                                      </div>
-                                 </div>
-                             </div>
-                         </div>
-                         
-                         </div>
-                         <div class="row ">
-                            <div class="col-md-8">
-                           
-
-                                    <button type="button"  [disabled]="this.optionFrom.invalid"  class="btn btn-primary" (click)="actionbtn1submit()">{{actionbtn1}}</button>
-                                    <button  class="btn btn-primary ml-3  " (click)="reset()">Reset</button>
-                                
-                                 </div>
-                                 </div>
-                     </div>
-                    
-                     
-                  </div>
-               </div>
-             </div>
-            </form>
-    </div>
-    <div class="row">
-        <div class="card">
-            <div class="card-header d-flex justify-content-between">
-                <h3 class="card-title prod-name">All Roles </h3>
-             
+                    </div>
+                </form>
             </div>
-            <app-datatable [permission]="permission" (buttonEvent1)="buttonEvent1($event)"
-            (changePageSortSearch)="changePageSortSearch($event,false)" [dataset]="data">
-            <app-column [search]="x.search_key" [cssClass]="" [type]="x.type" *ngFor="let x of headerList"
-                [value]="x.value" [width]="x.width" [header]="x.header"></app-column>
-        </app-datatable>
- 
-        </div>
+            <div class="row">
+                <div class="card">
+                    <div class="card-header d-flex justify-content-between">
+                        <h3 class="card-title prod-name">All Roles </h3>
 
-    </div>
-    <div class="modal-footer">
-       <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Close</button>
-    </div>
-    </div>
+                    </div>
+                    <app-datatable [permission]="permission" (buttonEvent1)="buttonEvent1($event)"
+                        (changePageSortSearch)="changePageSortSearch($event,false)" [dataset]="data">
+                        <app-column [search]="x.search_key" [cssClass]="" [type]="x.type" *ngFor="let x of headerList"
+                            [value]="x.value" [width]="x.width" [header]="x.header"></app-column>
+                    </app-datatable>
+
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Close</button>
+            </div>
+        </div>
     </div>
 </ng-template>
