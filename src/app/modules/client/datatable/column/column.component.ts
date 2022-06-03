@@ -14,11 +14,8 @@ export class ColumnComponent  {
 	@Input() width:any;
 	@Input() cssClass:any;
 	@Input() search:any;
-	constructor(table: DatatableComponent) {
-					console.log(this);
-					
+	constructor(table: DatatableComponent) {		
 				 table.addColumn(this)
-				 
 		}
 
 }
