@@ -174,7 +174,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <input type="text" [attr.disabled]="true"  [ngClass]="productEntityAttribute.controls.productEntityTemplateId?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" id="lname"
+                                            <input type="text" [attr.disabled]="true"    class="form-control" id="lname"
                                                 name="last-name" formControlName="productAttributeLength">
                                             <div
                                                 *ngIf="productEntityAttribute.controls.productAttributeLength?.invalid && productEntityAttribute.controls.productAttributeLength?.touched">
@@ -218,7 +218,7 @@
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group">
-                                            <input type="text" class="form-control"  [attr.disabled]="true" [ngClass]="productEntityAttribute.controls.options?.errors ? 'mandatory' : 'mandatoryG'" formControlName="options">
+                                            <input type="text" class="form-control"  [attr.disabled]="true"  formControlName="options">
                                             <div *ngIf="productEntityAttribute.controls.options?.invalid && productEntityAttribute.controls.options?.touched">
                                                 <span class="validate-text" *ngIf="productEntityAttribute.controls.options?.errors?.required">Please
                                                     Enter Values</span>
