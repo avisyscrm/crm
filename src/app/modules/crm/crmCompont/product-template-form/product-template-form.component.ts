@@ -92,7 +92,7 @@ export class ProductTemplateFormComponent {
           this.sweetAlert.RecordUpdatedStatic();
           this.productTemplate.patchValue(sucess);
           this.intialvalue=this.productTemplate.value;
-          alert(JSON.stringify(sucess));
+          // alert(JSON.stringify(sucess));
         this.getValueByID(sucess.productEntityTemplateId,false);
         });
     }

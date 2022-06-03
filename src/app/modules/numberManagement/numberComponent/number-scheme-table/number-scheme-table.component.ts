@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
-import { NumberService } from '../../number-services/numberservices';
+import { NumberservicesService } from '../../numberServices/numberservices.service';
 
 @Component({
   selector: 'app-number-scheme-table',
@@ -15,7 +15,7 @@ export class NumberSchemeTableComponent implements OnInit {
   data:any={};
   
   url="pageNo=1&pageSize=5";
-  constructor(private allService:NumberService,private router:Router,
+  constructor(private allService:NumberservicesService,private router:Router,
     private sweetAlert: SweetalertServiceService) { 
       this.allService.getNumberSchemes(this.url).subscribe(sucess=>{
         this.headerList=sucess.headerlist  ;
@@ -33,7 +33,7 @@ export class NumberSchemeTableComponent implements OnInit {
   }
   changePageSortSearch(url:any){
     this.url=url;
-    this.allService.getnumberScheme(url).subscribe(sucess=>{
+    this.allService.getNumberSchemes(url).subscribe(sucess=>{
      this.data=sucess.page;
      },error=>{});
   }
