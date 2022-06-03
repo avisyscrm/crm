@@ -11,11 +11,11 @@ export class DynamicformDatatableComponent implements OnInit {
 
   permission:any=[true,true,false];
   headerList:any=[];
-  ajayStri : any ;
-  pageNo:any;
-  pageSize:any;
-  sortBy:any;
-  sortDirection:any;
+  // ajayStri : any ;
+  // pageNo:any;
+  // pageSize:any;
+  // sortBy:any;
+  // sortDirection:any;
   detailsForm: any;
   isSection: String="";
   data:any={};
@@ -24,26 +24,32 @@ export class DynamicformDatatableComponent implements OnInit {
   name: any;
 
   constructor(private allService:CrmservicesService, private router:Router) {    
-    // this.allService.getDynamicTableData(0,"pageNo=1&pageSize=5").subscribe((sucess)=>{
-    //   this.headerList=sucess.headerlist;
-    // })
+    this.allService.getDynamicTableData(0,"pageNo=1&pageSize=5").subscribe((sucess)=>{
+      this.headerList=sucess.headerlist;
+    })
       this.allService.isStringUrl.subscribe(sucessId=>{
         this.productEntityElementId = +sucessId?.data;
         this.name=sucessId.name;
-        this.getDynamicTableData(this.productEntityElementId,this.byDefaultPaging);
+        this.getDynamicTableData(this.productEntityElementId,this.byDefaultPaging,true);
       })
    }
 
-   getDynamicTableData(id,paging){
-    this.allService.getDynamicTableData(id,paging).subscribe((sucess)=>{
+   getDynamicTableData(id,paging,flag){
+    this.allService.getDynamicTableData(id,paging).subscribe((sucess:any)=>{
       this.data=sucess.page;
+      
+      // if(flag){
+      //   debugger
+      //   this.headerList=[];
+      //   this.headerList=sucess.headerlist
+      // }
     })
    }
    
   ngOnInit(): void {}
 changePageSortSearch(url:any){
     this.byDefaultPaging = url;
-    this.getDynamicTableData(this.productEntityElementId,url);
+    this.getDynamicTableData(this.productEntityElementId,url,false);
 }
 buttonEvent1(data:any){
 if(data.event=='add'){

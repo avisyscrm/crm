@@ -31,7 +31,11 @@
                                                 [formControlName]="componat?.productAttribute"
                                                 format="DD-MMM-YYYY"
                                                 data-date-inline-picker="true" 
-                                                [ngClass]="{'mandatory': ngClass(componat)}"
+                                                [ngClass]=" ngClass(componat) ? 
+                                                getControl[componat?.productAttribute].errors
+                                                  ? 'mandatory'
+                                                  : 'mandatoryG':'' "
+
                                                 [type]="componat?.dataCaptureControl" class="form-control"
                                                 [id]="componat?.productAttribute" aria-describedby="emailHelp"
                                                 placeholder="Enter {{componat?.forLabel}}">
@@ -43,20 +47,24 @@
                                                         
                                                         [ngClass]="{'mandatory': ngClass(componat)}"
                                                         [formControlName]="componat?.productAttribute"
-                                                        [value]="x.value">{{x.value}}
+                                                        [value]="x.key">{{x.value}}
                                                     <label class="form-check-label " for="radio1"></label>
                                                 </div>
                                             </div>
                                               <!--  -->          
                                               <div *ngIf="componat.dataCaptureControl=='checkbox'">
                                                 <div class="form-check" *ngFor="let x of componat?.option">
+                                                 
                                                     <input   type="checkbox" class="form-check-input"
-                                                        [id]="x.value"
+                                                        [id]="x.key"  [ngClass]="
+                                                        getControl[componat?.productAttribute].errors
+                                                          ? 'mandatory'
+                                                          : 'mandatoryG'"
                                                         [ngClass]="{'mandatory': ngClass(componat)}"
-                                                        [checked]="return(x.value,x1?.section.section,componat?.productAttribute)"
+                                                        [checked]="return(x.key,x1?.section.section,componat?.productAttribute)"
                                                         (click)="checkBoxValue($event,x1?.section.section,componat?.productAttribute)"
                                                         
-                                                        [value]="x.value">
+                                                        [value]="x.key">
                                                     <label class="form-check-label " for="{{x.value}}">{{x.value}}</label>
                                                 </div>
                                             </div>
