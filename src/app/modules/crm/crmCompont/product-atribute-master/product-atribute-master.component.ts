@@ -172,7 +172,7 @@ this.crm.getOptioDataTable(this.assignRole.controls['productAttributeId'].value,
    })
     }else{
       this.crm.updateOption(this.optionFrom.value).subscribe((sucess:any)=>{
-        debugger
+        
         // this.alertService.RecordAddedStatic();
       this.alertService.RecordUpdatedStatic();
       // this.optionFrom.patchValue(this.defultIntialValue);

@@ -3,7 +3,6 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CrmservicesService } from '../../crm/crm-services/crmservices.service';
-import { DynamicForm } from '../dynamicForm';
 @Component({
   selector: 'app-from-tab-section',
   templateUrl: './from-tab-section.component.html',
@@ -18,9 +17,8 @@ export class FromTabSectionComponent {
   constructor(private router: Router, private formBuilder: FormBuilder, private service: CrmservicesService, private toastr: ToastrService) { }
   activetabsec(activetab: any, data) {
     this.activeTab = activetab.section;
-    let templateId = data.tabSections[0].section.components[0].productEntityTemplateId;
     let tabId = data.tabSections[0].section.components[0].tabId;
-    this.setTabValue(templateId, tabId);
+    this.setTabValue(tabId);
   }
   ngOnChanges(changes: SimpleChanges): void {
     this.tabFrom = this.formBuilder.group({});
@@ -33,29 +31,37 @@ export class FromTabSectionComponent {
             validator.push(Validators.required);
            }
           this.tabFrom.get(this.fromDetailsTab.page[k].section.section)
-            .addControl(this.fromDetailsTab.page[k]?.tabSections[l]?.section.components[j]?.productId,
-              new FormControl("", validator));
+            .addControl(this.fromDetailsTab.page[k]?.tabSections[l]?.section.components[j]?.productAttribute,
+              new FormControl(this.fromDetailsTab.page[k]?.tabSections[l]?.section.components[j]?.defaultValue, validator));
         }
       }
     }
+    
     this.activeTab = this.fromDetailsTab?.page[0]?.section.section;
-    let templateId = this.fromDetailsTab?.page[0].tabSections[0].section.components[0].productEntityTemplateId;
+   // let templateId = this.fromDetailsTab?.page[0].tabSections[0].section.components[0].productEntityTemplateId;
     let tabId = this.fromDetailsTab?.page[0].tabSections[0].section.components[0].tabId;
-    this.setTabValue(templateId, tabId);
+    this.setTabValue(tabId);
 
   }
-  setTabValue(templateId, tabId) {
+  setTabValue(tabId) {
+    
     if(this.version != undefined){
-      this.service.gettabEditData(templateId, tabId, this.version).subscribe((data: any) => {
+      
+      this.service.gettabEditData(this.fromDetailsTab.page[0].section.productEntityTemplateId, tabId, this.version).subscribe((data: any) => {
         this.tabFrom.get(this.activeTab).patchValue(data.templateData);
       });
     }
   }
   submit(data: any, ids: any) {
-    
     if (this.tabFrom?.get(data).valid) {
-    const saveData = new DynamicForm(ids.productEntityTemplateId, ids.tabId, this.tabFrom.get(data).value)
-    this.service.postDynamicData(saveData).subscribe((res: any) => {
+      
+    //  const saveData = new DynamicForm(ids.productEntityTemplateId, ids.tabId, this.tabFrom.get(data).value)
+    var savedata:any ={
+      templateId:this.fromDetailsTab.page[0].section.productEntityTemplateId,
+      tabId:ids.tabId,
+      templateData:this.tabFrom.get(data).value
+    }
+    this.service.postDynamicData(savedata).subscribe((res: any) => {
       this.version = res.version;
       this.toastr.success("Record Added");
     },

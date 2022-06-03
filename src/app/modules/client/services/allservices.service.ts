@@ -6,7 +6,7 @@ import { environment } from 'src/environments/environment';
 import { ChangePassword } from '../../auth/changepassword';
 import { PostForgotPassword } from '../../auth/forgotpass.model';
 import { Contact } from '../contact.model';
-import { DynamicForm } from '../dynamicForm';
+
 import { EntityGroup } from '../entitygroup.model';
 import { listAddTabs } from '../listAddtabs.model';
 import { ProductAttribute } from '../productAttribute.model';
@@ -477,7 +477,7 @@ export class AllservicesService {
       return this.isStringUrl.asObservable();
     }
 
-    postDynamicData(data:DynamicForm){
+    postDynamicData(data){
       return this.http.post(this.postDynamicFormData,data);
     }
 

@@ -2,7 +2,7 @@ import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { CrmservicesService } from '../../crm/crm-services/crmservices.service';
-import { DynamicForm } from '../dynamicForm';
+
 
 @Component({
   selector: 'app-from-section',
@@ -38,7 +38,8 @@ export class FromSectionComponent {
     if (this.myForm.valid) {
       let templateId = this.fromDetails?.page[0].tabSections[0].section.components[0].productEntityTemplateId;
       let tabId = this.fromDetails?.page[0].tabSections[0].section.components[0].tabId;
-      const saveData = new DynamicForm(templateId, tabId, this.myForm.value)
+     // const saveData = new DynamicForm(templateId, tabId, this.myForm.value)
+     var saveData:any={};
       this.service.postDynamicData(saveData).subscribe((res: any) => {
         this.version = res.version;
         this.toastr.success("Record Added Sucessfully...");

@@ -24,11 +24,10 @@ export class DynamicformDatatableComponent implements OnInit {
   name: any;
 
   constructor(private allService:CrmservicesService, private router:Router) {    
-    this.allService.getDynamicTableData(0,"pageNo=1&pageSize=5").subscribe((sucess)=>{
-      this.headerList=sucess.headerlist;
-    })
+    // this.allService.getDynamicTableData(0,"pageNo=1&pageSize=5").subscribe((sucess)=>{
+    //   this.headerList=sucess.headerlist;
+    // })
       this.allService.isStringUrl.subscribe(sucessId=>{
-        
         this.productEntityElementId = +sucessId?.data;
         this.name=sucessId.name;
         this.getDynamicTableData(this.productEntityElementId,this.byDefaultPaging);
