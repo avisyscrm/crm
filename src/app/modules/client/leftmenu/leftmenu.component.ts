@@ -318,7 +318,7 @@ export class LeftmenuComponent implements OnInit {
           }
           ,{
             name:"Block Defination",
-            routerLink:['/number/blockDefination'],
+            routerLink:['/number/blockDefinationTable'],
             translationKey:'master_submenu_product_family',
           },{
             name:"Vanity Number",

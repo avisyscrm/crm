@@ -60,6 +60,10 @@ export class NumberservicesService {
     return this.http.get("./assets/numberScheme.json");
   }
   
+  getBlockDefinition(url:string): Observable<any>  {
+    return this.http.get("./assets/blockDefinition.json");
+  }
+  
 
   getnumberSchemeDetails(url:string):Observable<any>{
     return this.http.get("./assets/numberSchemeDetails.json");
