@@ -18,7 +18,7 @@ export class NumberSchemeTableComponent implements OnInit {
   constructor(private allService:NumberservicesService,private router:Router,
     private sweetAlert: SweetalertServiceService) { 
       this.allService.getNumberSchemes(this.url).subscribe(sucess=>{
-        this.headerList=sucess.headerlist  ;
+        this.headerList=sucess.headerlist;
         this.data=sucess.page;
         },error=>{
           console.log("Hello");
@@ -46,10 +46,10 @@ if(data.event=='add'){
     console.log(data, 'data')
 }
  else if(data.event=='delete'){
- //  this.allService.deletenumberScheme(data.data.numberTypeId).subscribe((res)=>{
+  this.allService.deletenumberScheme(data.data.numberSchemeId,JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res)=>{
     this.sweetAlert.recordDeleted();  
     this.changePageSortSearch(this.url);
-  // })
+  })
  } 
   
 }

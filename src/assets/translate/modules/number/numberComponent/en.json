@@ -9,7 +9,8 @@
             "length":"Length",
             "value-type":"Value Type",
             "delimeter": "Delimeter",
-            "level-type": "Level Type" 
+            "level-type": "Level Type",
+            "value":"Value"
         },
         "blockDefination":{
             "blockDefinationTitle":"Block Defination",
