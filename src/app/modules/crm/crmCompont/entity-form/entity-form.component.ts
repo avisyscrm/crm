@@ -26,7 +26,7 @@ export class EntityFormComponent implements OnInit {
   actionBtn = "Save";
   file: any;
   constructor(private service: CrmservicesService, public translate: TranslateService,
-    private alertService: SweetalertServiceService, private route: ActivatedRoute) {
+    private alertService: SweetalertServiceService, private route: ActivatedRoute,  private router:Router) {
     this.intialvalue = this.entityGroups.value;
     this.route.queryParams.subscribe((params: any) => {
       if (params.data != undefined) {
@@ -99,4 +99,9 @@ export class EntityFormComponent implements OnInit {
       }
     }
   }
+
+  back(){
+    this.router.navigate(['/crm/entity-groups'])
+  }
+
 }

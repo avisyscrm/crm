@@ -27,8 +27,12 @@ export class ProductAtributeMasterSummmaryComponent implements OnInit {
     if(event.event=='add'){
       this.router.navigate(["/crm/Product-Atribute-Master"]);
     }else if(event.event=='edit'){
-      let queryParamsObj = {productAttributeId:event.data.productAttributeId};
-      this.router.navigate(["/crm/Product-Atribute-Master"],{ queryParams: queryParamsObj});
+
+      // let queryParamsObj = {productAttributeId:event.data.productAttributeId};
+      // this.router.navigate(["/crm/Product-Atribute-Master"],{ queryParams: queryParamsObj});
+
+      this.router.navigate(["/crm/Product-Atribute-Master"],{ queryParams: { data: event.data.productAttributeId} });
+
     }else if(event.event=='delete'){
       this.crmService.deleteProductAttribute(event.data.productAttributeId,JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe(sucess=>{
         this.sweetAlert.recordDeleted();

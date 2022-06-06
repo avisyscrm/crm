@@ -13,8 +13,9 @@
             </div>
             <form [formGroup]="entityGroups" >
             <div class="card card-height">
-                <div class="card-header pf-head">
+                <div class="card-header pf-head d-flex justify-content-between">
                     <h3 class="card-title "><span>{{'forms.entityGroup.Entity-group-heading' | translate}}</span> </h3>
+                    <button type="button"  (click)="back()" class="btn btn-dark " >Back</button>
                 </div>
                 <div class="card-body">
                     <div class="row productfamily ">

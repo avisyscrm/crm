@@ -24,7 +24,7 @@ export class ProductFamilyFormComponent implements OnInit {
   file: any;
   statusCode: any;
   constructor(private service: CrmservicesService, public translate: TranslateService,
-    private alertService: SweetalertServiceService, private route: ActivatedRoute) {
+    private alertService: SweetalertServiceService, private route: ActivatedRoute, private router:Router) {
     this.intialvalue = this.productFamily.value;
     this.route.queryParams.subscribe((params: any) => {
       if (params.data != undefined) {
@@ -71,8 +71,6 @@ export class ProductFamilyFormComponent implements OnInit {
       } else {
         alert("Please select File")
       }
-
-
     }
   }
 
@@ -94,5 +92,9 @@ export class ProductFamilyFormComponent implements OnInit {
         this.productFamily.controls['productFamilyIcon'].setValue(imagePath);
       }
     }
+  }
+
+  back(){
+    this.router.navigate(['/crm/product-family'])
   }
 }
