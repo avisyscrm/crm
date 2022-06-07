@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ProductHierachyComponent } from './product-hierachy.component';
 
@@ -6,7 +6,7 @@ describe('ProductHierachyComponent', () => {
   let component: ProductHierachyComponent;
   let fixture: ComponentFixture<ProductHierachyComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ProductHierachyComponent ]
     })

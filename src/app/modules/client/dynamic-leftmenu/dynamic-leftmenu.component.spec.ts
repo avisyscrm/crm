@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { DynamicLeftmenuComponent } from './dynamic-leftmenu.component';
 
@@ -6,7 +6,7 @@ describe('DynamicLeftmenuComponent', () => {
   let component: DynamicLeftmenuComponent;
   let fixture: ComponentFixture<DynamicLeftmenuComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DynamicLeftmenuComponent ]
     })
