@@ -15,6 +15,7 @@ import { NumberTypeTableComponent } from './numberComponent/number-type-table/nu
 import { NumberFormatAllComponent } from './numberComponent/number-format-all/number-format-all.component';
 import { NumberSchemeLineDetailFormComponent } from './numberComponent/number-scheme-line-detail-form/number-scheme-line-detail-form.component';
 import { NumberSchemeTableComponent } from './numberComponent/number-scheme-table/number-scheme-table.component';
+import { BlockDefinitonTableComponent } from './numberComponent/block-definiton-table/block-definiton-table.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { NumberSchemeTableComponent } from './numberComponent/number-scheme-tabl
     NumberGenerationComponent,
     NumberTypeTableComponent,
     NumberFormatAllComponent,
-    NumberSchemeTableComponent
+    NumberSchemeTableComponent,
+    BlockDefinitonTableComponent
   ],
   imports: [
     CommonModule,

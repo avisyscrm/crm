@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SparklinesComponent } from './sparklines.component';
 
@@ -6,7 +6,7 @@ describe('SparklinesComponent', () => {
   let component: SparklinesComponent;
   let fixture: ComponentFixture<SparklinesComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SparklinesComponent ]
     })

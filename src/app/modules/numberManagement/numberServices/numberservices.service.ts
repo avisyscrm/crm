@@ -15,6 +15,7 @@ export class NumberservicesService {
   private getLevelNameURL = environment.baseUrl+"/numberFormatDefinition/";
   private putLevelNameURL = environment.baseUrl+"/updateNumberFormatDefinition/";
   private deleteLevelNameURL = environment.baseUrl+"/deleteNumberFormatDefinition/";
+  private numberSchemeListUrl = environment.baseUrl+"/masters/allNumberSchemeConfiguration";
  
   getnumberType(url:string):Observable<any>{
     return this.http.get(environment.baseUrl+"/numberTypeDefinition?"+url);
@@ -57,16 +58,30 @@ export class NumberservicesService {
    }
 
    getNumberSchemes(url:string): Observable<any>  {
-    return this.http.get("./assets/numberScheme.json");
+    return this.http.get(environment.schemeBaseUrl+"/numberSchemeConfiguration");;
+    //return this.http.get("./assets/numberScheme.json");
+  }
+  
+  getBlockDefinition(url:string): Observable<any>  {
+    return this.http.get("./assets/blockDefinition.json");
   }
   
 
-  getnumberSchemeDetails(url:string):Observable<any>{
-    return this.http.get("./assets/numberSchemeDetails.json");
+  getnumberSchemeDetails(id:number):Observable<any>{
+    return this.http.get(environment.schemeBaseUrl+"/numberSchemeConfiguration/"+id);
+    // return this.http.get("./assets/numberSchemeDetails.json"+id);
+  }
+
+  postNumberSceme(data){
+    return this.http.post(environment.schemeBaseUrl+"/createNumberSchemeConfiguration",data);
   }
 
   getnumberTypes():Observable<any>{
     return this.http.get(environment.baseUrl+"/allNumberTypeDefinition");
+  }
+
+  deletenumberScheme(numberSchemeId:number, id:any){
+    return this.http.delete(environment.schemeBaseUrl+"/deleteNumberSchemeConfiguration"+"/"+numberSchemeId+"/"+id)
   }
 
   createNumberScheme(data){
@@ -77,4 +92,5 @@ export class NumberservicesService {
     //return this.http.put(environment.baseUrl+"/updateNumberTypeDefinition",value);
     return this.http.get("./assets/numberSchemeDetails.json");
   }
+ 
 }

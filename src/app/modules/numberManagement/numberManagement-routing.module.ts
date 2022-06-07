@@ -14,6 +14,7 @@ import { NumberGenerationComponent } from './numberComponent/number-generation/n
 import { NumberTypeTableComponent } from './numberComponent/number-type-table/number-type-table.component';
 import { NumberSchemeLineDetailFormComponent } from './numberComponent/number-scheme-line-detail-form/number-scheme-line-detail-form.component';
 import { NumberSchemeTableComponent } from './numberComponent/number-scheme-table/number-scheme-table.component';
+import { BlockDefinitonTableComponent } from './numberComponent/block-definiton-table/block-definiton-table.component';
 
 
 const routes: Routes = [
@@ -56,7 +57,13 @@ const routes: Routes = [
       path: 'blockDefination',
       component: BlockDefinationFormComponent,
       data: { title: 'Number Scheme' }
-    },{
+    },
+    {
+      path: 'blockDefinationTable',
+      component: BlockDefinitonTableComponent,
+      data: { title: 'Number Scheme' }
+    },
+    {
       path: 'vanityNumber',
       component: VanityNumberComponent,
       data: { title: 'Vanity Number' }

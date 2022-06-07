@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { NumberFormatAllComponent } from './number-format-all.component';
+import { BlockDefinitonTableComponent } from './block-definiton-table.component';
 
-describe('NumberFormatAllComponent', () => {
-  let component: NumberFormatAllComponent;
-  let fixture: ComponentFixture<NumberFormatAllComponent>;
+describe('BlockDefinitonTableComponent', () => {
+  let component: BlockDefinitonTableComponent;
+  let fixture: ComponentFixture<BlockDefinitonTableComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ NumberFormatAllComponent ]
+      declarations: [ BlockDefinitonTableComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NumberFormatAllComponent);
+    fixture = TestBed.createComponent(BlockDefinitonTableComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -9,6 +9,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class BlockDefinationFormComponent implements OnInit {
 
+
   constructor() { 
     this.intialvalue = this.blockdefine.value;
   }
@@ -27,7 +28,10 @@ export class BlockDefinationFormComponent implements OnInit {
   });
   intialvalue: any;
   actionBtn = "Save";
-
+  start:any;
+  end:any;
+  result:any;
+  
   get getControl() {
     return this.blockdefine.controls;
   }
@@ -40,5 +44,4 @@ export class BlockDefinationFormComponent implements OnInit {
   resetForm(){
     this.blockdefine.reset(this.intialvalue);
   }
-
 }

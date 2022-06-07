@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FromTabSectionComponent } from './from-tab-section.component';
 
@@ -6,7 +6,7 @@ describe('FromTabSectionComponent', () => {
   let component: FromTabSectionComponent;
   let fixture: ComponentFixture<FromTabSectionComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FromTabSectionComponent ]
     })

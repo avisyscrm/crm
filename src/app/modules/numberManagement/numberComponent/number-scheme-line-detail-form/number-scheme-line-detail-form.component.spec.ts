@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NumberSchemeLineDetailFormComponent } from './number-scheme-line-detail-form.component';
 
@@ -6,7 +6,7 @@ describe('NumberschemelinedetailComponent', () => {
   let component: NumberSchemeLineDetailFormComponent;
   let fixture: ComponentFixture<NumberSchemeLineDetailFormComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ NumberSchemeLineDetailFormComponent ]
     })
