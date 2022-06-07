@@ -197,7 +197,7 @@
                                                     >
                                                     <span
                                                       class="validate-text"
-                                                      *ngIf="numberFormat.controls.numberFormatLevelName?.errors?.maxlength">Character exceed max limit 15</span>
+                                                      *ngIf="numberFormat.controls.numberFormatLevelName?.errors?.maxlength">Character exceed max limit {{numberFormat.controls.numberFormatLevelName?.errors?.maxlength?.requiredLength}}</span>
                                                   </div>
                                                   
                                                 </div>
@@ -219,7 +219,7 @@
                                                     >
                                                     <span
                                                       class="validate-text"
-                                                      *ngIf="numberFormat.controls.numberFormatDescription?.errors?.maxlength">Character exceed max limit 100</span>
+                                                      *ngIf="numberFormat.controls.numberFormatDescription?.errors?.maxlength">Character exceed max limit {{numberFormat.controls.numberFormatDescription?.errors?.maxlength?.requiredLength}}</span>
                                                   </div>
                                                 </div>
                                             </div>
@@ -239,7 +239,7 @@
                                                     >
                                                     <span
                                                       class="validate-text"
-                                                      *ngIf="numberFormat.controls.numberFormatLength?.errors?.maxlength">Character exceed max limit 10</span>
+                                                      *ngIf="numberFormat.controls.numberFormatLength?.errors?.maxlength">Character exceed max limit {{numberFormat.controls.numberFormatLength?.errors?.maxlength?.requiredLength}}</span>
                                                   </div>
                                                 
                                                 </div>
