@@ -36,7 +36,7 @@
                                             *ngIf="getControl.productAttributeId?.errors?.required">Please Enter Product
                                             Attribute Id</span>
                                         <span class="validate-text"
-                                            *ngIf="getControl.productAttributeId?.errors?.maxlength ">length Should Be
+                                            *ngIf="getControl.productAttributeId?.errors?.maxlength ">Attribute ID length Should Be
                                             40 </span>
                                     </div>
                                 </div>
@@ -60,8 +60,8 @@
                                             *ngIf="getControl.productAttributeName?.errors?.required">Please Enter
                                             Product Attribute Name</span>
                                         <span class="validate-text"
-                                            *ngIf="getControl.productAttributeName?.errors?.maxlength ">Product
-                                            Attribute Name Length Should Be 40 Charechter</span>
+                                            *ngIf="getControl.productAttributeName?.errors?.maxlength ">
+                                            Product Attribute Name Length Should Be 40 Character</span>
 
                                     </div>
                                 </div>
@@ -85,7 +85,7 @@
                                             Description</span>
                                         <span class="validate-text"
                                             *ngIf="getControl.description?.errors?.maxlength ">Description length should
-                                            be 100 charachter</span>
+                                            be 150 charachter</span>
 
                                     </div>
                                 </div>
@@ -115,7 +115,7 @@
                                         <span class="validate-text" *ngIf="getControl.dataType?.errors?.required">Please
                                             Select Data Type</span>
                                         <span class="validate-text" *ngIf="getControl.dataType?.errors?.maxlength ">Data
-                                            Type Length Should Be 40 Charechter</span>
+                                            Type Length Should Be 15 Charechter</span>
 
                                     </div>
                                 </div>
@@ -130,7 +130,7 @@
                                     <label class="form-label"> <span>{{'forms.template-attribute-master.data-capture' |
                                             translate}}</span></label>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-5">
                                     <!-- <input type="text" formControlName="dataCaptureControl" class="form-control " [ngClass]="getControl.dataCaptureControl?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
                                        > -->
                                     <select id="datalistOptions84" class="form-control "

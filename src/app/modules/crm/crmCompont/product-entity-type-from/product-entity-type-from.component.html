@@ -29,7 +29,7 @@
                                    
                                     <div *ngIf="productFamily.controls.productEntityType?.invalid && productFamily.controls.productEntityType?.touched">
                                         <span class="validate-text" *ngIf="productFamily.controls.productEntityType?.errors?.required">Please Enter Product Family</span>
-                                        <span class="validate-text" *ngIf="productFamily.controls.productEntityType?.errors?.maxlength">Character exceed max limit 100</span>
+                                        <span class="validate-text" *ngIf="productFamily.controls.productEntityType?.errors?.maxlength">Character exceed max limit 15</span>
                                         <span class="validate-text"   *ngIf="productFamily.controls.productEntityType?.errors?.isChar">Invalid input. Only character allowed </span>
                                         <span class="validate-text"  *ngIf="productFamily.controls.productEntityType?.errors?.pattern ">Field cant be empty</span>
                                      </div>
@@ -47,7 +47,7 @@
                                         value="Mike" formControlName="productEntityTypeDescription"></textarea>
                                         <div *ngIf="productFamily.controls.productEntityTypeDescription?.invalid && productFamily.controls.productEntityTypeDescription?.touched">
                                             <span class="validate-text"  *ngIf="productFamily.controls.productEntityTypeDescription?.errors?.required">Please Enter Product Line description</span>
-                                            <span class="validate-text"  *ngIf="productFamily.controls.productEntityTypeDescription?.errors?.maxlength">Character exceed max limit 100</span>
+                                            <span class="validate-text"  *ngIf="productFamily.controls.productEntityTypeDescription?.errors?.maxlength">Character exceed max limit 30</span>
                                             <span class="validate-text"  *ngIf="productFamily.controls.productEntityTypeDescription?.errors?.isChar">Invalid input. Only character allowed </span>
                                          </div>
                                 </div>

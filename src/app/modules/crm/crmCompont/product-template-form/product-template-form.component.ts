@@ -19,13 +19,13 @@ export class ProductTemplateFormComponent {
   modalRef: BsModalRef;
   productTemplate = new FormGroup({  
     productEntityTemplateId: new FormControl(""),
-    productEntityTemplateName: new FormControl("", [Validators.required, Validators.maxLength(100)]),
-    description: new FormControl("", [Validators.required, Validators.maxLength(100)]),
+    productEntityTemplateName: new FormControl("", [Validators.required, Validators.maxLength(30)]),
+    description: new FormControl("", [Validators.required, Validators.maxLength(400)]),
     productHierarchyId: new FormControl("", [Validators.required, Validators.maxLength(100)]),
-    screenLayout: new FormControl("", [Validators.required, Validators.maxLength(100)]),
+    screenLayout: new FormControl("", [Validators.required, Validators.maxLength(30)]),
     numberOfTabPagesSections: new FormControl(0, [Validators.required, Validators.maxLength(100)]),
     version: new FormControl("",),
-    productEntityType: new FormControl("", [Validators.required, Validators.maxLength(30)]),
+    productEntityType: new FormControl("", [Validators.required, Validators.maxLength(15)]),
     state: new FormControl("", [Validators.required, Validators.maxLength(100)]),
     updatedBy: new FormControl(""),
     cretedBy: new FormControl("")
@@ -68,6 +68,9 @@ export class ProductTemplateFormComponent {
 
   get getControl() {
     return this.productTemplate.controls;
+  }
+  get getControls() {
+    return this.AddTabs.controls;
   }
   permission: any = [true, true, false];
   headerList: any = []
@@ -140,7 +143,7 @@ export class ProductTemplateFormComponent {
   AddTabs = new FormGroup({
     productEntityTemplateId: new FormControl('', selectValidation),
     type: new FormControl('Tab', Validators.required),
-    section: new FormControl('', Validators.required),
+    section: new FormControl('', [Validators.required, Validators.maxLength(100)]),
     sequenceId: new FormControl('', Validators.required),
     createdBy: new FormControl('-1'),
     updatedBy: new FormControl('-1'),

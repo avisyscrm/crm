@@ -103,7 +103,7 @@ export class ProductAttributesFormComponent  {
       productEntityTemplateId: new FormControl('',[ Validators.required, selectValidation]),
        productEntityTemplateAttributesId: new FormControl('', ),
        sequenceId: new FormControl('', Validators.required),
-       productAttribute: new FormControl('', Validators.required),
+       productAttribute: new FormControl('', [Validators.required, Validators.maxLength(400)]),
        description: new FormControl('',[Validators.required, Validators.maxLength(400), Validators.pattern(/^(\s+\S+\s*)*(?!\s).*$/)]),
        productAttributeDataType:new FormControl('', Validators.required),
        productAttributeLength:new FormControl(''),
@@ -120,6 +120,7 @@ export class ProductAttributesFormComponent  {
  
    resetForm(){
      this.productEntityAttribute.reset(this.intialValue);
+     
    }
    onOptionsSelected(value:any){
      this.getTabsIds(parseInt(value));

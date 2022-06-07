@@ -127,6 +127,8 @@
                                             <span class="validate-text"
                                                 *ngIf="productEntityAttribute.controls.productAttribute?.errors?.required">Please Enter Product
                                                 Attribute </span>
+                                                <span class="validate-text"
+                                                *ngIf="productEntityAttribute.controls.productAttribute?.errors?.maxlength">Max Length should be 100</span>
                                         </div>
                                     </div>
                                 </div>
