@@ -29,7 +29,7 @@
                                   
                                     <div *ngIf="entityGroups.controls.entityGroups?.invalid && entityGroups.controls.entityGroups?.touched">
                                         <span class="validate-text" *ngIf="entityGroups.controls.entityGroups?.errors?.required">Please Enter Product Line</span>
-                                        <span class="validate-text" *ngIf="entityGroups.controls.entityGroups?.errors?.maxlength">Character exceed max limit 100</span>
+                                        <span class="validate-text" *ngIf="entityGroups.controls.entityGroups?.errors?.maxlength">Character exceed max limit 30</span>
                                         <span class="validate-text"   *ngIf="entityGroups.controls.entityGroups?.errors?.isChar">Invalid input. Only character allowed </span>
                                         <span class="validate-text"  *ngIf="entityGroups.controls.entityGroups?.errors?.pattern ">Field cant be empty</span>
                                      </div>
