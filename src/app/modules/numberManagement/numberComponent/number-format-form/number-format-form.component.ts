@@ -60,7 +60,7 @@ export class NumberFormatFormComponent implements OnInit {
     'numberTypeId': new FormControl(),
     'numberFormatLevelName': new FormControl('', [Validators.required, Validators.maxLength(15)]),
     'numberFormatDescription': new FormControl('', [Validators.required, Validators.maxLength(100)]),
-    'numberFormatLength': new FormControl('',[Validators.required, Validators.maxLength(10)]),
+    'numberFormatLength': new FormControl('',[Validators.required, Validators.pattern("^\s*-?[0-9]{1,10}\s*$")]),
     'numberFormatValueType': new FormControl('',[Validators.required, Validators.maxLength(30)]),
     'numberFormatDelimiter': new FormControl('None',Validators.required),
     'numberFormatLevelType': new FormControl('',Validators.required),
