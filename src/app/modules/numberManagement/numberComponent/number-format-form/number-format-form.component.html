@@ -130,12 +130,11 @@
                                                 <div
                                                 *ngIf="numberFormat.controls.numberFormatLength?.invalid && numberFormat.controls.numberFormatLength?.touched">
                                                 <span
-                                                  class="validate-text" *ngIf="numberFormat.controls.numberFormatLength?.errors?.required"
-                                                  >Please Enter Length</span
-                                                >
+                                                class="validate-text" *ngIf="numberFormat.controls.numberFormatLength?.errors?.maxlength">Character exceed max limit 10</span>
                                                 <span
-                                                  class="validate-text"
-                                                  *ngIf="numberFormat.controls.numberFormatLength?.errors?.maxlength">Character exceed max limit 10</span>
+                                                  class="validate-text" *ngIf="numberFormat.controls.numberFormatLength?.errors?.required"
+                                                  >Please Enter Length</span>
+
                                               </div>
                                             
                                             </div>

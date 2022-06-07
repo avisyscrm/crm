@@ -10,9 +10,10 @@
         </div>
         <form [formGroup]="assignRole">
             <div class="card card-height">
-                <div class="card-header pf-head">
+                <div class="card-header pf-head d-flex justify-content-between">
                     <h3 class="card-title "><span>{{'forms.template-attribute-master.template-master' |
                             translate}}</span></h3>
+                            <button type="button"  (click)="back()" class="btn btn-dark " >Back</button>
                 </div>
                 <div class="card-body">
                     <div class="row productfamily ">
@@ -83,8 +84,8 @@
                                             *ngIf="getControl.description?.errors?.required">Please Enter
                                             Description</span>
                                         <span class="validate-text"
-                                            *ngIf="getControl.description?.errors?.maxlength ">Description Length Should
-                                            Be 40 Charechter</span>
+                                            *ngIf="getControl.description?.errors?.maxlength ">Description length should
+                                            be 100 charachter</span>
 
                                     </div>
                                 </div>
@@ -101,7 +102,7 @@
                                        > -->
                                     <select id="datalistOptions84" class="form-control "
                                         [ngClass]="getControl.dataType?.errors ? 'mandatory' : 'mandatoryG'"
-                                        #dataCapture formControlName="dataType">
+                                        #dataTypeValue formControlName="dataType" (change)="ifDate(dataTypeValue.value)">
                                         <option value="">Select --</option>
                                         <option value="text">Text</option>
                                         <option value="number">Number</option>
@@ -129,7 +130,7 @@
                                     <label class="form-label"> <span>{{'forms.template-attribute-master.data-capture' |
                                             translate}}</span></label>
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-8">
                                     <!-- <input type="text" formControlName="dataCaptureControl" class="form-control " [ngClass]="getControl.dataCaptureControl?.errors ? 'mandatory' : 'mandatoryG'"  id="lname" name="last-name"
                                        > -->
                                     <select id="datalistOptions84" class="form-control "

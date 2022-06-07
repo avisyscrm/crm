@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
@@ -27,7 +27,7 @@ export class ProductAtributeMasterComponent implements OnInit {
   assignRole = new FormGroup({
     productAttributeId: new FormControl('', [Validators.required,Validators.maxLength(40)]),
     productAttributeName: new FormControl("",[Validators.required]),
-    description: new FormControl('', [Validators.required]),
+    description: new FormControl('', [Validators.required, Validators.maxLength(100)]),
     dataType: new FormControl("",[Validators.required]),
     productAttributeLength: new FormControl(''),
     dataCaptureControl: new FormControl("",[Validators.required]),
@@ -51,20 +51,22 @@ export class ProductAtributeMasterComponent implements OnInit {
    url="pageNo=1&pageSize=5";
   defultIntialValue: any;
   IntialValue: any;
-  constructor(private crm:CrmservicesService,private alertService:SweetalertServiceService,private modalService: BsModalService,
+  constructor(private crm:CrmservicesService,private alertService:SweetalertServiceService,
+    private modalService: BsModalService, private router: Router,
     private activatedRoute: ActivatedRoute ) {  
       this.defultIntialValue=this.optionFrom.value;
       this.intialValue = this.assignRole.value;
       this.activatedRoute.queryParams.subscribe(params => {
-        if (params.productAttributeId != undefined && params.productAttributeId != null) {
+        if (params.data != undefined && params.data != null) {
           this.label = "Update";
           this.checkFlag=true;
-          this.crm.getProductAttributeById(params.productAttributeId).subscribe((sucess:any)=>{
+          this.crm.getProductAttributeById(params.data).subscribe((sucess:any)=>{
            this.assignRole.patchValue(sucess);
            this.intialValue = sucess;
+           this.ifDate(sucess.dataType);
           });
         } else {
-          this.label = "Add";
+          this.label = "Save";
         }
       }); 
 
@@ -181,6 +183,23 @@ this.crm.getOptioDataTable(this.assignRole.controls['productAttributeId'].value,
       this.reset();
       })
       
+    }
+  }
+
+  back(){
+    this.router.navigate(["/crm/Product-Atribute-Summmary"]);
+  }
+
+  ifDate(selectedValue){
+    if(selectedValue == "date"){
+      this.assignRole.controls['dataCaptureControl'].setValue('date');
+      this.assignRole.controls['dataCaptureControl'].disable();
+      this.assignRole.controls['productAttributeLength'].disable();
+      this.assignRole.controls['productAttributeLength'].reset();
+    } else{
+      this.assignRole.controls['dataCaptureControl'].enable();
+      this.assignRole.controls['dataCaptureControl'].setValue('');
+      this.assignRole.controls['productAttributeLength'].enable();
     }
   }
   

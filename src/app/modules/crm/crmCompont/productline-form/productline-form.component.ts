@@ -25,7 +25,7 @@ export class ProductlineFormComponent implements OnInit {
   file: any;
   statusCode: any;
   constructor(private service: CrmservicesService, public translate: TranslateService,
-    private alertService: SweetalertServiceService, private route: ActivatedRoute) {
+    private alertService: SweetalertServiceService, private route: ActivatedRoute, private router:Router) {
     this.intialvalue = this.productLine.value;
     this.route.queryParams.subscribe((params: any) => {
       if (params.data != undefined) {
@@ -97,5 +97,9 @@ export class ProductlineFormComponent implements OnInit {
          this.productLine.controls['productLineIcon'].setValue(imagePath);
       }
     }
+  }
+
+  back(){
+    this.router.navigate(['/crm/product-line'])
   }
 }

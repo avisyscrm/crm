@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
@@ -27,7 +27,7 @@ export class ProductHierachyFormComponent implements OnInit {
   actionBtn = "Save";
   productFamilyIcons: any;
   constructor(private service: CrmservicesService, public translate: TranslateService,
-    private alertService: SweetalertServiceService, private route: ActivatedRoute) {
+    private alertService: SweetalertServiceService, private route: ActivatedRoute, private router:Router) {
 this.service.allEntityGroups().subscribe((sucss:any)=>{
   this.productGroup=sucss;
 });
@@ -77,10 +77,16 @@ this.service.getallProductLine().subscribe((sucss:any)=>{
       });
     }
   }
+
   resetForm() {
     this.productFamily.reset(this.intialvalue);
   }
+
   get getControl() {
     return this.productFamily.controls;
+  }
+
+  back(){
+    this.router.navigate(['/crm/product-hierachy'])
   }
 }

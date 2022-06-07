@@ -26,8 +26,9 @@ export class ProductEntityTypeFromComponent implements OnInit {
   statusCode: any;
   checkFlag: boolean;
   msg: any;
+  
   constructor(private service: CrmservicesService, public translate: TranslateService,
-    private alertService: SweetalertServiceService, private route: ActivatedRoute) {
+    private alertService: SweetalertServiceService, private route: ActivatedRoute, private router:Router) {
     this.intialvalue = this.productFamily.value;
     this.route.queryParams.subscribe((params: any) => {
       if (params.data != undefined) {
@@ -74,5 +75,9 @@ export class ProductEntityTypeFromComponent implements OnInit {
   }
   get getControl() {
     return this.productFamily.controls;
+  }
+
+  back(){
+    this.router.navigate(['/crm/product-entity-type'])
   }
 }
