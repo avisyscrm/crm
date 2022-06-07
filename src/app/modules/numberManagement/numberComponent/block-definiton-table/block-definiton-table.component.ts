@@ -4,11 +4,11 @@ import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/swee
 import { NumberservicesService } from '../../numberServices/numberservices.service';
 
 @Component({
-  selector: 'app-number-scheme-table',
-  templateUrl: './number-scheme-table.component.html',
-  styleUrls: ['./number-scheme-table.component.scss']
+  selector: 'app-block-definiton-table',
+  templateUrl: './block-definiton-table.component.html',
+  styleUrls: ['./block-definiton-table.component.scss']
 })
-export class NumberSchemeTableComponent implements OnInit {
+export class BlockDefinitonTableComponent implements OnInit {
 
   permission:any=[true,true,true];
   headerList:any=[];
@@ -17,13 +17,14 @@ export class NumberSchemeTableComponent implements OnInit {
   url="pageNo=1&pageSize=5";
   constructor(private allService:NumberservicesService,private router:Router,
     private sweetAlert: SweetalertServiceService) { 
-      this.allService.getNumberSchemes(this.url).subscribe(sucess=>{
-        this.headerList=sucess.headerlist;
+      this.allService.getBlockDefinition(this.url).subscribe(sucess=>{
+        this.headerList=sucess.headerlist  ;
         this.data=sucess.page;
         },error=>{
           console.log("Hello");
         }
         );
+
     }
   
   ngOnInit(): void {
@@ -32,25 +33,24 @@ export class NumberSchemeTableComponent implements OnInit {
   }
   changePageSortSearch(url:any){
     this.url=url;
-    this.allService.getNumberSchemes(url).subscribe(sucess=>{
+    this.allService.getBlockDefinition(url).subscribe(sucess=>{
      this.data=sucess.page;
      },error=>{});
   }
  
 buttonEvent1(data:any){
 if(data.event=='add'){
-  this.router.navigate(['/number/numberScheme']);   
+  this.router.navigate(['/number/blockDefination']);   
 }else if(data.event=='edit'){
-  this.router.navigate(['/number/numberScheme'],{ queryParams: { data:data.data.numberSchemeId} });
+  this.router.navigate(['/number/blockDefination'],{ queryParams: { data:data.data.numberSchemeId} });
     console.log(data, 'data')
 }
  else if(data.event=='delete'){
-  this.allService.deletenumberScheme(data.data.numberSchemeId,JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res)=>{
+ //  this.allService.deletenumberScheme(data.data.numberTypeId).subscribe((res)=>{
     this.sweetAlert.recordDeleted();  
     this.changePageSortSearch(this.url);
-  })
+  // })
  } 
   
 }
-
 }
