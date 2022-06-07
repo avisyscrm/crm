@@ -28,7 +28,7 @@
                                     <input    [readonly]="actionBtn == 'Update'"   name="" type="text"   [ngClass]="productLine.controls.productLine?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control " value="" formControlName="productLine">
                                     <div *ngIf="productLine.controls.productLine?.invalid && productLine.controls.productLine?.touched">
                                         <span class="validate-text" *ngIf="productLine.controls.productLine?.errors?.required">Please Enter Product Line</span>
-                                        <span class="validate-text" *ngIf="productLine.controls.productLine?.errors?.maxlength">Character exceed max limit 100</span>
+                                        <span class="validate-text" *ngIf="productLine.controls.productLine?.errors?.maxlength">Character exceed max limit {{productLine.controls.productLine?.errors?.maxlength?.requiredLength }}</span>
                                         <span class="validate-text"   *ngIf="productLine.controls.productLine?.errors?.isChar">Invalid input. Only character allowed </span>
                                         <span class="validate-text"  *ngIf="productLine.controls.productLine?.errors?.pattern ">Field cant be empty</span>
                                      </div>
@@ -46,7 +46,7 @@
                                         value="Mike" formControlName="description"></textarea>
                                         <div *ngIf="productLine.controls.description?.invalid && productLine.controls.description?.touched">
                                             <span class="validate-text"  *ngIf="productLine.controls.description?.errors?.required">Please Enter Product Line description</span>
-                                            <span class="validate-text"  *ngIf="productLine.controls.description?.errors?.maxlength">Character exceed max limit 100</span>
+                                            <span class="validate-text"  *ngIf="productLine.controls.description?.errors?.maxlength">Character exceed max limit {{productLine.controls.description?.errors?.maxlength?.requiredLength }}</span>
                                             <span class="validate-text"  *ngIf="productLine.controls.description?.errors?.isChar">Invalid input. Only character allowed </span>
                                          </div>
                                 </div>

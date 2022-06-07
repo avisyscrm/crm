@@ -14,7 +14,7 @@ export class ProductlineFormComponent implements OnInit {
   productLine = new FormGroup({
     'productLineId': new FormControl(''),
     'productLine': new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    'description': new FormControl('', [Validators.required, Validators.maxLength(100)]),
+    'description': new FormControl('', [Validators.required, Validators.maxLength(400)]),
     'productLineIcon': new FormControl('', Validators.required),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),

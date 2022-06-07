@@ -14,7 +14,7 @@ export class ProductFamilyFormComponent implements OnInit {
   productFamily = new FormGroup({
     'productFamilyId': new FormControl(''),
     'productFamily': new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    'description': new FormControl('', [Validators.required, Validators.maxLength(100)]),
+    'description': new FormControl('', [Validators.required, Validators.maxLength(400)]),
     'productFamilyIcon': new FormControl('', Validators.required),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
