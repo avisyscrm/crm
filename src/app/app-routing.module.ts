@@ -10,10 +10,10 @@ import { NumberMangementModule } from './modules/numberManagement/numberManageme
 const routes: Routes = [ 
   { path :'master', component: FeatureComponent},
   { path: 'forgot-pass-forms', component: ForgotPassFormComponent},
-  { path: 'auth', loadChildren: './modules/auth/auth.module#AuthModule' },
+  { path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) },
   { path: '', pathMatch: 'full', redirectTo: '/login' },
-  { path: 'crm',  loadChildren:'./modules/crm/crm/crm.module#CrmModule' },
-  { path: 'number',  loadChildren:'./modules/numberManagement/numberManagement.module#NumberMangementModule'},
+  { path: 'crm',  loadChildren:() => import('./modules/crm/crm/crm.module').then(m => m.CrmModule) },
+  { path: 'number',  loadChildren:() => import('./modules/numberManagement/numberManagement.module').then(m => m.NumberMangementModule)},
   { path: '**', redirectTo: '/login' },
 ];
 @NgModule({
