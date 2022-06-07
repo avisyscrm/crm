@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { DynamicRoleComponent } from './dynamic-role.component';
 
@@ -6,7 +6,7 @@ describe('DynamicRoleComponent', () => {
   let component: DynamicRoleComponent;
   let fixture: ComponentFixture<DynamicRoleComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ DynamicRoleComponent ]
     })

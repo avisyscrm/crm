@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ProductHierachyFormComponent } from './product-hierachy-form.component';
 
@@ -6,7 +6,7 @@ describe('ProductHierachyFormComponent', () => {
   let component: ProductHierachyFormComponent;
   let fixture: ComponentFixture<ProductHierachyFormComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ProductHierachyFormComponent ]
     })

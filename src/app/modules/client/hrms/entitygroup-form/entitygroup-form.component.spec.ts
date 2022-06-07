@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { EntitygroupFormComponent } from './entitygroup-form.component';
 
@@ -6,7 +6,7 @@ describe('EntitygroupFormComponent', () => {
   let component: EntitygroupFormComponent;
   let fixture: ComponentFixture<EntitygroupFormComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ EntitygroupFormComponent ]
     })

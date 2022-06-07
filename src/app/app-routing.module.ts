@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: '**', redirectTo: '/login' },
 ];
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{ preloadingStrategy: PreloadModulesStrategy,useHash:true }), 
+  imports: [RouterModule.forRoot(routes,{ preloadingStrategy: PreloadModulesStrategy, useHash: true, relativeLinkResolution: 'legacy' }), 
     AuthModule,CrmModule, AdminRoutingModule, NumberMangementModule ],
   exports: [RouterModule],
   providers:[PreloadModulesStrategy]

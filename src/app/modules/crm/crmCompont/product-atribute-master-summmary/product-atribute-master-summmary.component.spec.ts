@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ProductAtributeMasterSummmaryComponent } from './product-atribute-master-summmary.component';
 
@@ -6,7 +6,7 @@ describe('ProductAtributeMasterSummmaryComponent', () => {
   let component: ProductAtributeMasterSummmaryComponent;
   let fixture: ComponentFixture<ProductAtributeMasterSummmaryComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ProductAtributeMasterSummmaryComponent ]
     })
