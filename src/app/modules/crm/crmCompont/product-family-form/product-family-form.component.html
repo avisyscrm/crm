@@ -60,7 +60,7 @@
                       *ngIf="
                         productFamily.controls.productFamily?.errors?.maxlength
                       "
-                      >Character exceed max limit 100</span
+                      >Character exceed max limit {{productFamily.controls.productFamily?.errors?.maxlength?.requiredLength }}</span
                     >
                     <span
                       class="validate-text"
@@ -120,7 +120,7 @@
                       *ngIf="
                         productFamily.controls.description?.errors?.maxlength
                       "
-                      >Character exceed max limit 100</span
+                      >Character exceed max limit {{productFamily.controls.description?.errors?.maxlength?.requiredLength }}</span
                     >
                     <span
                       class="validate-text"
