@@ -86,18 +86,10 @@ export class NumberSchemeFormComponent implements OnInit {
     });
   }
 
-  getAllNumberFormat(){
-    this.allService.getAllNumberFormat(this.numberScheme.value,this.url).subscribe((sucess:any)=>{
-      this.headerList=sucess.headerlist;
-      this.data=sucess.page;
-    }, (error)=>{
-
-    })
-  }
 
   changePageSortSearch(url:any, flag){
     this.url = url;
-    this.allService.getAllNumberFormat(this.numberScheme.value,url).subscribe((sucess:any)=>{
+    this.allService.getNumberSchemeFormat(this.numberScheme.value,url).subscribe((sucess:any)=>{
       this.data=sucess.page;
       if (flag) {
         this.headerList = sucess.headerlist;
@@ -153,7 +145,7 @@ export class NumberSchemeFormComponent implements OnInit {
       if (this.actionBtn == "Update") {
         console.log('scheme update called');
         console.log(this.numberScheme.value);
-        this.allService.updateNumberScheme(this.numberScheme.value).subscribe(
+        this.allService.updateNumberScheme(this.numberScheme.getRawValue()).subscribe(
           (sucess: any) => {
         
             this.alertService.RecordUpdatedStatic();
@@ -201,6 +193,7 @@ export class NumberSchemeFormComponent implements OnInit {
          return itm;
        }
     });
+    this.numberScheme.controls['numberSchemeArea'].setValue("");  
     filteredArray[0].areaWiseSchemeDefinition ? this.numberScheme.controls['numberSchemeArea'].enable() : this.numberScheme.controls['numberSchemeArea'].disable();
    }
   }
