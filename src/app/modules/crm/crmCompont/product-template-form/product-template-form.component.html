@@ -35,14 +35,14 @@
                                         <div
                                             *ngIf="productTemplate.controls.productEntityTemplateName?.invalid && productTemplate.controls.productEntityTemplateName?.touched">
                                             <span class="validate-text"
-                                                *ngIf="productTemplate.controls.description?.errors?.required">Please
+                                                *ngIf="productTemplate.controls.productEntityTemplateName?.errors?.required">Please
                                                 Enter {{'forms.template-form.product-entity-template' |
                                                 translate}}</span>
                                             <span class="validate-text"
-                                                *ngIf="productTemplate.controls.description?.errors?.maxlength">Character
-                                                exceed max limit 100</span>
+                                                *ngIf="productTemplate.controls.productEntityTemplateName?.errors?.maxlength">Character
+                                                exceed max limit 30</span>
                                             <span class="validate-text"
-                                                *ngIf="productTemplate.controls.description?.errors?.isChar">Invalid
+                                                *ngIf="productTemplate.controls.productEntityTemplateName?.errors?.isChar">Invalid
                                                 input. Only character allowed </span>
                                         </div>
 
@@ -68,7 +68,7 @@
                                                 Enter {{'forms.template-form.description' | translate}}</span>
                                             <span class="validate-text"
                                                 *ngIf="productTemplate.controls.description?.errors?.maxlength">Character
-                                                exceed max limit 100</span>
+                                                exceed max limit 400</span>
                                             <span class="validate-text"
                                                 *ngIf="productTemplate.controls.description?.errors?.isChar">Invalid
                                                 input. Only character allowed </span>
@@ -103,7 +103,7 @@
                                                     translate}}</span>
                                                 <span class="validate-text"
                                                     *ngIf="productTemplate.controls.productEntityType?.errors?.maxlength">Character
-                                                    exceed max limit 100</span>
+                                                    exceed max limit 15</span>
                                                 <span class="validate-text"
                                                     *ngIf="productTemplate.controls.productEntityType?.errors?.isChar">Invalid
                                                     input. Only character allowed </span>
@@ -170,7 +170,7 @@
                                                 Enter {{'forms.template-form.screenLayout' | translate}}</span>
                                             <span class="validate-text"
                                                 *ngIf="productTemplate.controls.screenLayout?.errors?.maxlength">Character
-                                                exceed max limit 100</span>
+                                                exceed max limit 30</span>
                                             <span class="validate-text"
                                                 *ngIf="productTemplate.controls.screenLayout?.errors?.isChar">Invalid
                                                 input. Only character allowed </span>
@@ -397,6 +397,12 @@
                                      [ngClass]="AddTabs.controls.section?.errors ? 'mandatory' : 'mandatoryG'"
                                         class="form-control mandatory"
                                         formControlName="section">
+                                        <div *ngIf="getControls.section?.invalid && getControls.section?.touched">
+                                            <span class="validate-text" *ngIf="getControls.section?.errors?.required">Please
+                                                Select Data Type</span>
+                                            <span class="validate-text" *ngIf="getControls.section?.errors?.maxlength ">Max Character Should Be 100 </span>
+    
+                                        </div>
                                   </div>
                                </div>
                             </div>

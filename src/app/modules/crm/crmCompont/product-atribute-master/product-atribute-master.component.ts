@@ -23,12 +23,12 @@ export class ProductAtributeMasterComponent implements OnInit {
      optionId: new FormControl(''),
     createdBy: new FormControl(-1),
     updatedBy: new FormControl(-1),
-  });
+  }); 
   assignRole = new FormGroup({
     productAttributeId: new FormControl('', [Validators.required,Validators.maxLength(40)]),
-    productAttributeName: new FormControl("",[Validators.required]),
-    description: new FormControl('', [Validators.required, Validators.maxLength(100)]),
-    dataType: new FormControl("",[Validators.required]),
+    productAttributeName: new FormControl("",[Validators.required, Validators.maxLength(150)]),
+    description: new FormControl('', [Validators.required, Validators.maxLength(150)]),
+    dataType: new FormControl("",[Validators.required, Validators.maxLength(15)]),
     productAttributeLength: new FormControl(''),
     dataCaptureControl: new FormControl("",[Validators.required]),
     defaultValue: new FormControl(''),
@@ -106,6 +106,7 @@ export class ProductAtributeMasterComponent implements OnInit {
   }
   resetForm(){
     this.assignRole.reset(this.intialValue);
+    this.ifDate(this.assignRole.get('dataCaptureControl').value);
   }
 
   check(){
