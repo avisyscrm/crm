@@ -16,7 +16,10 @@ export class NumberservicesService {
   private putLevelNameURL = environment.baseUrl+"/updateNumberFormatDefinition/";
   private deleteLevelNameURL = environment.baseUrl+"/deleteNumberFormatDefinition/";
   private numberSchemeListUrl = environment.baseUrl+"/masters/allNumberSchemeConfiguration";
- 
+  private putNumberSchemeURL = environment.schemeBaseUrl+"/updateNumberSchemeConfiguration";
+  private schemeLevelsURL = environment.schemeBaseUrl+"/numberSchemeConfigLineDetails";
+  private getNumberSchemeLineDetails = environment.schemeBaseUrl+"/numberSchemeConfigLineDetails";
+  private putNumberSchemeLineDetailURL = environment.schemeBaseUrl+"/updateNumberSchemeConfigLineDetails";
   getnumberType(url:string):Observable<any>{
     return this.http.get(environment.baseUrl+"/numberTypeDefinition?"+url);
   }
@@ -41,8 +44,8 @@ export class NumberservicesService {
     return this.http.post(this.numberFormatURL,data);
   }
 
-  getAllNumberFormat(id:number,url:string){
-    return this.http.get(this.allNumberFormat+id+"?"+url);
+  getAllNumberFormat(data:any,url:string){
+    return this.http.get(this.schemeLevelsURL+"?typeId="+data.numberType+"&schemeId="+data.numberSchemeId+"&"+url);
   }
 
   getLevelNameData(levelName:string){
@@ -58,7 +61,8 @@ export class NumberservicesService {
    }
 
    getNumberSchemes(url:string): Observable<any>  {
-    return this.http.get(environment.schemeBaseUrl+"/numberSchemeConfiguration");;
+   // return this.http.get(environment.baseUrl+"/numberTypeDefinition?"+url);
+    return this.http.get(environment.schemeBaseUrl+"/numberSchemeConfiguration?"+url);;
     //return this.http.get("./assets/numberScheme.json");
   }
   
@@ -84,13 +88,16 @@ export class NumberservicesService {
     return this.http.delete(environment.schemeBaseUrl+"/deleteNumberSchemeConfiguration"+"/"+numberSchemeId+"/"+id)
   }
 
-  createNumberScheme(data){
-    //return this.http.post(environment.baseUrl+"/createNumberTypeDefinition",data);
-    return this.http.get("./assets/numberSchemeDetails.json");
-  } 
-  updateNumberScheme(value: any){
-    //return this.http.put(environment.baseUrl+"/updateNumberTypeDefinition",value);
-    return this.http.get("./assets/numberSchemeDetails.json");
+ 
+  updateNumberScheme(NumberSchemeData: string){
+    return this.http.put(this.putNumberSchemeURL,NumberSchemeData);
   }
  
+  getNumberSchemeLineDetailData(numberSchemeLineId:string){
+    return this.http.get(this.getNumberSchemeLineDetails+"/"+numberSchemeLineId)
+  }
+
+  updateNumberSchemeLineDetailData(numberSchemeLineData:string){
+    return this.http.put(this.putNumberSchemeLineDetailURL,numberSchemeLineData);
+  }
 }
