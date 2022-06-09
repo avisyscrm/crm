@@ -13,9 +13,12 @@
             "value":"Value"
         },
         "blockDefination":{
+            "blockDefinationListPage-heading": "Number Blocks",
+            "scheme-name":"Scheme Name",
             "blockDefinationTitle":"Block Defination",
             "block-name":"Block Name",
             "recieved-date":"Recieved Date",
+            "approval-date":"approval Date",
             "start-running":"Start Running Number",
             "end-running":"End Running Number",
             "total-count":"Total Count",
@@ -32,7 +35,7 @@
         },
         "numberSchema" : {
             "Number-Schema-heading":"Number Scheme",
-            "Number-Schema-name":"Schema Name",
+            "Number-Schema-name":"Scheme Name",
             "Number-Type":"Number Type",
             "Sub-Type":"Sub Type",
             "Released":"Released",

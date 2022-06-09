@@ -17,7 +17,9 @@ export class BlockDefinitonTableComponent implements OnInit {
   url="pageNo=1&pageSize=5";
   constructor(private allService:NumberservicesService,private router:Router,
     private sweetAlert: SweetalertServiceService) { 
-      this.allService.getBlockDefinition(this.url).subscribe(sucess=>{
+      this.allService.getNumberSchemeBlocks(this.url).subscribe(sucess=>{
+        console.log(sucess);
+        
         this.headerList=sucess.headerlist  ;
         this.data=sucess.page;
         },error=>{
@@ -33,13 +35,13 @@ export class BlockDefinitonTableComponent implements OnInit {
   }
   changePageSortSearch(url:any){
     this.url=url;
-    this.allService.getBlockDefinition(url).subscribe(sucess=>{
+    this.allService.getNumberSchemeBlocks(url).subscribe(sucess=>{
      this.data=sucess.page;
      },error=>{});
   }
  
 buttonEvent1(data:any){
-if(data.event=='add'){
+ if(data.event=='add'){
   this.router.navigate(['/number/blockDefination']);   
 }else if(data.event=='edit'){
   this.router.navigate(['/number/blockDefination'],{ queryParams: { data:data.data.numberSchemeId} });

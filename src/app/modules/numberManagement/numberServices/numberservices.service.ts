@@ -20,6 +20,7 @@ export class NumberservicesService {
   private schemeLevelsURL = environment.schemeBaseUrl+"/numberSchemeConfigLineDetails";
   private getNumberSchemeLineDetails = environment.schemeBaseUrl+"/numberSchemeConfigLineDetails";
   private putNumberSchemeLineDetailURL = environment.schemeBaseUrl+"/updateNumberSchemeConfigLineDetails";
+  private getBlockDefinitionURL = environment.schemeBaseUrl+"/allBlockDefinition";
   getnumberType(url:string):Observable<any>{
     return this.http.get(environment.baseUrl+"/numberTypeDefinition?"+url);
   }
@@ -44,8 +45,13 @@ export class NumberservicesService {
     return this.http.post(this.numberFormatURL,data);
   }
 
-  getAllNumberFormat(data:any,url:string){
+  getNumberSchemeFormat(data:any,url:string){
     return this.http.get(this.schemeLevelsURL+"?typeId="+data.numberType+"&schemeId="+data.numberSchemeId+"&"+url);
+   
+  }
+
+  getAllNumberFormat(id:number,url:string){
+    return this.http.get(this.allNumberFormat+id+"?"+url);
   }
 
   getLevelNameData(levelName:string){
@@ -61,19 +67,18 @@ export class NumberservicesService {
    }
 
    getNumberSchemes(url:string): Observable<any>  {
-   // return this.http.get(environment.baseUrl+"/numberTypeDefinition?"+url);
-    return this.http.get(environment.schemeBaseUrl+"/numberSchemeConfiguration?"+url);;
-    //return this.http.get("./assets/numberScheme.json");
+    return this.http.get(environment.schemeBaseUrl+"/numberSchemeConfiguration?"+url);
   }
   
-  getBlockDefinition(url:string): Observable<any>  {
-    return this.http.get("./assets/blockDefinition.json");
+  getNumberSchemeBlocks(url:string): Observable<any>  {
+    // getBlockDefinitionURL
+    // return this.http.get(environment.schemeBaseUrl+"/numberSchemeConfiguration?"+url);
+    return this.http.get("./assets/numberSchemeBlocks.json");
   }
   
 
   getnumberSchemeDetails(id:number):Observable<any>{
     return this.http.get(environment.schemeBaseUrl+"/numberSchemeConfiguration/"+id);
-    // return this.http.get("./assets/numberSchemeDetails.json"+id);
   }
 
   postNumberSceme(data){

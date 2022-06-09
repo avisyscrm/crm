@@ -10,18 +10,46 @@
         </div>
         <form [formGroup]="blockdefine" >
         <div class="card card-height">
-            <div class="card-header pf-head">
-                <h3 class="card-title ">{{'forms.blockDefination.blockDefinationTitle' | translate}}</h3>
+            <div class="card-header pf-head  d-flex justify-content-between">
+                <h3 class="card-title "><span>{{'forms.blockDefination.blockDefinationTitle' | translate}}</span> </h3>
+                <button type="button"  (click)="back()" class="btn btn-dark " >Back</button>
             </div>
+            
             <div class="card-body">
                 <div class="row productfamily ">
+                    <div class="col-md-6">
+                        <div class="row ">
+                            <div class=" form-group col-md-4">
+                                <label class="form-label ">{{'forms.blockDefination.scheme-name' | translate}}</label>
+                            </div>
+                            <div class=" form-group col-md-8">
+                                <select type="text" class="form-control" readonly [ngClass]="blockdefine.controls.schemeName?.errors ? 'mandatory' : 'mandatoryG'" formControlName="schemeName">
+                                    <option value="" >Select --</option>
+                                    <option *ngFor="let scheme of schemeList" value="{{scheme.schemeId}}" >{{scheme.schemeName}}</option>
+                                </select>
+                            
+                                <div *ngIf="blockdefine.controls.schemeName?.invalid && blockdefine.controls.schemeName?.touched">
+                                    <span class="validate-text" *ngIf="blockdefine.controls.schemeName?.errors?.required">Please Enter
+                                        Number Scheme Name</span>
+                                    <span class="validate-text" *ngIf="blockdefine.controls.schemeName?.errors?.maxlength">Character exceed
+                                        max limit {{blockdefine.controls.schemeName?.errors?.maxlength?.requiredLength}}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <div class="col-md-6">
                         <div class="row ">
                             <div class=" form-group col-md-4">
                                 <label class="form-label ">{{'forms.blockDefination.block-name' | translate}}</label>
                             </div>
                             <div class=" form-group col-md-8">
-                                <input type="text" class="form-control" [ngClass]="blockdefine.controls.bname?.errors ? 'mandatory' : 'mandatoryG'" formControlName="bname">
+                                <input type="text" class="form-control" [ngClass]="blockdefine.controls.blockName?.errors ? 'mandatory' : 'mandatoryG'" formControlName="blockName">
+                                <div *ngIf="blockdefine.controls.blockName?.invalid && blockdefine.controls.blockName?.touched">
+                                    <span class="validate-text" *ngIf="blockdefine.controls.blockName?.errors?.required">Please Enter
+                                         Block Name</span>
+                                    <span class="validate-text" *ngIf="blockdefine.controls.blockName?.errors?.maxlength">Character exceed
+                                        max limit {{blockdefine.controls.schemeName?.errors?.maxlength?.requiredLength}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -31,7 +59,11 @@
                                 <label class="form-label ">{{'forms.blockDefination.recieved-date' | translate}}</label>
                             </div>
                             <div class=" form-group col-md-8">
-                                <input type="date" formControlName="recievedDate" class="form-control" [ngClass]="blockdefine.controls.recievedDate?.errors ? 'mandatory' : 'mandatoryG'" >
+                                <input type="date" formControlName="approvalDate" class="form-control" [ngClass]="blockdefine.controls.approvalDate?.errors ? 'mandatory' : 'mandatoryG'" >
+                                <div *ngIf="blockdefine.controls.approvalDate?.invalid && blockdefine.controls.approvalDate?.touched">
+                                    <span class="validate-text" *ngIf="blockdefine.controls.approvalDate?.errors?.maxlength">Character exceed
+                                        max limit {{blockdefine.controls.schemeName?.errors?.maxlength?.requiredLength}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>                
@@ -42,7 +74,13 @@
                                 <label class="form-label ">{{'forms.blockDefination.start-running' | translate}} </label>
                             </div>
                             <div class=" form-group col-md-8">
-                                <input type="number" formControlName="start" class="form-control" [ngClass]="blockdefine.controls.start?.errors ? 'mandatory' : 'mandatoryG'" >
+                                <input type="number" formControlName="startNumber" class="form-control" [ngClass]="blockdefine.controls.startNumber?.errors ? 'mandatory' : 'mandatoryG'"  (change)="setTotalCount()">
+                                <div *ngIf="blockdefine.controls.startNumber?.invalid && blockdefine.controls.startNumber?.touched">
+                                    <span class="validate-text" *ngIf="blockdefine.controls.startNumber?.errors?.required">Please Enter
+                                         Start Running Number</span>
+                                    <span class="validate-text" *ngIf="blockdefine.controls.startNumber?.errors?.maxlength">Character exceed
+                                        max limit {{blockdefine.controls.startNumber?.errors?.maxlength?.requiredLength}}</span>
+                                </div>
                             </div>
                         </div>
                     </div> 
@@ -52,7 +90,13 @@
                                 <label class="form-label ">{{'forms.blockDefination.end-running' | translate}} </label>
                             </div>
                             <div class=" form-group col-md-8">
-                                <input type="number" formControlName="end" class="form-control" [ngClass]="blockdefine.controls.end?.errors ? 'mandatory' : 'mandatoryG'" >
+                                <input type="number" formControlName="endNumber" class="form-control" [ngClass]="blockdefine.controls.endNumber?.errors ? 'mandatory' : 'mandatoryG'" (change)="setTotalCount()" >
+                                <div *ngIf="blockdefine.controls.endNumber?.invalid && blockdefine.controls.endNumber?.touched">
+                                    <span class="validate-text" *ngIf="blockdefine.controls.endNumber?.errors?.required">Please Enter
+                                         End Running Number</span>
+                                    <span class="validate-text" *ngIf="blockdefine.controls.endNumber?.errors?.maxlength">Character exceed
+                                        max limit {{blockdefine.controls.endNumber?.errors?.maxlength?.requiredLength}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -62,7 +106,7 @@
                                 <label class="form-label ">{{'forms.blockDefination.total-count' | translate}} </label>
                             </div>
                             <div class=" form-group col-md-8">
-                                <input type="number" formControlName="tcount" class="form-control" [ngClass]="blockdefine.controls.tcount?.errors ? 'mandatory' : 'mandatoryG'" >
+                                <input type="number" formControlName="count" class="form-control"  [ngClass]="blockdefine.controls.count?.errors ? 'mandatory' : 'mandatoryG'" >
                             </div>
                         </div>
                     </div>
@@ -79,6 +123,10 @@
                                     <option value="Active">Active</option>
                                     <option value="Inactive">Inactive</option>
                                 </select>
+                                <div *ngIf="blockdefine.controls.status?.invalid && blockdefine.controls.status?.touched">
+                                    <span class="validate-text" *ngIf="blockdefine.controls.status?.errors?.required">Please Select
+                                         Status</span>
+                                </div>
                             </div>
                         </div>
                     </div> 

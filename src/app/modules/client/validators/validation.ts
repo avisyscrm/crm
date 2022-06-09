@@ -118,5 +118,16 @@ export function emailTemplatevariableValidatio(DataArray:any) :ValidatorFn {
         }
         return isInValid;
     }
+
+    
 }
+
+
+// export function numberLessThan(start: string, end:string ) {
+//     function (frm: any) {
+//    console.log(frm);
+//    return {}
+//    }
+//    }
+
 
