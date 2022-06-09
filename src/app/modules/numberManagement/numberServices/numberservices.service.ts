@@ -15,12 +15,16 @@ export class NumberservicesService {
   private getLevelNameURL = environment.baseUrl+"/numberFormatDefinition/";
   private putLevelNameURL = environment.baseUrl+"/updateNumberFormatDefinition/";
   private deleteLevelNameURL = environment.baseUrl+"/deleteNumberFormatDefinition/";
-  private numberSchemeListUrl = environment.baseUrl+"/masters/allNumberSchemeConfiguration";
+  private numberSchemeListUrl = environment.schemeBaseUrl+"/allNumberSchemeConfiguration";
   private putNumberSchemeURL = environment.schemeBaseUrl+"/updateNumberSchemeConfiguration";
   private schemeLevelsURL = environment.schemeBaseUrl+"/numberSchemeConfigLineDetails";
   private getNumberSchemeLineDetails = environment.schemeBaseUrl+"/numberSchemeConfigLineDetails";
   private putNumberSchemeLineDetailURL = environment.schemeBaseUrl+"/updateNumberSchemeConfigLineDetails";
   private getBlockDefinitionURL = environment.schemeBaseUrl+"/allBlockDefinition";
+  private postBlockDefinitionURL = environment.schemeBaseUrl+"/createBlockDefinition";
+  private getNumberSchemeBlockDetailsURL = environment.schemeBaseUrl+"/blockDefinition";
+  private putNumberSchemeBlockDetailURL = environment.schemeBaseUrl+"/updateBlockDefinition";
+  private deleteNumberSchemeBlockURL = environment.schemeBaseUrl+"/deleteBlockDefinition";
   getnumberType(url:string):Observable<any>{
     return this.http.get(environment.baseUrl+"/numberTypeDefinition?"+url);
   }
@@ -71,9 +75,8 @@ export class NumberservicesService {
   }
   
   getNumberSchemeBlocks(url:string): Observable<any>  {
-    // getBlockDefinitionURL
-    // return this.http.get(environment.schemeBaseUrl+"/numberSchemeConfiguration?"+url);
-    return this.http.get("./assets/numberSchemeBlocks.json");
+    return this.http.get(environment.schemeBaseUrl+"/blockDefinition?"+url);
+   
   }
   
 
@@ -84,7 +87,7 @@ export class NumberservicesService {
   postNumberSceme(data){
     return this.http.post(environment.schemeBaseUrl+"/createNumberSchemeConfiguration",data);
   }
-
+  
   getnumberTypes():Observable<any>{
     return this.http.get(environment.baseUrl+"/allNumberTypeDefinition");
   }
@@ -104,5 +107,25 @@ export class NumberservicesService {
 
   updateNumberSchemeLineDetailData(numberSchemeLineData:string){
     return this.http.put(this.putNumberSchemeLineDetailURL,numberSchemeLineData);
+  }
+
+  getAllNumberSchemes():Observable<any>{
+    return this.http.get(this.numberSchemeListUrl);
+  }
+
+  postNumberScemeBlock(data){
+    return this.http.post(this.postBlockDefinitionURL,data);
+  }
+
+  getNumberSchemeBlockDetailData(blockDefinitionId:string){
+    return this.http.get(this.getNumberSchemeBlockDetailsURL+"/"+blockDefinitionId)
+  }
+
+  updateNumberSchemeBlock(numberSchemeBlockData:string){
+    return this.http.put(this.putNumberSchemeBlockDetailURL,numberSchemeBlockData);
+  }
+
+  deletenumberSchemeBlock(blockDefinitionId:number, id:any){
+    return this.http.delete(this.deleteNumberSchemeBlockURL+"/"+blockDefinitionId+"/"+id)
   }
 }

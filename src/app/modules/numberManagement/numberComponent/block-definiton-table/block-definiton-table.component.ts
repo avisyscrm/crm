@@ -44,14 +44,14 @@ buttonEvent1(data:any){
  if(data.event=='add'){
   this.router.navigate(['/number/blockDefination']);   
 }else if(data.event=='edit'){
-  this.router.navigate(['/number/blockDefination'],{ queryParams: { data:data.data.numberSchemeId} });
+  this.router.navigate(['/number/blockDefination'],{ queryParams: { data:data.data.blockDefinitionId} });
     console.log(data, 'data')
 }
  else if(data.event=='delete'){
- //  this.allService.deletenumberScheme(data.data.numberTypeId).subscribe((res)=>{
+  this.allService.deletenumberSchemeBlock(data.data.blockDefinitionId,JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res)=>{
     this.sweetAlert.recordDeleted();  
     this.changePageSortSearch(this.url);
-  // })
+  })
  } 
   
 }

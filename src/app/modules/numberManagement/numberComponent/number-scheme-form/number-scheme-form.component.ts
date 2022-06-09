@@ -114,7 +114,7 @@ export class NumberSchemeFormComponent implements OnInit {
          this.intialvalue = response;
         },(error)=>{console.log(error);
         })
-    }
+    } 
     
   }
   get getnumberFormatControl() {
@@ -129,7 +129,7 @@ export class NumberSchemeFormComponent implements OnInit {
   numberSchemeSubmit(formName:string) {
       if (this.actionBtn == "Save") {
         console.log('scheme add called');
-          this.allService.postNumberSceme(this.numberScheme.value).subscribe((res:any)=>{
+          this.allService.postNumberSceme(this.numberScheme.getRawValue()).subscribe((res:any)=>{
             if(res.statusCode == 23505){
               this.alertService.SelectRecord("Scheme Name already exist");
             }else{
@@ -147,7 +147,6 @@ export class NumberSchemeFormComponent implements OnInit {
         console.log(this.numberScheme.value);
         this.allService.updateNumberScheme(this.numberScheme.getRawValue()).subscribe(
           (sucess: any) => {
-        
             this.alertService.RecordUpdatedStatic();
             this.numberScheme.patchValue(sucess);
             this.intialvalue=this.numberScheme.value;
@@ -175,7 +174,8 @@ export class NumberSchemeFormComponent implements OnInit {
       this.numberFormat.reset(this.actionBtn == "Save"? this.defaultIntialValue : this.intialvalue);
     }
     if(formName == 'scheme') {
-      this.numberScheme.reset(this.actionBtn == "Save"? this.defaultIntialValue : this.intialvalue);
+      this.numberScheme.patchValue(this.intialvalue);
+      //this.numberScheme.reset(this.actionBtn == "Save"? this.defaultIntialValue : this.intialvalue);
     }  
     return false;
   }
