@@ -12,7 +12,7 @@ import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/swee
   styleUrls: ['./number-type-form.component.scss','../../numberManagement.scss']
 })
 export class NumberTypeFormComponent implements OnInit {
-
+ 
   numberTypes = new FormGroup({
     'numberTypeId': new FormControl('',[Validators.required,Validators.maxLength(15)]),
     'numberType': new FormControl('others', [Validators.required]),
@@ -84,6 +84,14 @@ export class NumberTypeFormComponent implements OnInit {
     }
   }
 
+  onOptionsSelectedgeneration(optValues){
+    if(optValues == "not-available"){
+      this.numberTypes.controls['allocationAllowed'].disable();
+    }else{
+      this.numberTypes.controls['allocationAllowed'].enable();
+    
+    }
+  }
   back(){
     this.router.navigate(['number/numberTypeTable']);
   }
