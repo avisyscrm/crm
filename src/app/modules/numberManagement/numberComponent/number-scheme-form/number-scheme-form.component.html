@@ -25,7 +25,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <input name="" type="text" class="form-control mandatory" value=""
-                                                    formControlName="numberSchemeName" [ngClass]="numberScheme.controls.numberSchemeName?.errors ? 'mandatory' : 'mandatoryG'">
+                                                    formControlName="numberSchemeName" [attr.disabled]="actionBtn=='Update' ? true : null"  [ngClass]="numberScheme.controls.numberSchemeName?.errors ? 'mandatory' : 'mandatoryG'">
                                                     <div *ngIf="numberScheme.controls.numberSchemeName?.invalid && numberScheme.controls.numberSchemeName?.touched">
                                                         <span class="validate-text" *ngIf="numberScheme.controls.numberSchemeName?.errors?.required">Please Enter
                                                             Number Scheme Name</span>
@@ -41,7 +41,7 @@
                                     <label class="form-label text-"><span>{{'forms.numberSchema.Number-Type' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
-                                    <select  name="" type="text" class="form-control mandatory" value=""
+                                    <select  name="" type="text" class="form-control mandatory" value="" [attr.disabled]="actionBtn=='Update' ? true : null" 
                                            (change)="enableDisableArea()"         formControlName="numberType"  [ngClass]="numberScheme.controls.numberType?.errors ? 'mandatory' : 'mandatoryG'">
                                         <option value="" >Select --</option>           
                                         <option *ngFor="let numberType of numberTypes"  value="{{numberType.numberTypeId}}" >{{numberType.numberType+" ("+numberType.numberTypeId+")"}}</option>           
@@ -118,7 +118,7 @@
                                     <label class="form-label text-"><span>{{'forms.numberSchema.Area' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
-                                    <select  name="" type="text" class="form-control" value=""
+                                    <select  name="" type="text" class="form-control" value="" [attr.disabled]="actionBtn=='Update' ? true : null" 
                                     formControlName="numberSchemeArea"  [ngClass]="numberScheme.controls.numberSchemeArea?.errors ? 'mandatory' : 'mandatoryG'" >
                                     <option value="" >Select --</option>   
                                     <option value="MP" >MP</option>   

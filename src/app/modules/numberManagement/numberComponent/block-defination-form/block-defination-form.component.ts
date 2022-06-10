@@ -1,6 +1,8 @@
 import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
+import { NumberservicesService } from '../../numberServices/numberservices.service';
 // import {numberLessThan} from '../../../client/validators/validation'
 
 @Component({
@@ -8,60 +10,108 @@ import { Router } from '@angular/router';
   templateUrl: './block-defination-form.component.html',
   styleUrls: ['./block-defination-form.component.scss','../../numberManagement.scss']
 })
-export class BlockDefinationFormComponent implements OnInit,OnChanges {
-
-
-  constructor(private router: Router) { 
-    this.intialvalue = this.blockdefine.value;
-  
-  }
-
-
-  ngOnInit(): void {
-    alert()
-    this.schemeList = [
-      {"schemeId":1 , "schemeName": "scheme-1"},
-      {"schemeId":2 , "schemeName": "scheme-2"},
-      {"schemeId":3 , "schemeName": "scheme-3"},
-    ]
-    
-  }
-  ngOnChanges(){ 
-    alert()
-    console.log("Hello");
-    
-  }
-  blockdefine = new FormGroup({
-    'numberSchemeBlockId':new FormControl(''),
-    'schemeName':new FormControl('',Validators.required),
-    'blockName': new FormControl('',Validators.required),
-    'approvalDate': new FormControl('', [ Validators.maxLength(15)]),
-    'startNumber': new FormControl('', [Validators.required, Validators.maxLength(100)]),
-    'endNumber': new FormControl('',[Validators.required, Validators.maxLength(10)]),
-    'count': new FormControl('0',Validators.required),
-    'status': new FormControl('',Validators.required),
-    'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
-    'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
-  });
+export class BlockDefinationFormComponent implements OnInit {
   intialvalue: any;
   actionBtn = "Save";
   start:any;
   end:any;
   result:any;
   schemeList:any;
+
+  constructor(private router: Router,private route: ActivatedRoute,private allService:NumberservicesService,private alertService: SweetalertServiceService) { 
+    this.intialvalue = this.blockdefine.value;
+    this.route.queryParams.subscribe((params: any) => {
+      if (params.data != undefined) {
+        this.actionBtn = "Update";
+        this.getValueByID(params.data);
+        this.blockdefine.addControl['numberSchemeId'].disable();
+        this.blockdefine.addControl['blockName'].disable();
+      }
+    });
+  
+  }
+
+
+  ngOnInit(): void {
+    this.allService.getAllNumberSchemes().subscribe(sucess=>{
+      this.schemeList = sucess
+      },error=>{
+        console.log("Hello");
+      }
+      );
+  }
+
+  blockdefine = new FormGroup({
+    'blockDefinitionId':new FormControl(''),
+    'numberSchemeId':new FormControl('',Validators.required),
+    'blockName': new FormControl('',Validators.required),
+    'approvalDate': new FormControl('', [ Validators.maxLength(15)]),
+    'startNumber': new FormControl('', [Validators.required, Validators.maxLength(100)]),
+    'endNumber': new FormControl('',[Validators.required, Validators.maxLength(10)]),
+    'totalCount': new FormControl('0',Validators.required),
+    'status': new FormControl('',Validators.required),
+    'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
+    'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
+  });
+  
   get getControl() {
     return this.blockdefine.controls;
   }
 
+  getValueByID(id) {
+    this.allService.getNumberSchemeBlockDetailData(id).subscribe((sucess: any) => {
+      this.intialvalue = sucess;
+      this.blockdefine.patchValue(sucess);
+      
+    }, error => {
+      // alert("Error while updating the record");
+    });
+  }
+
+
+  
   submit(){
+    console.log(this.blockdefine);
     console.log(JSON.stringify(this.blockdefine.value));
-    alert(JSON.stringify(this.blockdefine.value));
+    // alert(JSON.stringify(this.blockdefine.value));
+    if(this.actionBtn == 'Save') {
+      console.log('Block add called');
+      this.allService.postNumberScemeBlock(this.blockdefine.getRawValue()).subscribe((res:any)=>{
+        if(res.statusCode == 23505){
+          this.alertService.SelectRecord("Block Name already exist");
+        }else{
+          this.resetForm();
+          this.alertService.RecordAdded('/number/blockDefinationTable');
+        }
+      },(error)=>{
+        console.log(error);
+      })
+      return false;
+    }
+
+    if(this.actionBtn =='Update') {
+      console.log(this.blockdefine.getRawValue());
+      this.allService.updateNumberSchemeBlock(this.blockdefine.getRawValue()).subscribe(
+        (sucess: any) => {
+          this.alertService.RecordUpdatedStatic();
+          this.blockdefine.patchValue(sucess);
+          this.intialvalue=this.blockdefine.value;
+          this.getValueByID(sucess.blockDefinitionId);
+        });
+      
+      return false;
+    }
   }
 
   resetForm(){
     console.log(this.blockdefine);
-    
     this.blockdefine.reset(this.intialvalue);
+    if(this.actionBtn == 'Save') {
+      this.blockdefine.reset(this.intialvalue);
+    }
+    if(this.actionBtn == 'Update') {
+      this.blockdefine.patchValue(this.intialvalue);
+    } 
   }
 
   back(){
@@ -69,23 +119,19 @@ export class BlockDefinationFormComponent implements OnInit,OnChanges {
   }
   setTotalCount(){
     if(this.blockdefine.controls['startNumber'].value && this.blockdefine.controls['endNumber'].value) {
-      this.blockdefine.controls['count'].setValue(this.blockdefine.controls['startNumber'].value - this.blockdefine.controls['endNumber'].value);
+      this.blockdefine.controls['totalCount'].setValue(Math.abs(this.blockdefine.controls['endNumber'].value - this.blockdefine.controls['startNumber'].value));
+      if(this.blockdefine.controls['startNumber'].value > this.blockdefine.controls['endNumber'].value) {
+        this.blockdefine.controls['startNumber'].setErrors({'isGreater':true});
+        this.blockdefine.updateValueAndValidity();
+      } else {
+        this.blockdefine.controls['startNumber'].setErrors(null);
+        this.blockdefine.updateValueAndValidity();
+      }
+      
     }
     
   }
 
-  
+ 
 
 }
-export function  MyAwesomeRangeValidator(fg: any) :ValidatorFn |any  {
-  
-  
-  // const start = fg.get('startNumber').value;
-  // const end = fg.get('endNumber').value;
-  console.log(fg.value);
-
-  return {}
-//  return start !== null && end !== null && start < end 
-//    ? null 
-//    : { range: true };
-};
