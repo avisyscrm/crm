@@ -57,6 +57,19 @@
             "Value":"Value",
             "Delimiter":"Delimiter"
         },
+        "vanityPatternRule":{
+            "vanityHeading":"Vanity Pattern Rule",
+            "category-name":"Category Name",
+            "mask":"Mask",
+            "mask-sequenced":"Mask Sequenced",
+            "priority":"Priority",
+            "start-date":"Start Date",
+            "rule-code":"Rule Code", 
+            "rule-combination":"Rule Combination",
+            "default-category":"Default Category",
+            "reservation-period":"Reservation Period",
+            "quarantine-period":"Quarantine Period"
+        },
         "vanityNumber":{
             "vanityHeading":"Vanity Number",
             "category-name":"Category Name",

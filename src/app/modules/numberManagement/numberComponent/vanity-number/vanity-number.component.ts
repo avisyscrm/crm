@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
+import { NumberservicesService } from '../../numberServices/numberservices.service';
 
 
 @Component({
@@ -9,13 +12,14 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class VanityNumberComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router,private route: ActivatedRoute,private allService:NumberservicesService,private alertService: SweetalertServiceService) { }
 
   ngOnInit(): void {
   }
 
   
   vanityNumber = new FormGroup({
+    'vanityNumberId':new FormControl(''),
     'categoryName': new FormControl('',Validators.required),
     'mask': new FormControl('', [Validators.required, Validators.maxLength(15)]),
     'maskSequence': new FormControl('', [Validators.required, Validators.maxLength(100)]),
@@ -41,6 +45,10 @@ export class VanityNumberComponent implements OnInit {
   }
 
   resetForm(){
+  }
+
+  back() {
+    this.router.navigate(['/number/vanityNumberTable']);
   }
 
 }
