@@ -63,7 +63,6 @@ export class ProductAtributeMasterComponent implements OnInit {
           this.crm.getProductAttributeById(params.data).subscribe((sucess:any)=>{
            this.assignRole.patchValue(sucess);
            this.intialValue = sucess;
-           this.ifDate(sucess.dataType);
           });
         } else {
           this.label = "Save";
@@ -80,7 +79,7 @@ export class ProductAtributeMasterComponent implements OnInit {
 
   submit(){
     if( this.label != "Update"){
-      this.crm.putProductAtributeMaster(this.assignRole.value).subscribe((sucess:any)=>{
+      this.crm.putProductAtributeMaster(this.assignRole.getRawValue()).subscribe((sucess:any)=>{
        if(sucess.statusCode==23505){
         this.alertService.SelectRecord("Product Attribute already exist");
        }else{
@@ -92,7 +91,7 @@ export class ProductAtributeMasterComponent implements OnInit {
       this.assignRole.removeControl("isDeleted");
       this.assignRole.removeControl("createdBy");
       this.assignRole.controls['updatedBy'].patchValue(-1);
-      this.crm.updateProductAtributeMaster(this.assignRole.value).subscribe((sucess)=>{
+      this.crm.updateProductAtributeMaster(this.assignRole.getRawValue()).subscribe((sucess)=>{
         this.alertService.RecordUpdated('/crm/Product-Atribute-Summmary');
       })
     }
@@ -106,7 +105,7 @@ export class ProductAtributeMasterComponent implements OnInit {
   }
   resetForm(){
     this.assignRole.reset(this.intialValue);
-    this.ifDate(this.assignRole.get('dataCaptureControl').value);
+
   }
 
   check(){
@@ -191,17 +190,8 @@ this.crm.getOptioDataTable(this.assignRole.controls['productAttributeId'].value,
     this.router.navigate(["/crm/Product-Atribute-Summmary"]);
   }
 
-  ifDate(selectedValue){
-    if(selectedValue == "date"){
-      this.assignRole.controls['dataCaptureControl'].setValue('date');
-      this.assignRole.controls['dataCaptureControl'].disable();
-      this.assignRole.controls['productAttributeLength'].disable();
-      this.assignRole.controls['productAttributeLength'].reset();
-    } else{
-      this.assignRole.controls['dataCaptureControl'].enable();
-      this.assignRole.controls['dataCaptureControl'].setValue('');
-      this.assignRole.controls['productAttributeLength'].enable();
-    }
+  onSelect(){
+    this.assignRole.controls['dataCaptureControl'].patchValue(this.assignRole.controls['dataType'].value == 'date'? 'date':this.assignRole.controls['dataCaptureControl'].value)
   }
   
 }

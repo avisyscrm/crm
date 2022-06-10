@@ -36,7 +36,7 @@
     "font-awesome": "^4.7.0",
     "ng-apexcharts": "^1.5.1",
     "ng-multiselect-dropdown": "^0.2.10",
-    "ngx-bootstrap": "^5.6.1",
+    "ngx-bootstrap": "^7.1.2",
     "ngx-editor": "^12.2.3",
     "ngx-toastr": "^12.1.0",
     "ngx-translate-multi-http-loader": "^3.0.0",
