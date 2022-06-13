@@ -43,35 +43,42 @@ export class ProductFamilyFormComponent implements OnInit {
   }
   ngOnInit(): void { }
   submit() {
+  
+    for (var key in  this.productFamily.value) {
+      this.productFamily.controls[key].patchValue(this.productFamily.controls[key].value.toString().trim());
+    }
     this.productFamily.controls['createdBy'].patchValue(JSON.parse(sessionStorage.getItem('userDetails')).userId);
     this.productFamily.controls['updatedBy'].patchValue(JSON.parse(sessionStorage.getItem('userDetails')).userId);
-    const formData = new FormData();
-    formData.append('file', this.file);
-    formData.append('productFamily', JSON.stringify(this.productFamily.value));
-    if (this.actionBtn == "Update") {
-      if (this.file != undefined) {
-        this.service.putProductFamily(formData).subscribe(sucess => {
-          this.alertService.RecordUpdated('/crm/product-family');
-        });
-      }
-       else {
-        this.service.updateProductFamilyWithoutFile(this.productFamily.value).subscribe(sucess => {
-          this.alertService.RecordUpdated('/crm/product-family');
-        });
-      }
-    } else {
-      if (this.file != undefined) {
-        this.service.createProductFamilly(formData).subscribe((sucess: any) => {
-          if (sucess.statusCode == 23505) {
-            this.alertService.SelectRecord("Product Family already exist");
-          } else {
-            this.alertService.RecordAdded('/crm/product-family');
-          }
-        })
+    if( this.productFamily.valid){
+      const formData = new FormData();
+      formData.append('file', this.file);
+      formData.append('productFamily', JSON.stringify(this.productFamily.value));
+      if (this.actionBtn == "Update") {
+        if (this.file != undefined) {
+          this.service.putProductFamily(formData).subscribe(sucess => {
+            this.alertService.RecordUpdated('/crm/product-family');
+          });
+        }
+         else {
+          this.service.updateProductFamilyWithoutFile(this.productFamily.value).subscribe(sucess => {
+            this.alertService.RecordUpdated('/crm/product-family');
+          });
+        }
       } else {
-        alert("Please select File")
+        if (this.file != undefined) {
+          this.service.createProductFamilly(formData).subscribe((sucess: any) => {
+            if (sucess.statusCode == 23505) {
+              this.alertService.SelectRecord("Product Family already exist");
+            } else {
+              this.alertService.RecordAdded('/crm/product-family');
+            }
+          })
+        } else {
+          alert("Please select File")
+        }
       }
     }
+   
   }
 
   resetForm() {

@@ -34,6 +34,9 @@ import { TranslateModule } from '@ngx-translate/core';
 import { LayoutCrmComponent } from 'src/app/modules/layout-crm/layout-crm.component';
 import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import {TimepickerModule} from 'ngx-bootstrap/timepicker';
+import { AutoCompleteRefDirective } from 'src/app/modules/client/autocomplate/auto-complete-ref-directive.directive.spec';
+import { HighlightPipe } from 'src/app/modules/client/autocomplate/highlight.pipe';
+import { AutoCompleteComponent } from 'src/app/modules/client/autocomplate/auto-complete-component/auto-complete-component.component';
 @NgModule({
   declarations: [
     DatatableComponent,
@@ -48,7 +51,11 @@ import {TimepickerModule} from 'ngx-bootstrap/timepicker';
     FromTabSectionComponent,
     DynamicRoleComponent,  
     FooterComponent,
-    LayoutCrmComponent
+    LayoutCrmComponent,
+    AutoCompleteRefDirective ,
+    AutoCompleteRefDirective,
+    HighlightPipe,
+    AutoCompleteComponent
   ],
   imports: [
     CommonModule,
@@ -115,7 +122,11 @@ import {TimepickerModule} from 'ngx-bootstrap/timepicker';
     FromTabSectionComponent,
     DynamicRoleComponent,
     TranslateModule,
-    LayoutCrmComponent
+    LayoutCrmComponent,
+    AutoCompleteRefDirective ,
+    AutoCompleteRefDirective,
+    HighlightPipe,
+    AutoCompleteComponent
     ]
 })
 export class SharedModule { }
