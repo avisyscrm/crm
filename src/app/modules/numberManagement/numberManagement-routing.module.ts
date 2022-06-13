@@ -15,6 +15,7 @@ import { NumberTypeTableComponent } from './numberComponent/number-type-table/nu
 import { NumberSchemeLineDetailFormComponent } from './numberComponent/number-scheme-line-detail-form/number-scheme-line-detail-form.component';
 import { NumberSchemeTableComponent } from './numberComponent/number-scheme-table/number-scheme-table.component';
 import { BlockDefinitonTableComponent } from './numberComponent/block-definiton-table/block-definiton-table.component';
+import { DateTimmeComponent } from './numberComponent/date-timme/date-timme.component';
 
 
 const routes: Routes = [
@@ -86,6 +87,10 @@ const routes: Routes = [
       path: 'number-generation',
       component: NumberGenerationComponent,
       data: { title: 'Number Scheme' }
+    },{
+      path: 'dateTime',
+      component: DateTimmeComponent,
+      data: { title: 'Date Time' }
     },
     
   ]}

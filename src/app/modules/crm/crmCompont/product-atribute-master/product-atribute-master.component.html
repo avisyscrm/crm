@@ -102,7 +102,7 @@
                                        > -->
                                     <select id="datalistOptions84" class="form-control "
                                         [ngClass]="getControl.dataType?.errors ? 'mandatory' : 'mandatoryG'"
-                                        #dataTypeValue formControlName="dataType" (change)="ifDate(dataTypeValue.value)">
+                                        #dataTypeValue formControlName="dataType" (change)="onSelect(); ">
                                         <option value="">Select --</option>
                                         <option value="text">Text</option>
                                         <option value="number">Number</option>
@@ -135,14 +135,15 @@
                                        > -->
                                     <select id="datalistOptions84" class="form-control "
                                         [ngClass]="getControl.dataCaptureControl?.errors ? 'mandatory' : 'mandatoryG'"
-                                        #dataCapture formControlName="dataCaptureControl">
+                                        #dataCapture12 formControlName="dataCaptureControl" [attr.disabled]="assignRole.controls['dataType'].value == 'date'? true: null">
                                         <option value="">Select --</option>
                                         <option value="text">Text</option>
-                                        <option value="radio">Radio</option>
+                                        <option value="radio">Radio</option> 
                                         <option value="checkbox">Checkbox</option>
                                         <option value="date">Date</option>
                                         <option value="dropdown">Dropdown</option>
                                     </select>
+
                                     <div
                                         *ngIf="getControl.dataCaptureControl?.invalid && getControl.dataCaptureControl?.touched">
                                         <span class="validate-text"
@@ -171,8 +172,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <input type="number" formControlName="productAttributeLength" class="form-control "
-                                        
-                                        id="lname" name="last-name">
+                                        id="lname" name="last-name" [attr.disabled]="assignRole.controls['dataType'].value == 'date'? true:null" [value]="assignRole.controls['dataType'].value == 'date'? null:''">
                                     <div
                                         *ngIf="getControl.productAttributeLength?.invalid && getControl.productAttributeLength?.touched">
                                         <span class="validate-text"
