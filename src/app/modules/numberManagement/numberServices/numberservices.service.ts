@@ -25,6 +25,10 @@ export class NumberservicesService {
   private getNumberSchemeBlockDetailsURL = environment.schemeBaseUrl+"/blockDefinition";
   private putNumberSchemeBlockDetailURL = environment.schemeBaseUrl+"/updateBlockDefinition";
   private deleteNumberSchemeBlockURL = environment.schemeBaseUrl+"/deleteBlockDefinition";
+  private deleteVanityNumberURL = environment.schemeBaseUrl+"/";
+  private getVanityPatternRuleDetailsURL = environment.schemeBaseUrl+"/";
+  private postVanityPatterRuleURL = environment.schemeBaseUrl+"/";
+  private putVanityPatterRuleURL = environment.schemeBaseUrl+"/";
   getnumberType(url:string):Observable<any>{
     return this.http.get(environment.baseUrl+"/numberTypeDefinition?"+url);
   }
@@ -76,7 +80,6 @@ export class NumberservicesService {
   
   getNumberSchemeBlocks(url:string): Observable<any>  {
     return this.http.get(environment.schemeBaseUrl+"/blockDefinition?"+url);
-   
   }
   
 
@@ -127,5 +130,25 @@ export class NumberservicesService {
 
   deletenumberSchemeBlock(blockDefinitionId:number, id:any){
     return this.http.delete(this.deleteNumberSchemeBlockURL+"/"+blockDefinitionId+"/"+id)
+  }
+
+  getVanityPatternRules(url:string): Observable<any>  {
+    //return this.http.get(environment.schemeBaseUrl+"/blockDefinition?"+url);
+    return this.http.get('./assets/vanityPatternRule.json');
+  }
+
+  deleteVanityPatternRule(venityNumberId:number, id:any){
+    return this.http.delete(this.deleteVanityNumberURL+"/"+venityNumberId+"/"+id)
+  }
+  getVanityPatternRuleDetailData(vanityPatternRuleId:string){
+    return this.http.get(this.getVanityPatternRuleDetailsURL+"/"+vanityPatternRuleId)
+  }
+
+  postVanityPatterRule(data){
+    return this.http.post(this.postVanityPatterRuleURL,data);
+  }
+
+  updateVanityPatterRule(patternRuleData:string){
+    return this.http.put(this.putVanityPatterRuleURL,patternRuleData);
   }
 }

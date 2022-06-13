@@ -24,9 +24,9 @@ export class NumberSchemeFormComponent implements OnInit {
     'numberSchemeFormat': new FormControl('',[Validators.required,Validators.maxLength(30)]),
     'numberSchemeArea': new FormControl('',[Validators.required,Validators.maxLength(30)]),
     'reuseAfterDisconnect': new FormControl('',[Validators.required]),
-    'quarantinePeriod': new FormControl('',[Validators.required,Validators.pattern('^(0|[1-9][0-9]*)$')]),
+    'quarantinePeriod': new FormControl('',[Validators.required]),
     'quarantineUom': new FormControl('',[Validators.required,Validators.maxLength(30)]),
-    'reservationPeriod': new FormControl('',[Validators.required,Validators.pattern('^(0|[1-9][0-9]*)$')]),
+    'reservationPeriod': new FormControl('',[Validators.required]),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
   });
@@ -175,11 +175,13 @@ export class NumberSchemeFormComponent implements OnInit {
     }
     if(formName == 'scheme') {
       this.numberScheme.patchValue(this.intialvalue);
-      //this.numberScheme.reset(this.actionBtn == "Save"? this.defaultIntialValue : this.intialvalue);
     }  
     return false;
   }
   
+  onlyNumberKey(event) {
+    return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57;
+}
 
   back(){
     this.router.navigate(['/number/numberSchemeTable']);

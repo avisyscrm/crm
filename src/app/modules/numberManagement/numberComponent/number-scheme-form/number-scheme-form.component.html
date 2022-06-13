@@ -141,9 +141,16 @@
                                     <label class="form-label text-"><span>{{'forms.numberSchema.Quarantine-Period' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input  type="number" class="form-control" value=""
+                                    <input  type="number" class="form-control" value="" [min]="1" [max]="999999" (keypress)="onlyNumberKey($event)"
                                                     formControlName="quarantinePeriod"  [ngClass]="numberScheme.controls.reuseAfterDisconnect?.value ? 'mandatory' : ''" [ngClass]="numberScheme.controls.quarantinePeriod?.value ? 'mandatoryG' : ''"
                                                     [ngClass]="numberScheme.controls.quarantinePeriod?.value ? '' : ''" >
+                                                    <div *ngIf="numberScheme.controls.quarantinePeriod?.invalid && numberScheme.controls.quarantinePeriod?.touched">
+                                                        <span class="validate-text" *ngIf="numberScheme.controls.quarantinePeriod?.errors?.required">Please Enter
+                                                            Quarantine Period</span>
+                                                        <span class="validate-text" *ngIf="numberScheme.controls.quarantinePeriod?.errors?.max">Character exceed
+                                                            max limit 6</span>
+                                                    </div>    
+                                                   
                                       
                                 </div>
                             </div>
@@ -172,16 +179,14 @@
                                     <label class="form-label text-"><span>{{'forms.numberSchema.Reservation-Period' | translate}} (Days) </span></label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input  type="number" class="form-control mandatory" value=""
-                                                    formControlName="reservationPeriod"   [ngClass]="numberScheme.controls.reservationPeriod?.errors ? 'mandatory' : 'mandatoryG'">
-                                                    <div
-                                                    *ngIf="numberScheme.controls.reservationPeriod?.invalid && numberScheme.controls.reservationPeriod?.touched">
-                                                    <span
-                                                      class="validate-text" *ngIf="numberScheme.controls.reservationPeriod?.errors?.required"
-                                                      >Please Enter Reservation Period </span
-                                                    >
-                                                    
-                                                  </div>    
+                                    <input  type="number" class="form-control mandatory" value="" (keypress)="onlyNumberKey($event)"
+                                                    formControlName="reservationPeriod" [min]="1" [max]="999999"  [ngClass]="numberScheme.controls.reservationPeriod?.errors ? 'mandatory' : 'mandatoryG'">
+                                                    <div *ngIf="numberScheme.controls.reservationPeriod?.invalid && numberScheme.controls.reservationPeriod?.touched">
+                                                        <span class="validate-text" *ngIf="numberScheme.controls.reservationPeriod?.errors?.required">Please Enter
+                                                            Reservation Period</span>
+                                                        <span class="validate-text" *ngIf="numberScheme.controls.reservationPeriod?.errors?.max">Character exceed
+                                                            max limit 6</span>
+                                                    </div>    
                                 </div>
                             </div>
                         </div>
@@ -265,7 +270,7 @@
                                                     <label class="form-label ">{{'forms.numberFormat.length' | translate}} </label>
                                                 </div>
                                                 <div class=" form-group col-md-8">
-                                                    <input type="number" formControlName="lineLength" readonly class="form-control" [ngClass]="numberFormat.controls.lineLength?.errors ? 'mandatory' : 'mandatoryG'" >
+                                                    <input type="number" formControlName="lineLength" readonly class="form-control" (keypress)="onlyNumberKey($event)"  [ngClass]="numberFormat.controls.lineLength?.errors ? 'mandatory' : 'mandatoryG'" >
                                                     <div
                                                     *ngIf="numberFormat.controls.lineLength?.invalid && numberFormat.controls.lineLength?.touched">
                                                     <span
@@ -354,7 +359,7 @@
                                                     <label class="form-label ">{{'forms.numberFormat.value' | translate}} </label>
                                                 </div>
                                                 <div class=" form-group col-md-8">
-                                                    <input type="number" formControlName="lineValue"  class="form-control mandatory" [ngClass]="numberFormat.controls.lineValue?.errors ? 'mandatory' : 'mandatoryG'" >
+                                                    <input type="number" formControlName="lineValue"  (keypress)="onlyNumberKey($event)"  class="form-control mandatory" [ngClass]="numberFormat.controls.lineValue?.errors ? 'mandatory' : 'mandatoryG'" >
                                                   
                                                 
                                                 </div>
