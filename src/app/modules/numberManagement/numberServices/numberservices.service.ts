@@ -29,6 +29,14 @@ export class NumberservicesService {
   private getVanityPatternRuleDetailsURL = environment.schemeBaseUrl+"/";
   private postVanityPatterRuleURL = environment.schemeBaseUrl+"/";
   private putVanityPatterRuleURL = environment.schemeBaseUrl+"/";
+
+  removingSpace(value){
+    for (var key in value) {
+      value[key] = value[key]!= null ? value[key].toString().trim() : '';
+  }
+    return value;
+  }
+
   getnumberType(url:string):Observable<any>{
     return this.http.get(environment.baseUrl+"/numberTypeDefinition?"+url);
   }

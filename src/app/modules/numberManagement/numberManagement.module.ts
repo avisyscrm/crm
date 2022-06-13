@@ -18,6 +18,7 @@ import { NumberSchemeTableComponent } from './numberComponent/number-scheme-tabl
 import { BlockDefinitonTableComponent } from './numberComponent/block-definiton-table/block-definiton-table.component';
 import { VanityPatternRulesTableComponent } from './numberComponent/vanity-pattern-rules-table/vanity-pattern-rules-table.component';
 import { DateTimmeComponent } from './numberComponent/date-timme/date-timme.component';
+import { NumberDirective } from 'src/app/shared/namber-valid-directive';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { DateTimmeComponent } from './numberComponent/date-timme/date-timme.comp
     NumberSchemeTableComponent,
     BlockDefinitonTableComponent,
     VanityPatternRulesTableComponent,
-    DateTimmeComponent
+    DateTimmeComponent,
+    NumberDirective
   ],
   imports: [
     CommonModule,

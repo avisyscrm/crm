@@ -27,11 +27,11 @@
                                 </div>
                                 <div class=" form-group col-md-8">
                                     <input type="text" class="form-control mandatory"
-                                     [ngClass]="numberTypes.controls.numberTypeId?.errors ? 'mandatory' : 'mandatoryG'" formControlName="numberTypeId">
-                                     <div *ngIf="numberTypes.controls.numberTypeId?.invalid && numberTypes.controls.numberTypeId?.touched">
-                                        <span class="validate-text" *ngIf="numberTypes.controls.numberTypeId?.errors?.required">Please Enter
+                                     [ngClass]="getControl.numberTypeId?.errors ? 'mandatory' : 'mandatoryG'" formControlName="numberTypeId">
+                                     <div *ngIf="getControl.numberTypeId?.invalid && getControl.numberTypeId?.touched">
+                                        <span class="validate-text" *ngIf="getControl.numberTypeId?.errors?.required">Please Enter
                                             Number Type Id</span>
-                                        <span class="validate-text" *ngIf="numberTypes.controls.numberTypeId?.errors?.maxlength">Character exceed
+                                        <span class="validate-text" *ngIf="getControl.numberTypeId?.errors?.maxlength">Character exceed
                                             max limit 15</span>
                                     </div>
                                 </div>
@@ -46,7 +46,7 @@
                                     <!-- <input type="text"  class="form-control" [ngClass]="numberType.controls.type?.errors ? 'mandatory' : 'mandatoryG'" > -->
                                     <select 
                                     class="form-control " #mySelect (change)="onOptionsSelected(mySelect.value)"
-                                    [ngClass]="numberTypes.controls.numberType?.errors ? 'mandatory' : 'mandatoryG'"
+                                    [ngClass]="getControl.numberType?.errors ? 'mandatory' : 'mandatoryG'"
                                     formControlName="numberType"
                                     >
                                     <option value="others" selected> <span>{{'forms.number-type.others' | translate}}</span></option>
@@ -57,8 +57,8 @@
                                     <option value="MSISDN"><span>{{'forms.number-type.msisdn' | translate}}</span>
                                     </option>
                                     </select>
-                                    <div *ngIf="numberTypes.controls.numberType?.invalid && numberTypes.controls.numberType?.touched">
-                                        <span class="validate-text" *ngIf="numberTypes.controls.numberType?.errors?.required">Please Select
+                                    <div *ngIf="getControl.numberType?.invalid && getControl.numberType?.touched">
+                                        <span class="validate-text" *ngIf="getControl.numberType?.errors?.required">Please Select
                                             Number Type </span>
                                     </div>
                                 </div>
@@ -70,12 +70,12 @@
                                     <label class="form-label text-"><span>{{'forms.number-type.description' | translate}}</span></label>
                                 </div>
                                 <div class="col-md-8">
-                                    <textarea rows="3"  [ngClass]="numberTypes.controls.numberTypeDescription?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" placeholder=""
+                                    <textarea rows="3"  [ngClass]="getControl.numberTypeDescription?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" placeholder=""
                                         value="Mike" formControlName="numberTypeDescription"></textarea>
-                                    <div *ngIf="numberTypes.controls.numberTypeDescription?.invalid && numberTypes.controls.numberTypeDescription?.touched">
-                                        <span class="validate-text" *ngIf="numberTypes.controls.numberTypeDescription?.errors?.required">Please Enter
+                                    <div *ngIf="getControl.numberTypeDescription?.invalid && getControl.numberTypeDescription?.touched">
+                                        <span class="validate-text" *ngIf="getControl.numberTypeDescription?.errors?.required">Please Enter
                                             Description</span>
-                                        <span class="validate-text" *ngIf="numberTypes.controls.numberTypeDescription?.errors?.maxlength">Character exceed
+                                        <span class="validate-text" *ngIf="getControl.numberTypeDescription?.errors?.maxlength">Character exceed
                                             max limit 255</span>
                                     </div>    
                                 </div>
@@ -90,7 +90,7 @@
                                     <select 
                                     class="form-control"
                                     formControlName="statusAfterGeneration"
-                                    [ngClass]="numberTypes.controls.statusAfterGeneration?.errors ? 'mandatory' : 'mandatoryG'"
+                                    [ngClass]="getControl.statusAfterGeneration?.errors ? 'mandatory' : 'mandatoryG'"
                                     >
                                     <option  value=""><span>{{'forms.number-type.select' | translate}}</span></option>
                                     <option value="available" ><span>{{'forms.number-type.available' | translate}}</span>
@@ -98,8 +98,8 @@
                                     <option value="not-available"><span>{{'forms.number-type.not-available' | translate}}</span>
                                     </option>
                                     </select>
-                                    <div *ngIf="numberTypes.controls.statusAfterGeneration?.invalid && numberTypes.controls.statusAfterGeneration?.touched">
-                                        <span class="validate-text" *ngIf="numberTypes.controls.statusAfterGeneration?.errors?.required">Please Select Status After Generation</span>
+                                    <div *ngIf="getControl.statusAfterGeneration?.invalid && getControl.statusAfterGeneration?.touched">
+                                        <span class="validate-text" *ngIf="getControl.statusAfterGeneration?.errors?.required">Please Select Status After Generation</span>
                                       
                                     </div> 
                                 </div>
@@ -178,15 +178,15 @@
 
                                 <div class=" form-group col-md-8">
                                    
-                                    <select class="form-control mandatory" [ngClass]="numberTypes.controls.technologyGeneration?.errors ? 'mandatory' : 'mandatoryG'" 
+                                    <select class="form-control mandatory" [ngClass]="getControl.technologyGeneration?.errors ? 'mandatory' : 'mandatoryG'" 
                                     formControlName="technologyGeneration">
                                     <option value="">Select --</option>
                                     <option value="4G">4G</option>
                                     <option value="5G">5G</option>
                                     </select>
-                                    <div *ngIf="numberTypes.controls.technologyGeneration?.invalid && numberTypes.controls.technologyGeneration?.touched">
-                                        <!-- <span class="validate-text" *ngIf="numberTypes.controls.technologyGeneration?.errors?.required">Please Enter Technology Generation</span>
-                                        <span class="validate-text" *ngIf="numberTypes.controls.technologyGeneration?.errors?.maxlength">Character exceed max limit 2</span> -->
+                                    <div *ngIf="getControl.technologyGeneration?.invalid && getControl.technologyGeneration?.touched">
+                                        <!-- <span class="validate-text" *ngIf="getControl.technologyGeneration?.errors?.required">Please Enter Technology Generation</span>
+                                        <span class="validate-text" *ngIf="getControl.technologyGeneration?.errors?.maxlength">Character exceed max limit 2</span> -->
                                     </div> 
                                 </div>
                             </div>

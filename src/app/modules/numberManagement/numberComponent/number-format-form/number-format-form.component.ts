@@ -85,29 +85,32 @@ export class NumberFormatFormComponent implements OnInit {
   }
 
   submit(){
-    this.getControl['numberTypeId'].setValue(this.getnumberDefination['numberTypeId'].value);
-    if(this.actionBtn != "Update"){
-      this.service.postNumberFormat(this.numberFormat.value).subscribe((res:any)=>{
-        this.modalRef.hide();
-        if(res.statusCode == 23505){
-          this.alertService.SelectRecord("Level Name already exist");
-        }else{
-          this.alertService.RecordAddedStatic();
-        this.changePageSortSearch(this.url);
-        this.resetForm();
-        }
-      },(error)=>{
-        console.log(error);
-      })
-    } 
-    else{
-      this.service.updateLevelNameData(this.numberFormat.value).subscribe(()=>{
-        this.modalRef.hide();
-        this.alertService.RecordUpdatedStatic();
-        this.changePageSortSearch(this.url);
-      },(error)=>{console.log(error);
-      })
+    if(this.numberFormat.valid) {
+      this.getControl['numberTypeId'].setValue(this.getnumberDefination['numberTypeId'].value);
+      if(this.actionBtn == "Save"){
+        this.service.postNumberFormat(this.service.removingSpace(this.numberFormat.value)).subscribe((res:any)=>{
+          this.modalRef.hide();
+          if(res.statusCode == 23505){
+            this.alertService.SelectRecord("Level Name already exist");
+          }else{
+            this.alertService.RecordAddedStatic();
+            this.changePageSortSearch(this.url);
+            this.resetForm();
+          }
+        },(error)=>{
+          console.log(error);
+        })
+      } 
+      else{
+        this.service.updateLevelNameData(this.service.removingSpace(this.numberFormat.value)).subscribe(()=>{
+          this.modalRef.hide();
+          this.alertService.RecordUpdatedStatic();
+          this.changePageSortSearch(this.url);
+        },(error)=>{console.log(error);
+        })
+      }
     }
+    
    
   }
 
@@ -116,9 +119,7 @@ export class NumberFormatFormComponent implements OnInit {
   }
 
   back(){
-
     this.router.navigate(['/number/numberFormatAll']);
-    
   }
 
   changePageSortSearch(url:any){

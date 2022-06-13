@@ -24,8 +24,8 @@ export class BlockDefinationFormComponent implements OnInit {
       if (params.data != undefined) {
         this.actionBtn = "Update";
         this.getValueByID(params.data);
-        this.blockdefine.addControl['numberSchemeId'].disable();
-        this.blockdefine.addControl['blockName'].disable();
+        // this.blockdefine.addControl['numberSchemeId'].disable();
+        // this.blockdefine.addControl['blockName'].disable();
       }
     });
   
@@ -39,13 +39,14 @@ export class BlockDefinationFormComponent implements OnInit {
         console.log("Hello");
       }
       );
+
   }
 
   blockdefine = new FormGroup({
     'blockDefinitionId':new FormControl(''),
     'numberSchemeId':new FormControl('',Validators.required),
     'blockName': new FormControl('',Validators.required),
-    'approvalDate': new FormControl('', [ Validators.maxLength(15)]),
+    'approvalDate': new FormControl((new Date()).toISOString().substring(0,10), [ Validators.maxLength(15)]),
     'startNumber': new FormControl('', [Validators.required, Validators.maxLength(100)]),
     'endNumber': new FormControl('',[Validators.required, Validators.maxLength(10)]),
     'totalCount': new FormControl('0',Validators.required),
@@ -71,47 +72,40 @@ export class BlockDefinationFormComponent implements OnInit {
 
   
   submit(){
-    console.log(this.blockdefine);
-    console.log(JSON.stringify(this.blockdefine.value));
-    // alert(JSON.stringify(this.blockdefine.value));
-    if(this.actionBtn == 'Save') {
-      console.log('Block add called');
-      this.allService.postNumberScemeBlock(this.blockdefine.getRawValue()).subscribe((res:any)=>{
-        if(res.statusCode == 23505){
-          this.alertService.SelectRecord("Block Name already exist");
-        }else{
-          this.resetForm();
-          this.alertService.RecordAdded('/number/blockDefinationTable');
-        }
-      },(error)=>{
-        console.log(error);
-      })
-      return false;
+    if(this.blockdefine.valid) {
+      if(this.actionBtn == 'Save') {
+        this.allService.postNumberScemeBlock(this.allService.removingSpace(this.blockdefine.getRawValue())).subscribe((res:any)=>{
+          if(res.statusCode == 23505){
+            this.alertService.SelectRecord("Block Name already exist");
+          }else{
+            this.alertService.RecordAdded('/number/blockDefinationTable');
+          }
+        },(error)=>{
+          console.log(error);
+        })
+        return false;
+      }
+      if(this.actionBtn =='Update') {
+        // console.log(this.blockdefine.getRawValue());
+        
+        // console.log(this.allService.removingSpace(this.blockdefine.getRawValue()));
+        // return false;
+        this.allService.updateNumberSchemeBlock(this.allService.removingSpace(this.blockdefine.getRawValue())).subscribe(
+          (sucess: any) => {
+            this.alertService.RecordUpdatedStatic();
+            this.blockdefine.patchValue(sucess);
+            this.intialvalue=this.blockdefine.value;
+            this.getValueByID(sucess.blockDefinitionId);
+          });
+        
+        return false;
+      }
     }
-
-    if(this.actionBtn =='Update') {
-      console.log(this.blockdefine.getRawValue());
-      this.allService.updateNumberSchemeBlock(this.blockdefine.getRawValue()).subscribe(
-        (sucess: any) => {
-          this.alertService.RecordUpdatedStatic();
-          this.blockdefine.patchValue(sucess);
-          this.intialvalue=this.blockdefine.value;
-          this.getValueByID(sucess.blockDefinitionId);
-        });
-      
-      return false;
-    }
+    
   }
 
   resetForm(){
-    console.log(this.blockdefine);
-    this.blockdefine.reset(this.intialvalue);
-    if(this.actionBtn == 'Save') {
-      this.blockdefine.reset(this.intialvalue);
-    }
-    if(this.actionBtn == 'Update') {
-      this.blockdefine.patchValue(this.intialvalue);
-    } 
+    this.blockdefine.reset(this.intialvalue); 
   }
 
   back(){
