@@ -42,11 +42,8 @@ export class ProductFamilyFormComponent implements OnInit {
     });
   }
   ngOnInit(): void { }
-  submit() {
-  
-    for (var key in  this.productFamily.value) {
-      this.productFamily.controls[key].patchValue(this.productFamily.controls[key].value.toString().trim());
-    }
+  submit() {(
+      this.productFamily.patchValue(this.service.removingSpace(this.productFamily.value)));
     this.productFamily.controls['createdBy'].patchValue(JSON.parse(sessionStorage.getItem('userDetails')).userId);
     this.productFamily.controls['updatedBy'].patchValue(JSON.parse(sessionStorage.getItem('userDetails')).userId);
     if( this.productFamily.valid){

@@ -23,6 +23,14 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
 
   
   export class CrmservicesService {
+
+removingSpace(value){
+  for (var key in value) {
+    value[key] = value[key].toString().trim();
+}
+  return value;
+}
+
   updateOption(data) {
     return this.http.put(environment.baseUrl+"/updateOption",data);
   }
