@@ -11,11 +11,6 @@ export class DynamicformDatatableComponent implements OnInit {
 
   permission:any=[true,true,false];
   headerList:any=[];
-  // ajayStri : any ;
-  // pageNo:any;
-  // pageSize:any;
-  // sortBy:any;
-  // sortDirection:any;
   detailsForm: any;
   isSection: String="";
   data:any={};
