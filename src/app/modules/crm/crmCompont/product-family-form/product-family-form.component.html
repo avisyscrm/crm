@@ -82,8 +82,11 @@
                     <span class="validate-text" *ngIf="productFamily.controls.description?.errors?.isChar">Invalid
                       input. Only character allowed
                     </span>
-                    <span class="validate-text" *ngIf="productFamily.controls.description?.errors?.isPatterncode">pattern invalid
-                    </span>
+
+                    <span class="validate-text" *ngIf="
+                    productFamily.controls.description?.errors?.pattern
+                  ">Please enter valid characters
+                  {{productFamily.controls.description?.errors?.maxlength?.requiredLength }}</span>
                     
                   </div>
                 </div>

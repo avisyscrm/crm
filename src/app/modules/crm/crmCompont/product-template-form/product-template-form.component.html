@@ -44,6 +44,7 @@
                                             <span class="validate-text"
                                                 *ngIf="productTemplate.controls.productEntityTemplateName?.errors?.isChar">Invalid
                                                 input. Only character allowed </span>
+                                              
                                         </div>
 
                                     </div>
@@ -72,6 +73,8 @@
                                             <span class="validate-text"
                                                 *ngIf="productTemplate.controls.description?.errors?.isChar">Invalid
                                                 input. Only character allowed </span>
+                                                <span class="validate-text"
+                                                *ngIf="productTemplate.controls.description?.errors?.pattern">Please enter valid pattern</span>
                                         </div>
 
                                     </div>

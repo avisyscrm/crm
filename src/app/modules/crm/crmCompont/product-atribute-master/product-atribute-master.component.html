@@ -86,6 +86,8 @@
                                         <span class="validate-text"
                                             *ngIf="getControl.description?.errors?.maxlength ">Description length should
                                             be 400 charachter</span>
+                                            <span class="validate-text"
+                                            *ngIf="getControl.description?.errors?.pattern ">Please enter valid characters</span>
 
                                     </div>
                                 </div>

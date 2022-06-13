@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CrmservicesService } from '../../crm-services/crmservices.service';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { TranslateService } from '@ngx-translate/core';
-import { isPattern } from 'src/app/modules/client/validators/validation';
+// import { isPattern } from 'src/app/modules/client/validators/validation';
 @Component({ 
   selector: 'app-product-family-form',
   templateUrl: './product-family-form.component.html',
@@ -15,7 +15,7 @@ export class ProductFamilyFormComponent implements OnInit {
   productFamily = new FormGroup({
     'productFamilyId': new FormControl(''),
     'productFamily': new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    'description': new FormControl('', [Validators.required, Validators.maxLength(400), isPattern]),
+    'description': new FormControl('', [Validators.required, Validators.maxLength(400)]),
     'productFamilyIcon': new FormControl('', Validators.required),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),

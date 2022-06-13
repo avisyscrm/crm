@@ -11,7 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ProductlineFormComponent implements OnInit {
   @ViewChild('files') myInputVariable: any;
-  productLine = new FormGroup({
+  productLine = new FormGroup({ 
     'productLineId': new FormControl(''),
     'productLine': new FormControl('', [Validators.required, Validators.maxLength(30)]),
     'description': new FormControl('', [Validators.required, Validators.maxLength(400)]),
