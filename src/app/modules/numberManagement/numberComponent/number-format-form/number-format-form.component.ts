@@ -23,7 +23,9 @@ export class NumberFormatFormComponent implements OnInit {
   modalRef: BsModalRef;
   flag:boolean;
   url:string ="pageNo=1&pageSize=5";
-
+  myDateValue: Date;
+  minDate:Date;
+  maxDate:Date;
   constructor(private modalService: BsModalService, private http: HttpClient,
      private route: ActivatedRoute, private router: Router,private alertService: SweetalertServiceService,private service: NumberservicesService) { 
     this.defaultIntialValue = this.numberFormat.value;
@@ -37,6 +39,7 @@ export class NumberFormatFormComponent implements OnInit {
       });
   }
   ngOnInit(): void {
+    this.myDateValue = new Date();
     // Get all number format defination
     this.service.getAllNumberFormat(this.typeId,this.url).subscribe((sucess:any)=>{
       this.headerList=sucess.headerlist  ;

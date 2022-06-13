@@ -35,11 +35,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     ForgotPassFormComponent,
     FeatureComponent,
     LoginAdminComponent,
-    EmailtemplateformComponent,
-    
-    
-
-
+    EmailtemplateformComponent
   ],
   imports: [
     BrowserModule,

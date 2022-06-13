@@ -17,6 +17,7 @@ import { NumberSchemeLineDetailFormComponent } from './numberComponent/number-sc
 import { NumberSchemeTableComponent } from './numberComponent/number-scheme-table/number-scheme-table.component';
 import { BlockDefinitonTableComponent } from './numberComponent/block-definiton-table/block-definiton-table.component';
 import { VanityPatternRulesTableComponent } from './numberComponent/vanity-pattern-rules-table/vanity-pattern-rules-table.component';
+import { DateTimmeComponent } from './numberComponent/date-timme/date-timme.component';
 
 
 @NgModule({
@@ -35,8 +36,8 @@ import { VanityPatternRulesTableComponent } from './numberComponent/vanity-patte
     NumberFormatAllComponent,
     NumberSchemeTableComponent,
     BlockDefinitonTableComponent,
-    
-    VanityPatternRulesTableComponent
+    VanityPatternRulesTableComponent,
+    DateTimmeComponent
   ],
   imports: [
     CommonModule,

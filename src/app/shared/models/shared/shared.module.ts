@@ -17,10 +17,6 @@ import { AgmCoreModule } from '@agm/core';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatSliderModule } from '@angular/material/slider';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import { FullCalendarModule } from '@fullcalendar/angular';
-import { CalendarModule, DateAdapter } from 'angular-calendar';
-import { adapterFactory } from 'angular-calendar/date-adapters/date-fns';
-import { CountToModule } from 'angular-count-to';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
@@ -31,13 +27,16 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 import { PopoverModule } from 'ngx-bootstrap/popover';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
-import { ToastrModule } from 'ngx-toastr';
 import { FromSectionComponent } from 'src/app/modules/client/from-section/from-section.component';
 import { FromTabSectionComponent } from 'src/app/modules/client/from-tab-section/from-tab-section.component';
 import { DynamicRoleComponent } from 'src/app/modules/crm/crmCompont/dynamic-role/dynamic-role.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { LayoutCrmComponent } from 'src/app/modules/layout-crm/layout-crm.component';
-
+import { DatepickerModule, BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import {TimepickerModule} from 'ngx-bootstrap/timepicker';
+import { AutoCompleteRefDirective } from 'src/app/modules/client/autocomplate/auto-complete-ref-directive.directive.spec';
+import { HighlightPipe } from 'src/app/modules/client/autocomplate/highlight.pipe';
+import { AutoCompleteComponent } from 'src/app/modules/client/autocomplate/auto-complete-component/auto-complete-component.component';
 @NgModule({
   declarations: [
     DatatableComponent,
@@ -52,7 +51,11 @@ import { LayoutCrmComponent } from 'src/app/modules/layout-crm/layout-crm.compon
     FromTabSectionComponent,
     DynamicRoleComponent,  
     FooterComponent,
-    LayoutCrmComponent
+    LayoutCrmComponent,
+    AutoCompleteRefDirective ,
+    AutoCompleteRefDirective,
+    HighlightPipe,
+    AutoCompleteComponent
   ],
   imports: [
     CommonModule,
@@ -72,22 +75,20 @@ import { LayoutCrmComponent } from 'src/app/modules/layout-crm/layout-crm.compon
     MatSliderModule,
     NgApexchartsModule,
     NgMultiSelectDropDownModule.forRoot(),
-    CountToModule,
     RouterModule,
-    ToastrModule.forRoot({
-    }),
-    CalendarModule.forRoot({
-      provide: DateAdapter,
-      useFactory: adapterFactory,
-    }),
     AgmCoreModule.forRoot({
       apiKey: 'GOOGLE_API_KEY'
     }),
-    FullCalendarModule,
     CKEditorModule,
   TranslateModule,
+  BsDatepickerModule.forRoot(),
+  DatepickerModule.forRoot(),
+  TimepickerModule.forRoot()
   ],
   exports:[
+  TimepickerModule,
+    BsDatepickerModule,
+    DatepickerModule,
     DatatableComponent,
     HeaderComponent,
     LeftmenuComponent,
@@ -115,17 +116,17 @@ import { LayoutCrmComponent } from 'src/app/modules/layout-crm/layout-crm.compon
     MatSliderModule,
     NgApexchartsModule,
     NgMultiSelectDropDownModule,
-    CountToModule,
-    ToastrModule,
-    CalendarModule,
     AgmCoreModule,
-    FullCalendarModule,
     CKEditorModule,
     FromSectionComponent,
     FromTabSectionComponent,
     DynamicRoleComponent,
     TranslateModule,
-    LayoutCrmComponent
+    LayoutCrmComponent,
+    AutoCompleteRefDirective ,
+    AutoCompleteRefDirective,
+    HighlightPipe,
+    AutoCompleteComponent
     ]
 })
 export class SharedModule { }
