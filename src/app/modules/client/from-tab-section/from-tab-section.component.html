@@ -21,68 +21,77 @@
                                 <div class="col-md-12">
                                     <div class="sub-head 123">{{sectionInTab.section.section}}</div>
                                 </div>
-                                <div class="col-md-6">
+                                <br>
+                                <div class="col-md-12">
                                     <div [formGroupName]="x1.section.section">
-
-                                        <div class="form-group" *ngFor="let componat of sectionInTab?.section?.components">
-                                            <label  [ngClass]="{'required': componat.dataCaptureControl=='radio' || componat.dataCaptureControl=='checkbox'}" for="exampleInputEmail1">{{componat?.productAttributeName}}</label>
-                                            <input  
-                                                *ngIf="componat.dataCaptureControl!='radio' && componat.dataCaptureControl!='checkbox' && componat.dataCaptureControl!='dropdown'"
-                                                [formControlName]="componat?.productAttribute"
-                                                format="DD-MMM-YYYY"
-                                                data-date-inline-picker="true" 
-                                                [ngClass]=" ngClass(componat) ? 
-                                                getControl[componat?.productAttribute].errors
-                                                  ? 'mandatory'
-                                                  : 'mandatoryG':'' "
-
-                                                [type]="componat?.dataCaptureControl" class="form-control"
-                                                [id]="componat?.productAttribute" aria-describedby="emailHelp"
-                                                placeholder="Enter {{componat?.forLabel}}">
+                                    <div class="row">
+                                        <div  [ngClass]="sectionInTab?.section?.screenLayout=='DOUBLE COLUMN'? 'col-md-6':'col-md-12'"     *ngFor="let componat of sectionInTab?.section?.components">
+                                            <div  [ngClass]="sectionInTab?.section?.screenLayout=='DOUBLE COLUMN'? '':'col-md-6'"  class="form-group " >
+                                                <label  [ngClass]="{'required': componat.dataCaptureControl=='radio' || componat.dataCaptureControl=='checkbox'}" for="exampleInputEmail1">{{componat?.productAttributeName}}</label>
+                                                <input  
+                                                    *ngIf="componat.dataCaptureControl!='radio' && componat.dataCaptureControl!='checkbox' && componat.dataCaptureControl!='dropdown'"
+                                                    [formControlName]="componat?.productAttribute"
+                                                    format="DD-MMM-YYYY"
+                                                    data-date-inline-picker="true" 
+                                                    [ngClass]=" ngClass(componat) ? 
+                                                    getControl[componat?.productAttribute].errors
+                                                      ? 'mandatory'
+                                                      : 'mandatoryG':'' "
     
-                                            <div *ngIf="componat.dataCaptureControl=='radio'">
-                                                <div class="form-check" *ngFor="let x of componat?.option">
-                                                    <input type="radio" class="form-check-input"
-                                                        [id]="componat?.productAttributeName"
-                                                        
-                                                        [ngClass]="{'mandatory': ngClass(componat)}"
-                                                        [formControlName]="componat?.productAttribute"
-                                                        [value]="x.key">{{x.value}}
-                                                    <label class="form-check-label " for="radio1"></label>
+                                                    [type]="componat?.dataCaptureControl" class="form-control"
+                                                    [id]="componat?.productAttribute" aria-describedby="emailHelp"
+                                                    placeholder="Enter {{componat?.forLabel}}">
+        
+                                                <div *ngIf="componat.dataCaptureControl=='radio'">
+                                                    <div class="form-check" *ngFor="let x of componat?.option">
+                                                        <input type="radio" class="form-check-input"
+                                                            [id]="componat?.productAttributeName"
+                                                            
+                                                            [ngClass]="{'mandatory': ngClass(componat)}"
+                                                            [formControlName]="componat?.productAttribute"
+                                                            [value]="x.key">{{x.value}}
+                                                        <label class="form-check-label " for="radio1"></label>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                              <!--  -->          
-                                              <div *ngIf="componat.dataCaptureControl=='checkbox'">
-                                                <div class="form-check" *ngFor="let x of componat?.option">
-                                                 
-                                                    <input   type="checkbox" class="form-check-input"
-                                                        [id]="x.key"  [ngClass]="
-                                                        getControl[componat?.productAttribute].errors
-                                                          ? 'mandatory'
-                                                          : 'mandatoryG'"
-                                                        [ngClass]="{'mandatory': ngClass(componat)}"
-                                                        [checked]="return(x.key,x1?.section.section,componat?.productAttribute)"
-                                                        (click)="checkBoxValue($event,x1?.section.section,componat?.productAttribute)"
-                                                        
-                                                        [value]="x.key">
-                                                    <label class="form-check-label " for="{{x.value}}">{{x.value}}</label>
+                                                  <!--  -->          
+                                                  <div *ngIf="componat.dataCaptureControl=='checkbox'">
+                                                    <div class="form-check" *ngFor="let x of componat?.option">
+                                                     
+                                                        <input   type="checkbox" class="form-check-input"
+                                                            [id]="x.key"  [ngClass]="
+                                                            getControl[componat?.productAttribute].errors
+                                                              ? 'mandatory'
+                                                              : 'mandatoryG'"
+                                                            [ngClass]="{'mandatory': ngClass(componat)}"
+                                                            [checked]="return(x.key,x1?.section.section,componat?.productAttribute)"
+                                                            (click)="checkBoxValue($event,x1?.section.section,componat?.productAttribute)"
+                                                            
+                                                            [value]="x.key">
+                                                        <label class="form-check-label " for="{{x.value}}">{{x.value}}</label>
+                                                    </div>
                                                 </div>
+                                                <!--  [formControlName]="componat?.productAttribute"-->
+    
+                                                <div *ngIf="componat.dataCaptureControl =='dropdown'">
+                                                    <select   aria-placeholder="Please select value"   [ngClass]="{'mandatory': ngClass(componat)}" [id]="componat?.productAttributeName"
+                                                        [formControlName]="componat?.productAttribute" class="form-control">
+                                                        
+                                                        <option *ngFor="let x of componat?.option" [ngValue]="x.value" >{{x.value}}</option>
+                                                    </select>
+                                                </div>
+                                                <br>
+                                                <label class="error" *ngIf="getControl[componat?.productAttribute]?.touched && getControl[componat?.productAttribute].invalid">
+                                                    <label class="error" *ngIf="getControl[componat?.productAttribute].errors?.required">Please fill {{componat?.productAttributeName}}</label>
+                                                     <label class="error" *ngIf="getControl[componat?.productAttribute].errors?.maxlength">Length should be less than 80</label>
+                                                     </label>
                                             </div>
-                                            <!--  [formControlName]="componat?.productAttribute"-->
 
-                                            <div *ngIf="componat.dataCaptureControl =='dropdown'">
-                                                <select   aria-placeholder="Please select value"   [ngClass]="{'mandatory': ngClass(componat)}" [id]="componat?.productAttributeName"
-                                                    [formControlName]="componat?.productAttribute" class="form-control">
-                                                    
-                                                    <option *ngFor="let x of componat?.option" [ngValue]="x.value" >{{x.value}}</option>
-                                                </select>
-                                            </div>
-                                            <br>
-                                            <label class="error" *ngIf="getControl[componat?.productAttribute]?.touched && getControl[componat?.productAttribute].invalid">
-                                                <label class="error" *ngIf="getControl[componat?.productAttribute].errors?.required">Please fill {{componat?.productAttributeName}}</label>
-                                                 <label class="error" *ngIf="getControl[componat?.productAttribute].errors?.maxlength">Length should be less than 80</label>
-                                                 </label>
                                         </div>
+                                        
+                                    </div>
+                                   
+
+                                       
                                     </div>
                                 </div>   
                             </div>
