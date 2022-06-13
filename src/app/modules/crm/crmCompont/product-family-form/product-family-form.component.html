@@ -10,72 +10,47 @@
       <div class="card card-height">
         <div class="card-header pf-head d-flex justify-content-between">
           <h3 class="card-title">
-           {{
-              "forms.productFamily.product-family-heading" | translate
+            {{
+            "forms.productFamily.product-family-heading" | translate
             }}
           </h3>
-  <button type="button"  (click)="back()" class="btn btn-dark " >Back</button>
+          <button type="button" (click)="back()" class="btn btn-dark ">Back</button>
         </div>
         <div class="card-body">
           <div class="row productfamily">
             <div class="col-md-8">
               <div class="row">
                 <div class="form-group col-md-4">
-                  <label class="form-label"
-                    ><span>{{
+                  <label class="form-label"><span>{{
                       "forms.productFamily.product-family" | translate
-                    }}</span>
+                      }}</span>
                   </label>
                 </div>
                 <div class="form-group col-md-8">
-                  <input
-                    name=""
-                    type="text"
-                    [readonly]="actionBtn == 'Update'"
-                    [ngClass]="
+                  <input name="" type="text" [readonly]="actionBtn == 'Update'" [ngClass]="
                       productFamily.controls.productFamily?.errors
                         ? 'mandatory'
                         : 'mandatoryG'
-                    "
-                    class="form-control"
-                    value=""
-                    formControlName="productFamily"
-                  />
+                    " class="form-control" value="" formControlName="productFamily" />
 
-                  <div
-                    *ngIf="
+                  <div *ngIf="
                       productFamily.controls.productFamily?.invalid &&
                       productFamily.controls.productFamily?.touched
-                    "
-                  >
-                    <span
-                      class="validate-text"
-                      *ngIf="
+                    ">
+                    <span class="validate-text" *ngIf="
                         productFamily.controls.productFamily?.errors?.required
-                      "
-                      >Please Enter Product Family</span
-                    >
-                    <span
-                      class="validate-text"
-                      *ngIf="
+                      ">Please Enter Product Family</span>
+                    <span class="validate-text" *ngIf="
                         productFamily.controls.productFamily?.errors?.maxlength
-                      "
-                      >Character exceed max limit {{productFamily.controls.productFamily?.errors?.maxlength?.requiredLength }}</span
-                    >
-                    <span
-                      class="validate-text"
-                      *ngIf="
+                      ">Character exceed max limit
+                      {{productFamily.controls.productFamily?.errors?.maxlength?.requiredLength }}</span>
+                    <span class="validate-text" *ngIf="
                         productFamily.controls.productFamily?.errors?.isChar
-                      "
-                      >Invalid input. Only character allowed
+                      ">Invalid input. Only character allowed
                     </span>
-                    <span
-                      class="validate-text"
-                      *ngIf="
+                    <span class="validate-text" *ngIf="
                         productFamily.controls.productFamily?.errors?.pattern
-                      "
-                      >Field cant be empty</span
-                    >
+                      ">Field cant be empty</span>
                   </div>
                 </div>
               </div>
@@ -83,50 +58,33 @@
             <div class="col-md-8">
               <div class="row mb-3">
                 <div class="col-md-4">
-                  <label class="form-label text-"
-                    ><span>{{
+                  <label class="form-label text-"><span>{{
                       "forms.productFamily.description" | translate
-                    }}</span></label
-                  >
+                      }}</span></label>
                 </div>
                 <div class="col-md-8">
-                  <textarea
-                    rows="3"
-                    [ngClass]="
+                  <textarea rows="3" [ngClass]="
                       productFamily.controls.description?.errors
                         ? 'mandatory'
                         : 'mandatoryG'
-                    "
-                    class="form-control"
-                    placeholder=""
-                    value="Mike"
-                    formControlName="description"
-                  ></textarea>
-                  <div
-                    *ngIf="
+                    " class="form-control" placeholder="" value="Mike" formControlName="description"></textarea>
+                  <div *ngIf="
                       productFamily.controls.description?.invalid &&
-                      productFamily.controls.description?.touched
-                    "
-                  >
-                    <span
-                      class="validate-text"
-                      *ngIf="
+                      productFamily.controls.description?.touched 
+                    ">
+                    <span class="validate-text" *ngIf="
                         productFamily.controls.description?.errors?.required
-                      "
-                      >Please Enter Product Line description</span
-                    >
-                    <span
-                      class="validate-text"
-                      *ngIf="
+                      ">Please Enter Product Line description</span>
+                    <span class="validate-text" *ngIf="
                         productFamily.controls.description?.errors?.maxlength
-                      "
-                      >Character exceed max limit {{productFamily.controls.description?.errors?.maxlength?.requiredLength }}</span
-                    >
-                    <span
-                      class="validate-text"
-                      *ngIf="productFamily.controls.description?.errors?.isChar"
-                      >Invalid input. Only character allowed
+                      ">Character exceed max limit
+                      {{productFamily.controls.description?.errors?.maxlength?.requiredLength }}</span>
+                    <span class="validate-text" *ngIf="productFamily.controls.description?.errors?.isChar">Invalid
+                      input. Only character allowed
                     </span>
+                    <span class="validate-text" *ngIf="productFamily.controls.description?.errors?.isPatterncode">pattern invalid
+                    </span>
+                    
                   </div>
                 </div>
               </div>
@@ -134,50 +92,28 @@
             <div class="col-md-8">
               <div class="row mb-3">
                 <div class="col-md-4">
-                  <label class="form-label"
-                    ><span>{{
+                  <label class="form-label"><span>{{
                       "forms.productFamily.product-family-icon" | translate
-                    }}</span></label
-                  >
+                      }}</span></label>
                 </div>
 
                 <div class="col-md-8">
-                  <button
-                    type="button"
-                    class="btn btn-primary"
-                    mat-button
-                    (click)="file1.click()"
-                  >
+                  <button type="button" class="btn btn-primary" mat-button (click)="file1.click()">
                     Choose File
                   </button>
-                  <input
-                    hidden
-                    type="file"
-                    #file1
-                    name="requestfile"
-                    (change)="onFileSelect($event)"
-                    accept="image/*"
-                  />
-                  <img
-                    *ngIf="
+                  <input hidden type="file" #file1 name="requestfile" (change)="onFileSelect($event)"
+                    accept="image/*" />
+                  <img *ngIf="
                       productFamily.controls.productFamilyIcon.value != '' &&
                       productFamily.controls.productFamilyIcon.value != null &&
                       productFamily.controls.productFamilyIcon.value !=
                         undefined
-                    "
-                    [src]="productFamily.controls.productFamilyIcon.value"
-                    class="selected-image"
-                  />
+                    " [src]="productFamily.controls.productFamilyIcon.value" class="selected-image" />
                 </div>
               </div>
             </div>
           </div>
-          <button
-            [disabled]="productFamily.invalid"
-            (click)="submit()"
-            type="submit"
-            class="btn btn-primary"
-          >
+          <button [disabled]="productFamily.invalid" (click)="submit()" type="submit" class="btn btn-primary">
             {{ actionBtn }}
           </button>
           <button

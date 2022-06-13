@@ -60,6 +60,26 @@ export function alphaNumeric(control: AbstractControl){
     return null;
 }
 
+// pattern
+
+
+export function isPattern(control: AbstractControl){
+    if(control.value !== null){
+       const pattern = new RegExp('_@%');
+       if(!pattern.test(control.value)){
+           return{
+               isPatterncode: true
+           }
+       }
+    }
+    return null;
+}
+
+
+
+
+
+
 // no empty space
 export function noWhitespace(control: AbstractControl){
     if(control.value !== null ){

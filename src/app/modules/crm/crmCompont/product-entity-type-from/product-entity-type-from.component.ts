@@ -14,7 +14,7 @@ export class ProductEntityTypeFromComponent implements OnInit {
   productFamily = new FormGroup({
     productEntityTypeId: new FormControl(''),
     productEntityType: new FormControl('', [Validators.required, Validators.maxLength(15)]),
-    productEntityTypeDescription: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    productEntityTypeDescription: new FormControl('', [Validators.required, Validators.maxLength(400)]),
     launchable: new FormControl(false),
     createdBy: new FormControl(''),
     updatedBy: new FormControl(''),

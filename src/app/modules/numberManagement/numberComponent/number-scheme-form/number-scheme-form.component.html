@@ -192,13 +192,13 @@
                         </div>
                        
                     </div>
-                    <button [disabled]="numberScheme.invalid" (click)="numberSchemeSubmit()" type="submit" class="btn btn-primary ">{{actionBtn}}</button>
+                    <button [disabled]="numberScheme.invalid" (click)="numberSchemeSubmit('numberScheme')" type="submit" class="btn btn-primary ">{{actionBtn}}</button>
                     <button type="button" (click)="resetForm('scheme')" class="btn btn-primary ml-3 ">Reset</button>
                 </div>
                 <!-- DataTable -->
 
                 <app-datatable *ngIf="actionBtn=='Update'" [permission]="permission" (buttonEvent1)="buttonEvent1($event,template)"
-                (changePageSortSearch)="changePageSortSearch($event)" [dataset]="data">
+                (changePageSortSearch)="changePageSortSearch($event, false)" [dataset]="data">
                 <app-column [search]="x.search_key" [cssClass]="" [type]="x.type" *ngFor="let x of headerList"
                     [value]="x.value" [width]="x.width" [header]="x.header"></app-column>
             </app-datatable>
