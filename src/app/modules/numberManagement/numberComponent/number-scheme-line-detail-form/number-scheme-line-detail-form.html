@@ -24,7 +24,7 @@
                             </div>
                             <div class="col-md-8">
                                 <input  type="number" class="form-control mandatory" value=""
-                                                formControlName="sequence"  [ngClass]="numberSchemeLine.controls.sequence?.errors ? 'mandatory' : 'mandatoryG'">
+                                                formControlName="sequence"  [ngClass]="getControl.sequence?.errors ? 'mandatory' : 'mandatoryG'">
                                  
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                             </div>
                             <div class="col-md-8">
                                 <input  type="text" class="form-control mandatory" value=""
-                                                formControlName="levelName" [ngClass]="numberSchemeLine.controls.levelName?.errors ? 'mandatory' : 'mandatoryG'">
+                                                formControlName="levelName" [ngClass]="getControl.levelName?.errors ? 'mandatory' : 'mandatoryG'">
                                    
                             </div>
                         </div>
@@ -47,7 +47,7 @@
                                 <label class="form-label text-"><span>Description</span></label>
                             </div>
                             <div class="col-md-8">
-                                <textarea rows="3"  [ngClass]="numberSchemeLine.controls.description?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" placeholder="Here can be your description"
+                                <textarea rows="3"  [ngClass]="getControl.description?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" placeholder="Here can be your description"
                                     value="Mike" formControlName="description"></textarea>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                             </div>
                             <div class="col-md-8">
                                 <select  name="" type="text" class="form-control mandatory" value=""
-                                                formControlName="levelType"  [ngClass]="numberSchemeLine.controls.levelType?.errors ? 'mandatory' : 'mandatoryG'">
+                                                formControlName="levelType"  [ngClass]="getControl.levelType?.errors ? 'mandatory' : 'mandatoryG'">
                                     <option value="" >Select --</option>           
                                     <option value="Running" >Running</option>           
                                     <option value="Fixed" >Fixed</option>           
@@ -74,7 +74,7 @@
                             </div>
                             <div class="col-md-8">
                                 <input  type="number" class="form-control mandatory" value=""
-                                                formControlName="length"  [ngClass]="numberSchemeLine.controls.length?.errors ? 'mandatory' : 'mandatoryG'">
+                                                formControlName="length"  [ngClass]="getControl.length?.errors ? 'mandatory' : 'mandatoryG'">
                             </div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="col-md-8">
                                     <input  type="text" class="form-control mandatory" value=""
-                                                formControlName="valueType"  [ngClass]="numberSchemeLine.controls.valueType?.errors ? 'mandatory' : 'mandatoryG'" >
+                                                formControlName="valueType"  [ngClass]="getControl.valueType?.errors ? 'mandatory' : 'mandatoryG'" >
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                             </div>
                             <div class="col-md-8">
                                     <input  type="text" class="form-control mandatory" value=""
-                                    formControlName="value" [ngClass]="numberSchemeLine.controls.value?.errors ? 'mandatory' : 'mandatoryG'">
+                                    formControlName="value" [ngClass]="getControl.value?.errors ? 'mandatory' : 'mandatoryG'">
                                     
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                             </div>
                             <div class="col-md-8">
                                 <input  type="text" class="form-control mandatory" value=""
-                                    formControlName="delimiter" [ngClass]="numberSchemeLine.controls.delimiter?.errors ? 'mandatory' : 'mandatoryG'">
+                                    formControlName="delimiter" [ngClass]="getControl.delimiter?.errors ? 'mandatory' : 'mandatoryG'">
                                     
                             </div>
                         </div>

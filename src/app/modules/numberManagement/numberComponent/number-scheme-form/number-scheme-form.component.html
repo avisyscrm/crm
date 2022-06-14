@@ -25,12 +25,12 @@
                                 </div>
                                 <div class="col-md-8">
                                     <input name="" type="text" class="form-control mandatory" value=""
-                                                    formControlName="numberSchemeName" [attr.disabled]="actionBtn=='Update' ? true : null"  [ngClass]="numberScheme.controls.numberSchemeName?.errors ? 'mandatory' : 'mandatoryG'">
-                                                    <div *ngIf="numberScheme.controls.numberSchemeName?.invalid && numberScheme.controls.numberSchemeName?.touched">
-                                                        <span class="validate-text" *ngIf="numberScheme.controls.numberSchemeName?.errors?.required">Please Enter
+                                                    formControlName="numberSchemeName" [attr.disabled]="actionBtn=='Update' ? true : null"  [ngClass]="getnumberSchemeControl.numberSchemeName?.errors ? 'mandatory' : 'mandatoryG'">
+                                                    <div *ngIf="getnumberSchemeControl.numberSchemeName?.invalid && getnumberSchemeControl.numberSchemeName?.touched">
+                                                        <span class="validate-text" *ngIf="getnumberSchemeControl.numberSchemeName?.errors?.required">Please Enter
                                                             Number Scheme Name</span>
-                                                        <span class="validate-text" *ngIf="numberScheme.controls.numberSchemeName?.errors?.maxlength">Character exceed
-                                                            max limit {{numberScheme.controls.numberSchemeName?.errors?.maxlength?.requiredLength}}</span>
+                                                        <span class="validate-text" *ngIf="getnumberSchemeControl.numberSchemeName?.errors?.maxlength">Character exceed
+                                                            max limit {{getnumberSchemeControl.numberSchemeName?.errors?.maxlength?.requiredLength}}</span>
                                                     </div>
                                 </div>
                             </div>
@@ -42,14 +42,14 @@
                                 </div>
                                 <div class="col-md-8">
                                     <select  name="" type="text" class="form-control mandatory" value="" [attr.disabled]="actionBtn=='Update' ? true : null" 
-                                           (change)="enableDisableArea()"         formControlName="numberType"  [ngClass]="numberScheme.controls.numberType?.errors ? 'mandatory' : 'mandatoryG'">
+                                           (change)="enableDisableArea()"         formControlName="numberType"  [ngClass]="getnumberSchemeControl.numberType?.errors ? 'mandatory' : 'mandatoryG'">
                                         <option value="" >Select --</option>           
                                         <option *ngFor="let numberType of numberTypes"  value="{{numberType.numberTypeId}}" >{{numberType.numberType+" ("+numberType.numberTypeId+")"}}</option>           
                                     </select>
                                     <div
-                                                *ngIf="numberScheme.controls.numberType?.invalid && numberScheme.controls.numberType?.touched">
+                                                *ngIf="getnumberSchemeControl.numberType?.invalid && getnumberSchemeControl.numberType?.touched">
                                                 <span
-                                                  class="validate-text" *ngIf="numberScheme.controls.numberType?.errors?.required"
+                                                  class="validate-text" *ngIf="getnumberSchemeControl.numberType?.errors?.required"
                                                   >Please Select Number Type</span
                                                 >
                                               </div>
@@ -64,12 +64,12 @@
                                 </div>
                                 <div class="col-md-8">
                                     <input  type="text" class="form-control mandatory" value=""
-                                                    formControlName="numberSchemeFormat"  [ngClass]="numberScheme.controls.numberSchemeFormat?.errors ? 'mandatory' : 'mandatoryG'">
-                                                    <div *ngIf="numberScheme.controls.numberSchemeFormat?.invalid && numberScheme.controls.numberSchemeFormat?.touched">
-                                                        <span class="validate-text" *ngIf="numberScheme.controls.numberSchemeFormat?.errors?.required">Please Enter
+                                                    formControlName="numberSchemeFormat"  [ngClass]="getnumberSchemeControl.numberSchemeFormat?.errors ? 'mandatory' : 'mandatoryG'">
+                                                    <div *ngIf="getnumberSchemeControl.numberSchemeFormat?.invalid && getnumberSchemeControl.numberSchemeFormat?.touched">
+                                                        <span class="validate-text" *ngIf="getnumberSchemeControl.numberSchemeFormat?.errors?.required">Please Enter
                                                             Number Format</span>
-                                                        <span class="validate-text" *ngIf="numberScheme.controls.numberSchemeFormat?.errors?.maxlength">Character exceed
-                                                            max limit {{numberScheme.controls.numberSchemeFormat?.errors?.maxlength?.requiredLength}}</span>
+                                                        <span class="validate-text" *ngIf="getnumberSchemeControl.numberSchemeFormat?.errors?.maxlength">Character exceed
+                                                            max limit {{getnumberSchemeControl.numberSchemeFormat?.errors?.maxlength?.requiredLength}}</span>
                                                     </div>                
                                         
                                 </div>
@@ -85,7 +85,7 @@
                                      
                                          <div class="custom-switches-stacked d-inline">
                                             <label class="custom-switch">
-                                                <input type="checkbox" value="" class="custom-switch-input" formControlName="numberSchemeReleased"  [ngClass]="numberScheme.controls.numberSchemeReleased?.errors ? 'mandatory' : 'mandatoryG'">
+                                                <input type="checkbox" value="" class="custom-switch-input" formControlName="numberSchemeReleased" disabled [ngClass]="getnumberSchemeControl.numberSchemeReleased?.errors ? 'mandatory' : 'mandatoryG'">
                                                 <span class="custom-switch-indicator"></span>
                                             </label>
                                         </div>
@@ -103,7 +103,7 @@
                                      
                                          <div class="custom-switches-stacked d-inline">
                                             <label class="custom-switch">
-                                                <input type="checkbox" value="" class="custom-switch-input" formControlName="reuseAfterDisconnect"   [ngClass]="numberScheme.controls.reuseAfterDisconnect?.errors ? 'mandatory' : 'mandatoryG'">
+                                                <input type="checkbox" value="" class="custom-switch-input" formControlName="reuseAfterDisconnect"   [ngClass]="getnumberSchemeControl.reuseAfterDisconnect?.errors ? 'mandatory' : 'mandatoryG'">
                                                 <span class="custom-switch-indicator"></span>
                                             </label>
                                         </div>
@@ -119,14 +119,14 @@
                                 </div>
                                 <div class="col-md-8">
                                     <select  name="" type="text" class="form-control" value="" [attr.disabled]="actionBtn=='Update' ? true : null" 
-                                    formControlName="numberSchemeArea"  [ngClass]="numberScheme.controls.numberSchemeArea?.errors ? 'mandatory' : 'mandatoryG'" >
+                                    formControlName="numberSchemeArea"  [ngClass]="getnumberSchemeControl.numberSchemeArea?.errors ? 'mandatory' : 'mandatoryG'" >
                                     <option value="" >Select --</option>   
                                     <option value="MP" >MP</option>   
                                     <option value="MH" >MH</option>   
                                     </select>
-                                    <div *ngIf="numberScheme.controls.numberSchemeArea?.invalid && numberScheme.controls.numberSchemeArea?.touched">
+                                    <div *ngIf="getnumberSchemeControl.numberSchemeArea?.invalid && getnumberSchemeControl.numberSchemeArea?.touched">
                                                 <span
-                                                  class="validate-text" *ngIf="numberScheme.controls.numberSchemeArea?.errors?.required"
+                                                  class="validate-text" *ngIf="getnumberSchemeControl.numberSchemeArea?.errors?.required"
                                                   >Please Select Area</span
                                                 >
                                                 
@@ -142,12 +142,12 @@
                                 </div>
                                 <div class="col-md-8">
                                     <input  type="number" class="form-control" value="" [min]="1" [max]="999999" (keypress)="onlyNumberKey($event)"
-                                                    formControlName="quarantinePeriod"  [ngClass]="numberScheme.controls.reuseAfterDisconnect?.value ? 'mandatory' : ''" [ngClass]="numberScheme.controls.quarantinePeriod?.value ? 'mandatoryG' : ''"
-                                                    [ngClass]="numberScheme.controls.quarantinePeriod?.value ? '' : ''" >
-                                                    <div *ngIf="numberScheme.controls.quarantinePeriod?.invalid && numberScheme.controls.quarantinePeriod?.touched">
-                                                        <span class="validate-text" *ngIf="numberScheme.controls.quarantinePeriod?.errors?.required">Please Enter
+                                                    formControlName="quarantinePeriod"  [ngClass]="getnumberSchemeControl.reuseAfterDisconnect?.value ? 'mandatory' : ''" [ngClass]="getnumberSchemeControl.quarantinePeriod?.value ? 'mandatoryG' : ''"
+                                                    [ngClass]="getnumberSchemeControl.quarantinePeriod?.value ? '' : ''" >
+                                                    <div *ngIf="getnumberSchemeControl.quarantinePeriod?.invalid && getnumberSchemeControl.quarantinePeriod?.touched">
+                                                        <span class="validate-text" *ngIf="getnumberSchemeControl.quarantinePeriod?.errors?.required">Please Enter
                                                             Quarantine Period</span>
-                                                        <span class="validate-text" *ngIf="numberScheme.controls.quarantinePeriod?.errors?.max">Character exceed
+                                                        <span class="validate-text" *ngIf="getnumberSchemeControl.quarantinePeriod?.errors?.max">Character exceed
                                                             max limit 6</span>
                                                     </div>    
                                                    
@@ -162,7 +162,7 @@
                                 </div>
                                 <div class="col-md-8">
                                     <select  name="" type="text" class="form-control" value=""
-                                                    formControlName="quarantineUom"   [ngClass]="numberScheme.controls.reuseAfterDisconnect?.value ? 'mandatory' : ''" [ngClass]="numberScheme.controls.quarantineUom?.value ? 'mandatoryG' : ''">
+                                                    formControlName="quarantineUom"   [ngClass]="getnumberSchemeControl.reuseAfterDisconnect?.value ? 'mandatory' : ''" [ngClass]="getnumberSchemeControl.quarantineUom?.value ? 'mandatoryG' : ''">
                                         <option value="" >Select --</option>
                                         <option value="days" >Days</option>
                                         <option value="months" >Months</option>
@@ -179,12 +179,12 @@
                                     <label class="form-label text-"><span>{{'forms.numberSchema.Reservation-Period' | translate}} (Days) </span></label>
                                 </div>
                                 <div class="col-md-8">
-                                    <input  type="number" class="form-control mandatory" value="" (keypress)="onlyNumberKey($event)"
-                                                    formControlName="reservationPeriod" [min]="1" [max]="999999"  [ngClass]="numberScheme.controls.reservationPeriod?.errors ? 'mandatory' : 'mandatoryG'">
-                                                    <div *ngIf="numberScheme.controls.reservationPeriod?.invalid && numberScheme.controls.reservationPeriod?.touched">
-                                                        <span class="validate-text" *ngIf="numberScheme.controls.reservationPeriod?.errors?.required">Please Enter
+                                    <input  type="number" class="form-control " value="" (keypress)="onlyNumberKey($event)" disabled
+                                                    formControlName="reservationPeriod" [min]="1" [max]="999999" >
+                                                    <div *ngIf="getnumberSchemeControl.reservationPeriod?.invalid && getnumberSchemeControl.reservationPeriod?.touched">
+                                                        <span class="validate-text" *ngIf="getnumberSchemeControl.reservationPeriod?.errors?.required">Please Enter
                                                             Reservation Period</span>
-                                                        <span class="validate-text" *ngIf="numberScheme.controls.reservationPeriod?.errors?.max">Character exceed
+                                                        <span class="validate-text" *ngIf="getnumberSchemeControl.reservationPeriod?.errors?.max">Character exceed
                                                             max limit 6</span>
                                                     </div>    
                                 </div>
@@ -228,16 +228,16 @@
                                                     <label class="form-label ">{{'forms.numberFormat.level-name' | translate}}</label>
                                                 </div>
                                                 <div class=" form-group col-md-8">
-                                                    <input type="text" formControlName="lineLevelName" class="form-control" readonly [ngClass]="numberFormat.controls.numberFormatLevelName?.errors ? 'mandatory' : 'mandatoryG'" >
+                                                    <input type="text" formControlName="lineLevelName" class="form-control" readonly [ngClass]="getnumberFormatControl.numberFormatLevelName?.errors ? 'mandatory' : 'mandatoryG'" >
                                                     <div
-                                                    *ngIf="numberFormat.controls.lineLevelName?.invalid && numberFormat.controls.lineLevelName?.touched">
+                                                    *ngIf="getnumberFormatControl.lineLevelName?.invalid && getnumberFormatControl.lineLevelName?.touched">
                                                     <span
-                                                      class="validate-text" *ngIf="numberFormat.controls.lineLevelName?.errors?.required"
+                                                      class="validate-text" *ngIf="getnumberFormatControl.lineLevelName?.errors?.required"
                                                       >Please Enter Format Level Name</span
                                                     >
                                                     <span
                                                       class="validate-text"
-                                                      *ngIf="numberFormat.controls.numberFormatLevelName?.errors?.maxlength">Character exceed max limit {{numberFormat.controls.numberFormatLevelName?.errors?.maxlength?.requiredLength}}</span>
+                                                      *ngIf="getnumberFormatControl.numberFormatLevelName?.errors?.maxlength">Character exceed max limit {{getnumberFormatControl.numberFormatLevelName?.errors?.maxlength?.requiredLength}}</span>
                                                   </div>
                                                   
                                                 </div>
@@ -249,17 +249,17 @@
                                                     <label class="form-label text-">{{'forms.numberFormat.Description' | translate}}</label>
                                                 </div>
                                                 <div class="col-md-8">
-                                                    <textarea rows="3" readonly  [ngClass]="numberFormat.controls.lineDescription?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" 
+                                                    <textarea rows="3" readonly  [ngClass]="getnumberFormatControl.lineDescription?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" 
                                                         value="Mike" formControlName="lineDescription"></textarea>
                                                         <div
-                                                    *ngIf="numberFormat.controls.lineDescription?.invalid && numberFormat.controls.lineDescription?.touched">
+                                                    *ngIf="getnumberFormatControl.lineDescription?.invalid && getnumberFormatControl.lineDescription?.touched">
                                                     <span
-                                                      class="validate-text" *ngIf="numberFormat.controls.lineDescription?.errors?.required"
+                                                      class="validate-text" *ngIf="getnumberFormatControl.lineDescription?.errors?.required"
                                                       >Please Enter Description</span
                                                     >
                                                     <span
                                                       class="validate-text"
-                                                      *ngIf="numberFormat.controls.lineDescription?.errors?.maxlength">Character exceed max limit {{numberFormat.controls.lineDescription?.errors?.maxlength?.requiredLength}}</span>
+                                                      *ngIf="getnumberFormatControl.lineDescription?.errors?.maxlength">Character exceed max limit {{getnumberFormatControl.lineDescription?.errors?.maxlength?.requiredLength}}</span>
                                                   </div>
                                                 </div>
                                             </div>
@@ -270,16 +270,16 @@
                                                     <label class="form-label ">{{'forms.numberFormat.length' | translate}} </label>
                                                 </div>
                                                 <div class=" form-group col-md-8">
-                                                    <input type="number" formControlName="lineLength" readonly class="form-control" (keypress)="onlyNumberKey($event)"  [ngClass]="numberFormat.controls.lineLength?.errors ? 'mandatory' : 'mandatoryG'" >
+                                                    <input type="number" formControlName="lineLength" readonly class="form-control" (keypress)="onlyNumberKey($event)"  [ngClass]="getnumberFormatControl.lineLength?.errors ? 'mandatory' : 'mandatoryG'" >
                                                     <div
-                                                    *ngIf="numberFormat.controls.lineLength?.invalid && numberFormat.controls.lineLength?.touched">
+                                                    *ngIf="getnumberFormatControl.lineLength?.invalid && getnumberFormatControl.lineLength?.touched">
                                                     <span
-                                                      class="validate-text" *ngIf="numberFormat.controls.lineLength?.errors?.required"
+                                                      class="validate-text" *ngIf="getnumberFormatControl.lineLength?.errors?.required"
                                                       >Please Enter Length</span
                                                     >
                                                     <span
                                                       class="validate-text"
-                                                      *ngIf="numberFormat.controls.lineLength?.errors?.maxlength">Character exceed max limit {{numberFormat.controls.lineLength?.errors?.maxlength?.requiredLength}}</span>
+                                                      *ngIf="getnumberFormatControl.lineLength?.errors?.maxlength">Character exceed max limit {{getnumberFormatControl.lineLength?.errors?.maxlength?.requiredLength}}</span>
                                                   </div>
                                                 
                                                 </div>
@@ -292,15 +292,15 @@
                                                 </div>
                                                 <div class=" form-group col-md-8">
                                                     <select  name="cars" id="cars" class="form-control" disabled
-                                                        formControlName="lineValueType"  [ngClass]="numberFormat.controls.lineValueType?.errors ? 'mandatory' : 'mandatoryG'">
+                                                        formControlName="lineValueType"  [ngClass]="getnumberFormatControl.lineValueType?.errors ? 'mandatory' : 'mandatoryG'">
                                                         <option value="">Select --</option>
                                                         <option value="Numeric">Numeric</option>
                                                         <option value="Alphanumeric">Alphanumeric</option>
                                                     </select>
                                                     <div
-                                                    *ngIf="numberFormat.controls.lineValueType?.invalid && numberFormat.controls.lineValueType?.touched">
+                                                    *ngIf="getnumberFormatControl.lineValueType?.invalid && getnumberFormatControl.lineValueType?.touched">
                                                     <span
-                                                      class="validate-text" *ngIf="numberFormat.controls.lineValueType?.errors?.required"
+                                                      class="validate-text" *ngIf="getnumberFormatControl.lineValueType?.errors?.required"
                                                       >Please Select Value Type</span
                                                     >
                                                     
@@ -315,16 +315,16 @@
                                                 </div>
                                                 <div class=" form-group col-md-8">
                                                     <select  class="form-control"
-                                                        formControlName="lineDelimiter" disabled [ngClass]="numberFormat.controls.lineDelimiter?.errors ? 'mandatory' : 'mandatoryG'">
+                                                        formControlName="lineDelimiter" disabled [ngClass]="getnumberFormatControl.lineDelimiter?.errors ? 'mandatory' : 'mandatoryG'">
                                                         <option value="None">None</option>
                                                         <option value="-">-</option>
                                                         <option value="/">/</option>
                                                         <option value="*">*</option>
                                                     </select>
                                                     <div
-                                                    *ngIf="numberFormat.controls.lineDelimiter?.invalid && numberFormat.controls.lineDelimiter?.touched">
+                                                    *ngIf="getnumberFormatControl.lineDelimiter?.invalid && getnumberFormatControl.lineDelimiter?.touched">
                                                     <span
-                                                      class="validate-text" *ngIf="numberFormat.controls.lineDelimiter?.errors?.required"
+                                                      class="validate-text" *ngIf="getnumberFormatControl.lineDelimiter?.errors?.required"
                                                       >Please Select Delimeter</span>
                                                     
                                                    </div>
@@ -338,15 +338,15 @@
                                                 </div>
                                                 <div class=" form-group col-md-8">
                                                     <select  class="form-control"
-                                                        formControlName="lineLevelType" disabled  [ngClass]="numberFormat.controls.lineLevelType?.errors ? 'mandatory' : 'mandatoryG'">
+                                                        formControlName="lineLevelType" disabled  [ngClass]="getnumberFormatControl.lineLevelType?.errors ? 'mandatory' : 'mandatoryG'">
                                                         <option value="" >Select</option>
                                                         <option value="Running">Running</option>
                                                         <option value="Fixed">Fixed</option>
                                                     </select>
                                                     <div
-                                                    *ngIf="numberFormat.controls.lineLevelType?.invalid && numberFormat.controls.lineLevelType?.touched">
+                                                    *ngIf="getnumberFormatControl.lineLevelType?.invalid && getnumberFormatControl.lineLevelType?.touched">
                                                     <span
-                                                      class="validate-text" *ngIf="numberFormat.controls.lineLevelType?.errors?.required"
+                                                      class="validate-text" *ngIf="getnumberFormatControl.lineLevelType?.errors?.required"
                                                       >Please Select Level Type</span>
                                                     
                                                    </div>
@@ -359,7 +359,7 @@
                                                     <label class="form-label ">{{'forms.numberFormat.value' | translate}} </label>
                                                 </div>
                                                 <div class=" form-group col-md-8">
-                                                    <input type="number" formControlName="lineValue"  (keypress)="onlyNumberKey($event)"  class="form-control mandatory" [ngClass]="numberFormat.controls.lineValue?.errors ? 'mandatory' : 'mandatoryG'" >
+                                                    <input type="number" formControlName="lineValue"  (keypress)="onlyNumberKey($event)"  class="form-control mandatory" [ngClass]="getnumberFormatControl.lineValue?.errors ? 'mandatory' : 'mandatoryG'" >
                                                   
                                                 
                                                 </div>

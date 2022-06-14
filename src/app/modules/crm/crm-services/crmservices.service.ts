@@ -26,7 +26,7 @@ import { Producttemplatesection } from '../crm/crmForm-model/Producttemplatesect
 
 removingSpace(value){
   for (var key in value) {
-    value[key] = value[key].toString().trim();
+    value[key] = value[key]!= null ? value[key].toString().trim() : '';
 }
   return value;
 }

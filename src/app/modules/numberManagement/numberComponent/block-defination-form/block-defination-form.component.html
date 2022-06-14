@@ -23,12 +23,12 @@
                                 <label class="form-label ">{{'forms.blockDefination.scheme-name' | translate}}</label>
                             </div>
                             <div class=" form-group col-md-8">
-                                <select type="text" class="form-control" [attr.disabled]="actionBtn=='Update' ? true : null"   [ngClass]="blockdefine.controls.numberSchemeId?.errors ? 'mandatory' : 'mandatoryG'" formControlName="numberSchemeId">
+                                <select type="text" class="form-control" [attr.disabled]="actionBtn=='Update' ? true : null"   [ngClass]="getControl.numberSchemeId?.errors ? 'mandatory' : 'mandatoryG'" formControlName="numberSchemeId">
                                     <option value="" >Select --</option>
                                     <option *ngFor="let scheme of schemeList" value="{{scheme.numberSchemeId}}" >{{scheme.numberSchemeName}}</option>
                                 </select>
-                                <div *ngIf="blockdefine.controls.numberSchemeId?.invalid && blockdefine.controls.numberSchemeId?.touched">
-                                    <span class="validate-text" *ngIf="blockdefine.controls.numberSchemeId?.errors?.required">Please select
+                                <div *ngIf="getControl.numberSchemeId?.invalid && getControl.numberSchemeId?.touched">
+                                    <span class="validate-text" *ngIf="getControl.numberSchemeId?.errors?.required">Please select
                                         Number Scheme</span>
                                 </div>
                             </div>
@@ -40,12 +40,12 @@
                                 <label class="form-label ">{{'forms.blockDefination.block-name' | translate}}</label>
                             </div>
                             <div class=" form-group col-md-8">
-                                <input type="text" class="form-control" [attr.disabled]="actionBtn=='Update' ? true : null"  [ngClass]="blockdefine.controls.blockName?.errors ? 'mandatory' : 'mandatoryG'" formControlName="blockName">
-                                <div *ngIf="blockdefine.controls.blockName?.invalid && blockdefine.controls.blockName?.touched">
-                                    <span class="validate-text" *ngIf="blockdefine.controls.blockName?.errors?.required">Please Enter
+                                <input type="text" class="form-control" [attr.disabled]="actionBtn=='Update' ? true : null"  [ngClass]="getControl.blockName?.errors ? 'mandatory' : 'mandatoryG'" formControlName="blockName">
+                                <div *ngIf="getControl.blockName?.invalid && getControl.blockName?.touched">
+                                    <span class="validate-text" *ngIf="getControl.blockName?.errors?.required">Please Enter
                                          Block Name</span>
-                                    <span class="validate-text" *ngIf="blockdefine.controls.blockName?.errors?.maxlength">Character exceed
-                                        max limit {{blockdefine.controls.schemeName?.errors?.maxlength?.requiredLength}}</span>
+                                    <span class="validate-text" *ngIf="getControl.blockName?.errors?.maxlength">Character exceed
+                                        max limit {{getControl.schemeName?.errors?.maxlength?.requiredLength}}</span>
                                 </div>
                             </div>
                         </div>
@@ -56,10 +56,10 @@
                                 <label class="form-label ">{{'forms.blockDefination.recieved-date' | translate}}</label>
                             </div>
                             <div class=" form-group col-md-8">
-                                <input type="date" formControlName="approvalDate" class="form-control" [ngClass]="blockdefine.controls.approvalDate?.errors ? 'mandatory' : 'mandatoryG'" >
-                                <div *ngIf="blockdefine.controls.approvalDate?.invalid && blockdefine.controls.approvalDate?.touched">
-                                    <span class="validate-text" *ngIf="blockdefine.controls.approvalDate?.errors?.maxlength">Character exceed
-                                        max limit {{blockdefine.controls.schemeName?.errors?.maxlength?.requiredLength}}</span>
+                                <input type="date" formControlName="approvalDate" class="form-control" [ngClass]="getControl.approvalDate?.errors ? 'mandatory' : 'mandatoryG'" >
+                                <div *ngIf="getControl.approvalDate?.invalid && getControl.approvalDate?.touched">
+                                    <span class="validate-text" *ngIf="getControl.approvalDate?.errors?.maxlength">Character exceed
+                                        max limit {{getControl.schemeName?.errors?.maxlength?.requiredLength}}</span>
                                 </div>
                             </div>
                         </div>
@@ -71,14 +71,14 @@
                                 <label class="form-label ">{{'forms.blockDefination.start-running' | translate}} </label>
                             </div>
                             <div class=" form-group col-md-8">
-                                <input type="number" formControlName="startNumber" class="form-control" [ngClass]="blockdefine.controls.startNumber?.errors ? 'mandatory' : 'mandatoryG'"  (change)="setTotalCount()">
-                                <div *ngIf="blockdefine.controls.startNumber?.invalid && blockdefine.controls.startNumber?.touched">
-                                    <span class="validate-text" *ngIf="blockdefine.controls.startNumber?.errors?.required">Please Enter
+                                <input type="number" formControlName="startNumber" class="form-control" [ngClass]="getControl.startNumber?.errors ? 'mandatory' : 'mandatoryG'"  (change)="setTotalCount()">
+                                <div *ngIf="getControl.startNumber?.invalid && getControl.startNumber?.touched">
+                                    <span class="validate-text" *ngIf="getControl.startNumber?.errors?.required">Please Enter
                                          Start Running Number</span>
-                                         <span class="validate-text" *ngIf="blockdefine.controls.startNumber?.errors?.isGreater">
+                                         <span class="validate-text" *ngIf="getControl.startNumber?.errors?.isGreater">
                                             Start Number can not be greater than End Number</span>     
-                                    <span class="validate-text" *ngIf="blockdefine.controls.startNumber?.errors?.maxlength">Character exceed
-                                        max limit {{blockdefine.controls.startNumber?.errors?.maxlength?.requiredLength}}</span>
+                                    <span class="validate-text" *ngIf="getControl.startNumber?.errors?.maxlength">Character exceed
+                                        max limit {{getControl.startNumber?.errors?.maxlength?.requiredLength}}</span>
                                 </div>
                             </div>
                         </div>
@@ -89,12 +89,12 @@
                                 <label class="form-label ">{{'forms.blockDefination.end-running' | translate}} </label>
                             </div>
                             <div class=" form-group col-md-8">
-                                <input type="number" formControlName="endNumber" class="form-control" [ngClass]="blockdefine.controls.endNumber?.errors ? 'mandatory' : 'mandatoryG'" (change)="setTotalCount()" >
-                                <div *ngIf="blockdefine.controls.endNumber?.invalid && blockdefine.controls.endNumber?.touched">
-                                    <span class="validate-text" *ngIf="blockdefine.controls.endNumber?.errors?.required">Please Enter
+                                <input type="number" formControlName="endNumber" class="form-control" [ngClass]="getControl.endNumber?.errors ? 'mandatory' : 'mandatoryG'" (change)="setTotalCount()" >
+                                <div *ngIf="getControl.endNumber?.invalid && getControl.endNumber?.touched">
+                                    <span class="validate-text" *ngIf="getControl.endNumber?.errors?.required">Please Enter
                                          End Running Number</span>
-                                    <span class="validate-text" *ngIf="blockdefine.controls.endNumber?.errors?.maxlength">Character exceed
-                                        max limit {{blockdefine.controls.endNumber?.errors?.maxlength?.requiredLength}}</span>
+                                    <span class="validate-text" *ngIf="getControl.endNumber?.errors?.maxlength">Character exceed
+                                        max limit {{getControl.endNumber?.errors?.maxlength?.requiredLength}}</span>
                                 </div>
                             </div>
                         </div>
@@ -105,7 +105,7 @@
                                 <label class="form-label ">{{'forms.blockDefination.total-count' | translate}} </label>
                             </div>
                             <div class=" form-group col-md-8">
-                                <input type="number" formControlName="totalCount" [attr.disabled]="true"  class="form-control"  [ngClass]="blockdefine.controls.totalCount?.errors ? 'mandatory' : 'mandatoryG'" >
+                                <input type="number" formControlName="totalCount" [attr.disabled]="true"  class="form-control"  [ngClass]="getControl.totalCount?.errors ? 'mandatory' : 'mandatoryG'" >
                             </div>
                         </div>
                     </div>
@@ -117,13 +117,13 @@
                             </div>
                             <div class=" form-group col-md-8">
                                 <select  class="form-control"
-                                    formControlName="status" [ngClass]="blockdefine.controls.status?.errors ? 'mandatory' : 'mandatoryG'">
+                                    formControlName="status" [ngClass]="getControl.status?.errors ? 'mandatory' : 'mandatoryG'">
                                     <option value="" >Select</option>
                                     <option value="Active">Active</option>
                                     <option value="Inactive">Inactive</option>
                                 </select>
-                                <div *ngIf="blockdefine.controls.status?.invalid && blockdefine.controls.status?.touched">
-                                    <span class="validate-text" *ngIf="blockdefine.controls.status?.errors?.required">Please Select
+                                <div *ngIf="getControl.status?.invalid && getControl.status?.touched">
+                                    <span class="validate-text" *ngIf="getControl.status?.errors?.required">Please Select
                                          Status</span>
                                 </div>
                             </div>

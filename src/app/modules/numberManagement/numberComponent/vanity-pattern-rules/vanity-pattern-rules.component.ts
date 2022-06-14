@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { NumberservicesService } from '../../numberServices/numberservices.service';
 
+
 @Component({
   selector: 'app-vanity-pattern-rules',
   templateUrl: './vanity-pattern-rules.component.html',
@@ -37,10 +38,7 @@ export class VanityPatternRulesComponent {
   }
 
   submit(){
-    console.log(JSON.stringify(this.vanityPatternRule.value));
-    alert(JSON.stringify(this.vanityPatternRule.value));
     if(this.actionBtn == 'Save') {
-      console.log('Block add called');
       this.allService.postVanityPatterRule(this.vanityPatternRule.getRawValue()).subscribe((res:any)=>{
         if(res.statusCode == 23505){
           this.alertService.SelectRecord("Vanity Pattern Rule already exist");
@@ -54,7 +52,6 @@ export class VanityPatternRulesComponent {
       return false;
     }
     if(this.actionBtn =='Update') {
-      console.log(this.vanityPatternRule.getRawValue());
       this.allService.updateVanityPatterRule(this.vanityPatternRule.getRawValue()).subscribe(
         (sucess: any) => {
           this.alertService.RecordUpdatedStatic();
@@ -81,14 +78,11 @@ export class VanityPatternRulesComponent {
     this.router.navigate(['/number/vanityPatternTable']);
   }
 
+  get getControl() {
+    return this.vanityPatternRule.controls;
+  }
+
   resetForm(){
-    console.log(this.vanityPatternRule);
-    this.vanityPatternRule.reset(this.intialvalue);
-    if(this.actionBtn == 'Save') {
-      this.vanityPatternRule.reset(this.intialvalue);
-    }
-    if(this.actionBtn == 'Update') {
-      this.vanityPatternRule.patchValue(this.intialvalue);
-    } 
+    this.vanityPatternRule.reset(this.intialvalue); 
   }
 }

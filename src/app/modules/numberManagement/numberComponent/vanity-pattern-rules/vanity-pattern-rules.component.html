@@ -26,12 +26,12 @@
                                     <label class="form-label ">Rule Code</label>
                                 </div>
                                 <div class=" form-group col-md-8">
-                                    <input type="text" class="form-control mandatory" [ngClass]="vanityPatternRule.controls.ruleCode?.errors ? 'mandatory' : 'mandatoryG'" formControlName="ruleCode">
-                                    <div *ngIf="vanityPatternRule.controls.ruleCode?.invalid && vanityPatternRule.controls.ruleCode?.touched">
-                                        <span class="validate-text" *ngIf="vanityPatternRule.controls.ruleCode?.errors?.required">Please Enter
+                                    <input type="text" class="form-control mandatory" [ngClass]="getControl.ruleCode?.errors ? 'mandatory' : 'mandatoryG'" formControlName="ruleCode">
+                                    <div *ngIf="getControl.ruleCode?.invalid && getControl.ruleCode?.touched">
+                                        <span class="validate-text" *ngIf="getControl.ruleCode?.errors?.required">Please Enter
                                             Rule Code</span>
-                                        <span class="validate-text" *ngIf="vanityPatternRule.controls.ruleCode?.errors?.maxlength">Character exceed
-                                            max limit {{vanityPatternRule.controls.ruleCode?.errors?.maxlength?.requiredLength}}</span>
+                                        <span class="validate-text" *ngIf="getControl.ruleCode?.errors?.maxlength">Character exceed
+                                            max limit {{getControl.ruleCode?.errors?.maxlength?.requiredLength}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -42,14 +42,14 @@
                                     <label class="form-label ">Type </label>
                                 </div>
                                 <div class=" form-group col-md-8">
-                                    <select type="text"  formControlName="type" class="form-control" [ngClass]="vanityPatternRule.controls.type?.errors ? 'mandatory' : 'mandatoryG'" > 
+                                    <select type="text"  formControlName="type" class="form-control" [ngClass]="getControl.type?.errors ? 'mandatory' : 'mandatoryG'" > 
                                         <option value="">Select --</option>
                                         <option value="Code">Code</option>
                                         <option value="Combination">Combination</option>
                                     </select>
 
-                                    <div *ngIf="vanityPatternRule.controls.type?.invalid && vanityPatternRule.controls.type?.touched">
-                                        <span class="validate-text" *ngIf="vanityPatternRule.controls.type?.errors?.required">Please select
+                                    <div *ngIf="getControl.type?.invalid && getControl.type?.touched">
+                                        <span class="validate-text" *ngIf="getControl.type?.errors?.required">Please select
                                             Type</span>
                                     </div>
                                 </div>
@@ -61,13 +61,13 @@
                                     <label class="form-label text-">Mask</label>
                                 </div>
                                 <div class="col-md-8">
-                                    <textarea rows="3"  [ngClass]="vanityPatternRule.controls.mask?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" placeholder="Here can be your description"
+                                    <textarea rows="3"  [ngClass]="getControl.mask?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" placeholder="Here can be your description"
                                         value="Mike" formControlName="mask"></textarea>
-                                        <div *ngIf="vanityPatternRule.controls.mask?.invalid && vanityPatternRule.controls.mask?.touched">
-                                            <span class="validate-text" *ngIf="vanityPatternRule.controls.mask?.errors?.required">Please Enter
+                                        <div *ngIf="getControl.mask?.invalid && getControl.mask?.touched">
+                                            <span class="validate-text" *ngIf="getControl.mask?.errors?.required">Please Enter
                                                 Rule Code</span>
-                                            <span class="validate-text" *ngIf="vanityPatternRule.controls.mask?.errors?.maxlength">Character exceed
-                                                max limit {{vanityPatternRule.controls.mask?.errors?.maxlength?.requiredLength}}</span>
+                                            <span class="validate-text" *ngIf="getControl.mask?.errors?.maxlength">Character exceed
+                                                max limit {{getControl.mask?.errors?.maxlength?.requiredLength}}</span>
                                         </div>
                                 </div>
                             </div>
@@ -95,7 +95,7 @@
                                 <div class=" form-group col-md-8">
                                     <div class="custom-switches-stacked">
                                         <label class="custom-switch">
-                                            <input type="number"  formControlName="length" class="form-control" [ngClass]="vanityPatternRule.controls.length?.errors ? 'mandatory' : 'mandatoryG'" >
+                                            <input type="number"  formControlName="length" class="form-control" [ngClass]="getControl.length?.errors ? 'mandatory' : 'mandatoryG'" >
 
                                         </label>
                                     </div>
@@ -111,12 +111,12 @@
                                         Occurrence</label>
                                 </div>
                                 <div class=" form-group col-md-8">
-                                    <input type="text" class="form-control mandatory" [ngClass]="vanityPatternRule.controls.numberOccurence?.errors ? 'mandatory' : 'mandatoryG'" formControlName="numberOccurence">
-                                    <div *ngIf="vanityPatternRule.controls.numberOccurence?.invalid && vanityPatternRule.controls.numberOccurence?.touched">
-                                        <span class="validate-text" *ngIf="vanityPatternRule.controls.numberOccurence?.errors?.required">Please Enter
+                                    <input type="text"   class="form-control mandatory" [ngClass]="getControl.numberOccurence?.errors ? 'mandatory' : 'mandatoryG'" formControlName="numberOccurence">
+                                    <div *ngIf="getControl.numberOccurence?.invalid && getControl.numberOccurence?.touched">
+                                        <span class="validate-text" *ngIf="getControl.numberOccurence?.errors?.required">Please Enter
                                             No. of Occurrence</span>
-                                        <span class="validate-text" *ngIf="vanityPatternRule.controls.numberOccurence?.errors?.maxlength">Character exceed
-                                            max limit {{vanityPatternRule.controls.numberOccurence?.errors?.maxlength?.requiredLength}}</span>
+                                        <span class="validate-text" *ngIf="getControl.numberOccurence?.errors?.maxlength">Character exceed
+                                            max limit {{getControl.numberOccurence?.errors?.maxlength?.requiredLength}}</span>
                                     </div>
                                 </div>
                             </div>

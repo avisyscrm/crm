@@ -28,12 +28,7 @@ export class NumberSchemeLineDetailFormComponent implements OnInit {
   }
 
   resetForm() {
-    console.log(this.numberSchemeLine);
-    return false;
     this.numberSchemeLine.reset(this.numberSchemeLine);
-    if(this.actionBtn == 'Save'){
-     
-    }
   }
   get getControl() {
     return this.numberSchemeLine.controls;
