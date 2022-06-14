@@ -52,19 +52,20 @@ export class NumberTypeFormComponent implements OnInit {
   }
 
   submit() {
-    if (this.actionBtn == "Save") {
-      this.service.createNumberType(this.numberTypes.value).subscribe(
-        (sucess: any) => {
-          this.alertService.RecordAdded('/number/numberTypeTable');
-          this.resetForm();
-        });
-    } else {
-      this.service.updatenumberType(this.numberTypes.value).subscribe(
-        (sucess: any) => {
-          this.alertService.RecordUpdated('/number/numberTypeTable');
-          this.resetForm();
-        });
+    if( this.numberTypes.valid){
+      if (this.actionBtn == "Save") {
+        this.service.createNumberType(this.service.removingSpace(this.numberTypes.value)).subscribe(
+          (sucess: any) => {
+            this.alertService.RecordAdded('/number/numberTypeTable');
+          });
+      } else {
+        this.service.updatenumberType(this.service.removingSpace(this.numberTypes.value)).subscribe(
+          (sucess: any) => {
+            this.alertService.RecordUpdated('/number/numberTypeTable');
+          });
+      }
     }
+    
   }
 
   resetForm() {

@@ -23,7 +23,7 @@
                                         <label class="form-label "> {{'forms.number-type.type-id' | translate}}</label>
                                     </div>
                                     <div class=" form-group col-md-8">
-                                        <input type="text" class="form-control" formControlName="numberTypeId" [ngClass]="numberFormat.controls.numberTypeId?.errors ? 'mandatory' : 'mandatoryG'" >
+                                        <input type="text" class="form-control" formControlName="numberTypeId" [ngClass]="getControl.numberTypeId?.errors ? 'mandatory' : 'mandatoryG'" >
                                         
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
                                         <label class="form-label "> {{'forms.number-type.type' | translate}} </label>
                                     </div>
                                     <div class=" form-group col-md-8">
-                                        <input type="text" class="form-control" formControlName="numberType" [ngClass]="numberFormat.controls.sequence?.errors ? 'mandatory' : 'mandatoryG'" >
+                                        <input type="text" class="form-control" formControlName="numberType" [ngClass]="getControl.sequence?.errors ? 'mandatory' : 'mandatoryG'" >
                                     </div>
                                 </div>
                             </div>
@@ -44,7 +44,7 @@
                                         <label class="form-label "> {{'forms.number-type.description' | translate}} </label>
                                     </div>
                                     <div class=" form-group col-md-8">
-                                        <textarea class="form-control" formControlName="numberTypeDescription" [ngClass]="numberFormat.controls.sequence?.errors ? 'mandatory' : 'mandatoryG'"></textarea>
+                                        <textarea class="form-control" formControlName="numberTypeDescription" [ngClass]="getControl.sequence?.errors ? 'mandatory' : 'mandatoryG'"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -84,16 +84,16 @@
                                                 <label class="form-label ">{{'forms.numberFormat.level-name' | translate}}</label>
                                             </div>
                                             <div class=" form-group col-md-8">
-                                                <input type="text" formControlName="numberFormatLevelName" class="form-control" [ngClass]="numberFormat.controls.numberFormatLevelName?.errors ? 'mandatory' : 'mandatoryG'" >
+                                                <input type="text" formControlName="numberFormatLevelName" class="form-control" [ngClass]="getControl.numberFormatLevelName?.errors ? 'mandatory' : 'mandatoryG'" >
                                                 <div
-                                                *ngIf="numberFormat.controls.numberFormatLevelName?.invalid && numberFormat.controls.numberFormatLevelName?.touched">
+                                                *ngIf="getControl.numberFormatLevelName?.invalid && getControl.numberFormatLevelName?.touched">
                                                 <span
-                                                  class="validate-text" *ngIf="numberFormat.controls.numberFormatLevelName?.errors?.required"
+                                                  class="validate-text" *ngIf="getControl.numberFormatLevelName?.errors?.required"
                                                   >Please Enter Format Level Name</span
                                                 >
                                                 <span
                                                   class="validate-text"
-                                                  *ngIf="numberFormat.controls.numberFormatLevelName?.errors?.maxlength">Character exceed max limit 15</span>
+                                                  *ngIf="getControl.numberFormatLevelName?.errors?.maxlength">Character exceed max limit 15</span>
                                               </div>
                                               
                                             </div>
@@ -105,17 +105,17 @@
                                                 <label class="form-label text-">{{'forms.numberFormat.Description' | translate}}</label>
                                             </div>
                                             <div class="col-md-8">
-                                                <textarea rows="3"  [ngClass]="numberFormat.controls.numberFormatDescription?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" 
+                                                <textarea rows="3"  [ngClass]="getControl.numberFormatDescription?.errors ? 'mandatory' : 'mandatoryG'"  class="form-control" 
                                                     value="Mike" formControlName="numberFormatDescription"></textarea>
                                                     <div
-                                                *ngIf="numberFormat.controls.numberFormatDescription?.invalid && numberFormat.controls.numberFormatDescription?.touched">
+                                                *ngIf="getControl.numberFormatDescription?.invalid && getControl.numberFormatDescription?.touched">
                                                 <span
-                                                  class="validate-text" *ngIf="numberFormat.controls.numberFormatDescription?.errors?.required"
+                                                  class="validate-text" *ngIf="getControl.numberFormatDescription?.errors?.required"
                                                   >Please Enter Description</span
                                                 >
                                                 <span
                                                   class="validate-text"
-                                                  *ngIf="numberFormat.controls.numberFormatDescription?.errors?.maxlength">Character exceed max limit 100</span>
+                                                  *ngIf="getControl.numberFormatDescription?.errors?.maxlength">Character exceed max limit 100</span>
                                               </div>
                                             </div>
                                         </div>
@@ -126,13 +126,13 @@
                                                 <label class="form-label ">{{'forms.numberFormat.length' | translate}} </label>
                                             </div>
                                             <div class=" form-group col-md-8">
-                                                <input type="number" formControlName="numberFormatLength" class="form-control" [ngClass]="numberFormat.controls.numberFormatLength?.errors ? 'mandatory' : 'mandatoryG'" >
+                                                <input type="number" formControlName="numberFormatLength" class="form-control" [ngClass]="getControl.numberFormatLength?.errors ? 'mandatory' : 'mandatoryG'" >
                                                 <div
-                                                *ngIf="numberFormat.controls.numberFormatLength?.invalid && numberFormat.controls.numberFormatLength?.touched">
+                                                *ngIf="getControl.numberFormatLength?.invalid && getControl.numberFormatLength?.touched">
                                                 <span
-                                                class="validate-text" *ngIf="numberFormat.controls.numberFormatLength?.errors?.pattern">Character exceed max limit 10</span>
+                                                class="validate-text" *ngIf="getControl.numberFormatLength?.errors?.pattern">Character exceed max limit 10</span>
                                                 <span
-                                                  class="validate-text" *ngIf="numberFormat.controls.numberFormatLength?.errors?.required"
+                                                  class="validate-text" *ngIf="getControl.numberFormatLength?.errors?.required"
                                                   >Please Enter Length</span>
 
                                               </div>
@@ -147,15 +147,15 @@
                                             </div>
                                             <div class=" form-group col-md-8">
                                                 <select  name="cars" id="cars" class="form-control"
-                                                    formControlName="numberFormatValueType"  [ngClass]="numberFormat.controls.numberFormatValueType?.errors ? 'mandatory' : 'mandatoryG'">
+                                                    formControlName="numberFormatValueType"  [ngClass]="getControl.numberFormatValueType?.errors ? 'mandatory' : 'mandatoryG'">
                                                     <option value="">Select --</option>
                                                     <option value="Numeric">Numeric</option>
                                                     <option value="Alphanumeric">Alphanumeric</option>
                                                 </select>
                                                 <div
-                                                *ngIf="numberFormat.controls.numberFormatValueType?.invalid && numberFormat.controls.numberFormatValueType?.touched">
+                                                *ngIf="getControl.numberFormatValueType?.invalid && getControl.numberFormatValueType?.touched">
                                                 <span
-                                                  class="validate-text" *ngIf="numberFormat.controls.numberFormatValueType?.errors?.required"
+                                                  class="validate-text" *ngIf="getControl.numberFormatValueType?.errors?.required"
                                                   >Please Select Value Type</span
                                                 >
                                                 
@@ -170,16 +170,16 @@
                                             </div>
                                             <div class=" form-group col-md-8">
                                                 <select  class="form-control"
-                                                    formControlName="numberFormatDelimiter"  [ngClass]="numberFormat.controls.numberFormatDelimiter?.errors ? 'mandatory' : 'mandatoryG'">
+                                                    formControlName="numberFormatDelimiter"  [ngClass]="getControl.numberFormatDelimiter?.errors ? 'mandatory' : 'mandatoryG'">
                                                     <option value="None">None</option>
                                                     <option value="-">-</option>
                                                     <option value="/">/</option>
                                                     <option value="*">*</option>
                                                 </select>
                                                 <div
-                                                *ngIf="numberFormat.controls.numberFormatDelimiter?.invalid && numberFormat.controls.numberFormatDelimiter?.touched">
+                                                *ngIf="getControl.numberFormatDelimiter?.invalid && getControl.numberFormatDelimiter?.touched">
                                                 <span
-                                                  class="validate-text" *ngIf="numberFormat.controls.numberFormatDelimiter?.errors?.required"
+                                                  class="validate-text" *ngIf="getControl.numberFormatDelimiter?.errors?.required"
                                                   >Please Select Delimeter</span>
                                                 
                                                </div>
@@ -193,15 +193,15 @@
                                             </div>
                                             <div class=" form-group col-md-8">
                                                 <select  class="form-control"
-                                                    formControlName="numberFormatLevelType"  [ngClass]="numberFormat.controls.numberFormatLevelType?.errors ? 'mandatory' : 'mandatoryG'">
+                                                    formControlName="numberFormatLevelType"  [ngClass]="getControl.numberFormatLevelType?.errors ? 'mandatory' : 'mandatoryG'">
                                                     <option value="" >Select</option>
                                                     <option value="Running">Running</option>
                                                     <option value="Fixed">Fixed</option>
                                                 </select>
                                                 <div
-                                                *ngIf="numberFormat.controls.numberFormatLevelType?.invalid && numberFormat.controls.numberFormatLevelType?.touched">
+                                                *ngIf="getControl.numberFormatLevelType?.invalid && getControl.numberFormatLevelType?.touched">
                                                 <span
-                                                  class="validate-text" *ngIf="numberFormat.controls.numberFormatLevelType?.errors?.required"
+                                                  class="validate-text" *ngIf="getControl.numberFormatLevelType?.errors?.required"
                                                   >Please Select Level Type</span>
                                                 
                                                </div>
