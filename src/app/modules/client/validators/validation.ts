@@ -60,6 +60,11 @@ export function alphaNumeric(control: AbstractControl){
     return null;
 }
 
+
+
+
+
+
 // no empty space
 export function noWhitespace(control: AbstractControl){
     if(control.value !== null ){

@@ -27,7 +27,7 @@ export class ProductAtributeMasterComponent implements OnInit {
   assignRole = new FormGroup({
     productAttributeId: new FormControl('', [Validators.required,Validators.maxLength(40)]),
     productAttributeName: new FormControl("",[Validators.required, Validators.maxLength(150)]),
-    description: new FormControl('', [Validators.required, Validators.maxLength(150)]),
+    description: new FormControl('', [Validators.required, Validators.maxLength(400), Validators.pattern('^[A-Za-z0-9? @%_]+$')]),
     dataType: new FormControl("",[Validators.required, Validators.maxLength(15)]),
     productAttributeLength: new FormControl(''),
     dataCaptureControl: new FormControl("",[Validators.required]),

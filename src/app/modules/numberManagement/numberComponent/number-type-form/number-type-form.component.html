@@ -75,8 +75,9 @@
                                     <div *ngIf="getControl.numberTypeDescription?.invalid && getControl.numberTypeDescription?.touched">
                                         <span class="validate-text" *ngIf="getControl.numberTypeDescription?.errors?.required">Please Enter
                                             Description</span>
-                                        <span class="validate-text" *ngIf="getControl.numberTypeDescription?.errors?.maxlength">Character exceed
-                                            max limit 255</span>
+                                        <span class="validate-text" *ngIf="numberTypes.controls.numberTypeDescription?.errors?.maxlength">Character exceed
+                                            max limit 400</span>
+                                            <span class="validate-text" *ngIf="numberTypes.controls.numberTypeDescription?.errors?.pattern">Please enter valid pattern</span>
                                     </div>    
                                 </div>
                             </div>

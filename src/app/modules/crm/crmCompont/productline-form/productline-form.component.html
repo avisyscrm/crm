@@ -48,7 +48,8 @@
                                             <span class="validate-text"  *ngIf="productLine.controls.description?.errors?.required">Please Enter Product Line description</span>
                                             <span class="validate-text"  *ngIf="productLine.controls.description?.errors?.maxlength">Character exceed max limit {{productLine.controls.description?.errors?.maxlength?.requiredLength }}</span>
                                             <span class="validate-text"  *ngIf="productLine.controls.description?.errors?.isChar">Invalid input. Only character allowed </span>
-                                         </div>
+                                            <span class="validate-text"  *ngIf="productLine.controls.description?.errors?.pattern">Please enter valid characters {{productLine.controls.description?.errors?.maxlength?.requiredLength }}</span>
+                                        </div>
                                 </div>
                             </div>
                         </div>

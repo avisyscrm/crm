@@ -20,7 +20,7 @@ export class ProductTemplateFormComponent {
   productTemplate = new FormGroup({  
     productEntityTemplateId: new FormControl(""),
     productEntityTemplateName: new FormControl("", [Validators.required, Validators.maxLength(30)]),
-    description: new FormControl("", [Validators.required, Validators.maxLength(400)]),
+    description: new FormControl("", [Validators.required, Validators.maxLength(400), Validators.pattern('^[A-Za-z0-9? @%_]+$')]),
     productHierarchyId: new FormControl("", [Validators.required, Validators.maxLength(100)]),
     screenLayout: new FormControl("", [Validators.required, Validators.maxLength(30)]),
     numberOfTabPagesSections: new FormControl(0, [Validators.required, Validators.maxLength(100)]),

@@ -47,9 +47,11 @@
                                         value="Mike" formControlName="description"></textarea>
                                         <div *ngIf="entityGroups.controls.description?.invalid && entityGroups.controls.description?.touched">
                                             <span class="validate-text"  *ngIf="entityGroups.controls.description?.errors?.required">Please Enter Entity Groups description</span>
-                                            <span class="validate-text"  *ngIf="entityGroups.controls.description?.errors?.maxlength">Character exceed max limit 100</span>
+                                            <span class="validate-text"  *ngIf="entityGroups.controls.description?.errors?.maxlength">Character exceed max limit 400</span>
                                             <span class="validate-text"  *ngIf="entityGroups.controls.description?.errors?.isChar">Invalid input. Only character allowed </span>
-                                         </div>
+                                            <span class="validate-text"  *ngIf="entityGroups.controls.description?.errors?.pattern">Please enter valid characters</span>
+                                         
+                                        </div>
                                 </div>
                             </div>
                         </div>

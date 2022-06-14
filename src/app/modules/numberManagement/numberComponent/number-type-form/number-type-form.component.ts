@@ -16,7 +16,7 @@ export class NumberTypeFormComponent implements OnInit {
   numberTypes = new FormGroup({
     'numberTypeId': new FormControl('',[Validators.required,Validators.maxLength(15)]),
     'numberType': new FormControl('others', [Validators.required]),
-    'numberTypeDescription': new FormControl('', [Validators.required, Validators.maxLength(255)]),
+    'numberTypeDescription': new FormControl('', [Validators.required, Validators.maxLength(400), Validators.pattern('^[A-Za-z0-9? @%_]+$')]),
     'statusAfterGeneration': new FormControl('',Validators.required),
     'allocationAllowed': new FormControl(false,Validators.required),
     'areaWiseSchemeDefinition': new FormControl(false,Validators.required),

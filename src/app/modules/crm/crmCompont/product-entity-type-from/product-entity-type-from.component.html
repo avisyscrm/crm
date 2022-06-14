@@ -47,9 +47,11 @@
                                         value="Mike" formControlName="productEntityTypeDescription"></textarea>
                                         <div *ngIf="productFamily.controls.productEntityTypeDescription?.invalid && productFamily.controls.productEntityTypeDescription?.touched">
                                             <span class="validate-text"  *ngIf="productFamily.controls.productEntityTypeDescription?.errors?.required">Please Enter Product Line description</span>
-                                            <span class="validate-text"  *ngIf="productFamily.controls.productEntityTypeDescription?.errors?.maxlength">Character exceed max limit 30</span>
+                                            <span class="validate-text"  *ngIf="productFamily.controls.productEntityTypeDescription?.errors?.maxlength">Character exceed max limit 400</span>
                                             <span class="validate-text"  *ngIf="productFamily.controls.productEntityTypeDescription?.errors?.isChar">Invalid input. Only character allowed </span>
-                                         </div>
+                                            <span class="validate-text"  *ngIf="productFamily.controls.productEntityTypeDescription?.errors?.pattern">Please enter valid character</span>
+                                        
+                                        </div>
                                 </div>
                             </div>
                         </div>
