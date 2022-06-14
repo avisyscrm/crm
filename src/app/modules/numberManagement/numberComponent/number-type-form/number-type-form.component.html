@@ -32,7 +32,7 @@
                                         <span class="validate-text" *ngIf="getControl.numberTypeId?.errors?.required">Please Enter
                                             Number Type Id</span>
                                         <span class="validate-text" *ngIf="getControl.numberTypeId?.errors?.maxlength">Character exceed
-                                            max limit 15</span>
+                                            max limit {{getControl.numberTypeId?.errors?.maxlength?.requiredLength}}</span>
                                     </div>
                                 </div>
                             </div>
@@ -75,9 +75,9 @@
                                     <div *ngIf="getControl.numberTypeDescription?.invalid && getControl.numberTypeDescription?.touched">
                                         <span class="validate-text" *ngIf="getControl.numberTypeDescription?.errors?.required">Please Enter
                                             Description</span>
-                                        <span class="validate-text" *ngIf="numberTypes.controls.numberTypeDescription?.errors?.maxlength">Character exceed
-                                            max limit 400</span>
-                                            <span class="validate-text" *ngIf="numberTypes.controls.numberTypeDescription?.errors?.pattern">Please enter valid pattern</span>
+                                        <span class="validate-text" *ngIf="getControl.numberTypeDescription?.errors?.pattern">Please enter valid pattern</span>
+                                        <span class="validate-text" *ngIf="getControl.numberTypeDescription?.errors?.maxlength">Character exceed
+                                            max limit {{getControl.numberTypeDescription?.errors?.maxlength?.requiredLength}}</span>
                                     </div>    
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                                     <select 
                                     class="form-control"
                                     formControlName="statusAfterGeneration"
-                                    [ngClass]="getControl.statusAfterGeneration?.errors ? 'mandatory' : 'mandatoryG'"
+                                    [ngClass]="getControl.statusAfterGeneration?.errors ? 'mandatory' : 'mandatoryG'" (change)="enableDisableAllocationAllowed()"
                                     >
                                     <option  value=""><span>{{'forms.number-type.select' | translate}}</span></option>
                                     <option value="available" ><span>{{'forms.number-type.available' | translate}}</span>

@@ -13,7 +13,7 @@ import { NumberservicesService } from '../../numberServices/numberservices.servi
   styleUrls: ['./number-format-form.component.scss','../../numberManagement.scss']
 })
 export class NumberFormatFormComponent implements OnInit {
-  permission:any=[true,true,true];
+  permission:any=[true,false,true];
   data:any={};
   headerList:any=[];
   typeId!:number;
@@ -65,8 +65,8 @@ export class NumberFormatFormComponent implements OnInit {
     'numberFormatDescription': new FormControl('', [Validators.required, Validators.maxLength(400),  Validators.pattern('^[A-Za-z0-9? @%_]+$')]),
     'numberFormatLength': new FormControl('',[Validators.required, Validators.pattern("^\s*-?[0-9]{1,10}\s*$")]),
     'numberFormatValueType': new FormControl('',[Validators.required, Validators.maxLength(30)]),
-    'numberFormatDelimiter': new FormControl('None',Validators.required),
-    'numberFormatLevelType': new FormControl('',Validators.required),
+    'numberFormatDelimiter': new FormControl('None',[Validators.required,Validators.maxLength(30)]),
+    'numberFormatLevelType': new FormControl('',[Validators.required,Validators.maxLength(30)]),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
   });
