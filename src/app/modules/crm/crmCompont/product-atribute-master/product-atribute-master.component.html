@@ -111,6 +111,7 @@
                                         <option value="boolean">Boolean</option>
                                         <option value="string">String</option>
                                         <option value="date">Date</option>
+                                        <option value="dateTime">Date Time</option>
                                        
                                     </select>
                                     <div *ngIf="getControl.dataType?.invalid && getControl.dataType?.touched">
@@ -137,12 +138,14 @@
                                        > -->
                                     <select id="datalistOptions84" class="form-control "
                                         [ngClass]="getControl.dataCaptureControl?.errors ? 'mandatory' : 'mandatoryG'"
-                                        #dataCapture12 formControlName="dataCaptureControl" [attr.disabled]="assignRole.controls['dataType'].value == 'date'? true: null">
+                                        #dataCapture12 formControlName="dataCaptureControl"
+                                         [attr.disabled]="(assignRole.controls['dataType'].value == 'date'  || assignRole.controls['dataType'].value == 'dateTime')? true: null">
                                         <option value="">Select --</option>
                                         <option value="text">Text</option>
                                         <option value="radio">Radio</option> 
                                         <option value="checkbox">Checkbox</option>
                                         <option value="date">Date</option>
+                                        <option value="dateTime">Date Time</option>
                                         <option value="dropdown">Dropdown</option>
                                     </select>
 

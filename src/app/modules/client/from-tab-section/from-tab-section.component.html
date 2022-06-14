@@ -29,7 +29,7 @@
                                             <div  [ngClass]="sectionInTab?.section?.screenLayout=='DOUBLE COLUMN'? '':'col-md-6'"  class="form-group " >
                                                 <label  [ngClass]="{'required': componat.dataCaptureControl=='radio' || componat.dataCaptureControl=='checkbox'}" for="exampleInputEmail1">{{componat?.productAttributeName}}</label>
                                                 <input  
-                                                    *ngIf="componat.dataCaptureControl!='radio'&& componat.dataCaptureControl!='date' && componat.dataCaptureControl!='checkbox' && componat.dataCaptureControl!='dropdown'"
+                                                    *ngIf="componat.dataCaptureControl!='radio'&& componat.dataCaptureControl!='date' && componat.dataCaptureControl!='dateTime' && componat.dataCaptureControl!='checkbox' && componat.dataCaptureControl!='dropdown'"
                                                     [formControlName]="componat?.productAttribute"
                                                     format="DD-MMM-YYYY"
                                                     data-date-inline-picker="true" 
@@ -41,7 +41,7 @@
                                                     [type]="componat?.dataCaptureControl" class="form-control"
                                                     [id]="componat?.productAttribute" aria-describedby="emailHelp"
                                                     placeholder="Enter {{componat?.forLabel}}">
-                                                    <input type="text" *ngIf="componat.dataCaptureControl=='date'"
+                                                    <input type="text" *ngIf="componat.dataCaptureControl=='date' || componat.dataCaptureControl=='dateTime'"
                                                     placeholder="Datepicker"
                                                     class="form-control"
                                                     [ngClass]=" ngClass(componat) ? 
@@ -49,7 +49,7 @@
                                                       ? 'mandatory'
                                                       : 'mandatoryG':'' "
                                                       [formControlName]="componat?.productAttribute"
-                                                    [bsConfig]="{withTimepicker: true, rangeInputFormat : 'MMMM Do YYYY, h:mm:ss a', dateInputFormat: 'MMMM Do YYYY, h:mm:ss a'}"
+                                                    [bsConfig]="{withTimepicker: componat.dataCaptureControl=='dateTime' ? true:false, rangeInputFormat : 'MMMM Do YYYY, h:mm:ss a', dateInputFormat: 'MMMM Do YYYY, h:mm:ss a'}"
                                                     bsDatepicker>
         
                                                 <div *ngIf="componat.dataCaptureControl=='radio'">
@@ -84,7 +84,7 @@
     
                                                 <div *ngIf="componat.dataCaptureControl =='dropdown'">
                                                     <select   aria-placeholder="Please select value"   [ngClass]="{'mandatory': ngClass(componat)}" [id]="componat?.productAttributeName"
-                                                        [formControlName]="componat?.productAttribute" class="form-control">
+                                                        [formControlName]="componat?.productAttribute" class="form-control" multiple>
                                                         
                                                         <option *ngFor="let x of componat?.option" [ngValue]="x.value" >{{x.value}}</option>
                                                     </select>

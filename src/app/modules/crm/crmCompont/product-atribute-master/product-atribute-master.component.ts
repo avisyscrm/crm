@@ -191,7 +191,12 @@ this.crm.getOptioDataTable(this.assignRole.controls['productAttributeId'].value,
   }
 
   onSelect(){
-    this.assignRole.controls['dataCaptureControl'].patchValue(this.assignRole.controls['dataType'].value == 'date'? 'date':this.assignRole.controls['dataCaptureControl'].value)
+    if(this.assignRole.controls['dataType'].value == 'date'){
+      this.assignRole.controls['dataCaptureControl'].patchValue('date');
+    }else if(this.assignRole.controls['dataType'].value == 'dateTime'){
+      this.assignRole.controls['dataCaptureControl'].patchValue('dateTime');
+    }
+   
   }
   
 }
