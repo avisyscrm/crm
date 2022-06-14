@@ -17,7 +17,7 @@ export class EntityFormComponent implements OnInit {
   entityGroups = new FormGroup({
     'entityGroupsId': new FormControl(''),
     'entityGroups': new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    'description': new FormControl('', [Validators.required, Validators.maxLength(400)]),
+    'description': new FormControl('', [Validators.required, Validators.maxLength(400), Validators.pattern('^[A-Za-z0-9? @%_]+$')]),
     'entityGroupsIcon': new FormControl('', Validators.required),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
