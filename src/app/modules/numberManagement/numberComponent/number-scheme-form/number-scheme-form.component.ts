@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { flush } from '@angular/core/testing';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
@@ -66,8 +65,6 @@ export class NumberSchemeFormComponent implements OnInit {
         if (params.data != undefined) {
           this.actionBtn = "Update";
           this.getValueByID(params.data, true);
-         
-          // this.getValueByID(this.numberScheme.value, false);
         }
       });
    }
@@ -81,13 +78,11 @@ export class NumberSchemeFormComponent implements OnInit {
       this.intialvalue = sucess;
       this.numberTypeId = sucess.numberType;
       this.numberScheme.patchValue(sucess);
-   
       this.changePageSortSearch(this.url, flag);
     }, error => {
       // alert("Error while updating the record");
     });
   }
-
 
   changePageSortSearch(url:any, flag){
     this.url = url;
@@ -100,8 +95,6 @@ export class NumberSchemeFormComponent implements OnInit {
   }
 
   buttonEvent1(data:any,template){
-    console.log(data);
-    
     if(data.event=='add'){
       this.actionBtn = "Save";
       this.numberFormat.reset(this.defaultIntialValue);
@@ -111,7 +104,6 @@ export class NumberSchemeFormComponent implements OnInit {
       this.actionBtn = "Update";
         this.allService.getNumberSchemeLineDetailData(data.data.numberSchemeLineId).subscribe((response)=>{
           this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'gray modal-xl ' }));
-          
          this.numberFormat.patchValue(response);
          this.intialvalue = response;
         },(error)=>{console.log(error);
@@ -140,7 +132,6 @@ export class NumberSchemeFormComponent implements OnInit {
         },(error)=>{
           console.log(error);
         })
-        return false;
     }
     if (this.actionBtn == "Update") {
       this.allService.updateNumberScheme(this.numberScheme.getRawValue()).subscribe(
@@ -150,7 +141,6 @@ export class NumberSchemeFormComponent implements OnInit {
           this.intialvalue=this.numberScheme.value;
           this.getValueByID(sucess.numberSchemeId, false);
         });
-      return false;
     }
     }
       
@@ -176,19 +166,17 @@ export class NumberSchemeFormComponent implements OnInit {
     if(formName == 'scheme') {
       this.numberScheme.reset(this.intialvalue);
     }  
-    return false;
   }
   
   onlyNumberKey(event) {
     return (event.charCode == 8 || event.charCode == 0) ? null : event.charCode >= 48 && event.charCode <= 57;
-}
+  }
 
   back(){
     this.router.navigate(['/number/numberSchemeTable']);
   }
 
-  enableDisableArea(){
-   
+  enableDisableArea() {
    let numberTypeId = this.numberScheme.controls['numberType'].value;
    if(numberTypeId !=""){
      let filteredArray = this.numberTypes.filter(function(itm){
