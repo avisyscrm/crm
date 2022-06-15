@@ -11,7 +11,7 @@ import { NumberservicesService } from '../../numberServices/numberservices.servi
 export class VanityPatternRulesTableComponent implements OnInit {
 
 
-  permission:any=[true,true,true];
+  permission:any=[true,false,true];
   headerList:any=[];
   data:any={};
   url="pageNo=1&pageSize=5";
@@ -45,11 +45,11 @@ export class VanityPatternRulesTableComponent implements OnInit {
     if(data.event=='add'){
      this.router.navigate(['/number/number/vanityPatternRule']);   
    }else if(data.event=='edit'){
-     this.router.navigate(['/number/number/vanityPatternRule'],{ queryParams: { data:data.data.vanityNumberId} });
+     this.router.navigate(['/number/number/vanityPatternRule'],{ queryParams: { data:data.data.vanityNumberPatternRuleId} });
        console.log(data, 'data')
    }
     else if(data.event=='delete'){
-     this.allService.deleteVanityPatternRule(data.data.vanityNumberId,JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res)=>{
+     this.allService.deleteVanityPatternRule(data.data.vanityNumberPatternRuleId,JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res)=>{
        this.sweetAlert.recordDeleted();  
        this.changePageSortSearch(this.url);
      })

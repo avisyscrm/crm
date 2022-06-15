@@ -15,14 +15,16 @@ export class VanityPatternRulesComponent {
   actionBtn = "Save";
   @ViewChild('file1') myInputVariable:ElementRef;
   vanityPatternRule = new FormGroup({
-    'ruleCodeId': new FormControl(''),
+    'vanityNumberPatternRuleId': new FormControl(''),
     'ruleCode': new FormControl('',[Validators.required]),
-    'type': new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    'mask': new FormControl('', [Validators.required, Validators.maxLength(100)]),
-    'maskSequence': new FormControl(false, Validators.required),
-    'length': new FormControl('',Validators.required),
-    'numberOccurence': new FormControl('',Validators.required),
+    'vanityNumberPatternType': new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    'vanityNumberPatternMask': new FormControl('', [Validators.required, Validators.maxLength(100)]),
+    'vanityNumberPatternMaskSequenced': new FormControl(false, Validators.required),
+    'vanityNumberPatternLength': new FormControl('',Validators.required),
+    'noOfOccurences': new FormControl('',Validators.required),
     'reverseCheck': new FormControl(false),
+    'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
+    'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
   });
 
   constructor( private alertService: SweetalertServiceService, private route: ActivatedRoute,private allService:NumberservicesService,private router: Router) {
