@@ -1,0 +1,225 @@
+<div class="section-body fixNavMargin">
+    <div class="container-fluid">
+       <div class="d-flex justify-content-between align-items-center">
+          <ul class="nav nav-tabs page-header-tab">
+             <li class="nav-item"><a class="nav-link" href="#"> </a></li>
+             <li class="nav-item"><a class="nav-link" href="#"></a></li>
+          </ul>
+       </div>
+       <div class="card card-height">
+       <form [formGroup]="commonMaster">
+             <div class="card-header pf-head d-flex justify-content-between">
+                <h3 class="card-title">
+                   {{ "forms.common-master.mstHeading" | translate }}
+                </h3>
+                <button type="button" (click)="back()" class="btn btn-dark">
+                Back
+                </button>
+             </div>
+             <div class="card-body">
+                <div class="row commonMaster">
+                   <div class="col-md-6">
+                      <div class="row">
+                         <div class="form-group col-md-4">
+                            <label class="form-label">{{
+                            "forms.common-master.mstName" | translate
+                            }}
+                            </label>
+                         </div>
+                         <div class="form-group col-md-8">
+                            <input name="" type="text"  [ngClass]="
+                            getControl.mstName?.errors
+                            ? 'mandatory'
+                            : 'mandatoryG'
+                            " class="form-control" value="" formControlName="mstName" />
+                            <div *ngIf="
+                            getControl.mstName?.invalid &&
+                            getControl.mstName?.touched
+                               ">
+                               <span class="validate-text" *ngIf="
+                               getControl.mstName?.errors?.required
+                                  ">Please Enter Master Name</span>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="col-md-6">
+                      <div class="row">
+                         <div class="form-group col-md-4">
+                            <label class="form-label">{{
+                            "forms.common-master.value" | translate
+                            }}
+                            </label>
+                         </div>
+                         <div class="form-group col-md-8">
+                            <input name="" type="text"  [ngClass]="
+                            getControl.value?.errors
+                            ? 'mandatory'
+                            : 'mandatoryG'
+                            " class="form-control" value="" formControlName="value" (input)="actionBtn == 'Save'? getValue():true" >
+                            <div *ngIf="
+                            getControl.value?.invalid &&
+                            getControl.value?.touched
+                               ">
+                               <span class="validate-text" *ngIf="
+                               getControl.value?.errors?.required
+                                  ">Please Enter Value</span>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                   <div class="col-md-6">
+                    <div class="row">
+                       <div class="form-group col-md-4">
+                          <label class="form-label">{{
+                          "forms.common-master.code" | translate
+                          }}
+                          </label>
+                       </div>
+                       <div class="form-group col-md-8">
+                          <input name="" type="text"  [ngClass]="
+                          getControl.code?.errors
+                          ? 'mandatory'
+                          : 'mandatoryG'
+                          "  class="form-control" value="" formControlName="code"  value="" readonly>
+                       </div>
+                       
+                    </div>
+                    </div>
+                    <!-- <div class="col-md-6">
+                        <div class="row">
+                           <div class="form-group col-md-4">
+                              <label class="form-label">{{
+                              "forms.common-master.foreignKey" | translate
+                              }}
+                              </label>
+                           </div>
+                           <div class="form-group col-md-8">
+                              <input name="" type="text"  [ngClass]="
+                              getControl.foreignKey?.errors
+                              ? 'mandatory'
+                              : 'mandatoryG'
+                              " class="form-control" value="" formControlName="foreignKey" />
+                           </div>
+                        </div>
+                     </div>
+                    <div class="col-md-6">
+                        <div class="row ">
+                            <div class=" form-group col-md-4">
+                                <label class="form-label ">{{'forms.common-master.isMst' | translate}}</label>
+                            </div>
+                            <div class=" form-group col-md-8">
+                                <div class="custom-switches-stacked d-inline ">
+                                    <label class="custom-switch">
+                                        <input formControlName="isMst"  type="checkbox" value="" class="custom-switch-input" >
+                                        <span class="custom-switch-indicator"></span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>  -->
+                </div>
+                <div *ngIf="actionBtn != 'Update'">
+                  <button [disabled]="commonMaster.invalid" (click)="submit()" type="submit" class="btn btn-primary">
+                     {{ actionBtn }}
+                     </button>
+                     <button type="button" (click)="resetForm()" class="btn btn-primary ml-3">
+                     Reset
+                     </button>
+                </div>
+             </div>
+       </form>
+
+       <div class="mt-5">
+         <!--  -->
+         <app-datatable [permission]="permission" (buttonEvent1)="buttonEvent1($event,template)"
+         (changePageSortSearch)="changePageSortSearch($event)" [dataset]="data">
+         <app-column [search]="x.search_key" [cssClass]="" [type]="x.type" *ngFor="let x of headerList"
+            [value]="x.value" [width]="x.width" [header]="x.header"></app-column>
+         </app-datatable>
+         <!--  -->
+       </div>
+
+      </div>
+    </div>
+    <!--  -->
+    
+    <!-- PopUp starts -->
+    <ng-template #template style="height: 1% !important;">
+      <div class="modal-header">
+          <div class="card-header d-flex justify-content-between">
+              <h3 class="card-title prod-name">{{ "forms.common-master.mstHeading" | translate }}</h3>
+           </div>
+         <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+            <span aria-hidden="true">×</span>
+         </button>
+      </div>
+      <div class="modal-body">
+         <form [formGroup]="commonMasterModal">
+            
+            <div class="card-body">
+               <div class="row commonMaster">
+                 
+                  <div class="col-md-6">
+                     <div class="row">
+                        <div class="form-group col-md-4">
+                           <label class="form-label">{{
+                           "forms.common-master.value" | translate
+                           }}
+                           </label>
+                        </div>
+                        <div class="form-group col-md-8">
+                           <input name="" type="text"  [ngClass]="
+                           getControlPop.value?.errors
+                           ? 'mandatory'
+                           : 'mandatoryG'
+                           " class="form-control" value="" formControlName="value" (input)="actionBtn1 == 'Save'? getValue1():true"  />
+                           <div *ngIf="
+                           getControlPop.value?.invalid &&
+                           getControlPop.value?.touched
+                              ">
+                              <span class="validate-text" *ngIf="
+                              getControlPop.value?.errors?.required
+                                 ">Please Enter Value</span>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-6">
+                   <div class="row">
+                      <div class="form-group col-md-4">
+                         <label class="form-label">{{
+                         "forms.common-master.code" | translate
+                         }}
+                         </label>
+                      </div>
+                      <div class="form-group col-md-8">
+                         <input name="" type="text"  [ngClass]="
+                         getControlPop.code?.errors
+                         ? 'mandatory'
+                         : 'mandatoryG'
+                         "  class="form-control"  formControlName="code" readonly >
+                      </div>
+                   </div>
+                   </div>
+                   
+               </div>
+               <div >
+                 <button [disabled]="commonMasterModal.invalid" (click)="submit1()" type="submit" class="btn btn-primary">
+                    {{ actionBtn1 }}
+                    </button>
+                    <button type="button" (click)="resetForm1()" class="btn btn-primary ml-3">
+                    Reset
+                    </button>
+               </div>
+            </div>
+      </form>
+      </div>
+      <div class="modal-footer">
+           <button type="button" class="btn btn-danger" (click)="modalRef.hide()">Close</button>
+      </div>
+  </ng-template>
+  <!-- PopUp Ends -->
+
+    
+ </div>

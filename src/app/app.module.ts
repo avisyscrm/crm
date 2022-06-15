@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { HttpClientModule, HttpClient} from '@angular/common/http';
+import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -18,6 +18,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 // import { DynamicRoleComponent } from './modules/crm/crmCompont/dynamic-role/dynamic-role.component';
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {MultiTranslateHttpLoader} from "ngx-translate-multi-http-loader";
+import { MyInterceptor } from './modules/auth/login/intersepter.service';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -35,7 +36,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     ForgotPassFormComponent,
     FeatureComponent,
     LoginAdminComponent,
-    EmailtemplateformComponent
+    EmailtemplateformComponent,
+
+    
   ],
   imports: [
     BrowserModule,
@@ -61,7 +64,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   })
   ],
   exports:[TranslateModule],
-  providers: [BsDatepickerModule,],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

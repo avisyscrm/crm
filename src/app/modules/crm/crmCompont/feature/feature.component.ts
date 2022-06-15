@@ -17,9 +17,9 @@ export class FeatureComponent implements OnInit {
     sessionStorage.setItem('dataProp',dataProp);
     if(dataProp == 'numberActive')
     {
-      this.router.navigate(['/number']);
+      this.router.navigate(['/number/number']);
     }else{
-      this.router.navigate(['/crm']);
+      this.router.navigate(['/crm/crm']);
     }
     
     // alert()
@@ -27,7 +27,7 @@ export class FeatureComponent implements OnInit {
 
   logout(){
     sessionStorage.clear();
-    this.router.navigate(['login']);
+    this.router.navigate(['/auth/login']);
   }
 
 }

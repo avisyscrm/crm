@@ -80,7 +80,14 @@
             "Run-time-configuration":"Laufzeitkonfiguration",
             "assetizable":"Aktivierbar",
             "status":"Status"
-     
+        },
+        "common-master":{
+            "mstHeading":"Maestro común",
+            "mstName":"Nombre maestro",
+            "value":"Valor",
+            "code":"Código",
+            "foreignKey":"Clave externa",
+            "isMst":"Es maestra"
         }
 
     }
