@@ -36,7 +36,7 @@ export class NumberFormatAllComponent implements OnInit {
   buttonEvent1(data:any){
   if(data.event=='add'){}
   else if(data.event=='edit'){
-    this.router.navigate(['/number/numberFormat'],{ queryParams: { data:data.data.numberTypeId} });
+    this.router.navigate(['/number/number/numberFormat'],{ queryParams: { data:data.data.numberTypeId} });
   }
    else if(data.event=='delete'){} 
     

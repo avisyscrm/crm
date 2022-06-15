@@ -42,9 +42,9 @@ export class BlockDefinitonTableComponent implements OnInit {
  
 buttonEvent1(data:any){
  if(data.event=='add'){
-  this.router.navigate(['/number/blockDefination']);   
+  this.router.navigate(['/number/number/blockDefination']);   
 }else if(data.event=='edit'){
-  this.router.navigate(['/number/blockDefination'],{ queryParams: { data:data.data.blockDefinitionId} });
+  this.router.navigate(['/number/number/blockDefination'],{ queryParams: { data:data.data.blockDefinitionId} });
     console.log(data, 'data')
 }
  else if(data.event=='delete'){

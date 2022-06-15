@@ -128,7 +128,7 @@ export class NumberSchemeFormComponent implements OnInit {
           if(res.statusCode == 23505){
             this.alertService.SelectRecord("Scheme Name already exist");
           }else{
-            this.alertService.RecordAdded('/number/numberSchemeTable');
+            this.alertService.RecordAdded('/number/number/numberSchemeTable');
           }
         },(error)=>{
           console.log(error);
@@ -181,7 +181,7 @@ export class NumberSchemeFormComponent implements OnInit {
   }
 
   back(){
-    this.router.navigate(['/number/numberSchemeTable']);
+    this.router.navigate(['/number/number/numberSchemeTable']);
   }
 
   enableDisableArea() {

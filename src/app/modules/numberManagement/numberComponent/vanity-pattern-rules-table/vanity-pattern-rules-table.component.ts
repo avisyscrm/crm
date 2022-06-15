@@ -43,9 +43,9 @@ export class VanityPatternRulesTableComponent implements OnInit {
  
   buttonEvent1(data:any){
     if(data.event=='add'){
-     this.router.navigate(['/number/vanityPatternRule']);   
+     this.router.navigate(['/number/number/vanityPatternRule']);   
    }else if(data.event=='edit'){
-     this.router.navigate(['/number/vanityPatternRule'],{ queryParams: { data:data.data.vanityNumberId} });
+     this.router.navigate(['/number/number/vanityPatternRule'],{ queryParams: { data:data.data.vanityNumberId} });
        console.log(data, 'data')
    }
     else if(data.event=='delete'){

@@ -39,9 +39,9 @@ export class NumberSchemeTableComponent implements OnInit {
  
 buttonEvent1(data:any){
 if(data.event=='add'){
-  this.router.navigate(['/number/numberScheme']);   
+  this.router.navigate(['/number/number/numberScheme']);   
 }else if(data.event=='edit'){
-  this.router.navigate(['/number/numberScheme'],{ queryParams: { data:data.data.numberSchemeId} });
+  this.router.navigate(['/number/number/numberScheme'],{ queryParams: { data:data.data.numberSchemeId} });
     console.log(data, 'data')
 }
  else if(data.event=='delete'){

@@ -44,7 +44,7 @@ export class VanityPatternRulesComponent {
           this.alertService.SelectRecord("Vanity Pattern Rule already exist");
         }else{
           this.resetForm();
-          this.alertService.RecordAdded('/number/vanityPatternTable');
+          this.alertService.RecordAdded('/number/number/vanityPatternTable');
         }
       },(error)=>{
         console.log(error);
@@ -75,7 +75,7 @@ export class VanityPatternRulesComponent {
   }
 
   back(){
-    this.router.navigate(['/number/vanityPatternTable']);
+    this.router.navigate(['/number/number/vanityPatternTable']);
   }
 
   get getControl() {
