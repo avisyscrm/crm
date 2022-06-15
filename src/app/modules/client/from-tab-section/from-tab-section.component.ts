@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { IDropdownSettings } from 'ng-multiselect-dropdown';
 import { ToastrService } from 'ngx-toastr';
 import { CrmservicesService } from '../../crm/crm-services/crmservices.service';
 @Component({
@@ -14,6 +15,22 @@ export class FromTabSectionComponent {
   activeTab = "";
   tabFrom: any;
   activeTabId: number;
+  dropdownSettings:IDropdownSettings = {
+    singleSelection: false,
+    idField: 'key',
+    textField: 'value',
+    selectAllText: 'Select All',
+    unSelectAllText: 'Un Select All',
+    itemsShowLimit: 3,
+    allowSearchFilter: true
+  };
+  onItemSelect(item:any){
+  alert(item);
+    
+}
+
+  
+
   constructor(private router: Router, private formBuilder: FormBuilder, private service: CrmservicesService, private toastr: ToastrService) { }
   activetabsec(activetab: any, data) {
     this.activeTab = activetab.section;
@@ -110,6 +127,14 @@ export class FromTabSectionComponent {
       return true;
     }
     return false;
+  }
+
+  ngClass1(componat){
+    if(componat.validator.includes('Validators.mandatory')){
+    return `::ng-deep .mandatory`; 
+    }else{
+    return "";
+    }
   }
 
   ngClass(componat){

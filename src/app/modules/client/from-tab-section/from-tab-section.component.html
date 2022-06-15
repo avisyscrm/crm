@@ -49,7 +49,7 @@
                                                       ? 'mandatory'
                                                       : 'mandatoryG':'' "
                                                       [formControlName]="componat?.productAttribute"
-                                                    [bsConfig]="{withTimepicker: componat.dataCaptureControl=='dateTime' ? true:false, rangeInputFormat : 'MMMM Do YYYY, h:mm:ss a', dateInputFormat: 'MMMM Do YYYY, h:mm:ss a'}"
+                                                    [bsConfig]="{withTimepicker: componat.dataCaptureControl=='dateTime' ? true:false, rangeInputFormat : 'MMMM Do YYYY, h:mm:ss a', dateInputFormat:componat.dataCaptureControl=='dateTime' ?  'DD-MMM-YYYY h:mm:ss a': 'DD-MMM-YYYY'}"
                                                     bsDatepicker>
         
                                                 <div *ngIf="componat.dataCaptureControl=='radio'">
@@ -81,14 +81,23 @@
                                                     </div>
                                                 </div>
                                                 <!--  [formControlName]="componat?.productAttribute"-->
-    
-                                                <div *ngIf="componat.dataCaptureControl =='dropdown'">
+                                                <ng-multiselect-dropdown *ngIf="componat.dataCaptureControl =='dropdown'"
+                                                placeholder="{{componat?.forLabel}}"
+                                                [settings]="dropdownSettings"
+                                                [data]="componat?.option"
+                                               
+                                                [formControlName]="componat?.productAttribute"
+                                                (onSelect)="onItemSelect($event)"
+                                                (onSelectAll)="onSelectAll($event)"
+                                              >
+                                              </ng-multiselect-dropdown>
+                                                <!-- <div *ngIf="componat.dataCaptureControl =='dropdown'">
                                                     <select   aria-placeholder="Please select value"   [ngClass]="{'mandatory': ngClass(componat)}" [id]="componat?.productAttributeName"
                                                         [formControlName]="componat?.productAttribute" class="form-control" multiple>
                                                         
                                                         <option *ngFor="let x of componat?.option" [ngValue]="x.value" >{{x.value}}</option>
                                                     </select>
-                                                </div>
+                                                </div> -->
                                                 <br>
                                                 <label class="error" *ngIf="getControl[componat?.productAttribute]?.touched && getControl[componat?.productAttribute].invalid">
                                                     <label class="error" *ngIf="getControl[componat?.productAttribute].errors?.required">Please fill {{componat?.productAttributeName}}</label>
