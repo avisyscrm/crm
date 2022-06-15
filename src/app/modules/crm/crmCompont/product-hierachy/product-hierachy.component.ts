@@ -44,9 +44,9 @@ export class ProductHierachyComponent implements OnInit {
   }
 buttonEvent1(data:any){
 if(data.event=='add'){
-  this.router.navigate(['crm/product-hierachy-form']);   
+  this.router.navigate(['crm/crm/product-hierachy-form']);   
 }else if(data.event=='edit'){
-  this.router.navigate(['crm/product-hierachy-form'],{ queryParams: { data: JSON.stringify(data.data.productHierarchyId)} });
+  this.router.navigate(['crm/crm/product-hierachy-form'],{ queryParams: { data: JSON.stringify(data.data.productHierarchyId)} });
     console.log(data, 'data')
 }
  else if(data.event=='delete'){

@@ -83,7 +83,7 @@ export class ProductAtributeMasterComponent implements OnInit {
        if(sucess.statusCode==23505){
         this.alertService.SelectRecord("Product Attribute already exist");
        }else{
-        this.alertService.RecordAdded('/crm/Product-Atribute-Summmary');
+        this.alertService.RecordAdded('/crm/crm/Product-Atribute-Summmary');
        }
        
       })
@@ -92,7 +92,7 @@ export class ProductAtributeMasterComponent implements OnInit {
       this.assignRole.removeControl("createdBy");
       this.assignRole.controls['updatedBy'].patchValue(-1);
       this.crm.updateProductAtributeMaster(this.assignRole.getRawValue()).subscribe((sucess)=>{
-        this.alertService.RecordUpdated('/crm/Product-Atribute-Summmary');
+        this.alertService.RecordUpdated('/crm/crm/Product-Atribute-Summmary');
       })
     }
   }
@@ -187,7 +187,7 @@ this.crm.getOptioDataTable(this.assignRole.controls['productAttributeId'].value,
   }
 
   back(){
-    this.router.navigate(["/crm/Product-Atribute-Summmary"]);
+    this.router.navigate(["/crm/crm/Product-Atribute-Summmary"]);
   }
 
   onSelect(){
@@ -196,7 +196,6 @@ this.crm.getOptioDataTable(this.assignRole.controls['productAttributeId'].value,
     }else if(this.assignRole.controls['dataType'].value == 'dateTime'){
       this.assignRole.controls['dataCaptureControl'].patchValue('dateTime');
     }
-   
   }
   
 }

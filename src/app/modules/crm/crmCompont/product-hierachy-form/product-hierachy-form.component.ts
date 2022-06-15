@@ -63,7 +63,7 @@ this.service.getallProductLine().subscribe((sucss:any)=>{
     this.productFamily.controls['updatedBy'].patchValue(JSON.parse(sessionStorage.getItem('userDetails')).userId);
     if (this.actionBtn == "Update") {
       this.service.putProductHierachy(this.productFamily.value).subscribe(sucess => {
-        this.alertService.RecordUpdated('/crm/product-hierachy');
+        this.alertService.RecordUpdated('/crm/crm/product-hierachy');
       });
     }
      else {
@@ -71,7 +71,7 @@ this.service.getallProductLine().subscribe((sucss:any)=>{
         if (sucess.statusCode == 409) {
           this.alertService.SelectRecord("Product Hierarchy already exist");
         } else {
-          this.alertService.RecordAdded('/crm/product-hierachy');
+          this.alertService.RecordAdded('/crm/crm/product-hierachy');
         }
         // this.alertService.RecordAdded('/crm/product-hierachy');
       });
@@ -87,6 +87,6 @@ this.service.getallProductLine().subscribe((sucss:any)=>{
   }
 
   back(){
-    this.router.navigate(['/crm/product-hierachy'])
+    this.router.navigate(['/crm/crm/product-hierachy'])
   }
 }

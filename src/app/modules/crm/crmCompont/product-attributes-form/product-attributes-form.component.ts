@@ -27,7 +27,7 @@ export class ProductAttributesFormComponent  {
   isDetails: boolean;
 
   back(){
-    this.router.navigate(['/crm/product-attribute'], { queryParams: 
+    this.router.navigate(['/crm/crm/product-attribute'], { queryParams: 
       { 
         data:  this.productEntityAttribute.controls['productEntityTemplateId'].value,
         data1: this.productEntityAttribute.controls['sectionId'].value,
@@ -154,7 +154,7 @@ export class ProductAttributesFormComponent  {
     if(this.btnName=='Save'){
 this.service.postProductEntityAttribute(this.productEntityAttribute.value).subscribe((sucess:any)=>{
   this.sweetAlert.RecordAddedStatic();
-  this.router.navigate(['/crm/product-attribute'], { queryParams: 
+  this.router.navigate(['/crm/crm/product-attribute'], { queryParams: 
     { 
       data:  this.productEntityAttribute.controls['productEntityTemplateId'].value,
       data1: this.productEntityAttribute.controls['sectionId'].value,
@@ -167,7 +167,7 @@ this.service.postProductEntityAttribute(this.productEntityAttribute.value).subsc
       this.service.putProdEntityAttribute(this.productEntityAttribute.value).subscribe((sucess:any)=>{
       this.alertService.RecordUpdatedStatic();
 
-      this.router.navigate(['/crm/product-attribute'], { queryParams: 
+      this.router.navigate(['/crm/crm/product-attribute'], { queryParams: 
         { 
           data:  this.productEntityAttribute.controls['productEntityTemplateId'].value,
           data1: this.productEntityAttribute.controls['sectionId'].value,

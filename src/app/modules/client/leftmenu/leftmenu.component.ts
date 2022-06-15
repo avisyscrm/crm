@@ -439,11 +439,11 @@ console.log(this.NumberMenuList);
  if(id?.classList.toString()=='nested active'){
   id?.classList.toggle('active');
   id1?.classList.toggle('caret-down')
- }else{
+ }
+ else{
       id?.classList.add('active');
       id1?.classList.add('caret-down')
      }
- 
   }
 
   press(data:String | undefined,name){

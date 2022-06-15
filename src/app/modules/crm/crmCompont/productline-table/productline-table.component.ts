@@ -67,10 +67,10 @@ export class ProductlineTableComponent implements OnInit {
 
   buttonEvent1(data:any){
     if(data.event=='add'){
-      this.router.navigate(['crm/productline-form']);   
+      this.router.navigate(['crm/crm/productline-form']);   
     }else if(data.event=='edit'){
       // alert(JSON.stringify(data.data));
-      this.router.navigate(['crm/productline-form'],{ queryParams: { data: JSON.stringify(data.data.productLineId)} });
+      this.router.navigate(['crm/crm/productline-form'],{ queryParams: { data: JSON.stringify(data.data.productLineId)} });
         console.log(data, 'data')
     }else if(data.event == 'delete'){
       // alert(JSON.stringify(  data));
@@ -78,7 +78,7 @@ export class ProductlineTableComponent implements OnInit {
       console.log(data.data.updatedBy);
       
       
-      this.allService.deleteLine(data.data.productLineId, 0)
+      this.allService.deleteLine(data.data.productLineId, JSON.parse(sessionStorage.getItem('userDetails')).userId)
       .subscribe((res)=>{
         this.sweetAlert.recordDeleted();
         this.onrefresh();

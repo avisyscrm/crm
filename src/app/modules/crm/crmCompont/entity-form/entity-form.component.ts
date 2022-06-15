@@ -54,11 +54,11 @@ export class EntityFormComponent implements OnInit {
     if (this.actionBtn == "Update") {
       if(this.file!=undefined){
         this.service.updatEentityGroupsData(formData).subscribe(sucess => {
-          this.alertService.RecordUpdated('crm/entity-groups');
+          this.alertService.RecordUpdated('crm/crm/entity-groups');
         });
       }else{
         this.service.updatEentityGroupsDataWithoutFile(this.entityGroups.value).subscribe(sucess => {
-          this.alertService.RecordUpdated('/crm/entity-groups');
+          this.alertService.RecordUpdated('crm/crm/entity-groups');
         });
       }
     } else {
@@ -67,7 +67,7 @@ export class EntityFormComponent implements OnInit {
           if (sucess.statusCode == 23505) {
             this.alertService.SelectRecord("Entity Group already exist");
           } else {
-            this.alertService.RecordAdded('/crm/entity-groups');
+            this.alertService.RecordAdded('/crm/crm/entity-groups');
           }
         });
       }
@@ -101,7 +101,7 @@ export class EntityFormComponent implements OnInit {
   }
 
   back(){
-    this.router.navigate(['/crm/entity-groups'])
+    this.router.navigate(['/crm/crm/entity-groups'])
   }
 
 }

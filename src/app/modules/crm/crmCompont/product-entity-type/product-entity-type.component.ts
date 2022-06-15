@@ -38,9 +38,9 @@ export class ProductEntityTypeComponent implements OnInit {
   }
   buttonEvent1(data: any) {
     if (data.event == 'add') {
-      this.router.navigate(['crm/product-entity-type-from']);
+      this.router.navigate(['crm/crm/product-entity-type-from']);
     } else if (data.event == 'edit') {
-      this.router.navigate(['crm/product-entity-type-from'], { queryParams: { data: JSON.stringify(data.data.productEntityTypeId) } });
+      this.router.navigate(['crm/crm/product-entity-type-from'], { queryParams: { data: JSON.stringify(data.data.productEntityTypeId) } });
       console.log(data, 'data')
     }
     else if (data.event == 'delete') {

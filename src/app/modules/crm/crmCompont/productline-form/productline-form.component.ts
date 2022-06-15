@@ -54,11 +54,11 @@ export class ProductlineFormComponent implements OnInit {
     if (this.actionBtn == "Update") {
       if(this.file!=undefined){
         this.service.updateProductLineData(formData).subscribe(sucess => {
-          this.alertService.RecordUpdated('/crm/product-line');
+          this.alertService.RecordUpdated('/crm/crm/product-line');
         });
       }else{
         this.service.updateProductLineDatawithoutFile(this.productLine.value).subscribe(sucess => {
-          this.alertService.RecordUpdated('/crm/product-line');
+          this.alertService.RecordUpdated('/crm/crm/product-line');
         });
       }
     } else {
@@ -67,7 +67,7 @@ export class ProductlineFormComponent implements OnInit {
           if (sucess.statusCode == 23505) {
             this.alertService.SelectRecord("Product Line already exist");
           } else {
-            this.alertService.RecordAdded('/crm/product-line');
+            this.alertService.RecordAdded('/crm/crm/product-line');
           }
           
         })
@@ -100,6 +100,6 @@ export class ProductlineFormComponent implements OnInit {
   }
 
   back(){
-    this.router.navigate(['/crm/product-line'])
+    this.router.navigate(['/crm/crm/product-line'])
   }
 }
