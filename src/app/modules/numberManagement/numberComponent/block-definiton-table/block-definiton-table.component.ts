@@ -10,7 +10,7 @@ import { NumberservicesService } from '../../numberServices/numberservices.servi
 })
 export class BlockDefinitonTableComponent implements OnInit {
 
-  permission:any=[true,false,true];
+  permission:any=[true,true,true];
   headerList:any=[];
   data:any={};
   

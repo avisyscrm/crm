@@ -75,6 +75,9 @@ export class BlockDefinationFormComponent implements OnInit {
   submit(){
     if(this.blockdefine.valid) {
       if(this.actionBtn == 'Save') {
+        console.log(this.blockdefine.getRawValue());
+        return false;
+        
         this.allService.postNumberScemeBlock(this.allService.removingSpace(this.blockdefine.getRawValue())).subscribe((res:any)=>{
           if(res.statusCode == 23505){
             this.alertService.SelectRecord("Block Name already exist");
