@@ -119,7 +119,7 @@ export class NumberFormatFormComponent implements OnInit {
   }
 
   back(){
-    this.router.navigate(['/number/numberFormatAll']);
+    this.router.navigate(['/number/number/numberFormatAll']);
   }
 
   changePageSortSearch(url:any){

@@ -34,6 +34,7 @@
     "apexcharts": "^3.20.0",
     "date-fns": "^2.15.0",
     "font-awesome": "^4.7.0",
+    "moment": "^2.29.3",
     "ng-apexcharts": "^1.5.1",
     "ng-multiselect-dropdown": "^0.2.10",
     "ngx-bootstrap": "^7.1.2",

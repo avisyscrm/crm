@@ -35,9 +35,9 @@ export class NumberTypeTableComponent implements OnInit {
  
 buttonEvent1(data:any){
 if(data.event=='add'){
-  this.router.navigate(['/number/numberType']);   
+  this.router.navigate(['/number/number/numberType']);   
 }else if(data.event=='edit'){
-  this.router.navigate(['/number/numberType'],{ queryParams: { data:data.data.numberTypeId} });
+  this.router.navigate(['/number/number/numberType'],{ queryParams: { data:data.data.numberTypeId} });
     console.log(data, 'data')
 }
  else if(data.event=='delete'){

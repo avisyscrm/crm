@@ -58,13 +58,13 @@ export class NumberTypeFormComponent implements OnInit {
             if(sucess.statusCode == 23505){
               this.alertService.SelectRecord("Number Type Id already exist");
             }else{
-              this.alertService.RecordAdded('/number/numberTypeTable');
+              this.alertService.RecordAdded('/number/number/numberTypeTable');
             }
           });
       } else {
         this.service.updatenumberType(this.service.removingSpace(this.numberTypes.value)).subscribe(
           (sucess: any) => {
-            this.alertService.RecordUpdated('/number/numberTypeTable');
+            this.alertService.RecordUpdated('/number/number/numberTypeTable');
           });
       }
     }
@@ -89,7 +89,7 @@ export class NumberTypeFormComponent implements OnInit {
   }
 
   back(){
-    this.router.navigate(['number/numberTypeTable']);
+    this.router.navigate(['number/number/numberTypeTable']);
   }
 
   enableDisableAllocationAllowed(){

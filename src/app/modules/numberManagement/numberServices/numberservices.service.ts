@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core'; 
+import * as moment from 'moment';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
@@ -125,6 +126,8 @@ export class NumberservicesService {
   }
 
   postNumberScemeBlock(data){
+    let approvalDate = moment(data.approvalDate).format('YYYY-MM-DD');
+    data.approvalDate = approvalDate;
     return this.http.post(this.postBlockDefinitionURL,data);
   }
 
@@ -132,7 +135,9 @@ export class NumberservicesService {
     return this.http.get(this.getNumberSchemeBlockDetailsURL+"/"+blockDefinitionId)
   }
 
-  updateNumberSchemeBlock(numberSchemeBlockData:string){
+  updateNumberSchemeBlock(numberSchemeBlockData){
+    let approvalDate = moment(numberSchemeBlockData.approvalDate).format('YYYY-MM-DD');
+    numberSchemeBlockData.approvalDate = approvalDate;
     return this.http.put(this.putNumberSchemeBlockDetailURL,numberSchemeBlockData);
   }
 

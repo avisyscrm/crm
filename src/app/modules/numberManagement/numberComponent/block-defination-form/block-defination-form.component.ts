@@ -3,8 +3,7 @@ import { AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn,
 import { ActivatedRoute, Router } from '@angular/router';
 import { SweetalertServiceService } from 'src/app/modules/client/sweetalert/sweetalert-service.service';
 import { NumberservicesService } from '../../numberServices/numberservices.service';
-// import {numberLessThan} from '../../../client/validators/validation'
-
+import * as moment from 'moment';
 @Component({
   selector: 'app-block-defination-form',
   templateUrl: './block-defination-form.component.html',
@@ -17,9 +16,10 @@ export class BlockDefinationFormComponent implements OnInit {
   end:any;
   result:any;
   schemeList:any;
-
+  maxDate: Date;
   constructor(private router: Router,private route: ActivatedRoute,private allService:NumberservicesService,private alertService: SweetalertServiceService) { 
     this.intialvalue = this.blockdefine.value;
+    this.maxDate = new Date();
     this.route.queryParams.subscribe((params: any) => {
       if (params.data != undefined) {
         this.actionBtn = "Update";
@@ -47,7 +47,7 @@ export class BlockDefinationFormComponent implements OnInit {
     'blockDefinitionId':new FormControl(''),
     'numberSchemeId':new FormControl('',Validators.required),
     'blockName': new FormControl('',[Validators.required,Validators.maxLength(30)]),
-    'approvalDate': new FormControl((new Date()).toISOString().substring(0,10), [ Validators.maxLength(15)]),
+    'approvalDate': new FormControl(new Date(), [ Validators.maxLength(15)]),
     'startNumber': new FormControl('', [Validators.required, Validators.maxLength(100)]),
     'endNumber': new FormControl('',[Validators.required, Validators.maxLength(10)]),
     'totalCount': new FormControl('0',Validators.required),
@@ -62,9 +62,9 @@ export class BlockDefinationFormComponent implements OnInit {
 
   getValueByID(id) {
     this.allService.getNumberSchemeBlockDetailData(id).subscribe((sucess: any) => {
+      sucess.approvalDate = new Date(sucess.approvalDate)
       this.intialvalue = sucess;
       this.blockdefine.patchValue(sucess);
-      
     }, error => {
       // alert("Error while updating the record");
     });
@@ -75,14 +75,11 @@ export class BlockDefinationFormComponent implements OnInit {
   submit(){
     if(this.blockdefine.valid) {
       if(this.actionBtn == 'Save') {
-        console.log(this.blockdefine.getRawValue());
-        return false;
-        
-        this.allService.postNumberScemeBlock(this.allService.removingSpace(this.blockdefine.getRawValue())).subscribe((res:any)=>{
+       this.allService.postNumberScemeBlock(this.allService.removingSpace(this.blockdefine.getRawValue())).subscribe((res:any)=>{
           if(res.statusCode == 23505){
             this.alertService.SelectRecord("Block Name already exist");
           }else{
-            this.alertService.RecordAdded('/number/blockDefinationTable');
+            this.alertService.RecordAdded('/number/number/blockDefinationTable');
           }
         },(error)=>{
           console.log(error);
@@ -113,7 +110,7 @@ export class BlockDefinationFormComponent implements OnInit {
   }
 
   back(){
-    this.router.navigate(['/number/blockDefinationTable']);
+    this.router.navigate(['/number/number/blockDefinationTable']);
   }
   setTotalCount(){
     if(this.blockdefine.controls['startNumber'].value && this.blockdefine.controls['endNumber'].value) {
