@@ -36,6 +36,9 @@ import { ProductHierachyComponent } from '../crmCompont/product-hierachy/product
 import { ProductHierachyFormComponent } from '../crmCompont/product-hierachy-form/product-hierachy-form.component';
 import { ProductEntityTypeFromComponent } from '../crmCompont/product-entity-type-from/product-entity-type-from.component';
 import { ProfilepageComponent } from '../crmCompont/profilepage/profilepage.component';
+import { CommonAllComponent } from '../crmCompont/common-all/common-all.component';
+import { CommonFormComponent } from '../crmCompont/common-form/common-form.component';
+
 
 @NgModule({
   declarations: [
@@ -70,7 +73,8 @@ import { ProfilepageComponent } from '../crmCompont/profilepage/profilepage.comp
     ProductHierachyFormComponent,
     ProductEntityTypeFromComponent,
     ProfilepageComponent,
-
+    CommonAllComponent,
+    CommonFormComponent,
   ],
   imports: [
     CommonModule,

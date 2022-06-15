@@ -324,7 +324,14 @@ createProductFamilly(data){
       private changepassword =environment.accessToken+"/users/changepassword";
       private getForgotPasswordss =environment.accessToken+"/users/forgetPassword/";
       
-    // add tabs
+    // Common master
+    private allCommonParent = environment.baseUrl+"/parentCommonMaster";
+    private allCommonChild = environment.baseUrl+"/childCommonMaster/";
+    private sendCommonData = environment.baseUrl+"/commonMaster/";
+    private changeCommonData = environment.baseUrl+"/commonMaster/";
+    private deleteCommonData = environment.baseUrl+"/commonMaster/";
+    private oneCommonParent = environment.baseUrl+"/commonMasterById/";
+
     constructor(private http: HttpClient) { }
   
     // To Get All Contacts
@@ -816,10 +823,30 @@ postUserProfile(data:any){
 
 
 // number management
-
-
-
    getNumberScheme(): Observable<any>  {
     return this.http.get("./assets/numberScheme.json");
   }
+
+  getAllCommonParent(url:string){
+    return this.http.get(this.allCommonParent+"?"+url);
+  }
+  
+  getAllCommonChild(name:string, url:string){
+    return this.http.get(this.allCommonChild+name+"?"+url);
+  }
+
+  postCommonData(data:any){
+    return this.http.post(this.sendCommonData,data);
+  }
+  updateCommonData(data:any){
+    return this.http.put(this.changeCommonData,data);
+  }
+  getOneCommonParent(id:number){
+    return this.http.get(this.oneCommonParent+id);
+  }
+
+  deleteCommonRecord(id:any, deletedby: string){
+    return this.http.delete(this.deleteCommonData+id+"/"+deletedby);
+  }
+
 }

@@ -1,3 +1,4 @@
+import { CommonAllComponent } from './../crmCompont/common-all/common-all.component';
 import { ProfilepageComponent } from './../crmCompont/profilepage/profilepage.component';
 import { ScheduleemailFormComponent } from './../crmCompont/scheduleemail-form/scheduleemail-form.component';
 import { EmailtemplateformComponent } from './../crmCompont/emailtemplateform/emailtemplateform.component';
@@ -34,6 +35,7 @@ import { ProductHierachyComponent } from '../crmCompont/product-hierachy/product
 import { ProductHierachyFormComponent } from '../crmCompont/product-hierachy-form/product-hierachy-form.component';
 import { ProductEntityTypeComponent } from '../crmCompont/product-entity-type/product-entity-type.component';
 import { ProductEntityTypeFromComponent } from '../crmCompont/product-entity-type-from/product-entity-type-from.component';
+import { CommonFormComponent } from '../crmCompont/common-form/common-form.component';
 
 
 
@@ -209,6 +211,16 @@ const routes: Routes = [
                           path: 'profile',
                           component: ProfilepageComponent,
                           data: { title: 'Profile' }
+                        },
+                        {
+                          path: 'commonAll',
+                          component: CommonAllComponent,
+                          data: { title: 'Common Master' }
+                        },
+                        {
+                          path: 'commonForm',
+                          component: CommonFormComponent,
+                          data: { title: 'Common Master' }
                         },
                       ]     
                       },

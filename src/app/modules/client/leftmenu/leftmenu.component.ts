@@ -3,7 +3,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { AppComponent } from 'src/app/app.component';
 import { CrmservicesService } from '../../crm/crm-services/crmservices.service';
-import { AllservicesService } from '../services/allservices.service';
 @Component({
   selector: 'app-leftmenu',
   templateUrl: './leftmenu.component.html',
@@ -69,17 +68,17 @@ export class LeftmenuComponent implements OnInit {
       submenu:[
           {
             name:"Users",
-            routerLink:['/crm/user-all'],
+            routerLink:['/crm/crm/user-all'],
             translationKey:'',
           },
           {
           name:"Roles",
-          routerLink:['/crm/adminRole-table'],
+          routerLink:['/crm/crm/adminRole-table'],
           translationKey:'',
         },
         {
           name:"Assign Role",
-          routerLink:['/crm/assign-role'],
+          routerLink:['/crm/crm/assign-role'],
           translationKey:'',
         }
       ]
@@ -89,7 +88,7 @@ export class LeftmenuComponent implements OnInit {
     isHeading:true,
     iconClass:"icon-plus",
     isGheading:false,
-    routerLink:['/crm/emailTemplate'],
+    routerLink:['/crm/crm/emailTemplate'],
     dynamicMenuOpen:false,
     translationKey:'',
    },
@@ -98,7 +97,7 @@ export class LeftmenuComponent implements OnInit {
     isHeading:true,
     iconClass:"icon-envelope",
     isGheading:false,
-    routerLink:['/crm/emails'],
+    routerLink:['/crm/crm/emails'],
     dynamicMenuOpen:false,
     translationKey:'',
    },
@@ -107,7 +106,7 @@ export class LeftmenuComponent implements OnInit {
     isHeading:true,
     iconClass:"icon-plus",
     isGheading:false,
-    routerLink:['/crm/scheduleEmail'],
+    routerLink:['/crm/crm/scheduleEmail'],
     dynamicMenuOpen:false,
     translationKey:'',
    },
@@ -214,32 +213,37 @@ export class LeftmenuComponent implements OnInit {
       submenu:[
           {
             name:"Product Family",
-            routerLink:['/crm/product-family'],
+            routerLink:['/crm/crm/product-family'],
             translationKey:'master_submenu_product_family',
           },
           {
           name:"Product Line",
-          routerLink:['/crm/product-line'],
+          routerLink:['/crm/crm/product-line'],
           translationKey:'master_submenu_product_line',
           },
           {
           name:"Entity Group",
-          routerLink:['/crm/entity-groups'],
+          routerLink:['/crm/crm/entity-groups'],
           translationKey:'master_submenu_entity_group',
         },{
           name:"Product Hierachy",
-          routerLink:['/crm/product-hierachy'],
+          routerLink:['/crm/crm/product-hierachy'],
           translationKey:'master_submenu_product-hierachy',
           
         },
         {
           name:"Product Entity Type",
-          routerLink:['/crm/product-entity-type'],
+          routerLink:['/crm/crm/product-entity-type'],
           translationKey:'master_submenu_product-entity-type',
         },
         {
           name:"Product Attribute",
-          routerLink:['/crm/Product-Atribute-Summmary'],
+          routerLink:['/crm/crm/Product-Atribute-Summmary'],
+          translationKey:'product_submenu_product_attribute_summary',
+        },
+        {
+          name:"Common Master",
+          routerLink:['/crm/crm/commonAll'],
           translationKey:'product_submenu_product_attribute_summary',
         }
       ]
@@ -255,17 +259,17 @@ export class LeftmenuComponent implements OnInit {
     submenu:[
         {
           name:"Product Template",
-          routerLink:['/crm/product-templates'],
+          routerLink:['/crm/crm/product-templates'],
           translationKey:'product_submenu_product_template',
         },
       //   {
       //   name:"Product Tab",
-      //   routerLink:['/crm/product-tabs'],
+      //   routerLink:['/crm/crm/product-tabs'],
       //   translationKey:'product_submenu_product_tab',
       //   },
       //   {
       //   name:"Product Attribute",
-      //   routerLink:['/crm/product-attribute'],
+      //   routerLink:['/crm/crm/product-attribute'],
       //   translationKey:'product_submenu_product_attribute',
       // },
      
@@ -292,50 +296,50 @@ export class LeftmenuComponent implements OnInit {
       submenu:[
           // {
           //   name:"Number Type",
-          //   routerLink:['/number/numberType'],
+          //   routerLink:['/number/number/numberType'],
           //   translationKey:'master_submenu_product_family',
           // },
           {
             name:"Number Type",
-            routerLink:['/number/numberTypeTable'],
+            routerLink:['/number/number/numberTypeTable'],
             translationKey:'master_submenu_product_family',
           },
           {
             name:"Number Format",
-            routerLink:['/number/numberFormatAll'],
+            routerLink:['/number/number/numberFormatAll'],
             translationKey:'master_submenu_product_family',
           },
           {
             name:"Number Schemes",
-            routerLink:['/number/numberSchemeTable'],
+            routerLink:['/number/number/numberSchemeTable'],
             translationKey:'master_submenu_product_family',
 
           },{
             name:"Block Defination",
-            routerLink:['/number/blockDefinationTable'],
+            routerLink:['/number/number/blockDefinationTable'],
             translationKey:'master_submenu_product_family',
           },{
             name:"Vanity Pattern Rule",
-            routerLink:['/number/vanityPatternTable'],
+            routerLink:['/number/number/vanityPatternTable'],
             translationKey:'master_submenu_product_family',
           },{
             name:"Generated Number",
-            routerLink:['/number/generatedNumber'],
+            routerLink:['/number/number/generatedNumber'],
             translationKey:'master_submenu_product_family',
           },
           {
             name:"Number Configuration",
-            routerLink:['/number/number-scheme-configuration'],
+            routerLink:['/number/number/number-scheme-configuration'],
             translationKey:'master_submenu_product_family',
           },
           {
             name:"Vanity Number Pattern",
-            routerLink:['/number/number-pattern-rules'],
+            routerLink:['/number/number/number-pattern-rules'],
             translationKey:'master_submenu_product_family',
           },
           {
             name:"Number Generation",
-            routerLink:['/number/number-generation'],
+            routerLink:['/number/number/number-generation'],
             translationKey:'master_submenu_product_family',
           }
       ]
@@ -444,7 +448,7 @@ console.log(this.NumberMenuList);
 
   press(data:String | undefined,name){
     
-    this.router.navigate(['/crm/dynamicDataTable']);
+    this.router.navigate(['/crm/crm/dynamicDataTable']);
     this.allserviceService.isStringUrl.next({data:data,name:name});
   }
 
