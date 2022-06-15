@@ -10,7 +10,7 @@ import { NumberservicesService } from '../../numberServices/numberservices.servi
 })
 export class NumberSchemeTableComponent implements OnInit {
 
-  permission:any=[true,true,true];
+  permission:any=[true,false,true];
   headerList:any=[];
   data:any={};
   

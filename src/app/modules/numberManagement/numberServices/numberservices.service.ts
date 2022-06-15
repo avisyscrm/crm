@@ -26,10 +26,11 @@ export class NumberservicesService {
   private getNumberSchemeBlockDetailsURL = environment.schemeBaseUrl+"/blockDefinition";
   private putNumberSchemeBlockDetailURL = environment.schemeBaseUrl+"/updateBlockDefinition";
   private deleteNumberSchemeBlockURL = environment.schemeBaseUrl+"/deleteBlockDefinition";
-  private deleteVanityNumberURL = environment.schemeBaseUrl+"/";
-  private getVanityPatternRuleDetailsURL = environment.schemeBaseUrl+"/";
-  private postVanityPatterRuleURL = environment.schemeBaseUrl+"/";
-  private putVanityPatterRuleURL = environment.schemeBaseUrl+"/";
+  private deleteVanityNumberURL = environment.schemeBaseUrl+"/deleteVanityNumberPatternRule";
+  private getVanityPatternRulesListURL = environment.schemeBaseUrl+"/vanityNumberPatternRule";
+  private getVanityPatternRuleDetailsURL = environment.schemeBaseUrl+"/vanityNumberPatternRule";
+  private postVanityPatterRuleURL = environment.schemeBaseUrl+"/createVanityNumberPatternRule";
+  private putVanityPatterRuleURL = environment.schemeBaseUrl+"/updateVanityNumberPatternRule";
 
   removingSpace(value){
     for (var key in value) {
@@ -146,8 +147,8 @@ export class NumberservicesService {
   }
 
   getVanityPatternRules(url:string): Observable<any>  {
-    //return this.http.get(environment.schemeBaseUrl+"/blockDefinition?"+url);
-    return this.http.get('./assets/vanityPatternRule.json');
+    return this.http.get(this.getVanityPatternRulesListURL+"?"+url);
+    // return this.http.get('./assets/vanityPatternRule.json');
   }
 
   deleteVanityPatternRule(venityNumberId:number, id:any){
