@@ -78,14 +78,14 @@ export class ProductTemplateFormComponent {
   url: String = "pageNo=1&pageSize=5";
 
   back(){
-    this.router.navigate(['/crm/product-templates']);
+    this.router.navigate(['/crm/crm/product-templates']);
   }
   submit() {
     if (this.actionBtn == "Save") {
       this.service.SaveProductTemplate(this.productTemplate.value).subscribe(
         (sucess: any) => {
           this.sweetAlert.RecordAddedStatic();
-        this.router.navigate(['crm/product-template-form'], { queryParams: { data: JSON.stringify(sucess.productEntityTemplateId) } });
+        this.router.navigate(['crm/crm/product-template-form'], { queryParams: { data: JSON.stringify(sucess.productEntityTemplateId) } });
            this.intialvalue=this.productTemplate.value;
         });
     } else {
@@ -128,7 +128,7 @@ export class ProductTemplateFormComponent {
       this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'gray modal-lg' }));
     } else if (event.event == 'inSidebtn') {
       if (event.btnEvent == 'Attributes') {
-        this.router.navigate(['crm/product-attribute'] ,
+        this.router.navigate(['crm/crm/product-attribute'] ,
         { queryParams: { data: JSON.stringify(event.data.productEntityTemplateId),
                        data1: JSON.stringify(event.data.productEntityTemplateSectionId),
                        data2: JSON.stringify(event.data.parentId)}});
@@ -145,8 +145,8 @@ export class ProductTemplateFormComponent {
     type: new FormControl('Tab', Validators.required),
     section: new FormControl('', [Validators.required, Validators.maxLength(100)]),
     sequenceId: new FormControl('', Validators.required),
-    createdBy: new FormControl('-1'),
-    updatedBy: new FormControl('-1'),
+    createdBy: new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
+    updatedBy: new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     productEntityTemplateSectionId: new FormControl('')
   });
 

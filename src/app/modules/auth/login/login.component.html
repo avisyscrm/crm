@@ -47,10 +47,10 @@
             </div>
         </form>
             <div class="text-center text-muted">
-                Don't have account yet? <a [routerLink]="['/register']" href="javascript:void(0)">Sign up</a>
+                Don't have account yet? <a [routerLink]="['/auth/register']" href="javascript:void(0)">Sign up</a>
             </div>
             <div class="text-center mt-2 text-danger text-muted">
-               <a [routerLink]="['/forgot-password']" href="javascript:void(0)">  Forgot Password</a>
+               <a [routerLink]="['/auth/forgot-password']" href="javascript:void(0)">  Forgot Password</a>
             </div>
 
             <div class="text-center text-danger mt-2 alert alert-danger" *ngIf="invalidUser">Invalid Username or Password</div>

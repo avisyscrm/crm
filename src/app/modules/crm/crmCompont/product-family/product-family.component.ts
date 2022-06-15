@@ -32,12 +32,12 @@ changePageSortSearch(url:any){
 }
 buttonEvent1(data:any){
 if(data.event=='add'){
-  this.router.navigate(['crm/product-family-form']);   
+  this.router.navigate(['crm/crm/product-family-form']);   
 }else if(data.event=='edit'){
-  this.router.navigate(['crm/product-family-form'],{ queryParams: { data: JSON.stringify(data.data.productFamilyId)} });
+  this.router.navigate(['crm/crm/product-family-form'],{ queryParams: { data: JSON.stringify(data.data.productFamilyId)} });
     console.log(data.data, 'data')
 } else if(data.event == 'delete'){
-  this.allService.deleteProductFamily(data.data.productFamilyId, 0).subscribe((res)=>{
+  this.allService.deleteProductFamily(data.data.productFamilyId, JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res)=>{
     this.sweetAlert.recordDeleted();
    this.changePageSortSearch(this.url);
   })  

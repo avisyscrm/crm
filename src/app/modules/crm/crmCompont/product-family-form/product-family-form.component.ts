@@ -39,7 +39,7 @@ export class ProductFamilyFormComponent implements OnInit {
       this.intialvalue = sucess;
       this.productFamily.patchValue(sucess);
     }, error => {
-      alert("Error while updating the record");
+      // alert("Error while updating the record");
     });
   }
   ngOnInit(): void { }
@@ -54,12 +54,12 @@ export class ProductFamilyFormComponent implements OnInit {
       if (this.actionBtn == "Update") {
         if (this.file != undefined) {
           this.service.putProductFamily(formData).subscribe(sucess => {
-            this.alertService.RecordUpdated('/crm/product-family');
+            this.alertService.RecordUpdated('/crm/crm/product-family');
           });
         }
          else {
           this.service.updateProductFamilyWithoutFile(this.productFamily.value).subscribe(sucess => {
-            this.alertService.RecordUpdated('/crm/product-family');
+            this.alertService.RecordUpdated('/crm/crm/product-family');
           });
         }
       } else {
@@ -68,7 +68,7 @@ export class ProductFamilyFormComponent implements OnInit {
             if (sucess.statusCode == 23505) {
               this.alertService.SelectRecord("Product Family already exist");
             } else {
-              this.alertService.RecordAdded('/crm/product-family');
+              this.alertService.RecordAdded('/crm/crm/product-family');
             }
           })
         } else {
@@ -100,6 +100,6 @@ export class ProductFamilyFormComponent implements OnInit {
   }
 
   back(){
-    this.router.navigate(['/crm/product-family'])
+    this.router.navigate(['/crm/crm/product-family'])
   }
 }

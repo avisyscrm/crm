@@ -19,6 +19,8 @@ import { BlockDefinitonTableComponent } from './numberComponent/block-definiton-
 import { VanityPatternRulesTableComponent } from './numberComponent/vanity-pattern-rules-table/vanity-pattern-rules-table.component';
 import { DateTimmeComponent } from './numberComponent/date-timme/date-timme.component';
 import { NumberDirective } from 'src/app/shared/namber-valid-directive';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyInterceptor } from '../auth/login/intersepter.service';
 
 
 @NgModule({
@@ -45,6 +47,8 @@ import { NumberDirective } from 'src/app/shared/namber-valid-directive';
     CommonModule,
     SharedModule,
     NumberManagementRoutingModule
-  ]
+  ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true },]
+
 })
 export class NumberMangementModule { }

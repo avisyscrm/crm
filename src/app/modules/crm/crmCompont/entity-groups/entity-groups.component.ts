@@ -63,14 +63,14 @@ export class EntityGroupsComponent implements OnInit {
 
   buttonEvent1(data:any){
 if(data.event=='add'){
-  this.router.navigate(['crm/entity-form']);   
+  this.router.navigate(['crm/crm/entity-form']);   
 }else if(data.event=='edit'){
   // alert(JSON.stringify(data.data));
-  this.router.navigate(['crm/entity-form'],{ queryParams: { data: JSON.stringify(data.data.entityGroupsId)} });
+  this.router.navigate(['crm/crm/entity-form'],{ queryParams: { data: JSON.stringify(data.data.entityGroupsId)} });
     console.log(data, 'data')
 }
  else if(data.event=='delete'){
-   this.allService.deleteEntitygroups(data.data.entityGroupsId,0).subscribe((res)=>{
+   this.allService.deleteEntitygroups(data.data.entityGroupsId,JSON.parse(sessionStorage.getItem('userDetails')).userId).subscribe((res)=>{
     this.sweetAlert.recordDeleted();  
     this.onDelete();
     this.onrefresh(); 

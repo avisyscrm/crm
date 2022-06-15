@@ -25,14 +25,14 @@ headerList:any=[];
   }
   buttonEvent1(event:any){ 
 if(event.event=='add'){
-  this.router.navigate(['crm/product-tabs-form']); 
+  this.router.navigate(['crm/crm/product-tabs-form']); 
   
 }else if(event.event=='edit'){
-this.router.navigate(['crm/product-tabs-form'],{ queryParams: { data: JSON.stringify(event.data.productEntityTemplateId)}});
+this.router.navigate(['crm/crm/product-tabs-form'],{ queryParams: { data: JSON.stringify(event.data.productEntityTemplateId)}});
 }else if(event.event=='inSidebtn'){
 if(event.btnEvent=='Attributes'){
 // alert("Attributes"+JSON.stringify(event.data));
-this.router.navigate(['crm/product-attribute'])
+this.router.navigate(['crm/crm/product-attribute'])
 }else if(event.btnEvent=='Delete'){
   alert("Delete"+JSON.stringify(event.data));
 }

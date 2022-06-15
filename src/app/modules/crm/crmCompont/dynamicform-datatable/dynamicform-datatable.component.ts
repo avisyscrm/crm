@@ -48,10 +48,10 @@ changePageSortSearch(url:any){
 }
 buttonEvent1(data:any){
 if(data.event=='add'){
-  this.router.navigate(['crm/dynamicForm'],{ queryParams: {id: this.productEntityElementId}});   
+  this.router.navigate(['crm/crm/dynamicForm'],{ queryParams: {id: this.productEntityElementId}});   
 }else if(data.event=='edit'){
   console.log("test"+JSON.stringify(data.data.templateId)); 
-  this.router.navigate(['crm/dynamicForm'],{ queryParams: {id: data.data.templateId, tabId: data.data.tabId,version: data.data.version }});
+  this.router.navigate(['crm/crm/dynamicForm'],{ queryParams: {id: data.data.templateId, tabId: data.data.tabId,version: data.data.version }});
 } else if(data.event == 'delete'){ 
 
 } 

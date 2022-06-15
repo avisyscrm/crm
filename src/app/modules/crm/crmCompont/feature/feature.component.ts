@@ -18,7 +18,8 @@ export class FeatureComponent implements OnInit {
     if(dataProp == 'numberActive')
     {
       this.router.navigate(['/number/number']);
-    }else{
+    }
+    else{
       this.router.navigate(['/crm/crm']);
     }
     

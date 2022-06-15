@@ -36,7 +36,7 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,th
 
   back(){
 
-    this.router.navigate(['/crm/product-template-form'],
+    this.router.navigate(['/crm/crm/product-template-form'],
     { queryParams: 
       { 
         data: this.templateId
@@ -45,7 +45,7 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,th
   }
     async buttonEvent1(data:any){
     if(data.event=='add'){
-      this.router.navigate(['crm/product-attribute-form'],
+      this.router.navigate(['crm/crm/product-attribute-form'],
       { queryParams: 
         { 
           templateId: this.templateId,
@@ -54,7 +54,7 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,th
           isDetails:false
         } }); 
     }else if(data.event=='edit'){
-      this.router.navigate(['crm/product-attribute-form'],
+      this.router.navigate(['crm/crm/product-attribute-form'],
       { queryParams: 
         { productEntityTemplateId: JSON.stringify(data.data.productEntityTemplateId)} });
     }
@@ -63,7 +63,7 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,th
     }else if(data.event == "inSidebtn"){
       if(data.btnEvent=='Update'){
         
-        this.router.navigate(['crm/product-attribute-form'],
+        this.router.navigate(['crm/crm/product-attribute-form'],
         { queryParams: 
           { 
             productEntityTemplateId: data.data.productTemplateAttributeId,
@@ -85,7 +85,7 @@ this.allService.getEntityTemplateAttributeidd1(this.templateId,this.sectionId,th
     }
      
       }else if(data.btnEvent=="Details"){
-        this.router.navigate(['crm/product-attribute-form'],
+        this.router.navigate(['crm/crm/product-attribute-form'],
         { queryParams: 
           { 
             productEntityTemplateId: data.data.productTemplateAttributeId,
