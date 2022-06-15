@@ -11,7 +11,7 @@ import { CrmservicesService } from 'src/app/modules/crm/crm-services/crmservices
 })
 export class NumberTypeTableComponent implements OnInit {
 
-  permission:any=[true,true,true];
+  permission:any=[true,false,true];
   headerList:any=[];
   constructor(private router:Router,
     private sweetAlert: SweetalertServiceService, private allService: NumberservicesService) { }

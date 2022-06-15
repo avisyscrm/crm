@@ -41,16 +41,17 @@ export class BlockDefinationFormComponent implements OnInit {
       );
 
   }
+  
 
   blockdefine = new FormGroup({
     'blockDefinitionId':new FormControl(''),
     'numberSchemeId':new FormControl('',Validators.required),
-    'blockName': new FormControl('',Validators.required),
+    'blockName': new FormControl('',[Validators.required,Validators.maxLength(30)]),
     'approvalDate': new FormControl((new Date()).toISOString().substring(0,10), [ Validators.maxLength(15)]),
     'startNumber': new FormControl('', [Validators.required, Validators.maxLength(100)]),
     'endNumber': new FormControl('',[Validators.required, Validators.maxLength(10)]),
     'totalCount': new FormControl('0',Validators.required),
-    'status': new FormControl('',Validators.required),
+    'status': new FormControl('Active',Validators.required),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
   });

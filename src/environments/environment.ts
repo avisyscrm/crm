@@ -13,13 +13,13 @@ export const environment = {
   //accessToken:"http://192.168.1.11:8030",
   //baseUrl: "http://192.168.1.11:9090/masters"
    
-  //  accessToken:"http://192.168.1.11:8040",
-  //  baseUrl: "http://192.168.1.11:8050/masters",
-  //  schemeBaseUrl : "http://192.168.1.11:8060/masters"
+   accessToken:"http://192.168.1.11:8040",
+   baseUrl: "http://192.168.1.11:8050/masters",
+   schemeBaseUrl : "http://192.168.1.11:8060/masters"
  
-     baseUrl:"http://114.143.224.42:8050/masters", 
-   accessToken:"http://114.143.224.42:8040",
-   schemeBaseUrl : "http://114.143.224.42:8060/masters"
+  //    baseUrl:"http://114.143.224.42:8050/masters", 
+  //  accessToken:"http://114.143.224.42:8040",
+  //  schemeBaseUrl : "http://114.143.224.42:8060/masters"
 
 
   

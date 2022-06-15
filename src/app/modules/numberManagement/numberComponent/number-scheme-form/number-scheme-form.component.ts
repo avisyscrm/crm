@@ -20,12 +20,12 @@ export class NumberSchemeFormComponent implements OnInit {
     'numberSchemeName': new FormControl('',[Validators.required,Validators.maxLength(20)]),
     'numberType': new FormControl('', [Validators.required,,Validators.maxLength(15)]),
     'numberSchemeReleased': new FormControl(false,[Validators.required]),
-    'numberSchemeFormat': new FormControl('',[Validators.required,Validators.maxLength(30)]),
+    'numberSchemeFormat': new FormControl('',[Validators.maxLength(30)]),
     'numberSchemeArea': new FormControl('',[Validators.maxLength(30)]),
     'reuseAfterDisconnect': new FormControl(false,[Validators.required]),
-    'quarantinePeriod': new FormControl(''),
-    'quarantineUom': new FormControl('',[Validators.maxLength(30)]),
-    'reservationPeriod': new FormControl(''),
+    'quarantinePeriod': new FormControl({ value: '', disabled: true }),
+    'quarantineUom': new FormControl({ value: '', disabled: true },[Validators.maxLength(30)]),
+    'reservationPeriod': new FormControl('',[Validators.maxLength(6)]),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
   });
@@ -39,7 +39,7 @@ export class NumberSchemeFormComponent implements OnInit {
     'lineLevelType': new FormControl('',[Validators.required, Validators.maxLength(30)]),
     'lineLength': new FormControl('',[Validators.required, Validators.maxLength(30)]),
     'lineValueType':new FormControl('',[Validators.required]),
-    'lineValue':new FormControl('',[Validators.required]),
+    'lineValue':new FormControl('',[Validators.required,]),
     'lineDelimiter': new FormControl('None',[Validators.required, Validators.maxLength(30)]),
     'createdBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
     'updatedBy': new FormControl(JSON.parse(sessionStorage.getItem('userDetails')).userId),
@@ -54,6 +54,7 @@ export class NumberSchemeFormComponent implements OnInit {
   
   constructor(private modalService: BsModalService,private allService: NumberservicesService,private router: Router,private route: ActivatedRoute,private alertService: SweetalertServiceService) {
     this.defaultIntialValue = this.numberFormat.value;
+    this.intialvalue = this.numberScheme.value;
     this.actionBtn  = "Save";
   
     this.allService.getnumberTypes().subscribe(sucess=>{
@@ -152,6 +153,13 @@ export class NumberSchemeFormComponent implements OnInit {
         this.modalRef.hide();
         this.alertService.RecordUpdatedStatic();
         this.changePageSortSearch(this.url, false);
+         this.allService.getnumberSchemeDetails(this.numberFormat.controls['numberSchemeId'].value).subscribe((sucess: any) => {
+          this.intialvalue = sucess;
+          this.numberTypeId = sucess.numberType;
+          this.numberScheme.patchValue(sucess);
+        }, error => {
+          // alert("Error while updating the record");
+        });  
       },(error)=>{console.log(error);
       })
     }
@@ -202,5 +210,29 @@ export class NumberSchemeFormComponent implements OnInit {
    }
   }
     
-
+  updateQuarantineRule(){
+    let isreuseAfterDisconnect = this.numberScheme.controls['reuseAfterDisconnect'].value;
+    let quarantinePeriodControl = null;
+    let quarantineUomControl = null;
+    quarantinePeriodControl = this.numberScheme.get('quarantinePeriod');
+    quarantineUomControl = this.numberScheme.get('quarantineUom');
+    quarantinePeriodControl.setValue("")
+    quarantineUomControl.setValue("")
+    if(isreuseAfterDisconnect) {
+      quarantinePeriodControl.enable();
+      quarantineUomControl.enable();
+      quarantinePeriodControl.setValidators([Validators.required]);
+      quarantinePeriodControl.updateValueAndValidity();
+      quarantineUomControl.setValidators([Validators.required]);
+      quarantineUomControl.updateValueAndValidity();
+    } else {
+      quarantinePeriodControl.setValidators(null);
+      quarantinePeriodControl.updateValueAndValidity();
+      quarantineUomControl.setValidators(null);
+      quarantineUomControl.updateValueAndValidity();
+      quarantinePeriodControl.disable();
+      quarantineUomControl.disable();
+    }
+    
+  }
 }

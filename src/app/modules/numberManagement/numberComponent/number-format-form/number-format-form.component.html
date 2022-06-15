@@ -100,7 +100,7 @@
                                                 >
                                                 <span
                                                   class="validate-text"
-                                                  *ngIf="getControl.numberFormatLevelName?.errors?.maxlength">Character exceed max limit 15</span>
+                                                  *ngIf="getControl.numberFormatLevelName?.errors?.maxlength">Character exceed max limit {{getControl.numberFormatLevelName?.errors?.maxlength?.requiredLength}}</span>
                                               </div>
                                               
                                             </div>
@@ -122,10 +122,10 @@
                                                 >
                                                 <span
                                                   class="validate-text"
-                                                  *ngIf="numberFormat.controls.numberFormatDescription?.errors?.maxlength">Character exceed max limit 400</span>
+                                                  *ngIf="getControl.numberFormatDescription?.errors?.maxlength">Character exceed max limit 400</span>
                                                   <span
                                                   class="validate-text"
-                                                  *ngIf="numberFormat.controls.numberFormatDescription?.errors?.pattern">Please enter valid pattern</span>
+                                                  *ngIf="getControl.numberFormatDescription?.errors?.pattern">Please enter valid pattern</span>
                                               </div>
                                             </div>
                                         </div>
@@ -162,13 +162,10 @@
                                                     <option value="Numeric">Numeric</option>
                                                     <option value="Alphanumeric">Alphanumeric</option>
                                                 </select>
-                                                <div
-                                                *ngIf="getControl.numberFormatValueType?.invalid && getControl.numberFormatValueType?.touched">
-                                                <span
-                                                  class="validate-text" *ngIf="getControl.numberFormatValueType?.errors?.required"
-                                                  >Please Select Value Type</span
-                                                >
-                                                
+                                                <div *ngIf="getControl.numberFormatValueType?.invalid && getControl.numberFormatValueType?.touched">
+                                                <span class="validate-text" *ngIf="getControl.numberFormatValueType?.errors?.required">Please Select Value Type</span>
+                                                <span class="validate-text" *ngIf="getControl.numberFormatValueType?.errors?.maxlength">Character exceed
+                                                    max limit {{getControl.numberFormatValueType?.errors?.maxlength?.requiredLength}}</span>
                                               </div>
                                             </div>
                                         </div>
@@ -191,7 +188,8 @@
                                                 <span
                                                   class="validate-text" *ngIf="getControl.numberFormatDelimiter?.errors?.required"
                                                   >Please Select Delimeter</span>
-                                                
+                                                  <span class="validate-text" *ngIf="getControl.numberFormatDelimiter?.errors?.maxlength">Character exceed
+                                                    max limit {{getControl.numberFormatDelimiter?.errors?.maxlength?.requiredLength}}</span>
                                                </div>
                                             </div>
                                         </div>
@@ -213,7 +211,8 @@
                                                 <span
                                                   class="validate-text" *ngIf="getControl.numberFormatLevelType?.errors?.required"
                                                   >Please Select Level Type</span>
-                                                
+                                                  <span class="validate-text" *ngIf="getControl.numberFormatLevelType?.errors?.maxlength">Character exceed
+                                                    max limit {{getControl.numberFormatLevelType?.errors?.maxlength?.requiredLength}}</span>
                                                </div>
                                             </div>
                                         </div>
