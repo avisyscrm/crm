@@ -64,10 +64,10 @@ export class ShowUserComponent implements OnInit {
   
   buttonEvent1(data:any){
   if(data.event=='add'){ 
-    this.router.navigate(['crm/create-user']);   
+    this.router.navigate(['crm/crm/create-user']);   
   }
   else if(data.event=='edit'){
-    this.router.navigate(['crm/create-user'],{ queryParams: data.data });
+    this.router.navigate(['crm/crm/create-user'],{ queryParams: data.data });
      } else if(data.event == 'delete'){
       this.allService.deleteUser(data.data.email).subscribe(()=>{
         this.getTableWithoutHeader(this.byDefaultPaging);

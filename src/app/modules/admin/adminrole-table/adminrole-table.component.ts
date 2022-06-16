@@ -54,7 +54,7 @@ export class AdminroleTableComponent implements OnInit {
   
   buttonEvent1(data:any){
   if(data.event=='add'){
-    this.router.navigate(['crm/create-role']);   
+    this.router.navigate(['crm/crm/create-role']);   
   }else if(data.event=='edit'){
     // alert(JSON.stringify(data.data));
     // this.router.navigate(['user-all'],{ queryParams: { data: JSON.stringify(data.data.productFamilyId)} });

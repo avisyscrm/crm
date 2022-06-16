@@ -57,10 +57,10 @@ export class EmailtemplateComponent implements OnInit {
 
   buttonEvent1(data:any){
     if(data.event=='add'){
-      this.router.navigate(['crm/emailTemplateForm']);   
+      this.router.navigate(['crm/crm/emailTemplateForm']);   
     }else if(data.event=='edit'){
       // alert(JSON.stringify(data.data));
-      this.router.navigate(['crm/emailTemplateForm'],{ queryParams: { data: JSON.stringify(data.data.emailTemplateId)} });
+      this.router.navigate(['crm/crm/emailTemplateForm'],{ queryParams: { data: JSON.stringify(data.data.emailTemplateId)} });
         console.log(data.data, 'data')
     } else if(data.event == 'delete'){
       // alert(JSON.stringify(data));

@@ -6,6 +6,8 @@ import { SharedModule } from 'src/app/shared/models/shared/shared.module';
 import { AdminroleTableComponent } from '../adminrole-table/adminrole-table.component';
 import { AssignRoleComponent } from '../assign-role/assign-role.component';
 import { CreateRoleComponent } from '../create-role/create-role.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { MyInterceptor } from '../../auth/login/intersepter.service';
 
 
 
@@ -20,6 +22,7 @@ import { CreateRoleComponent } from '../create-role/create-role.component';
     AdminRoutingModule,
     SharedModule,
     RouterModule
-  ]
+  ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: MyInterceptor, multi: true },]
 })
 export class AdminModule { } 

@@ -73,12 +73,12 @@ export class LeftmenuComponent implements OnInit {
           },
           {
           name:"Roles",
-          routerLink:['/crm/crm/adminRole-table'],
+          routerLink:['/crm/adminRole-table'],
           translationKey:'',
         },
         {
           name:"Assign Role",
-          routerLink:['/crm/crm/assign-role'],
+          routerLink:['/crm/assign-role'],
           translationKey:'',
         }
       ]

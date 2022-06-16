@@ -53,10 +53,10 @@ export class HeaderComponent implements OnInit {
   // Translate lang
   logout(){
     if(sessionStorage.getItem('userisAdmin') == 'admin'){
-      this.route.navigate(['/admin'])
+      this.route.navigate(['/auth/admin'])
     }
     else{
-      this.route.navigate(['/login'])
+      this.route.navigate(['/auth/login'])
     }
     sessionStorage.clear();
    

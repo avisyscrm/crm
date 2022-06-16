@@ -10,15 +10,15 @@
             </ul>
          
         </div>
-        <button type="button" class="btn btn-primary" (click)="openModal(template)"><i
-            class="fe fe-plus mr-2"></i>Add</button>
+
 
             
         <div class="row">
             <div class="card email-template">
                 <div class="card-header d-flex justify-content-between">
                     <h3 class="card-title prod-name">Emails</h3>
-
+                    <button type="button" class="btn btn-primary" (click)="openModal(template)"><i
+                        class="fe fe-plus mr-2"></i>Add</button>
                 </div>
                 <app-datatable [permission]="permission" (buttonEvent1)="buttonEvent1($event)"
                     (changePageSortSearch)="changePageSortSearch($event)" [dataset]="data">

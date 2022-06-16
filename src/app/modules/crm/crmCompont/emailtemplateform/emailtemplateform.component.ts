@@ -62,7 +62,7 @@ export class EmailtemplateformComponent implements OnInit {
     this.allService.updateEmailTemplateId(this.emailTemplate.value).subscribe((res)=>{
 
     RecordUpdated();
-      this.router.navigate(['/crm/emailTemplate'])
+      this.router.navigate(['/crm/crm/emailTemplate'])
     },
     (error)=>{
       console.log(error);
@@ -73,7 +73,7 @@ export class EmailtemplateformComponent implements OnInit {
     this.allService.postEmailTemplate(this.emailTemplate.value).subscribe((response)=>{
       // alert('Record Added');
       RecordAdded();
-      this.router.navigate(['/crm/emailTemplate'])
+      this.router.navigate(['/crm/crm/emailTemplate'])
     },
     (error)=>{
       console.log(error);
