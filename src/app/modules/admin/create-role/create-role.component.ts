@@ -32,7 +32,7 @@ submit(){
   this.service.postCreateRole(this.createRole.value).subscribe((res)=>{
     // alert("Role Added");
     CreateRole();
-    this.router.navigate(['/crm/adminRole-table'])
+    this.router.navigate(['/crm/crm/adminRole-table'])
     // this.productEntity.reset();
     
   },

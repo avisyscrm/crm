@@ -122,7 +122,7 @@ export class CreateUserComponent implements OnInit {
       
       this.service.postOldUser(this.createUser.value).subscribe((res) => {
      
-        this.alertService.RecordUpdated('/crm/user-all');
+        this.alertService.RecordUpdated('/crm/crm/user-all');
       },
         (error) => {
           alert(JSON.stringify(error));
@@ -131,7 +131,7 @@ export class CreateUserComponent implements OnInit {
 
     } else {
       this.service.postNewUser(this.createUser.value).subscribe((res) => {
-        this.alertService.RecordAdded('/crm/user-all');
+        this.alertService.RecordAdded('/crm/crm/user-all');
       },
       
         (error) => {
